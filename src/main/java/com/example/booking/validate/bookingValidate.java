@@ -17,9 +17,9 @@ public class bookingValidate implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
-		ValidationUtils.rejectIfEmpty(errors, "bookingBean.checkin_date.empty", "必須傳入入住日期");
-		ValidationUtils.rejectIfEmpty(errors, "bookingBean.checkout_date.empty", "必須傳入退房日期");
-		ValidationUtils.rejectIfEmpty(errors, "bookingBean.guest.empty", "必須傳入住人數");
+		ValidationUtils.rejectIfEmpty(errors, "checkinDate", "bookingBean.checkinDate.empty", "必須傳入入住日期");
+	    ValidationUtils.rejectIfEmpty(errors, "checkoutDate", "bookingBean.checkoutDate.empty", "必須傳入退房日期");
+	    ValidationUtils.rejectIfEmpty(errors, "guest", "bookingBean.guest.empty", "必須傳入住人數");
 		
 	}
 	

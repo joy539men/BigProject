@@ -27,23 +27,19 @@ public class bookingController {
 		this.bookingService = bookingService;
 	}
 	
-	@GetMapping("/roomPageTest")
-	public String roomPageTest() {
-		return "roomPageTest";
-	}
 	
 	// 本方法送出新增Customer資料的空白表單
 	@GetMapping("/roomPageTest")
-	public String showCustomerEmptyForm(Model model) {
+	public String showbookingForm(Model model) {
 		bookingBean bean = new bookingBean();
-		model.addAttribute("customerBean", bean);
+		model.addAttribute("bookingBean", bean);
 		return "/roomPageTest";
 	}
 
 	// 新增訂單
 	@PostMapping("/booking")
-	public String insertBooking (@ModelAttribute bookingBean bean, BindingResult bindingResult) {
-		new bookingValidate().validate(bean, bindingResult);
+	public String insertBooking (@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult) {
+		new bookingValidate().validate(bookingBean, bindingResult);
 		if(bindingResult.hasErrors()) {
 			System.out.println("==================");
 			List<ObjectError> list = bindingResult.getAllErrors();
@@ -54,12 +50,12 @@ public class bookingController {
 			return "roomTable";
 		}
 		
-		if(bean.getBookingId() != null) {
-			bookingService.update(bean);
+		if(bookingBean.getBookingId() != null) {
+			bookingService.update(bookingBean);
 		}
 		
-		bean.setBookingTime(new Date(System.currentTimeMillis()));
-		bookingService.save(bean);
+		bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
+		bookingService.save(bookingBean);
 		
 		return "book";
 		

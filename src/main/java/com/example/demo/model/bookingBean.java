@@ -52,6 +52,7 @@ public class bookingBean {
 	public bookingBean() {
 		
 	}
+	
 
 	
 	public userBean getUser() {

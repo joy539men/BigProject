@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Import;
 import com.example.websocketdemo.WebsocketDemoApplication;
 
 @SpringBootApplication
-//@ComponentScan(basePackages = "com.example")  
-@Import(WebsocketDemoApplication.class)
+@ComponentScan(basePackages = {"com.example.booking"})  
 public class SpringBootCrudApplication {
 
 	public static void main(String[] args) {

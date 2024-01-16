@@ -351,10 +351,10 @@
     
     <section>
     	<div align="center">
-	    <c:url var='saveAction' value='/booking' />
-		<form:form method='POST' modelAttribute="bookingBean" action="${saveAction}">
-			<c:if test='${bookingBean.booking_Id != null}'>
-                 <form:hidden path="customerId" /><br>&nbsp;
+	    <c:url var='booking' value='/booking' />
+		<form:form method='POST' modelAttribute="bookingBean" action="${booking}">
+			<c:if test='${bookingBean.bookingId != null}'>
+                 <form:hidden path="bookginId" /><br>&nbsp;
 			</c:if>
 			<fieldset class="fieldset-auto-width">
 				<legend>客戶資料</legend>
@@ -362,15 +362,15 @@
 					<tr>
 						<td align='right'>入住日期：<br>&nbsp;</td>
 						<td width='280'>
-							<form:input path="checkin_date	" size="25"/><br>&nbsp;
-							<form:errors path="checkin_date	" cssClass="error" />
+							<form:input path="checkinDate" size="25"/><br>&nbsp;
+							<form:errors path="checkinDate" cssClass="error" />
 						</td>
 					</tr>
 					<tr>
 						<td align='right'>退房日期：<br>&nbsp;
 						</td>
-						<td><form:input path="checkout_date" size="25" /><br>&nbsp;
-						    <form:errors path="checkout_date" cssClass="error" />
+						<td><form:input path="checkoutDate" size="25" /><br>&nbsp;
+						    <form:errors path="checkoutDate" cssClass="error" />
 						</td>
 					</tr>
 					<tr>
@@ -404,8 +404,8 @@
 					</tr>
 					<tr> --%>
 						<td align='right'>總付款金額：<br>&nbsp;</td>
-						<td><form:input path="total_price" size="10" /><br>&nbsp;
-							<form:errors path="total_price" cssClass="error" />
+						<td><form:input path="totalPrice" size="10" /><br>&nbsp;
+							<form:errors path="totalPrice" cssClass="error" />
 						</td>
 					</tr>
 					<tr>
