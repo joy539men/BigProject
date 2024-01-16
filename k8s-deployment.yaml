@@ -6,7 +6,7 @@ metadata:
     app: chat-server
 spec:
   replicas: 1                 # No. of replicas/pods to run in this deployment
-  selector: 
+  selector:  
     matchLabels:              # The deployment applies to any pods mayching the specified labels
       app: chat-server
   template:                   # Template for creating the pods in this deployment
