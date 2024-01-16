@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 import com.example.websocketdemo.WebsocketDemoApplication;
 
-@SpringBootApplication
+@SpringBootApplication  
 @Import(WebsocketDemoApplication.class)
 public class SpringBootCrudApplication {
 
