@@ -209,7 +209,9 @@
 	
 	<a href="<c:url value="/intoAjax"></c:url>">跳轉Ajax頁面</a><br>
 	<a href="<c:url value="/roomDetail"></c:url>">房間細節</a><br>
-	<a href="<c:url value="/webSocket"></c:url>">聊天系統</a>
+	<a href="<c:url value="/webSocket"></c:url>">聊天系統</a><br>
+	<a href="<c:url value="/googleAPI"></c:url>">google 地圖</a>
+	
 	
 	<%-- <a href="<c:url value="/singleRoom"></c:url>">跳轉到 ajax 頁面</a> --%>
 </section>
