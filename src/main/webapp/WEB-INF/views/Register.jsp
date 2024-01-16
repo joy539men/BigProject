@@ -22,7 +22,7 @@
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
     <!-- theme meta -->
-    <meta name="theme-name" content="Register" />
+    <meta name="theme-name" content="Register " />
 
     <!-- # Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

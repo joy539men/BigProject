@@ -22,7 +22,7 @@
 	<link rel="icon" href="images/favicon.png" type="image/x-icon">
   
   <!-- theme meta -->
-  <meta name="theme-name" content="wallet" />
+  <meta name="theme-name" content="Personal Information" />
 
 	<!-- # Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
