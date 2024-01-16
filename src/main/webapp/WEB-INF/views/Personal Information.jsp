@@ -14,7 +14,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Personal Informationnn</title>
+	<title>Personal Informationnnnnn</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 	<meta name="description" content="This is meta description">
 	<meta name="author" content="Themefisher">
