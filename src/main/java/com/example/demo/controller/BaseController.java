@@ -26,4 +26,9 @@ public class BaseController {
 	public String googleAPI() {
 		return "googleMap";
 	}
+	
+	@GetMapping("/mainPage")
+	public String mainPage() {
+		return "mainRoomPage";
+	}
 }
