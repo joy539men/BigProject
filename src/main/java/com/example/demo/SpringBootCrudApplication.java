@@ -2,11 +2,13 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
 import com.example.websocketdemo.WebsocketDemoApplication;
 
-@SpringBootApplication   
+@SpringBootApplication
+@ComponentScan(basePackages = {"com.example.booking"})  
 @Import(WebsocketDemoApplication.class)
 public class SpringBootCrudApplication {
 

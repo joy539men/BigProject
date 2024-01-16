@@ -8,7 +8,6 @@
  // FACEBOOK: https://www.facebook.com/themefisher
  // GITHUB: https://github.com/themefisher/
 -->
-
 <html lang="en-us">
   <head>
     <meta charset="utf-8" />
@@ -453,5 +452,11 @@
         </div>
       </div>
     </section>
+    
+    <script>
+	function getRoomDetails(roomId) {
+		window.location.href = '/pillowSurfing/singleRoom/' + roomId;
+	}
+</script>
     
     

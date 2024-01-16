@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.model.bookingBean;
 
 @Controller
 public class BaseController {
@@ -31,4 +34,5 @@ public class BaseController {
 	public String mainPage() {
 		return "mainRoomPage";
 	}
+	
 }
