@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import com.example.websocketdemo.WebsocketDemoApplication;
 
 @SpringBootApplication
-//@ComponentScan(basePackages = {"com.example.booking", "com.example.demo", "com.example.payment", "com.example.websocketdemo","com.example.uploadImages", "com.example.roomTable"})  
+@ComponentScan(basePackages = {"com.example.booking", "com.example.demo", "com.example.payment", "com.example.websocketdemo","com.example.uploadImages", "com.example.roomTable"})  
 public class SpringBootCrudApplication {
 
 	public static void main(String[] args) {

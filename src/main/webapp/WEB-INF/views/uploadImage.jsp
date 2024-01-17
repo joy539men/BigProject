@@ -10,41 +10,58 @@
 	<h2>上傳多張圖片<h2>
 	
 	<!-- 給一個表格 使用 multiple 去進行多張圖片的存取-->
-	<form id="imageUploadForm" action="/pillowSurfing/upload" method="post" enctype="multipart/form-data">
+	<!-- <form id="imageUploadForm" action="/pillowSurfing/upload" method="post" enctype="multipart/form-data">
 		<input type="file" name="images" id = "imageInput"  multiple>
 		<button type= "submit">上傳圖片</button>
-	</form>
+	</form> -->
+	
+	<h2>Submit Form</h2>
+
+    <form action="/pillowSurfing/intoUploadImage" method="POST" id = "uploadForm" enctype="multipart/form-data">
+        <!-- Photo ID: <input type="text" name="photoId"><br> -->
+        Content Type: <input type="text" name="contentType"><br>
+        <!-- Data: <input type="text" name="data"><br> -->
+        <!-- Room ID: <input type="text" name="roomId"><br> -->
+
+        <input type="file" name="data" id = "imageInput" multiple>
+        <input type="submit" value="Submit">
+    </form>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	
 	<script>
 		// 實作 Ajax 技術
-		function uploadImages(){
-				var input = document.getElementById('imageInput');
-				var formData = new FormData();
+		$(document).ready(function() {
+        $('#uploadForm').submit(function(event) {
+            event.preventDefault();
 
+            var input = document.getElementById('imageInput');
+            var formData = new FormData();
 
-				for(var i = 0; i < input.files.length; i++){
-					formData.append("images", input.files[i]);
-				}
+            for (var i = 0; i < input.files.length; i++) {
+                formData.append("images", input.files[i]);
+            }
 
-				// 使用 Ajax 上傳到伺服器
-				$.ajax({
-					url: "/upload",
-					type: "POST",
-					data: formData,
-					processData: false,
-					contentType: false,
-					success: function(response){
-							console.log("上傳成功");
-					},
-					error: function(error){
-							console.error("上傳失敗");
-						}
-					});
-					
-			}
+            
 
+            // 使用 Ajax 上傳到伺服器
+            $.ajax({
+                url: "/pillowSurfing/upload",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log("上傳成功");
+                },
+                error: function(error) {
+                    console.error("上傳失敗");
+                }
+            });
+        });
+    });
+		
 		
 	</script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
 </html>

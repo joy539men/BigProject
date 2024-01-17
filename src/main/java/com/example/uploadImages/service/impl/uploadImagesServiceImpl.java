@@ -49,4 +49,11 @@ public class uploadImagesServiceImpl implements uploadImagesService{
 
 	}
 
+	@Override
+	public void savePhoto(roomPhotoBean roomPhotoBean) {
+		// TODO Auto-generated method stub
+		uploadImagesRepository.save(roomPhotoBean);
+		
+	}
+
 }
