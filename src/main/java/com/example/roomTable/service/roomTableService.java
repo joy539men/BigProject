@@ -1,11 +1,14 @@
 package com.example.roomTable.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import com.example.demo.model.customerBean;
 import com.example.demo.model.roomTableBean;
 
 public interface roomTableService {
-	
-	roomTableBean save(roomTableBean roomTableBean);
-	roomTableBean update(roomTableBean roomTableBean);
-	
-	
+	Optional<roomTableBean> getroomTableBeanById(int id);
+	List<roomTableBean> getroomTableBean();
+	customerBean save(roomTableBean bean);
+	customerBean update(roomTableBean bean);
 }

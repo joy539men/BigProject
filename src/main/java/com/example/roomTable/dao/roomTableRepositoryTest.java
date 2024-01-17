@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.roomTableBean;
 
 @Repository
-public interface roomTableRepository extends CrudRepository<roomTableBean, Integer>{
+public interface roomTableRepositoryTest extends CrudRepository<roomTableBean, Integer>{
 
 }

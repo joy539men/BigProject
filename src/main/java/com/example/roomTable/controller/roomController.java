@@ -1,6 +1,5 @@
-package com.example.demo.controller;
+package com.example.roomTable.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.demo.dao.roomTableRepository;
 import com.example.demo.model.roomTableBean;
+import com.example.roomTable.dao.roomTableRepositoryTest;
 
 @Controller
 public class roomController {
 
 	@Autowired
-	private roomTableRepository roomTableRepository;
+	private roomTableRepositoryTest roomTableRepository;
 
 	
 	

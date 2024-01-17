@@ -1,26 +1,45 @@
 package com.example.roomTable.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.Optional;
 
-import com.example.demo.dao.roomTableRepository;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.customerBean;
 import com.example.demo.model.roomTableBean;
+import com.example.roomTable.dao.roomTableRepositoryTest;
 import com.example.roomTable.service.roomTableService;
 
+@Service
 public class roomTableServiceImpl implements roomTableService{
-
-	@Autowired
-	roomTableRepository roomTableRepository;
 	
+	
+	roomTableRepositoryTest roomTableRepository;
+
 	@Override
-	public roomTableBean save(roomTableBean Bean) {
+	public Optional<roomTableBean> getroomTableBeanById(int id) {
 		// TODO Auto-generated method stub
-		return roomTableRepository.save(Bean);
+		return Optional.empty();
 	}
 
 	@Override
-	public roomTableBean update(roomTableBean Bean) {
+	public List<roomTableBean> getroomTableBean() {
 		// TODO Auto-generated method stub
-		return roomTableRepository.save(Bean);
+		return null;
 	}
 
+	@Override
+	public customerBean save(roomTableBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public customerBean update(roomTableBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	
 }
