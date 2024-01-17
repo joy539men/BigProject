@@ -35,4 +35,9 @@ public class BaseController {
 		return "mainRoomPage";
 	}
 	
+	@GetMapping("/intoUploadImage")
+	public String intoUploadImage() {
+		return "uploadImage";
+	}
+	
 }

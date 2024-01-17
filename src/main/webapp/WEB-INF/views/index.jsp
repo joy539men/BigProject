@@ -212,7 +212,8 @@
 	<a href="<c:url value="/webSocket"></c:url>">聊天系統</a><br>
 	<a href="<c:url value="/googleAPI"></c:url>">google 地圖</a><br>
 	<a href="<c:url value="/mainPage"></c:url>">房間地圖</a><br>
-	<a href="<c:url value="/roomPageTest"></c:url>">訂房表單</a>
+	<a href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br>
+	<a href="<c:url value="/intoUploadImage"></c:url>">進入圖片上傳頁面</a>
 	
 	
 	<%-- <a href="<c:url value="/singleRoom"></c:url>">跳轉到 ajax 頁面</a> --%>

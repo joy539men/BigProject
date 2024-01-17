@@ -10,20 +10,20 @@
 	<h2>上傳多張圖片<h2>
 	
 	<!-- 給一個表格 使用 multiple 去進行多張圖片的存取-->
-	<form>
-		<input type="file" name="image" id = "imageInput" multiple>
-		<button type="button" onclick="uploadImages()">上傳圖片</button>
+	<form id="imageUploadForm" action="/pillowSurfing/upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="images" id = "imageInput"  multiple>
+		<button type= "submit">上傳圖片</button>
 	</form>
 	
 	<script>
 		// 實作 Ajax 技術
 		function uploadImages(){
 				var input = document.getElementById('imageInput');
-				var formData = new FormDate();
+				var formData = new FormData();
 
 
 				for(var i = 0; i < input.files.length; i++){
-					formData.append("images", input.files[s]);
+					formData.append("images", input.files[i]);
 				}
 
 				// 使用 Ajax 上傳到伺服器

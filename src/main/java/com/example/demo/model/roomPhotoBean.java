@@ -14,7 +14,7 @@ public class roomPhotoBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long photoId;
+	private Integer photoId;
 	private byte[]  data;
     private String  contentType;
 	
@@ -23,7 +23,7 @@ public class roomPhotoBean {
 	@JoinColumn(name="roomId")
 	private roomTableBean roomTable;
 	
-	public roomPhotoBean(Long photoId, byte[] data, String contentType) {
+	public roomPhotoBean(Integer photoId, byte[] data, String contentType) {
 		this.photoId     = photoId;
 		this.data        = data;
 		this.contentType = contentType;
@@ -33,12 +33,13 @@ public class roomPhotoBean {
 		
 	}
 	
+	
 
-	public Long getPhotoId() {
+	public Integer getPhotoId() {
 		return photoId;
 	}
 
-	public void setPhotoId(Long photoId) {
+	public void setPhotoId(Integer photoId) {
 		this.photoId = photoId;
 	}
 
