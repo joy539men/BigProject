@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+
+// 這邊不需要，因為有 prefix 了
+// @RequestMapping("/pillowSurfing")
 public class BaseController {
 	
 	@RequestMapping("/")
@@ -12,7 +15,7 @@ public class BaseController {
 		return "index"; 
 	}
 	
-	@RequestMapping("/webSocket")   
+	@GetMapping("/webSocket")   
 	public String webSocket() {
 		return "webSocket";
 	}
