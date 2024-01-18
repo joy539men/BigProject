@@ -217,6 +217,9 @@
 	<a href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br>
 	<a href="<c:url value="/intoUploadImage"></c:url>">進入圖片上傳頁面</a><br>
 	<a href="<c:url value="/intoRoomTableForm"></c:url>">訂房表單</a><br>
+	<a href="<c:url value="/imageLoaging"></c:url>">圖片上傳</a><br>
+	
+	
 	
 	
 	
