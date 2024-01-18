@@ -79,7 +79,7 @@ public class roomTableFormController {
 				
 //				if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
 //					roomTableBean.setPhotos(originalFilename);
-//				}
+//				} 
 				
 				String ext = "";
 				if (originalFilename.lastIndexOf(".") > -1) {
