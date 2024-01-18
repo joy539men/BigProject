@@ -39,14 +39,14 @@
 					<tr>
 						<td align='right'>浴室<br>&nbsp;
 						</td>
-						<td><form:input path="bathroom" size="25" /><br>&nbsp;
+						<td><form:input type="number" path="bathroom" size="25" /><br>&nbsp;
 						  
 						</td>
 					</tr>
 					<tr>
 						<td align='right'>房間：<br>&nbsp;
 						</td>
-						<td><form:input path="bedNum" size="25" /><br>&nbsp;
+						<td><form:input type= "number" path="bedNum" size="25" /><br>&nbsp;
 						    
 						</td>
 					</tr>

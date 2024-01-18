@@ -21,7 +21,7 @@ public class roomTableFormController {
 			this.roomTableService = roomTableService;
 	}
 	
-			// 本方法送出新增Customer資料的空白表單
+			// 本方法送出空白表單
 			@GetMapping("/intoRoomTableForm")
 			public String showbookingForm(Model model) {
 				roomTableBean bean = new roomTableBean();
