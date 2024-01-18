@@ -399,6 +399,10 @@
     </section>
 
     <br>
+    
+    <c:forEach var="roomTable" items="${roomTables}">
+        <p>${roomTable.address}</p>
+    </c:forEach>
 
     <section>
       <div class="row row-cols-1 row-cols-md-4 g-4">
