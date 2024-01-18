@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 
@@ -207,8 +209,18 @@
 
 <section>
 	
-	<a href="<c:url value="/intoAjax"></c:url>">跳轉Ajax頁面</a>
-	<a href="<c:url value="/roomDetail"></c:url>">房間細節</a>
+	<a href="<c:url value="/intoAjax"></c:url>">跳轉Ajax頁面</a><br>
+	<a href="<c:url value="/roomDetail"></c:url>">房間細節</a><br>
+	<a href="<c:url value="/webSocket"></c:url>">聊天系統</a><br>
+	<a href="<c:url value="/googleAPI"></c:url>">google 地圖</a><br>
+	<a href="<c:url value="/mainPage"></c:url>">房間地圖</a><br>
+	<a href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br>
+	<a href="<c:url value="/intoUploadImage"></c:url>">進入圖片上傳頁面</a><br>
+	<a href="<c:url value="/intoRoomTableForm"></c:url>">訂房表單</a><br>
+	
+	
+	
+	
 	<%-- <a href="<c:url value="/singleRoom"></c:url>">跳轉到 ajax 頁面</a> --%>
 </section>
 

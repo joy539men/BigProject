@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.sql.Blob;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ public class userBean {
 	private String     email;
 	private String     address;
 	private String     phone;
+	private Date       birthday;
 	private Blob	   photo;
 	private String     identity;
 	private String     status;
@@ -82,7 +84,7 @@ public class userBean {
 		this.favorite = favorite;
 	}
 
-	public userBean(Integer userId,String  account, String  password, String  userName, String  email, String  address, String  phone,Blob	photo , String  identity, String  status, String  statusNum, Timestamp  registrationTime) {
+	public userBean(Integer userId,String  account, String  password, String  userName, String  email, String  address, String  phone,Blob	photo , String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
 		this.userId            = userId;
 		this.account           = account;
 		this.password          = password;
@@ -96,8 +98,17 @@ public class userBean {
 		this.statusNum         = statusNum;
 		this.registrationTime  = registrationTime;
 		this.phone             = phone;
+		this.birthday          = birthday;
 	}
 	
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
 	public userBean() {
 		
 	}

@@ -139,7 +139,7 @@
             <div>
               <!-- account btn -->
               <li class="dropdown">
-                <a class="p-3 border rounded-pill"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi w-50 bi-list pe-4" style="font-size: 20px"></i><img style="width: 50px" src="images/logo.png" alt=""/></a>
+                <a class="p-3 border rounded-pill"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i><img style="width: 50px" src="images/logo.png" alt=""/></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-item">
                     <img class="img-fluid" style="width: 50px" src="images/logo.png" alt=""/>

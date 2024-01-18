@@ -15,5 +15,10 @@ class SpringBootCrudApplicationTests {
 	void contextLoadsTest() {
 		
 	}
+	
+	@Test
+	void contextLoadsTestTest() {
+		
+	}
 
 }
