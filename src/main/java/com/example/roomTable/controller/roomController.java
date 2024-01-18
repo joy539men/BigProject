@@ -55,6 +55,14 @@ public class roomController {
 		return "roomPage";
 	}
 	
+	@GetMapping("/roomTableFromMySQL")
+	public String listRoomTable(Model model) {
+		model.addAttribute("roomTables", roomTableRepository.findAll());
+		return "roomTableFromMySQL";
+	}
+	
+	
+	
 	
 	
 
