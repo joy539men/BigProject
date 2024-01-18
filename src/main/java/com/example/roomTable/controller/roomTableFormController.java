@@ -3,10 +3,14 @@ package com.example.roomTable.controller;
 import java.io.IOException;
 import java.util.Base64;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,15 +71,15 @@ public class roomTableFormController {
 			
 			
 			@PostMapping("/roomTableFormPost")
-			public String insertRoomTableForm(@ModelAttribute("roomTableBean") roomTableBean roomTableBean
-			                                  ) {
+			public String insertRoomTableForm(@ModelAttribute("roomTableBean")  roomTableBean roomTableBean
+		) {
 				
 				MultipartFile multipartFile = roomTableBean.getMultipartFile();
 				String originalFilename = multipartFile.getOriginalFilename();
 				
-				if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
-					roomTableBean.setPhotos(originalFilename);
-				}
+//				if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+//					roomTableBean.setPhotos(originalFilename);
+//				}
 				
 				String ext = "";
 				if (originalFilename.lastIndexOf(".") > -1) {
@@ -86,7 +90,7 @@ public class roomTableFormController {
 				if (multipartFile != null && !multipartFile.isEmpty()) {
 					try {
 						byte[] b = multipartFile.getBytes();
-						roomTableBean.setMemberImage(b);
+						roomTableBean.setPhotos(b);
 					} catch (Exception e) {
 						e.printStackTrace();
 						throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
@@ -105,6 +109,7 @@ public class roomTableFormController {
 //			        e.printStackTrace();
 //			        return "redirect:/errorPage";
 //			    }
+				return ext;
 			}
 
 
