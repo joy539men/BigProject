@@ -44,13 +44,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td align='right'>照片<br>&nbsp;
-						</td>
-						<td><form:input type="file" path="photos" size="25" /><br>&nbsp;
-						  
-						</td>
-					</tr>
-					<tr>
 						<td align='right'>房間：<br>&nbsp;
 						</td>
 						<td><form:input path="bedNum" size="25" /><br>&nbsp;
