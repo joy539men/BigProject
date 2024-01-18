@@ -3,6 +3,7 @@ package com.example.roomTable.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.customerBean;
@@ -13,7 +14,7 @@ import com.example.roomTable.service.roomTableService;
 @Service
 public class roomTableServiceImpl implements roomTableService{
 	
-	
+	@Autowired
 	roomTableRepositoryTest roomTableRepository;
 
 	@Override
@@ -29,16 +30,18 @@ public class roomTableServiceImpl implements roomTableService{
 	}
 
 	@Override
-	public customerBean save(roomTableBean bean) {
+	public roomTableBean save(roomTableBean bean) {
 		// TODO Auto-generated method stub
-		return null;
+		return roomTableRepository.save(bean);
 	}
 
 	@Override
-	public customerBean update(roomTableBean bean) {
+	public roomTableBean update(roomTableBean bean) {
 		// TODO Auto-generated method stub
-		return null;
+		return roomTableRepository.save(bean);
 	}
+
+	
 	
 
 	

@@ -13,16 +13,17 @@ import com.example.uploadImages.service.uploadImagesService;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/photos")
+@RequestMapping("/pillowSurfing/intoUploadImage")
 public class uploadImagesController {
 
     @Autowired
     private uploadImagesService uploadImagesService; // 假设你有一个 PhotoService 处理业务逻辑
 
     @PostMapping("/upload")
-    public String uploadPhoto(
+    public ResponseEntity<String> uploadPhoto(
             @RequestParam("contentType") String contentType,
-            @RequestParam("data") MultipartFile data
+            @RequestParam("data") MultipartFile data, 
+            @RequestParam("roomId") Integer roomId
     		) {
         try {
             byte[] photoData = data.getBytes();
@@ -30,19 +31,21 @@ public class uploadImagesController {
             roomPhotoBean photo = new roomPhotoBean();
             photo.setContentType(contentType);
             photo.setData(photoData);
-//            photo.setPhotoId(roomId);
+            photo.setPhotoId(roomId);
 
             uploadImagesService.savePhoto(photo);
             
             
 
-//            return ResponseEntity.status(HttpStatus.CREATED).body("Photo uploaded successfully!");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Photo uploaded successfully!");
         } catch (IOException e) {
         	e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload photo.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload photo.");
         }
-		return "index";
+
     }
+    
+   
 
     
     // 还可以添加其他处理照片的方法，如获取照片信息、删除照片等

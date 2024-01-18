@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import java.sql.Blob;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,10 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "roomTable")
@@ -25,7 +29,12 @@ public class roomTableBean {
 	private Integer  roomId;
 	private String   title;
 	private Integer  price;
-	private Blob     photos;
+//	private Blob     photos;
+	
+//	Test
+	@Lob
+	private byte[]   photos;
+	
 	private String   description;
 	private Integer  guestMax;
 	private Integer  roomNum;
@@ -36,6 +45,17 @@ public class roomTableBean {
 	private String   address;
 	private String   lon;
 	private String   lat;
+	
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
+
+	@Transient
+	MultipartFile multipartFile;
 	
 	@ManyToMany
 	@JoinTable(name= "roomTableAndAmenities",
@@ -60,7 +80,7 @@ public class roomTableBean {
 	private Set<favoriteBean> favorite;
 	
 	
-	public roomTableBean(Integer  roomId, Integer  hostId, Integer  price, String   title, Blob     photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat) {
+	public roomTableBean(Integer  roomId, Integer  hostId, Integer  price, String   title, byte[]    photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat) {
 		this.roomId      = roomId;
 		this.price       = price;
 		this.title       = title;
@@ -158,11 +178,12 @@ public class roomTableBean {
 		this.title = title;
 	}
 
-	public Blob getPhotos() {
+
+	public byte[] getPhotos() {
 		return photos;
 	}
 
-	public void setPhotos(Blob photos) {
+	public void setPhotos(byte[] photos) {
 		this.photos = photos;
 	}
 

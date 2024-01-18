@@ -9,6 +9,6 @@ import com.example.demo.model.roomTableBean;
 public interface roomTableService {
 	Optional<roomTableBean> getroomTableBeanById(int id);
 	List<roomTableBean> getroomTableBean();
-	customerBean save(roomTableBean bean);
-	customerBean update(roomTableBean bean);
+	roomTableBean save(roomTableBean bean);
+	roomTableBean update(roomTableBean bean);
 }

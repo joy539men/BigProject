@@ -40,4 +40,8 @@ public class BaseController {
 		return "uploadImage";
 	}
 	
+//	@GetMapping("/intoRoomTableForm")
+//	public String intoRoom() {
+//		return "roomTableForm";
+//	}
 }

@@ -18,10 +18,10 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
     
-    @GetMapping("/")
-    public String mainPage() {
-    	return "index";
-    }
+//    @GetMapping("/")
+//    public String mainPage() {
+//    	return "index";
+//    }
 
     @GetMapping("/getCustomers")
     public @ResponseBody List<customerBean> getCustomers() {

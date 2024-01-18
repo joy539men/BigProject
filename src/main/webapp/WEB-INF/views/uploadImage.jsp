@@ -17,13 +17,13 @@
 	
 	<h2>Submit Form</h2>
 
-    <form action="/pillowSurfing/intoUploadImage" method="POST" id = "uploadForm" enctype="multipart/form-data">
+    <form  method="POST" id = "uploadForm" enctype="multipart/form-data">
         <!-- Photo ID: <input type="text" name="photoId"><br> -->
         Content Type: <input type="text" name="contentType"><br>
         <!-- Data: <input type="text" name="data"><br> -->
-        <!-- Room ID: <input type="text" name="roomId"><br> -->
+        Room ID: <input type="text" name="roomId"><br>
 
-        <input type="file" name="data" id = "imageInput" multiple>
+        Image :<input type="file" name="data" id = "imageInput" multiple><br>
         <input type="submit" value="Submit">
     </form>
 	
@@ -46,11 +46,11 @@
 
             // 使用 Ajax 上傳到伺服器
             $.ajax({
-                url: "/pillowSurfing/upload",
+                url: "/upload",
                 type: "POST",
                 data: formData,
                 processData: false,
-                contentType: false,
+                contentType: 'application/json; charset=utf-8',
                 success: function(response) {
                     console.log("上傳成功");
                 },
