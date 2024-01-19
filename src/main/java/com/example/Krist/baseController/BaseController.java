@@ -10,34 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // @RequestMapping("/pillowSurfing")
 public class BaseController {
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String index() {
 		return "index"; 
 	}
 	
 	@GetMapping("/webSocket")   
 	public String webSocket() {
-		return "Krist/webSocket";
+		return "websocket";
 	}
 	
 	@GetMapping("/webSocketChat")
     public String getWebSocketPage() {
-        return "/Krist/webSocket";  // 這裡返回視圖名稱，確保你的視圖文件（例如 websocket.jsp）位於 "src/main/resources/WEB-INF/views/" 目錄下
+        return "websocket";  // 這裡返回視圖名稱，確保你的視圖文件（例如 websocket.jsp）位於 "src/main/resources/WEB-INF/views/" 目錄下
     }
 	
 	@GetMapping("/googleAPI")
 	public String googleAPI() {
-		return "Krist/googleMap";
+		return "googleMap";
 	}
 	
 	@GetMapping("/mainPage")
 	public String mainPage() {
-		return "Krist/mainRoomPage";
+		return "mainRoomPage";
 	}
 	
 	@GetMapping("/intoUploadImage")
 	public String intoUploadImage() {
-		return "Krist/uploadImage";
+		return "uploadImage";
 	}
 	
 //	@GetMapping("/intoRoomTableForm")
