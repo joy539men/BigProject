@@ -14,7 +14,7 @@ import com.example.demo.model.roomTableBean;
 import com.example.host.dao.AmenitiesRepository;
 import com.example.host.dao.HostRepository;
 import com.example.host.service.HostService;
-import com.example.roomTable.dao.roomTableRepositoryTest;
+
 
 @Service
 public class HostServiceImpl implements HostService {
