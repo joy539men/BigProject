@@ -25,7 +25,7 @@ public class userServiceImpl implements userService{
 		
 		// 如果有使用者資料，則找尋其相關的資料
 		if(userOptional.isPresent()) {
-			userBean user = userOptional.get();
+//			userBean user = userOptional.get();
 		    // 假設 userBean 中有一個關聯屬性 otherTable，表示與其他資料表的關聯
             // 如果有這樣的關聯，則透過這個關聯屬性取得其他相關的資料
             // 如果關聯的資料表是 OtherTable，可以使用 otherTableRepository 進行查詢

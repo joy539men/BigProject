@@ -20,7 +20,7 @@ public class userController {
 	
 	@GetMapping("/userLoginPage")
 	public String userLoginPage() {
-		return "Login";
+		return "login";
 	}
 	
     @PostMapping("/userPostlogin")

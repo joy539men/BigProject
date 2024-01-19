@@ -12,7 +12,7 @@ import com.example.Krist.webSocket.model.ChatMessage;
 /**
  * Created by rajeevkumarsingh on 24/07/17.
  */
-@Controller  
+@Controller
 public class ChatController {
 
     @MessageMapping("/chat.sendMessage")

@@ -11,14 +11,14 @@ import org.springframework.web.socket.config.annotation.*;
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    @Override  
+    @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/pillowSurfing/ws").withSockJS();
+        registry.addEndpoint("pillowSurfing/ws").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-    	registry.setApplicationDestinationPrefixes("/pillowSurfing");
+        registry.setApplicationDestinationPrefixes("/app");
         registry.enableSimpleBroker("/topic");   // Enables a simple in-memory broker
 
 
