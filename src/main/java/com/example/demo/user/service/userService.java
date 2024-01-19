@@ -11,4 +11,6 @@ public interface userService {
 	userBean save(userBean bean);
 	userBean update(userBean bean);
 	Optional<userBean> findByUsername(String username);
+	Integer authenticateUser(String userName, String password);
+	userBean findByUserNameAndPassword(String userName, String password);
 }

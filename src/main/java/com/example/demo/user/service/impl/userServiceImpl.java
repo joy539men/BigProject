@@ -15,6 +15,7 @@ public class userServiceImpl implements userService{
 
 	@Autowired
     private userRepository userRepository;
+	
 
 	
 	@Override
@@ -57,8 +58,42 @@ public class userServiceImpl implements userService{
 		return userRepository.save(bean);
 	}
 
-	public Optional<userBean> findByUsername(String userName){
-		return userRepository.findByUserName(userName);
+	// 取消使用此方法
+//	public Optional<userBean> findByUsername(String userName){
+//		return userRepository.findByUserNameOption(userName);
+//	}
+
+//	@Override
+//	public Integer authenticateUser(String userName, String password) {
+//		// TODO Auto-generated method stub
+//		Integer userId = getUserIdByCredentials(userName, password);
+//        return userId;
+//	}
+
+	@Override
+	public Integer authenticateUser(String userName, String password) {
+		// TODO Auto-generated method stub
+		userBean user = userRepository.findByUserNameAndPassword(userName, password);
+		
+		if(user != null) {
+			return user.getUserId();
+		}else {
+			return null;
+		}
+	}
+
+
+
+	@Override
+	public Optional<userBean> findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
+	@Override
+	public userBean findByUserNameAndPassword(String userName, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

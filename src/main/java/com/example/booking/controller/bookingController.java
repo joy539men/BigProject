@@ -66,21 +66,21 @@ public class bookingController {
 	
 	
 	// 設定訂單，並且使用 userName 去取得 id 值並且跳轉到下一個頁面。
-	@PostMapping("/createBook")
-	public String createBook (String userName,  Model model) {
-		Optional<userBean> userOptional = userRepository.findByUserName(userName);
-		 if (userOptional.isPresent()) {
-	            userBean user = userOptional.get();
-	            
-	            bookingBean booking = new bookingBean();
-	            booking.setBookingId(user.getUserId());
-	            
-	            bookingService.save(booking);
-		 }
-
-		return "book";
-		
-	}
+//	@PostMapping("/createBook")
+//	public String createBook (String userName,  Model model) {
+//		Optional<userBean> userOptional = userRepository.findByUserNameOption(userName);
+//		 if (userOptional.isPresent()) {
+//	            userBean user = userOptional.get();
+//	            
+//	            bookingBean booking = new bookingBean();
+//	            booking.setBookingId(user.getUserId());
+//	            
+//	            bookingService.save(booking);
+//		 }
+//
+//		return "book";
+//		
+//	}
 		
 	
 }
