@@ -305,43 +305,35 @@
             <div class="border rounded shadow" style="width: 404px; height:376">
               <div>
                 <h4 class="m-2">$ 8888 TWD/晚 </h4>
-                <form action="#!" method="post" class="m-5">
+                <c:url var='booking' value='/booking' />
+                <form:form method="post" modelAttribute="bookingBean" action="${ booking}">
                   <div class="row">
                     <div class="col-lg-6 mb-4 pb-2">
-                      <div class="form-group">
-                        <label for="loan_amount" class="form-label">姓 名</label>
-                        <input type="text" class="form-control shadow-none" id="loan_amount" placeholder="ex: 克里斯">
+                      <div class="form-group">  	
+						<label for="checkinDate" class="form-label">入 住 日 期</label>
+    					<form:input type="date" class="form-control shadow-none" id="checkinDate" placeholder="ex: 克里斯" path="checkinDate"/>		
+    					<form:errors path="checkinDate" cssClass="error" />		 
                       </div>
                     </div>
                     <div class="col-lg-6 mb-4 pb-2">
                       <div class="form-group">
-                        <label for="loan_how_long_for" class="form-label">年 齡</label>
-                        <input type="number" class="form-control shadow-none" id="loan_how_long_for" placeholder="ex: 12">
+                  	 	 <label for="checkoutDate" class="form-label">退 住 日 期</label>
+    					 <form:input type="date" class="form-control shadow-none" id="checkoutDate" placeholder="ex: 克里斯" path="checkoutDate"/>       
+    					 <form:errors path="checkoutDate" cssClass="error" />  
                       </div>
-                    </div>
+                    </div>            
                     <div class="col-lg-12 mb-4 pb-2">
                       <div class="form-group">
-                        <label for="loan_repayment" class="form-label">付 款 方 式</label>
-                        <input type="number" class="form-control shadow-none" id="loan_repayment" disabled>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 mb-4 pb-2">
-                      <div class="form-group">
-                        <label for="loan_full_name" class="form-label">備 註</label>
-                        <input type="text" class="form-control shadow-none" id="loan_full_name">
-                      </div>
-                    </div>
-                    <div class="col-lg-6 mb-4 pb-2">
-                      <div class="form-group">
-                        <label for="loan_email_address" class="form-label">信 箱 地 址</label>
-                        <input type="email" class="form-control shadow-none" id="loan_email_address">
+                      	<label for="guest" class="form-label">入 住 人 數</label>
+    					<form:input type="number" class="form-control shadow-none" id="guest" placeholder="ex: 克里斯" path="guest"/>      
+    					<form:errors path="guest" cssClass="error" />             
                       </div>
                     </div>
                     <div class="col-lg-12">
                       <button type="submit" class="btn w-100" style="color:#00AEAE; background-color: #e0f2e5;">提 交 資 料</button>
                     </div>
-                  </div>
-                </form>
+                    </div>
+                    </form:form>
               </div> 
             </div>
           </div>
@@ -387,22 +379,9 @@
 						    <form:errors path="tips" cssClass="error" />
 						</td>
 					</tr>
-					<%-- <tr>
-						<td align='right'>生日<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
-						</td>
-						<td><form:input path="birthday" size="10" /><br>	&nbsp;
-						    <form:errors path="birthday" cssClass="error" />
-						</td>
-					</tr>
-					<tr>
-						<td align='right'>最後發表時間<font size='-3' color='blue'>(yyyy-MM-dd
-								HH:mm:ss)</font>：<br>&nbsp;
-						</td>
-						<td><form:input path="lastPostTime" size="25" /><br>&nbsp;
-							<form:errors path="lastPostTime" cssClass="error" />
-						</td>
-					</tr>
-					<tr> --%>
+	
+
+					<tr> 
 						<td align='right'>總付款金額：<br>&nbsp;</td>
 						<td><form:input path="totalPrice" size="10" /><br>&nbsp;
 							<form:errors path="totalPrice" cssClass="error" />

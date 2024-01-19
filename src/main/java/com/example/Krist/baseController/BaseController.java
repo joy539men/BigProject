@@ -31,14 +31,4 @@ public class BaseController {
 	public String mainPage() {
 		return "mainRoomPage";
 	}
-	
-	@GetMapping("/intoUploadImage")
-	public String intoUploadImage() {
-		return "uploadImage";
-	}
-	
-//	@GetMapping("/intoRoomTableForm")
-//	public String intoRoom() {
-//		return "roomTableForm";
-//	}
 }

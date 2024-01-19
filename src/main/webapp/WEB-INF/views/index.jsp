@@ -215,8 +215,6 @@
 	<a href="<c:url value="/googleAPI"></c:url>">google 地圖</a><br>
 	<a href="<c:url value="/mainPage"></c:url>">房間地圖</a><br>
 	<a href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br>
-	<a href="<c:url value="/intoUploadImage"></c:url>">進入圖片上傳頁面</a><br>
-	<a href="<c:url value="/intoRoomTableForm"></c:url>">訂房表單</a><br>
 	<a href="<c:url value="/imageLoaging"></c:url>">圖片上傳</a><br>
 	<a href="<c:url value="/roomTableFromMySQL"></c:url>">從 MySQL 抓取資料</a><br>
 	<a href="<c:url value="/roomTableGallery"></c:url>">進入 roomTableGallery</a><br>
