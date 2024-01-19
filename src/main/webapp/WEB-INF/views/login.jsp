@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 
 <!--
@@ -109,9 +107,7 @@
                 <div class="card mt-5">
                     <div class="card-body">
                       <h2 class="card-title text-center mb-4">會員登入</h2>
-                      <c:url var='login' value='/userPostlogin' />
-						<form:form method='POST' action="${login}" enctype="multipart/form-data">		
-                  
+                        <form>
                             <div class="mb-3">
                                 <label for="username" class="form-label" style="font-size: 24px;">帳號</label>
                                 <input type="text" class="form-control" id="username" placeholder="輸入帳號">
@@ -123,7 +119,7 @@
                             <div class="d-grid gap-2">
                               <button type="submit" class="btn btn-primary" style="font-size: 20px;">登入</button>
                           </div>
-                       </form:form>
+                        </form>
                     </div>
                 </div>
             </div>
