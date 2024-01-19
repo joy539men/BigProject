@@ -349,7 +349,8 @@
     </section>
     
     <section>
-    	
+    	<div>${singleRoom.address}</div>
+    	<div>${user.phone}</div>
     </section>
 
     <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>

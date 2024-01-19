@@ -219,7 +219,7 @@
 	<a href="<c:url value="/intoRoomTableForm"></c:url>">訂房表單</a><br>
 	<a href="<c:url value="/imageLoaging"></c:url>">圖片上傳</a><br>
 	<a href="<c:url value="/roomTableFromMySQL"></c:url>">從 MySQL 抓取資料</a><br>
-	
+	<a href="<c:url value="/roomTableGallery"></c:url>">進入 roomTableGallery</a><br>
 	
 	
 	

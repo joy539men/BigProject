@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.engine.jdbc.env.spi.IdentifierCaseStrategy;
 
@@ -36,6 +37,7 @@ public class userBean {
 	private String     status;
 	private String     statusNum;
 	private Timestamp  registrationTime;
+	private String     password1;
 	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -84,7 +86,7 @@ public class userBean {
 		this.favorite = favorite;
 	}
 
-	public userBean(Integer userId,String  account, String  password, String  userName, String  email, String  address, String  phone,Blob	photo , String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
+	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone,Blob	photo , String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
 		this.userId            = userId;
 		this.account           = account;
 		this.password          = password;
@@ -97,10 +99,21 @@ public class userBean {
 		this.status            = status;
 		this.statusNum         = statusNum;
 		this.registrationTime  = registrationTime;
-		this.phone             = phone;
 		this.birthday          = birthday;
+		this.password1         = password1;
+		
 	}
 	
+	
+	
+	public String getPassword1() {
+		return password1;
+	}
+
+	public void setPassword1(String password1) {
+		this.password1 = password1;
+	}
+
 	public Date getBirthday() {
 		return birthday;
 	}

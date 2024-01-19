@@ -58,6 +58,13 @@ public class bookingController {
 		return "book";
 		
 	}
+	
+	@GetMapping("/createBook")
+	public bookingBean createBook (Model model, bookingBean bookingBean) {
+//		bookingBean.
+		return null;
+		
+	}
 		
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.booking.dao.bookingRepository;
 import com.example.booking.service.bookingService;
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.userBean;
 
 @Service
 public class bookingServiceImpl implements bookingService{
@@ -30,6 +31,14 @@ public class bookingServiceImpl implements bookingService{
 		// TODO Auto-generated method stub
 		bookingRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public bookingBean createBooking(userBean user, bookingBean bean) {
+		// 新建一個 booking 物件然後設定 user 進入裡面
+		bookingBean booking = new bookingBean();
+		booking.setUser(user);
+		return bookingRepository.save(booking);
 	}
 
 }
