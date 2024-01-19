@@ -24,6 +24,7 @@ public class bookingBean {
 	private Integer guest;
 	private String  tips;
 	private Integer night;
+	private String  status;
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
@@ -135,6 +136,14 @@ public class bookingBean {
 
 	public void setNight(Integer night) {
 		this.night = night;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 

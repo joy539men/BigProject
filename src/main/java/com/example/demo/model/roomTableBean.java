@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,6 +48,7 @@ public class roomTableBean {
 	private String   address;
 	private String   lon;
 	private String   lat;
+	private String   filePath;
 	
 	public MultipartFile getMultipartFile() {
 		return multipartFile;
@@ -79,7 +83,10 @@ public class roomTableBean {
 	@OneToMany(mappedBy = "roomTable", cascade = CascadeType.ALL)
 	private Set<favoriteBean> favorite;
 	
-	
+	@Transient
+	private List<MultipartFile> imageFiles;
+
+
 	public roomTableBean(Integer  roomId, Integer  hostId, Integer  price, String   title, byte[]    photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat) {
 		this.roomId      = roomId;
 		this.price       = price;
@@ -276,6 +283,15 @@ public class roomTableBean {
 		this.roomPhotos = roomPhotos;
 	}
 
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	
 
 	
 	
