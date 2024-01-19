@@ -2,7 +2,9 @@ package com.example.booking.controller;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.booking.service.bookingService;
 import com.example.booking.validate.bookingValidate;
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.userBean;
+import com.example.demo.user.dao.userRepository;
 
 @Controller
 public class bookingController {
 
 	bookingService bookingService;
+	userRepository userRepository;
 	
 	public bookingController (bookingService bookingService) {
 		
@@ -59,10 +64,21 @@ public class bookingController {
 		
 	}
 	
-	@GetMapping("/createBook")
-	public bookingBean createBook (Model model, bookingBean bookingBean) {
-//		bookingBean.
-		return null;
+	
+	// 設定訂單，並且使用 userName 去取得 id 值並且跳轉到下一個頁面。
+	@PostMapping("/createBook")
+	public String createBook (String userName,  Model model) {
+		Optional<userBean> userOptional = userRepository.findByUserName(userName);
+		 if (userOptional.isPresent()) {
+	            userBean user = userOptional.get();
+	            
+	            bookingBean booking = new bookingBean();
+	            booking.setBookingId(user.getUserId());
+	            
+	            bookingService.save(booking);
+		 }
+
+		return "book";
 		
 	}
 		

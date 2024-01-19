@@ -15,6 +15,7 @@ public class userServiceImpl implements userService{
 
 	@Autowired
     private userRepository userRepository;
+
 	
 	@Override
 	public Optional<userBean> getUserBeanById(int id) {
@@ -29,6 +30,7 @@ public class userServiceImpl implements userService{
             // 如果關聯的資料表是 OtherTable，可以使用 otherTableRepository 進行查詢
             // OtherTable otherData = otherTableRepository.findById(user.getOtherTable().getId()).orElse(null);
             // 將取得的其他相關資料設定到 user 中
+			
 
             // 這邊以 user 的其他相關資料為例，實際根據你的資料表和關聯進行調整
             // user.setOtherData(otherData);
@@ -54,5 +56,10 @@ public class userServiceImpl implements userService{
 		// TODO Auto-generated method stub
 		return userRepository.save(bean);
 	}
+
+	public Optional<userBean> findByUsername(String userName){
+		return userRepository.findByUserName(userName);
+	}
+
 
 }

@@ -10,4 +10,5 @@ public interface userService {
 	List<userBean> getUserBean();
 	userBean save(userBean bean);
 	userBean update(userBean bean);
+	Optional<userBean> findByUsername(String username);
 }
