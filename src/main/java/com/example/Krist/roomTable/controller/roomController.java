@@ -3,13 +3,15 @@ package com.example.Krist.roomTable.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.Krist.roomTable.dao.roomTableRepositoryTest;
+import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.demo.model.bookingBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
@@ -18,7 +20,7 @@ import com.example.demo.model.userBean;
 public class roomController {
 
 	@Autowired
-	private roomTableRepositoryTest roomTableRepository;
+	private roomTableRepository roomTableRepository;
 
 
 	
@@ -34,9 +36,11 @@ public class roomController {
 	
 	
 	@GetMapping("/getRoomDetailsAndBook/{roomId}")
-	public String getRoomDetailsAndBook(@PathVariable Integer roomId,Model model, bookingBean bookingBean) {
+	public String getRoomDetailsAndBook(@PathVariable Integer roomId,Model model, bookingBean bookingBean, HttpSession session) {
 	    Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
 	    
+	    // 設定 session 儲存在網頁當中
+	    session.setAttribute("selectedRoomId", roomId);
 	    roomTableBean room = roomOptional.orElse(null);
 	    
 	    if(room != null) {
@@ -49,15 +53,10 @@ public class roomController {
 		    
 		    
 	    }
-
-
 	    return "getRoomDetailsAndBook";
 	}
 	
-	@GetMapping("/roomDetail")
-	public String roomDetail() {
-		return "getRoomDetailsAndBook";
-	}
+
 	
 	@GetMapping("/roomDetailTest")
 	public String roomDetailTest() {

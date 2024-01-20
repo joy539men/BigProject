@@ -44,7 +44,6 @@
 </head>
 
 <body>
-
 <!-- navigation -->
 <header class="navigation ">
 	<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
@@ -93,7 +92,6 @@
 </header>
 
 <hr>
-
 <!-- bookPage -->
 <section class="section pt-0 pb-0">
   <div class="container">

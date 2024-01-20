@@ -90,7 +90,7 @@
 							</ul></li>
 					</ul>
 					<!-- account btn -->
-					<a href="#!" class="btn btn-outline-primary">登 入</a>
+					<a href="<c:url value="/userLoginPage"></c:url>" class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
 					<a href="#!" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
 				</div>
@@ -232,16 +232,10 @@
 	</section>
 
 	<section>
-		<a href="<c:url value="/intoAjax"></c:url>">跳轉Ajax頁面</a><br> <a
-			href="<c:url value="/roomDetail"></c:url>">房間細節</a><br> <a
+		 <a
 			href="<c:url value="/webSocket"></c:url>">聊天系統</a><br> <a
 			href="<c:url value="/googleAPI"></c:url>">google 地圖</a><br> <a
-			href="<c:url value="/mainPage"></c:url>">房間地圖</a><br> <a
-			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> <a
-			href="<c:url value="/imageLoaging"></c:url>">圖片上傳</a><br> <a
-			href="<c:url value="/roomTableFromMySQL"></c:url>">從 MySQL 抓取資料</a><br>
-		 <a
-			href="<c:url value="/userLoginPage"></c:url>">登入 </a><br>
+			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> 
 			<a
 			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>
 	</section>
