@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example","com.example.demo.model", "com.example.Krist","com.example.Krist.webSocket", "com.example.Krist.webSocket.controller", "com.example.Krist.webSocket.model", "com.example.Krist.webSocket.config"}) 
+@ComponentScan(basePackages = {"com.example","com.example.demo.model", "com.example.Krist","com.example.Krist.webSocket", "com.example.Krist.webSocket.controller", "com.example.Krist.webSocket.model", "com.example.Krist.webSocket.config","com.example.backstage"}) 
 public class SpringBootCrudApplication {
 
 	public static void main(String[] args) {

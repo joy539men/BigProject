@@ -12,6 +12,29 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
+<script>
+// $(document).ready(function() {
+//     $('#searchForm').submit(function(event) {
+//       event.preventDefault();
+
+//       var query = $('#search').val();
+      
+//        $.ajax({
+//           url: '/backend/search',
+//           method: 'GET',
+//           data: { query: query },
+//           dataType: 'json',
+//           success: function(data) {
+//             console.log(data);
+//           },
+//           error: function(jqXHR, textStatus, errorThrown) {
+//             console.error('请求失败', textStatus, errorThrown);
+//           }
+//         });
+//       console.log('发送到后端的查询参数：', query);
+//     });
+//   });
+</script>
 <body>
 
 	<%@include file="nav.jsp" %>
@@ -32,9 +55,9 @@
 			</div>
 			<div class="row my-4">
 				<div class="col-5">
-					<form class="d-flex" action="${pageContext.request.contextPath}/search" method="get">
-						<input type="search" id="search" placeholder="搜尋">
-						<button class="btn btn-outline-success ms-2" type="submit" name="search"> 
+					<form id="searchForm" class="d-flex" action="${pageContext.request.contextPath}/backend/search" method="get">
+						<input type="search" id="search" name="search" placeholder="搜尋">
+						<button class="btn btn-outline-success ms-2" type="submit" > 
 							<i class="bi bi-search"></i>
 						</button>
 					</form>

@@ -101,7 +101,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><a href="<c:url value='/' />">放棄修改</a> <input
+							<td colspan="2"><a href="<c:url value='/account' />">放棄修改</a> <input
 								type="submit" value="修改完成" onclick="updateBook()" /></td>
 						</tr>
 					</tfoot>
