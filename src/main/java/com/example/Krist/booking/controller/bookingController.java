@@ -33,7 +33,7 @@ public class bookingController {
 	public String showbookingForm(Model model) {
 		bookingBean bean = new bookingBean();
 		model.addAttribute("bookingBean", bean);
-		return "/roomPageTest";
+		return "roomPageTest";
 	}
 
 	// 新增訂單

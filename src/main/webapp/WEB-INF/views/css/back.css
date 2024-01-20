@@ -1,0 +1,169 @@
+body {
+	padding: 0 20px 0 280px;
+}
+
+/* 導覽列 */
+.navbar {
+	flex-direction: column;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 98vh;
+}
+
+.navbar-nav {
+	width: 100%;
+}
+
+nav>img {
+	width: 180px;
+	margin: 25px 0;
+}
+
+#navbarNav {
+	height: 100%;
+	padding-top: 20px;
+	background-color: rgba(224, 242, 229, 1);
+	border-radius: 10px;
+	margin: 0 30px 15px 30px;
+}
+
+#navbarNav .nav-item {
+	margin: 10px 45px;
+	font-size: 25px;
+	text-align: center;
+}
+
+#navbarNav+div a {
+	text-decoration: none;
+	font-size: 25px;
+}
+
+#navbarNav a:hover {
+	color: #006bafff !important;
+	background-color: rgba(46, 163, 71, 0.336);
+	border-radius: 15px;
+}
+
+#adminlogoutdiv {
+	text-align: center;
+	padding: 10px 0;
+}
+
+#adminlogout {
+	border: 2px solid rgb(46, 163, 72);
+	border-radius: 50px;
+	font-size: 25px;
+	padding: 5px 10px;
+
+}
+
+#main {
+	margin-top: 60px;
+}
+
+#search {
+	border-radius: 5px;
+	width: 300px;
+}
+
+
+#tableArea {
+	border: 1px solid;
+	border-radius: 10px;
+	margin-top: 30px;
+	padding: 20px;
+}
+
+
+/* 詳細資料按鈕 */
+#detial {
+	text-decoration: none;
+	border: none;
+	background-color: rgb(45, 221, 183);
+	border-radius: 15px;
+	font-size: 15px;
+	padding: 2px 5px;
+	color: black;
+}
+
+#detial:hover {
+	background-color: rgb(46, 163, 72);
+	color: aliceblue;
+}
+
+/* 資料呈現置中 */
+tbody td,
+tbody th,
+thead th,
+tfoot td {
+	vertical-align: middle;
+	text-align: center;
+}
+
+/* 編輯資料內容 */
+#edit_tbody th {
+	width: 120px !important;
+	padding: 15px !important;
+	width: 300px;
+	font-size: large;
+}
+
+#tableArea i {
+	color: rgb(90, 88, 88);
+	font-size: 20px
+}
+
+tfoot a,
+tfoot input {
+	border-radius: 10px;
+	background-color: #05aeadff;
+	color: rgb(230, 237, 229);
+	border: none;
+	padding: 8px;
+	margin: 15px 8px;
+	font-size: large;
+	font-weight: 900;
+	display: inline-block;
+	text-decoration: none;
+}
+
+tfoot a:hover,
+tfoot input:hover {
+	background-color: #006bafff;
+	color: #d5dcd4ff;
+}
+
+.container1 {
+	margin: 110px auto;
+	width: 65%;
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 5px;
+}
+
+#info {
+	width: 80%;
+	margin: 30px auto;
+}
+
+#info tbody th {
+	font-size: large;
+}
+
+/* 編輯、刪除、禁用 */
+#tableArea i:hover {
+	color: red !important;
+}
+
+/* 編輯表單 */
+#account_edit_form {
+	width: 90%;
+	margin: 30px auto;
+}
+
+table input {
+	border-radius: 5px;
+	padding: 1px 10px;
+	width: 40%;
+}

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.Krist.roomTable.dao.roomTableRepositoryTest;
+import com.example.demo.model.bookingBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
 
@@ -31,16 +32,11 @@ public class roomController {
 
 	}
 	
-	@GetMapping("/intoAjax")
-	public String intoAjax() {
-		return "testAjax";
-	}
 	
-	@GetMapping("/getRoomDetails/{roomId}")
-	public String SingleRoom(@PathVariable Integer roomId,Model model) {
+	@GetMapping("/getRoomDetailsAndBook/{roomId}")
+	public String getRoomDetailsAndBook(@PathVariable Integer roomId,Model model, bookingBean bookingBean) {
 	    Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
 	    
-	    // 解析 Optional，如果有值，就取得實際的 roomTableBean 物件，否則為 null
 	    roomTableBean room = roomOptional.orElse(null);
 	    
 	    if(room != null) {
@@ -50,15 +46,17 @@ public class roomController {
 	    	
 	    	model.addAttribute("user",user);
 		    model.addAttribute("singleRoom", room);
+		    
+		    
 	    }
 
 
-	    return "roomPage";
+	    return "getRoomDetailsAndBook";
 	}
 	
 	@GetMapping("/roomDetail")
 	public String roomDetail() {
-		return "roomPage";
+		return "getRoomDetailsAndBook";
 	}
 	
 	@GetMapping("/roomDetailTest")
@@ -66,18 +64,13 @@ public class roomController {
 		return "roomPage";
 	}
 	
-	@GetMapping("/roomTableFromMySQL")
-	public String listRoomTable(Model model) {
-		model.addAttribute("roomTables", roomTableRepository.findAll());
-		return "roomTableFromMySQL";
-	}
 	
 	// 本方法是將導入 roomTableGallery 然後給予一個 List 並在前端 imageGallery 給予每個 id 值
 	@GetMapping("/roomTableGallery")
 	public String getRoomTableGallery(Model model) {
 		List<roomTableBean> roomList = (List<roomTableBean>) roomTableRepository.findAll();
 		model.addAttribute("roomList", roomList);
-		return "/imageGallery";
+		return "roomTableGallery";
 	}
 	
 	
