@@ -31,4 +31,9 @@ public class BaseController {
 	public String mainPage() {
 		return "mainRoomPage";
 	}
+	
+	@GetMapping("/calendar")
+	public String calendar() {
+		return "calendarKrist";
+	}
 }

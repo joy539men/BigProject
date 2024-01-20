@@ -242,6 +242,8 @@
 			href="<c:url value="/roomTableFromMySQL"></c:url>">從 MySQL 抓取資料</a><br>
 		 <a
 			href="<c:url value="/userLoginPage"></c:url>">登入 </a><br>
+			<a
+			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>
 	</section>
 
 

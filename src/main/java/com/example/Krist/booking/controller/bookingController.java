@@ -28,13 +28,13 @@ public class bookingController {
 	}
 	
 	
-	// 本方法送出新增Customer資料的空白表單
-	@GetMapping("/roomPageTest")
-	public String showbookingForm(Model model) {
-		bookingBean bean = new bookingBean();
-		model.addAttribute("bookingBean", bean);
-		return "roomPageTest";
-	}
+	// 本方法送出新增roomPage資料的空白表單
+//	@GetMapping("/roomPageTest")
+//	public String showbookingForm(Model model) {
+//		bookingBean bean = new bookingBean();
+//		model.addAttribute("bookingBean", bean);
+//		return "roomPageTest";
+//	}
 
 	// 新增訂單
 	@PostMapping("/booking")
