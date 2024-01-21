@@ -15,6 +15,6 @@ public interface UserService_backstage {
 	
 	List<userBean> searchAll(String account);
 
-	
+	String getEmailByUserId(Integer userId);
 
 }

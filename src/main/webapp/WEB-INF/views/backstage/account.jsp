@@ -11,36 +11,34 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </head>
 <script>
-// $(document).ready(function() {
-//     $('#searchForm').submit(function(event) {
-//       event.preventDefault();
+	$(document).ready(function() {
 
-//       var query = $('#search').val();
-      
-//        $.ajax({
-//           url: '/backend/search',
-//           method: 'GET',
-//           data: { query: query },
-//           dataType: 'json',
-//           success: function(data) {
-//             console.log(data);
-//           },
-//           error: function(jqXHR, textStatus, errorThrown) {
-//             console.error('请求失败', textStatus, errorThrown);
-//           }
-//         });
-//       console.log('发送到后端的查询参数：', query);
-//     });
-//   });
+		$('#tableArray').DataTable({
+			searching : false,
+			language : {
+				url : '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+			},
+			scrollCollapse : true,
+			scrollY : '40vh',
+			scrollX : true,
+
+		})
+	});
 </script>
 <body>
 
-	<%@include file="nav.jsp" %>
+	<%@include file="nav.jsp"%>
 
 	<!-- 主要内容 -->
-	<div id="main" class="container">
+	<div id="main">
 		<div class="container">
 			<div class="row">
 				<div class="col-5">
@@ -55,9 +53,11 @@
 			</div>
 			<div class="row my-4">
 				<div class="col-5">
-					<form id="searchForm" class="d-flex" action="${pageContext.request.contextPath}/backend/search" method="get">
+					<form id="searchForm" class="d-flex"
+						action="${pageContext.request.contextPath}/backend/search"
+						method="get">
 						<input type="search" id="search" name="search" placeholder="搜尋">
-						<button class="btn btn-outline-success ms-2" type="submit" > 
+						<button class="btn btn-outline-success ms-2" type="submit">
 							<i class="bi bi-search"></i>
 						</button>
 					</form>
@@ -66,13 +66,13 @@
 				<div class="col-2"></div>
 			</div>
 		</div>
-		<hr />
+
 		<!-- 資料表格 -->
 		<div id="tableArea">
-			<table class="table table-hover display">
+			<table class=" display  nowrap" id="tableArray" style="width: 100%">
 				<thead>
 					<tr>
-						<th>帳號 ID </th>
+						<th>帳號 ID</th>
 						<th>帳號</th>
 						<th>建立帳號時間</th>
 						<th>帳號身分</th>
@@ -89,10 +89,13 @@
 							<td>${user.registrationTime}</td>
 							<td>${user.identity }</td>
 							<td>${user.status }</td>
-							<td><a href='<c:url value="/account_info/${user.userId }" />' id="detial">詳細資料</a></td>
-							<td><a href='<c:url value="/account_edit/${user.userId }" />'><i
+							<td><a
+								href='<c:url value="/account_info/${user.userId }" />'
+								id="detial">詳細資料</a></td>
+							<td><a
+								href='<c:url value="/account_edit/${user.userId }" />'><i
 									class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href=""><i class="bi bi-dash-circle-fill"></i></a></td>
+								href='<c:url value="/sendEmail/${user.userId }" />'><i class="bi bi-dash-circle-fill"></i></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
