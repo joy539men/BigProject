@@ -133,14 +133,14 @@
               <!-- account btn -->
               <li class="dropdown">
                 <a
-                  class="p-3 border rounded-pill"
+                  class="p-3 border rounded-pill pb-4"
                   href="#"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                   ><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i
-                  ><img style="width: 50px" src="images/logo.png" alt=""
+                  ><img style="width: 50px; padding-top:5px" src="images/logo.png" alt=""
                 /></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-item">
@@ -179,19 +179,28 @@
         </div>
       </nav>
     </header>
+    
+    <div class="row w-75  mx-auto mb-4"> 
+      <div class="text-end">
+          <a class="btn btn-primary me-5" href="<c:url value = '/addRoomKrist'/>"> 新增房源</a>
+          
+      </div>
+    </div>
+   </div>
 
 
 	<div id="houseList" class="w-75 mx-auto row">
 		<c:forEach var="room" items="${roomList}">
 			<div class="col-4">
-				<div id="houseA" class="card  houseCard mx-auto mb-4">
+				<div id="houseA" class="card  houseCard mx-auto mb-5">
 					<img class="card-img-top" src="<c:url value = '${room.filePath}'/>"
 						onclick="getRoomDetails(${room.roomId})" />
 					<div class="card-body">
 						<h5 class="card-title ">${room.title}</h5>
-						<span class="card-text">${room.type}</span><br> <span
-							class="card-text">${room.guestMax}人入住</span>
+						<span class="card-text">${room.type}</span><br> 
+						<span class="card-text">${room.guestMax}人入住</span><br>
 					</div>
+					
 				</div>
 			</div>
 		</c:forEach>

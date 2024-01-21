@@ -32,4 +32,9 @@ public class BaseController {
 	public String calendar() {
 		return "calendarKrist";
 	}
+	
+	@GetMapping("/intoRegister")
+	public String register() {
+		return "Register";
+	}
 }

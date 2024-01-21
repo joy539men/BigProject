@@ -17,30 +17,18 @@
 
 <head>
 <meta charset="utf-8">
-<title>Wallet - Payday Loan Service Template</title>
+<title>PillowSurfing</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=5">
-<meta name="description" content="This is meta description">
-<meta name="author" content="Themefisher">
+<meta name="description" content="This is a book website">
+<meta name="author" content="Krist">
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <link rel="icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/logo.ico" type="image/x-icon">
 
 <!-- theme meta -->
-<meta name="theme-name" content="wallet" />
+<meta name="theme-name" content="pillowSurfing" />
 
-<!-- # Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
-	rel="stylesheet">
-
-<!-- # CSS Plugins -->
-<link rel="stylesheet" href="plugins/slick/slick.css">
-<link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
-<link rel="stylesheet" href="plugins/font-awesome/brands.css">
-<link rel="stylesheet" href="plugins/font-awesome/solid.css">
-<link rel="icon" href="./images/logo.ico" type="image/x-icon">
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -92,7 +80,7 @@
 					<!-- account btn -->
 					<a href="<c:url value="/userLoginPage"></c:url>" class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
-					<a href="#!" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
+					<a href="<c:url value="/intoRegister"></c:url>" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
 				</div>
 			</div>
 		</nav>

@@ -80,25 +80,27 @@ public class bookingController {
 //	}
 	
 	
+	// 使用 PostMapping 提交資料，並且綁定錯誤，再將所選擇的 roomId 加入到 該資料表當中
 	@PostMapping("/booking")
 	public String insertBooking(@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult, HttpSession session) {
 	    new bookingValidate().validate(bookingBean, bindingResult);
 	    if (bindingResult.hasErrors()) {
-	        // ... 处理错误
+	        // 若是有錯誤訊息則跳回 roomTable 頁面
 	        return "roomTable";
 	    }
 
-	    // 从Session中获取选定的roomId
+	    // 從 session 選擇 selectedRoomId 
 	    Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
 
-	    // 根据 selectedRoomId 从数据库中获取相应的 roomTableBean
+	    // 根據 selectedRoomId 从数据库中获取相应的 roomTableBean
 	    roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
 
-	    // 確保 roomTable 	不為 null
+	    // 如果 roomTable 不為 null 設定 roomTable 進入資裡面
 	    if (roomTable != null) {
 	        // 設置 bookingBean 的 roomTable 屬性
 	        bookingBean.setRoomTable(roomTable);
 
+	        // 若是拿到的 bookingId 不為 null 則更新，就是因為沒有這個動作導致存不進資料庫！！！
 	        if (bookingBean.getBookingId() != null) {
 	            bookingService.update(bookingBean);
 	        }
@@ -106,12 +108,12 @@ public class bookingController {
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
 	        bookingService.save(bookingBean);
 
-	        // 清除Session中的selectedRoomId，可选
+	        // 清除 Session中的selectedRoomId
 	        session.removeAttribute("selectedRoomId");
 
 	        return "book";
 	    } else {
-	        // 处理 roomTable 为 null 的情况
+	        // 處理 roomTable 若為 null 則返回道 roomTable 的頁面
 	        return "roomTable";
 	    }
 	}
