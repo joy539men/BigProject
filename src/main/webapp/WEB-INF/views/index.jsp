@@ -221,8 +221,7 @@
 
 	<section>
 		 <a
-			href="<c:url value="/webSocket"></c:url>">聊天系統</a><br> <a
-			href="<c:url value="/googleAPI"></c:url>">google 地圖</a><br> <a
+			href="<c:url value="/webSocket"></c:url>">聊天系統</a><br><a
 			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> 
 			<a
 			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>

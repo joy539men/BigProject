@@ -92,7 +92,7 @@ public class bookingController {
 	    // 從 session 選擇 selectedRoomId 
 	    Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
 
-	    // 根據 selectedRoomId 从数据库中获取相应的 roomTableBean
+	    // 根據 selectedRoomId 從資料庫獲取相對應 roomTableBean
 	    roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
 
 	    // 如果 roomTable 不為 null 設定 roomTable 進入資裡面
