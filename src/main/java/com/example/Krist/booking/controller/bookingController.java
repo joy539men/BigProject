@@ -1,7 +1,11 @@
 package com.example.Krist.booking.controller;
 
+
 import java.sql.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,10 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Krist.booking.service.bookingService;
 import com.example.Krist.booking.validate.bookingValidate;
@@ -26,7 +31,11 @@ public class bookingController {
 
 	@Autowired
 	roomTableRepository roomTableRepository;
+	
+	@Autowired
 	bookingService bookingService;
+	
+	@Autowired
 	userRepository userRepository;
 	
 	public bookingController (bookingService bookingService, userRepository userRepository) {
@@ -80,9 +89,10 @@ public class bookingController {
 //	}
 	
 	
+	// 更新版本
 	// 使用 PostMapping 提交資料，並且綁定錯誤，再將所選擇的 roomId 加入到 該資料表當中
 	@PostMapping("/booking")
-	public String insertBooking(@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult, HttpSession session) {
+	public String insertBooking(@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult, HttpSession session, Model model) {
 	    new bookingValidate().validate(bookingBean, bindingResult);
 	    if (bindingResult.hasErrors()) {
 	        // 若是有錯誤訊息則跳回 roomTable 頁面
@@ -107,9 +117,19 @@ public class bookingController {
 
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
 	        bookingService.save(bookingBean);
-
+	        
 	        // 清除 Session中的selectedRoomId
 	        session.removeAttribute("selectedRoomId");
+	        
+	        // 將計算機金額加入 Model 當中
+	        double amount = calculateAmountLogic(
+	        	    new SimpleDateFormat("yyyy-MM-dd").format(bookingBean.getCheckinDate()),
+	        	    new SimpleDateFormat("yyyy-MM-dd").format(bookingBean.getCheckoutDate()),
+	        	    bookingBean.getGuest()
+	        	);
+	        model.addAttribute("amount", amount);
+	        
+	        bookingBean.setTotalPrice((int) amount);
 
 	        return "book";
 	    } else {
@@ -117,6 +137,129 @@ public class bookingController {
 	        return "roomTable";
 	    }
 	}
+
+	
+	// 使用 PostMapping 提交資料，並且綁定錯誤，再將所選擇的 roomId 加入到 該資料表當中
+//	@PostMapping("/booking")
+//	public String insertBooking(@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult, HttpSession session) {
+//	    new bookingValidate().validate(bookingBean, bindingResult);
+//	    if (bindingResult.hasErrors()) {
+//	        // 若是有錯誤訊息則跳回 roomTable 頁面
+//	        return "roomTable";
+//	    }
+//	    
+//	    
+//
+//	    // 從 session 選擇 selectedRoomId 
+//	    Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
+//
+//	    // 根據 selectedRoomId 從資料庫獲取相對應 roomTableBean
+//	    roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
+//
+//	    // 如果 roomTable 不為 null 設定 roomTable 進入資裡面
+//	    if (roomTable != null) {
+//	        // 設置 bookingBean 的 roomTable 屬性
+//	        bookingBean.setRoomTable(roomTable);
+//
+//	        // 若是拿到的 bookingId 不為 null 則更新，就是因為沒有這個動作導致存不進資料庫！！！
+//	        if (bookingBean.getBookingId() != null) {
+//	            bookingService.update(bookingBean);
+//	        }
+//
+//	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
+//	        bookingService.save(bookingBean);
+//
+//	        // 清除 Session中的selectedRoomId
+//	        session.removeAttribute("selectedRoomId");
+//
+//	        return "book";
+//	    } else {
+//	        // 處理 roomTable 若為 null 則返回道 roomTable 的頁面
+//	        return "roomTable";
+//	    }
+//	}
+	
+	
+	@GetMapping("/booking/calculateAmount")
+	public String calculateAmount(@RequestParam("checkinDate") String checkinDate,
+	                              @RequestParam("checkoutDate") String checkoutDate,
+	                              @RequestParam("guest") int guest,
+	                              Model model) {
+	    // 在这里添加计算总金额的逻辑，例如根据日期范围和人数计算金额
+	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest);
+
+	    // 将计算的金额放入 Model 中
+	    model.addAttribute("amount", amount);
+
+	    // 返回视图名称，该视图会显示计算的金额
+	    return "getRoomDetailsAndBook";
+	}
+	
+	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    try {
+	        // 将字符串日期转换为 Date 对象
+	        Date checkinSqlDate = new Date(dateFormat.parse(checkinDate).getTime());
+	        Date checkoutSqlDate = new Date(dateFormat.parse(checkoutDate).getTime());
+
+	        // 计算入住天数
+	        long diff = checkoutSqlDate.getTime() - checkinSqlDate.getTime();
+	        int stayDuration = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+
+	        // 這邊使用簡單 100 元
+	        double nightlyRate = 100;
+
+	        // 計算總金額
+	        return nightlyRate * stayDuration * guest;
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	        return 0;
+	    }
+	}
+
+	
+	
+	// 過時版本 ajax 技術
+//	@GetMapping("/booking/calculateAmount")
+//	@ResponseBody
+//	public String calculateAmount(@RequestParam("checkinDate") String checkinDate,
+//	                              @RequestParam("checkoutDate") String checkoutDate,
+//	                              @RequestParam("guest") int guest) {
+//	    // 在这里添加计算总金额的逻辑，例如根据日期范围和人数计算金额
+//	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest);
+//
+//	    // 返回计算结果，这里假设返回的是字符串，你可以根据实际情况返回其他格式的数据
+//	    return String.valueOf(amount);
+//	}
+//
+//	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest) {
+//	    // 这里添加你的计算逻辑，计算总金额
+//	    // 可以根据入住日期、退房日期和人数等信息进行计算
+//	    // 这里只是一个简单的示例，具体逻辑需要根据你的业务需求来实现
+//	    // 假设计算逻辑为入住天数 * 人数 * 每人每晚费用为 100 TWD
+//	    return 100 * getStayDuration(checkinDate, checkoutDate) * guest;
+//	}
+//
+//	private int getStayDuration(String checkinDate, String checkoutDate) {
+//	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//	    try {
+//	        java.util.Date checkin = dateFormat.parse(checkinDate);
+//	        java.util.Date checkout = dateFormat.parse(checkoutDate);
+//
+//	        // 转换为 java.sql.Date 类型
+//	        Date checkinSqlDate = new Date(checkin.getTime());
+//	        Date checkoutSqlDate = new Date(checkout.getTime());
+//
+//	        // 计算入住天数，这里只是简单示例
+//	        long diff = checkoutSqlDate.getTime() - checkinSqlDate.getTime();
+//	        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+//	    } catch (ParseException e) {
+//	        e.printStackTrace();
+//	        return 0;
+//	    }
+//	}
+
+
 
 
 

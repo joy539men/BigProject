@@ -101,6 +101,7 @@
               <h5>訂單資料</h5>
             </div>
         </div>
+        ${amount }
         <div>
           <div class="container border rounded">
             <div class="row">
