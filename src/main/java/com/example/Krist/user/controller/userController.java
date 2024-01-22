@@ -52,7 +52,7 @@ public class userController {
 	            return "index"; // 重定向到主页或其他受保护的页面
 	        } else {
 	            // 验证失败，返回登录页面或其他处理逻辑
-	            return "mainPage"; // 假设存在名为 "login" 的登录页面
+	            return "login"; // 假设存在名为 "login" 的登录页面
 	        }
 	    }
 	
