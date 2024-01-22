@@ -1,5 +1,6 @@
 package com.example.backstage.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,6 @@ public interface OrderService_backstage {
 	Optional<bookingBean> findById(Integer uid);
 	
 	void deleteById(Integer id);
+	
+	List<bookingBean> searchDate(String checkingDate, String checkoutDate);
 }

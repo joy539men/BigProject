@@ -1,5 +1,6 @@
 package com.example.backstage.service.Impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,5 +55,11 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 //			bookingBean = optional.get();
 //		}
 		bookingRepository.deleteById(id);
+	}
+
+	@Override
+	public List<bookingBean> searchDate(String checkinDate, String checkoutDate) {
+		List<bookingBean> beans = bookingRepository.searchDate(checkinDate, checkoutDate);
+		return beans;
 	}
 }

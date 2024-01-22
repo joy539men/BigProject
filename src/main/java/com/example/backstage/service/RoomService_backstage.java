@@ -12,4 +12,5 @@ public interface RoomService_backstage {
 	public List<roomTableBean> findAll();
 
 	Optional<roomTableBean> findById(Integer uid);
+	
 }
