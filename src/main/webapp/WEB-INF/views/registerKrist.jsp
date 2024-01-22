@@ -114,7 +114,7 @@
                             <h2 class="card-title text-center mb-4">會員註冊</h2>
                                 <div class="mb-3">
                                     帳號
-                                    <form:input type="text" class="form-control" id="username" path="userName"/>		
+                                    <form:input type="text" class="form-control" id="account" path="account"/>		
     						 
                                 </div>
                                 <div class="mb-3">
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="mb-3">
                                     姓名
-                                    <form:input type="text" class="form-control" id="name" path="account"/>
+                                    <form:input type="text" class="form-control" id="name" path="userName"/>
                                 </div>
                                 <div class="mb-3">
                                     電話

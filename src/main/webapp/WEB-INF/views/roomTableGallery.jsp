@@ -95,13 +95,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 border rounded-lg">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">任何時間</a>
+                <a class="nav-link" href="index.html">風 格</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">任何地點</a>
+                <a class="nav-link" href="about.html">日 期</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="services.html">新增人數</a>
+                <a class="nav-link" href="services.html">人 數</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contact.html"><i class="bi bi-search"></i></a>
@@ -182,11 +182,13 @@
     
     <div class="row w-75  mx-auto mb-4"> 
       <div class="text-end">
-          <a class="btn btn-primary me-5" href="<c:url value = '/addRoomKrist'/>"> 新增房源</a>
-          
+          <a class="btn btn btn-outline-primary " href="<c:url value = '/addRoomKrist'/>"> 新增房源</a>
+          <a class="btn btn-primary " href="<c:url value = ''/>"> 篩選條件</a>
+         
       </div>
     </div>
-   </div>
+
+   
 
 
 	<div id="houseList" class="w-75 mx-auto row">

@@ -71,9 +71,9 @@ public class userServiceImpl implements userService{
 //	}
 
 	@Override
-	public Integer authenticateUser(String userName, String password) {
+	public Integer authenticateUser(String account, String password) {
 		// TODO Auto-generated method stub
-		userBean user = userRepository.findByUserNameAndPassword(userName, password);
+		userBean user = userRepository.findByAccountAndPassword(account, password);
 		
 		if(user != null) {
 			return user.getUserId();
@@ -91,9 +91,15 @@ public class userServiceImpl implements userService{
 	}
 
 	@Override
-	public userBean findByUserNameAndPassword(String userName, String password) {
+	public userBean findByAccount(String account) {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findByAccount(account);
+	}
+
+	@Override
+	public userBean findByAccountAndPassword(String account, String password) {
+		// TODO Auto-generated method stub
+		return userRepository.findByUserNameAndPassword(account, password);
 	}
 
 

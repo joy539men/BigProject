@@ -78,7 +78,7 @@
 							</ul></li>
 					</ul>
 					<!-- account btn -->
-					<a href="<c:url value="/userLoginPage"></c:url>" class="btn btn-outline-primary">登 入</a>
+					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
 					<a href="<c:url value="/intoRegister"></c:url>" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
 				</div>
