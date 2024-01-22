@@ -18,9 +18,9 @@ import com.example.demo.model.userBean;
 public class UserServiceImpl_backstage implements UserService_backstage {
 
 	private static Logger log = LoggerFactory.getLogger(UserServiceImpl_backstage.class);
-	
+
 	UserRepository_backstage userRepository;
-	
+
 //	@Autowired
 	public UserServiceImpl_backstage(UserRepository_backstage userRepository) {
 		super();
@@ -51,8 +51,10 @@ public class UserServiceImpl_backstage implements UserService_backstage {
 		return beans;
 	}
 
-
-
-
+	@Override
+	public String getEmailByUserId(Integer userId) {
+		Optional<userBean> user = userRepository.findById(userId);
+		return user.get().getEmail();
+	}
 
 }

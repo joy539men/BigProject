@@ -29,7 +29,7 @@
 
 	function updateBook() {
 		var hiddenField = document.getElementById("updateOrDelete");
-		hiddenField.value = 'PUT';
+		hiddenField.value = "PUT";
 		document.forms[0].method = "POST";
 		document.forms[0].submit();
 	}

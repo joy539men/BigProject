@@ -30,7 +30,7 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 	@Override
 	public void save(bookingBean bookingBean) {
 		bookingRepository.save(bookingBean);
-		log.info("修改會員狀態功能之Sservice: 資料新增成功, UserBean=" + bookingBean);
+		log.info("修改訂單功能之Sservice: 資料更新成功, UserBean=" + bookingBean);
 	}
 
 	@Override

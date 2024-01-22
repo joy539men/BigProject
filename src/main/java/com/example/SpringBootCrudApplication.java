@@ -1,5 +1,6 @@
 package com.example;
 
+
 import javax.servlet.Filter;
 
 import org.springframework.boot.SpringApplication;
@@ -10,7 +11,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example","com.example.demo.model", "com.example.Krist","com.example.Krist.webSocket", "com.example.Krist.webSocket.controller", "com.example.Krist.webSocket.model", "com.example.Krist.webSocket.config","com.example.backstage"}) 
+@ComponentScan(basePackages = {"com.example",
+		"com.example.demo.model", 
+		"com.example.Krist",
+		"com.example.Krist.webSocket", 
+		"com.example.Krist.webSocket.controller", 
+		"com.example.Krist.webSocket.model", 
+		"com.example.Krist.webSocket.config",
+		
+		}) 
 public class SpringBootCrudApplication {
 
 	public static void main(String[] args) {
@@ -18,9 +27,9 @@ public class SpringBootCrudApplication {
 		SpringApplication.run(SpringBootCrudApplication.class, args);
 	}
 
-	@Bean
-	FilterRegistrationBean<Filter> hiddenHttpMethodFilter() {
-		FilterRegistrationBean<Filter> filterBean = new FilterRegistrationBean<>();
+	@Bean 
+	FilterRegistrationBean<Filter>  hiddenHttpMethodFilter(){
+		FilterRegistrationBean<Filter>  filterBean = new FilterRegistrationBean<>();
 		filterBean.setFilter(new HiddenHttpMethodFilter());
 		return filterBean;
 	}
