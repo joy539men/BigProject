@@ -1,14 +1,24 @@
 package com.example.Krist.user.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.Krist.user.dao.userRepository;
 import com.example.Krist.user.service.userService;
+import com.example.demo.model.bookingBean;
+import com.example.demo.model.userBean;
 
 
 
@@ -17,6 +27,9 @@ public class userController {
 
 	@Autowired
 	userService userService;
+	
+	@Autowired
+	userRepository userRepository;
 	
 	@GetMapping("/userLoginPage")
 	public String userLoginPage() {
@@ -56,4 +69,49 @@ public class userController {
             // 用户未登录，重定向到登录页面
             return "redirect:/login";
         }
-}}
+        
+     }
+	
+	
+	@GetMapping("/intoRegister")
+	public String register(Model modle) {
+		// 建立新的 bean
+		modle.addAttribute("register", new userBean());
+		return "registerKrist";
+	}
+	
+	// 利用 POST 表單取得用戶傳輸的資料
+	@PostMapping("/register")
+	public String register(@ModelAttribute("register") userBean userBean,  Model model) {
+	
+		
+		// 利用 messageDigest 進行加密
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			
+			// 將原始碼轉換為哈希計算
+			byte[] hashedByteds = messageDigest.digest(userBean.getPassword().getBytes());
+			
+			// 將字串轉換為十六位組進行哈希計算
+			StringBuilder stringBuilder = new StringBuilder();
+			for(byte b: hashedByteds) {
+				stringBuilder.append(String.format("%02x", b));
+			}
+			
+//			return stringBuilder.toString();
+			userBean.setPassword(stringBuilder.toString());
+			userRepository.save(userBean);
+			
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "registerKrist";
+		}
+		
+		
+		
+		
+		return "index";
+		
+	}
+}

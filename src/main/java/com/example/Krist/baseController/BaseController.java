@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.model.userBean;
+
 @Controller
 public class BaseController {
 	
@@ -28,8 +30,6 @@ public class BaseController {
 		return "calendarKrist";
 	}
 	
-	@GetMapping("/intoRegister")
-	public String register() {
-		return "Register";
-	}
+
+	
 }
