@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +30,7 @@
 
   <!-- # Main Style Sheet -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="./css/providerStyle.css">
+  <link rel="stylesheet" href="css/providerStyle.css">
 </head>
 
 <body>
@@ -85,6 +87,12 @@
     </nav>
   </header>
   <!-- /end of navigation -->
+		
+		<c:forEach var="booking" items="${bookings}">
+			<p>${booking.bookingId}</p>
+		</c:forEach>
+			
+
 
   <section class="w-75 mx-auto">
     <div id="statusFilter" class="w-75 mx-auto mt-5">

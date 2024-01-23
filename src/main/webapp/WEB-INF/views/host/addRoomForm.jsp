@@ -20,7 +20,11 @@ span.error {
 </style>
 <meta charset="UTF-8">
 <title>新增房間資料</title>
+
 </head>
+
+
+
 <body>
 
 	<div align="center">
@@ -71,14 +75,25 @@ span.error {
 						</td>
 					</tr>
 					<tr>
-						<td align='right'>測試：<br>&nbsp;</td>
+						<td align='right'>照片：<br>&nbsp;</td>
 						<td width='280'>
 							
         						<form:input path="multipartFile" type='file'/>
     						
 						</td>
 					</tr>
-					
+					<tr>
+						<td align='right'>地址：<br>&nbsp;</td>
+						<td width='280'>
+							
+        						<form:input path="address" type='text'/>
+        						<div id="map" style="height: 400px;"></div>
+
+<%--         						<form:input type="hidden" id="latitude" name="latitude" path="lat" /> --%>
+<%--     							<form:input type="hidden" id="longitude" name="longitude"  path="lon"/> --%>
+    						
+						</td>
+					</tr>
 					
 					
 <!-- 					<tr> -->
@@ -151,12 +166,14 @@ span.error {
 <!-- 					</tr> -->
 					<tr>
 						<td colspan='2' align='center'>
-						<input type='submit' value='提交'></td>
+						<input type='submit' value='提交' /></td>
 					</tr>
 				</table>
 			</fieldset>
 		</form:form>
 <%-- 		<br> <a href="<c:url value='/_01_customer/index' />">回前頁</a> --%>
 	</div>
+	 <script src="plugins/jquery/jquery.min.js"></script>
+	 
 </body>
 </html>
