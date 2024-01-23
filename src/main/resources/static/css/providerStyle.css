@@ -59,7 +59,7 @@ nav a {
 }
 
 .housetypeRadio > input{ /* HIDE RADIO */
-    visibility: hidden; /* Makes input not-clickable */
+    display: none; /* Makes input not-clickable */
     position: absolute; /* Remove input from document flow */
 }
 .housetypeRadio > input + div{ /* DIV STYLES */
@@ -101,27 +101,35 @@ nav a {
 }
 
 
-
-.checkbox-alias{
-    background-color: red;
-    display: block;
-    margin: 50px;
-    width: 75%;
-    height: 150px;
-    z-index: 1;
-     position: relative;
-     transition: all 250ms ease-out;
-     cursor: pointer;
+.amenityCheckbox {
+	width: 70%;
+    height: 120px;
+    background-color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 15px 30px;
+    display: grid;
+	align-items: center;
+    border-radius: 10px;
+    border: 1px solid ;
 }
 
-.invisible-checkboxes input[type=checkbox]{
-  display: none ;
-/*   margin-right: -20px;
-  position: relative;
-  z-index: 2; */
+.amenityCheckbox > input{ /* HIDE RADIO */
+    display: none; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.amenityCheckbox > input + div{ /* DIV STYLES */
+    color: #4C514C;
+    border:2px solid transparent;
+    border-radius: 10px;
+}
+.amenityCheckbox > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #05aeae73;
+    border: 1px solid #4C514C;
+    height: 100%;
+    display: grid;
+	align-items: center;
+    border-radius: 10px;
 }
 
-.invisible-checkboxes input[type=checkbox]:checked + .checkbox-alias{
-    background-color: green;
-}
 
