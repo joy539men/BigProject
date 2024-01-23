@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.model.userBean;
+
 @Controller
 public class BaseController {
 	
@@ -22,13 +24,12 @@ public class BaseController {
         return "webSocket";  // 這裡返回視圖名稱，確保你的視圖文件（例如 websocket.jsp）位於 "src/main/resources/WEB-INF/views/" 目錄下
     }
 	
-	@GetMapping("/googleAPI")
-	public String googleAPI() {
-		return "googleMap";
+	
+	@GetMapping("/calendar")
+	public String calendar() {
+		return "calendarKrist";
 	}
 	
-	@GetMapping("/mainPage")
-	public String mainPage() {
-		return "mainRoomPage";
-	}
+
+	
 }

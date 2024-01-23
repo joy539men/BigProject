@@ -29,7 +29,7 @@
 
 	function updateBook() {
 		var hiddenField = document.getElementById("updateOrDelete");
-		hiddenField.value = 'PUT';
+		hiddenField.value = "PUT";
 		document.forms[0].method = "POST";
 		document.forms[0].submit();
 	}
@@ -101,7 +101,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><a href="<c:url value='/' />">放棄修改</a> <input
+							<td colspan="2"><a href="<c:url value='/account' />">放棄修改</a> <input
 								type="submit" value="修改完成" onclick="updateBook()" /></td>
 						</tr>
 					</tfoot>

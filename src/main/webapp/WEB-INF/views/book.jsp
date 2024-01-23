@@ -44,7 +44,6 @@
 </head>
 
 <body>
-
 <!-- navigation -->
 <header class="navigation ">
 	<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
@@ -93,7 +92,6 @@
 </header>
 
 <hr>
-
 <!-- bookPage -->
 <section class="section pt-0 pb-0">
   <div class="container">
@@ -103,6 +101,7 @@
               <h5>訂單資料</h5>
             </div>
         </div>
+        
         <div>
           <div class="container border rounded">
             <div class="row">
@@ -111,11 +110,11 @@
               </div>
               <div class="col-4 ms-0 mt-3">
                   <h3 class="mb-5">
-                    房間名稱
+                    房間名稱 : ${roomDetail.title }
                   </h3>
                   <p class="mb-5">訂房編號 : 88888888</p>
                   <h5 class="mt-5">訂房日期</h5>
-                  <h5>2022/2/22</h5>
+                  <h5>${booking.bookingTime }</h5>
               </div>
               <div class="col-3 mt-3">
 
@@ -123,7 +122,7 @@
                 <h5 class="ms-5 mt-4">
                   TW 16888 X 2
                 </h5>
-                <h6 class="ms-5 mb-5">總價 : 33766</h6>
+                <h6 class="ms-5 mb-5">總價 : ${amount }</h6>
                 <h5 class="ms-5">房客</h5>
                 <h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
               </div>

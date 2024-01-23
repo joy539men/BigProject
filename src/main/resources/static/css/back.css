@@ -17,7 +17,7 @@ body {
 }
 
 nav>img {
-	width: 180px;
+	width: 90px;
 	margin: 25px 0;
 }
 
@@ -72,7 +72,7 @@ nav>img {
 #tableArea {
 	border: 1px solid;
 	border-radius: 10px;
-	margin-top: 30px;
+/* 	margin-top: 30px; */
 	padding: 20px;
 }
 
@@ -86,6 +86,7 @@ nav>img {
 	font-size: 15px;
 	padding: 2px 5px;
 	color: black;
+	
 }
 
 #detial:hover {

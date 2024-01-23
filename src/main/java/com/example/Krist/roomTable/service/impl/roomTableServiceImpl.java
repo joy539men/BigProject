@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Krist.roomTable.dao.roomTableRepositoryTest;
+import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.Krist.roomTable.service.roomTableService;
 import com.example.demo.model.roomTableBean;
 
@@ -15,7 +15,7 @@ import com.example.demo.model.roomTableBean;
 public class roomTableServiceImpl implements roomTableService{
 	
 	@Autowired
-	roomTableRepositoryTest roomTableRepository;
+	roomTableRepository roomTableRepository;
 
 	@Override
 	public Optional<roomTableBean> getroomTableBeanById(int id) {

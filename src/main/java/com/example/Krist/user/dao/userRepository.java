@@ -12,5 +12,9 @@ public interface userRepository extends JpaRepository<userBean, Integer>{
 	userBean findByUserName(String userName);
 	
 	userBean findByUserNameAndPassword(String userName, String password);
+	
+	userBean findByAccount(String account);
+	
+	userBean findByAccountAndPassword(String account, String password);
 
 }

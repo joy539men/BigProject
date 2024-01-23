@@ -75,16 +75,16 @@
 						<div class="row my-4">
 							<div class="col">
 								<form class="d-flex">
-									<input type="search" id="search" placeholder="搜尋">
+									<input type="search" id="search" placeholder="搜尋" >
 									<button class="btn btn-outline-success ms-2" type="submit">
 										<i class="bi bi-search"></i>
 									</button>
 								</form>
 							</div>
 							<div class="col">
-								<form action="" id="dateSearch">
-									日期 : <input type="date" name="" id=""> <i
-										class="bi bi-arrow-right-circle-fill mx-2"></i> <input type="date" name=""
+								<form action="${pageContext.request.contextPath}/backend/dateSearch" id="dateSearch">
+									日期 : <input type="date" name="checkinDateSearch" id=""> <i
+										class="bi bi-arrow-right-circle-fill mx-2"></i> <input type="date" name="checkoutDateSearch"
 										id="">
 									<button class="btn ms-2" type="submit">搜尋</button>
 								</form>

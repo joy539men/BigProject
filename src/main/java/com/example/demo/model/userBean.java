@@ -27,7 +27,6 @@ public class userBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer    userId;
 	
-	@Column(unique = true)
 	private String     account;
 	private String     password;
 	private String     userName;
