@@ -56,40 +56,6 @@ public class bookingController {
 		return "roomPageTest";
 	}
 
-//	@PostMapping("/booking")
-//	public String insertBooking(@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult, HttpSession session) {
-//	    new bookingValidate().validate(bookingBean, bindingResult);
-//	    if (bindingResult.hasErrors()) {
-//	        System.out.println("==================");
-//	        List<ObjectError> list = bindingResult.getAllErrors();
-//
-//	        // 從Session中获取选定的roomId
-//	        Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
-//
-//	        // 根據 selectedRoomId 從數據庫當中選定特定的 roomTableBean
-//	        roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
-//
-//	        // 設置 bookingBean 的 roomTable 属性
-//	        bookingBean.setRoomTable(roomTable);
-//
-//	        for (ObjectError error : list) {
-//	            System.out.println("這邊訂房的地方有錯誤" + error);
-//	        }
-//	        System.out.println("=============");
-//	        return "roomTable";
-//	    }
-//
-//	    if (bookingBean.getBookingId() != null) {
-//	        bookingService.update(bookingBean);
-//	    }
-//
-//	    bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
-//	    bookingService.save(bookingBean);
-//	    // 清除Session中的selectedRoomId，可选
-//	    session.removeAttribute("selectedRoomId");
-//
-//	    return "book";
-//	}
 	
 	
 	// 更新版本
