@@ -111,46 +111,6 @@ public class bookingController {
 	}
 
 	
-	// 使用 PostMapping 提交資料，並且綁定錯誤，再將所選擇的 roomId 加入到 該資料表當中
-//	@PostMapping("/booking")
-//	public String insertBooking(@ModelAttribute("bookingBean") bookingBean bookingBean, BindingResult bindingResult, HttpSession session) {
-//	    new bookingValidate().validate(bookingBean, bindingResult);
-//	    if (bindingResult.hasErrors()) {
-//	        // 若是有錯誤訊息則跳回 roomTable 頁面
-//	        return "roomTable";
-//	    }
-//	    
-//	    
-//
-//	    // 從 session 選擇 selectedRoomId 
-//	    Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
-//
-//	    // 根據 selectedRoomId 從資料庫獲取相對應 roomTableBean
-//	    roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
-//
-//	    // 如果 roomTable 不為 null 設定 roomTable 進入資裡面
-//	    if (roomTable != null) {
-//	        // 設置 bookingBean 的 roomTable 屬性
-//	        bookingBean.setRoomTable(roomTable);
-//
-//	        // 若是拿到的 bookingId 不為 null 則更新，就是因為沒有這個動作導致存不進資料庫！！！
-//	        if (bookingBean.getBookingId() != null) {
-//	            bookingService.update(bookingBean);
-//	        }
-//
-//	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
-//	        bookingService.save(bookingBean);
-//
-//	        // 清除 Session中的selectedRoomId
-//	        session.removeAttribute("selectedRoomId");
-//
-//	        return "book";
-//	    } else {
-//	        // 處理 roomTable 若為 null 則返回道 roomTable 的頁面
-//	        return "roomTable";
-//	    }
-//	}
-	
 	
 	// 使用 Ajax 進行運算，其中需要起始日期和結束日期，來有旅客去進行相乘
 	@GetMapping("/calculateAmount")
