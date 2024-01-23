@@ -211,7 +211,7 @@ public class bookingController {
 	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    try {
-	        // 字串日期軟換為 Date
+	        // 字串日期軟換為 Date，記得要使用 new Data(dataFormat.parse(checkinDate).getTime()); 方法
 	        Date checkinSqlDate = new Date(dateFormat.parse(checkinDate).getTime());
 	        Date checkoutSqlDate = new Date(dateFormat.parse(checkoutDate).getTime());
 
