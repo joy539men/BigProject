@@ -84,7 +84,7 @@
 				</ul>
         <div>
           <!-- account btn --> <a href="#!" class="p-3 border rounded-pill "><i class="bi w-50 bi-list pe-4" style="font-size: 20px;"></i><img  style="width:50px" src="images/logo.png" alt=""></a>
-				  <!-- account btn <a href="#!" class="btn btn-primary ms-2 ms-lg-3">註 冊</a> -->
+				 
         </div>
 			</div>
 		</div>

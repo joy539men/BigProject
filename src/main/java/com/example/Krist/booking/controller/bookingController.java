@@ -4,6 +4,8 @@ package com.example.Krist.booking.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -183,29 +186,36 @@ public class bookingController {
 //	}
 	
 	
-	@GetMapping("/booking/calculateAmount")
-	public String calculateAmount(@RequestParam("checkinDate") String checkinDate,
+	// 使用 Ajax 進行運算，其中需要起始日期和結束日期，來有旅客去進行相乘
+	@GetMapping("/calculateAmount")
+	@ResponseBody // 就是這個鬼東西搞了我整個晚上，因為在這邊 controller 只會回傳視圖，但現在要回傳 JSON 格式的話需要加上 @ResponseBody 的註解，這樣才能實現 AJAX
+	public Map<String, Double> calculateAmount(
+								  
+								  @RequestParam("checkinDate") String checkinDate,
 	                              @RequestParam("checkoutDate") String checkoutDate,
 	                              @RequestParam("guest") int guest,
 	                              Model model) {
-	    // 在这里添加计算总金额的逻辑，例如根据日期范围和人数计算金额
+	    // 這邊進行金額的計算
 	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest);
 
-	    // 将计算的金额放入 Model 中
-	    model.addAttribute("amount", amount);
+	    
 
-	    // 返回视图名称，该视图会显示计算的金额
-	    return "getRoomDetailsAndBook";
+	    // 將計算金額放入 Map 當中
+	    Map<String, Double> response = new HashMap<>();
+	    response.put("amount", amount);
+	    
+	    // 返回數值
+	    return response;
 	}
 	
 	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    try {
-	        // 将字符串日期转换为 Date 对象
+	        // 字串日期軟換為 Date
 	        Date checkinSqlDate = new Date(dateFormat.parse(checkinDate).getTime());
 	        Date checkoutSqlDate = new Date(dateFormat.parse(checkoutDate).getTime());
 
-	        // 计算入住天数
+	        // 計算入住天數
 	        long diff = checkoutSqlDate.getTime() - checkinSqlDate.getTime();
 	        int stayDuration = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 

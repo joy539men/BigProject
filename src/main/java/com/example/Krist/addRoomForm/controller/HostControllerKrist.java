@@ -49,7 +49,6 @@ public class HostControllerKrist {
 	@Autowired
 	userRepository userRepository;
 
-	@Autowired
 	public HostControllerKrist(ServletContext context, HostService service) {
 		this.context = context;
 		this.service = service;

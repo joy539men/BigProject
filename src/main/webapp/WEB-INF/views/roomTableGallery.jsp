@@ -129,8 +129,8 @@
                 </ul>
               </li>
             </ul>
-            <div>
-              <!-- account btn -->
+            <!-- <div>
+              account btn
               <li class="dropdown">
                 <a
                   class="p-3 border rounded-pill pb-4"
@@ -174,7 +174,40 @@
                   <li><a class="dropdown-item" href="legal.html">登出</a></li>
                 </ul>
               </li>
-            </div>
+            </div> -->
+            <div>
+					    <!-- account btn -->
+					    <ul class="nav">
+					        <li class="nav-item dropdown">
+					            <a class="p-3 border rounded-pill "
+					                href="#" id="navbarDropdown" role="button"
+					                data-bs-toggle="dropdown" aria-expanded="false">
+					                <img style="width: 15px" src="images/icon/fish.png" alt="" />
+					                <img class="mb-1" style="width: 50px" src="images/logo.png" alt="" />
+					            </a>
+					            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					                <li class="dropdown-item">
+					                    <img class="img-fluid " style="width: 50px" src="images/logo.png" alt="" />
+					                    <h4>Krist</h4>
+					                </li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="blog.html">旅程</a></li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+					                <li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
+					                <li><a class="dropdown-item" href="legal.html">登出</a></li>
+					            </ul>
+					        </li>
+					    </ul>
+					</div>
           </div>
         </div>
       </nav>
