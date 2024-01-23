@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.Krist.user.dao.userRepository;
 import com.example.demo.model.amenitiesBean;
 import com.example.demo.model.roomTableBean;
+import com.example.demo.model.userBean;
 import com.example.host.dao.AmenitiesRepository;
 import com.example.host.service.HostService;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.GeocodingResult;
 
 @Controller
 public class HostControllerKrist {
@@ -39,6 +45,9 @@ public class HostControllerKrist {
 	
 	@Autowired
 	AmenitiesRepository amenitiesRepository;
+	
+	@Autowired
+	userRepository userRepository;
 
 	@Autowired
 	public HostControllerKrist(ServletContext context, HostService service) {
@@ -125,7 +134,7 @@ public class HostControllerKrist {
 	
 	//傳送新增房間請求
 	@PostMapping("/addRoomKrist")
-	public String insertRoom(@ModelAttribute roomTableBean bean,@RequestParam(value = "amenityIds", required = false) Set<Integer> amenityIds) throws IOException {
+	public String insertRoom(@ModelAttribute roomTableBean bean,@RequestParam(value = "amenityIds", required = false) Set<Integer> amenityIds, HttpSession session) throws IOException {
 		//照片用multipartFile從表單送過來
 		MultipartFile multipartFile = bean.getMultipartFile();
 		
@@ -178,6 +187,43 @@ public class HostControllerKrist {
 		String filePath = "/images/imageKrist/" + "roomImage_" + userId + ext;
 		
 		//path存進roomTableBean表單的filePath欄位
+		
+		// 先取得 userId
+		Integer userIdSession = (Integer) session.getAttribute("userId");
+		
+		// 根據 userId 取得對應的 userBean
+		userBean userBean = userRepository.findById(userIdSession).orElse(null);
+		
+		// 如果 userId 不為 null 設定 進入 roomTable 當中
+		
+		
+		if(userBean != null) {
+			bean.setUser(userBean);
+			
+			if (bean.getRoomId() != null) {
+				service.update(bean);
+			} 
+		}
+		
+		 // 使用Google Maps Geocoding API將地址轉換成經緯度
+		String address = bean.getAddress();
+        GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCoCS3e-5nUFhkFZq0gUiywb6OyAHb7GSs").build(); // Google API Key
+	    try {
+	    	GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
+	        if (results.length > 0) {
+	            String latitude = String.valueOf(results[0].geometry.location.lat);
+	            String longitude = String.valueOf(results[0].geometry.location.lng);
+	            
+	         // Invoke .shutdown() after your application is done making requests
+	            context.shutdown();
+	
+	            bean.setLat(latitude);
+	            bean.setLon(longitude);
+	        }
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+		
 		bean.setFilePath(filePath);
 		service.update(bean);
 		service.addRoomWithAmenities(bean, amenityIds);

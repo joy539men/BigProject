@@ -77,6 +77,7 @@
 										&amp; Policy</a></li>
 							</ul></li>
 					</ul>
+					<a  href="<c:url value="/hostOrders"></c:url>" class="btn btn-outline-primary me-5" >切 換 房 東 模 式</a>
 					<!-- account btn -->
 					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->

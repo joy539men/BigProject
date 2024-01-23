@@ -42,10 +42,10 @@ public class userController {
 	
 	 @PostMapping("/login")
 	    public String login(@RequestParam String account, @RequestParam String password, Model model, HttpSession session) {
-	        // 获取用户信息（示例中使用 userService）
+	        // 利用 Account 取得 user 的 userBean
 	        userBean user = userService.findByAccount(account);
 
-	        // 验证密码
+	        // 驗證密碼和 userId 不為空值
 	        if (user != null &&  PasswordHashing.verifyPassword(password, user.getPassword())) {
 	            // 验证成功，将用户ID存储到session中
 	            session.setAttribute("userId", user.getUserId());
@@ -78,21 +78,21 @@ public class userController {
 	
 	@GetMapping("/logout")
     public String logout(HttpSession session) {
-        // 用户注销，将session中的用户ID清除
+        // 登出的時候，要註銷 session 然後將其跳轉到登入畫面
         session.removeAttribute("userId");
         return "redirect:/login"; // 注销后重定向到登录页面
     }
 	
 	@GetMapping("/home")
     public String home(HttpSession session) {
-        // 在主页中，你可以检查用户是否已经登录
+        // 在主頁拿到 userId
         Integer userId = (Integer) session.getAttribute("userId");
 
         if (userId != null) {
-            // 用户已经登录，可以执行相应的操作
-            return "home"; // 假设存在名为 "home" 的主页视图
+            // 用戶登入跳轉 home
+            return "home"; 
         } else {
-            // 用户未登录，重定向到登录页面
+            // 若是資料庫沒有該資料，跳轉到 login 頁面
             return "redirect:/login";
         }
         
