@@ -10,4 +10,5 @@ public interface bookingService {
 	void deleteById(Integer key);
 	bookingBean createBooking (userBean user,  bookingBean bean);
 
+
 }

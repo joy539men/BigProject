@@ -85,7 +85,7 @@ public class HostControllerKrist {
 		
 		roomTableBean bean = new roomTableBean();
 		model.addAttribute("roomTableBean", bean);
-		return "addRoomFormKrist";
+		return "addRoomFormKrist2";
 	}
 	
 //	//傳送新增房間請求

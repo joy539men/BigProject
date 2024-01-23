@@ -4,7 +4,7 @@ package com.example.Krist.booking.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
@@ -116,6 +116,7 @@ public class bookingController {
 	        }
 
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
+	        bookingBean.setUuid(UUID.randomUUID());
 	        bookingService.save(bookingBean);
 	        
 	        // 清除 Session中的selectedRoomId

@@ -84,7 +84,7 @@ public class roomTableBean {
 	private List<MultipartFile> imageFiles;
 
 
-	public roomTableBean(Integer  roomId, Integer  hostId, Integer  price, String   title, byte[]    photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat) {
+	public roomTableBean(Integer  roomId ,Integer  hostId, Integer  price, String   title, byte[]    photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat) {
 		this.roomId      = roomId;
 		this.price       = price;
 		this.title       = title;
@@ -105,7 +105,14 @@ public class roomTableBean {
     }
 
 
-	
+	public List<MultipartFile> getImageFiles() {
+		return imageFiles;
+	}
+
+	public void setImageFiles(List<MultipartFile> imageFiles) {
+		this.imageFiles = imageFiles;
+	}
+
 	public Integer getPrice() {
 		return price;
 	}
