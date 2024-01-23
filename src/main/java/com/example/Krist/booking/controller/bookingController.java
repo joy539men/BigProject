@@ -228,55 +228,5 @@ public class bookingController {
 	        e.printStackTrace();
 	        return 0;
 	    }
-	}
-
-	
-	
-	// 過時版本 ajax 技術
-//	@GetMapping("/booking/calculateAmount")
-//	@ResponseBody
-//	public String calculateAmount(@RequestParam("checkinDate") String checkinDate,
-//	                              @RequestParam("checkoutDate") String checkoutDate,
-//	                              @RequestParam("guest") int guest) {
-//	    // 在这里添加计算总金额的逻辑，例如根据日期范围和人数计算金额
-//	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest);
-//
-//	    // 返回计算结果，这里假设返回的是字符串，你可以根据实际情况返回其他格式的数据
-//	    return String.valueOf(amount);
-//	}
-//
-//	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest) {
-//	    // 这里添加你的计算逻辑，计算总金额
-//	    // 可以根据入住日期、退房日期和人数等信息进行计算
-//	    // 这里只是一个简单的示例，具体逻辑需要根据你的业务需求来实现
-//	    // 假设计算逻辑为入住天数 * 人数 * 每人每晚费用为 100 TWD
-//	    return 100 * getStayDuration(checkinDate, checkoutDate) * guest;
-//	}
-//
-//	private int getStayDuration(String checkinDate, String checkoutDate) {
-//	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//	    try {
-//	        java.util.Date checkin = dateFormat.parse(checkinDate);
-//	        java.util.Date checkout = dateFormat.parse(checkoutDate);
-//
-//	        // 转换为 java.sql.Date 类型
-//	        Date checkinSqlDate = new Date(checkin.getTime());
-//	        Date checkoutSqlDate = new Date(checkout.getTime());
-//
-//	        // 计算入住天数，这里只是简单示例
-//	        long diff = checkoutSqlDate.getTime() - checkinSqlDate.getTime();
-//	        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-//	    } catch (ParseException e) {
-//	        e.printStackTrace();
-//	        return 0;
-//	    }
-//	}
-
-
-
-
-
-	
-		
-	
+	}	
 }
