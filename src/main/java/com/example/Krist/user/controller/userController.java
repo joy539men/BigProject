@@ -34,12 +34,13 @@ public class userController {
 	@Autowired
 	userRepository userRepository;
 	
+	// 登入的頁面
 	@GetMapping("/login")
 	public String userLoginPage() {
 		return "login";
 	}
 	
-	
+	// 登入的表單
 	 @PostMapping("/login")
 	    public String login(@RequestParam String account, @RequestParam String password, Model model, HttpSession session) {
 	        // 利用 Account 取得 user 的 userBean
@@ -47,12 +48,12 @@ public class userController {
 
 	        // 驗證密碼和 userId 不為空值
 	        if (user != null &&  PasswordHashing.verifyPassword(password, user.getPassword())) {
-	            // 验证成功，将用户ID存储到session中
+	            // 驗證成功，將 userId 存到 session 當中，記得加入 HttpSession
 	            session.setAttribute("userId", user.getUserId());
-	            return "index"; // 重定向到主页或其他受保护的页面
+	            return "index"; 
 	        } else {
-	            // 验证失败，返回登录页面或其他处理逻辑
-	            return "login"; // 假设存在名为 "login" 的登录页面
+	            // 驗證失敗
+	            return "login";
 	        }
 	    }
 	
@@ -80,7 +81,7 @@ public class userController {
     public String logout(HttpSession session) {
         // 登出的時候，要註銷 session 然後將其跳轉到登入畫面
         session.removeAttribute("userId");
-        return "redirect:/login"; // 注销后重定向到登录页面
+        return "redirect:/login"; 
     }
 	
 	@GetMapping("/home")
@@ -141,21 +142,8 @@ public class userController {
 		
 	}
 	
-	// 對密碼進行哈希加密
-//    private String encodePassword(String rawPassword) {
-//        try {
-//            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-//            byte[] hashedBytes = messageDigest.digest(rawPassword.getBytes());
-//            StringBuilder stringBuilder = new StringBuilder();
-//            for (byte b : hashedBytes) {
-//                stringBuilder.append(String.format("%02x", b));
-//            }
-//            return stringBuilder.toString();
-//        } catch (NoSuchAlgorithmException e) {
-//            throw new RuntimeException("Password encoding failed", e);
-//        }
-//    }
     
+	// 驗證密碼的方法
     public class PasswordHashing {
 
         // 生成哈希值
@@ -170,7 +158,7 @@ public class userController {
             }
         }
 
-        // 将字节数组转换为十六进制字符串
+        // 轉換為十六進位
         private static String bytesToHex(byte[] bytes) {
             StringBuilder result = new StringBuilder();
             for (byte b : bytes) {
@@ -179,19 +167,10 @@ public class userController {
             return result.toString();
         }
 
-        // 验证密码
+        // 驗證密碼的方法
         public static boolean verifyPassword(String inputPassword, String hashedPassword) {
             String hashedInputPassword = hashPassword(inputPassword);
             return hashedInputPassword != null && hashedInputPassword.equals(hashedPassword);
         }
     }
-
-	
-//	// 驗證密碼
-//    private boolean verifyPassword(String rawPassword, String hashedPassword) {
-//        // 对用户输入的密码进行哈希运算
-//        String hashedInputPassword = encodePassword(rawPassword);
-//        // 将哈希后的用户输入密码与数据库中存储的哈希密码比较
-//        return hashedInputPassword.equals(hashedPassword);
-//    }
 }
