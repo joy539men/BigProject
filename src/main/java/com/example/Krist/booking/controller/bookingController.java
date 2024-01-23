@@ -128,6 +128,8 @@ public class bookingController {
 	        	    bookingBean.getGuest()
 	        	);
 	        model.addAttribute("amount", amount);
+	        model.addAttribute("booking", bookingBean);
+	        model.addAttribute("roomDetail", roomTable);
 	        
 	        bookingBean.setTotalPrice((int) amount);
 

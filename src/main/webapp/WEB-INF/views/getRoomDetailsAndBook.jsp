@@ -149,7 +149,8 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
-					<img class="mb-2" src="../images/roomImages/room_4.jpg" alt="" />
+    				<img  class="mb-2 img-cover" src="..${singleRoom.filePath}" alt="" />
+   
 					<div>
 						<div id="multi-item-carousel" class="carousel slide"
 							data-bs-ride="carousel">
@@ -548,6 +549,8 @@
   		            });
   		    });
   		});
+
+
   		  		
   		  		
 	}

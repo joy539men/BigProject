@@ -137,18 +137,12 @@ public class HostControllerKrist {
 		}
 		
 		// 獲取圖片寬高比例
-		int targetWidth = 350;  // 目標寬度，根據你的需求設定
-		int targetHeight = 250;
+		int targetWidth = 650;  // 目標寬度，根據你的需求設定
+		int targetHeight = 400;
 		
 		
 		BufferedImage originalImage = ImageIO.read(multipartFile.getInputStream());
-//		int originalWidth = originalImage.getWidth();
-//		int originalHeight = originalImage.getHeight();
-//		
-//		double ratio = (double) targetWidth / originalWidth;
-		
-		// 計算縮放後的高度
-//		int newHeight = (int) (originalHeight * ratio);
+
 
 		// 創建縮放後的圖片
 		BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
@@ -163,6 +157,8 @@ public class HostControllerKrist {
 		
 		//把照片從multipartFile存到本地資料夾
 		String rootDirectory = "/Users/caiyancheng/git/BigProject/src/main/resources/static/images/imageKrist";
+		
+		
 		try {
 			File imageFolder = new File(rootDirectory);
 			
