@@ -56,6 +56,8 @@ span.error {
 							房間數<form:input path="roomNum" type="number" name="guestNum" value="0" style="width:100px" class="mx-auto"/><br>
 							床位<form:input path="bedNum" type="number" name="guestNum" value="0" style="width:100px" class="mx-auto"/><br>
 							衛浴<form:input path="bathroom" type="number" name="guestNum" value="0" style="width:100px" class="mx-auto"/><br>
+							描述<form:input path="description" type="text" name="description" style="width:100px" class="mx-auto"/><br>
+							價位<form:input path="price" type="number" name="price" value="0" style="width:100px" class="mx-auto"/><br>
 							
 <%-- 							<form:errors path="name" cssClass="error" /> --%>
 						</td>

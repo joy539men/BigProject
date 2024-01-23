@@ -149,8 +149,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
-    				<img  class="mb-2 img-cover" src="..${singleRoom.filePath}" alt="" />
-   
+					<img class="mb-2" src="../images/roomImages/room_4.jpg" alt="" />
 					<div>
 						<div id="multi-item-carousel" class="carousel slide"
 							data-bs-ride="carousel">
@@ -310,7 +309,6 @@
 								<p>
 									Amount to be paid: $<span id="calculatedAmount">0.00</span>
 								</p>
-								
 							</div>
 
 						</div>
@@ -531,28 +529,22 @@
   		});
 
   		$(document).ready(function() {
-  		    // 監聽日期和人數輸入
-  		    $("#checkinDate, #checkoutDate, #guest").on("input", function(){
-  		        // 獲取輸入的日期和人數
-  		        var checkinDate = $("#checkinDate").val();
-  		        var checkoutDate = $("#checkoutDate").val();
-  		        var guest = $("#guest").val();
+			// 監聽日期和人數輸入
+			$("#checkinDate, #checkoutDate, #guest").on("input", function(){
+				// 獲取輸入的日期和人數
+				var checkinDate = $("#checkinDate").val();
+				var checkoutDate = $("#checkoutDate").val();
+				var guest = $("#guest").val();
 
-  		        // 使用 AJAX 發送請求到後端計算總金額
-  		        $.get("/booking/calculateAmount", {checkinDate: checkinDate, checkoutDate: checkoutDate, guest: guest})
-  		            .done(function(data) {
-  		                // 更新總金額變化
-  		                $("#calculatedAmount").text(data);
-  		            })
-  		            .fail(function(jqXHR, textStatus, errorThrown) {
-  		                console.error("AJAX request failed:", textStatus, errorThrown);
-  		            });
-  		    });
-  		});
+				// 使用 AJAX 發送請求到後端計算總金額
+				$.get("/booking/calculateAmount", {checkinDate: checkinDate, checkoutDate : checkoutDate, guest : guest}, function(data){
+					// 更新總金額變化
+					${"#calculatedAmount"}.text(data);
+					})
+				
+				})
 
-
-  		  		
-  		  		
+  	  		})
 	}
       
     </script>
