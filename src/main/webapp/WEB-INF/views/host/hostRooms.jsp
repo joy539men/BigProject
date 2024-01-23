@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
-
+<html>
 <head>
   <meta charset="utf-8">
   <title>PillowSurfing | 出租模式</title>
@@ -21,7 +21,7 @@
   
   <!-- # Main Style Sheet -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="./css/providerStyle.css">
+  <link rel="stylesheet" href="css/providerStyle.css">
 </head>
 
 <body>

@@ -25,6 +25,8 @@
   <!-- # Main Style Sheet -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="./css/providerStyle.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoCS3e-5nUFhkFZq0gUiywb6OyAHb7GSs&libraries=places"></script>
+  
 </head>
 
 <body>
@@ -82,7 +84,7 @@
   <!-- /end of navigation -->
 <c:url var='saveAction' value='/addRoom' />
 		<form:form method='POST' modelAttribute="roomTableBean" 
-		        action="${saveAction}" enctype="multipart/form-data">
+		        action="${saveAction}" enctype="multipart/form-data" id="myForm">
 			<c:if test='${roomTableBean.roomId != null}'>
                  <form:hidden path="roomId" /><br>&nbsp;
 			</c:if>
@@ -92,15 +94,15 @@
     </div>
     <div id="typeRadio" class="invisible-checkboxes mt-3 w-75 mx-auto">
         <label class="housetypeRadio mx-auto">
-          <form:radiobutton path="type"  value="整套房源" checked="checked"/>
+          <form:radiobutton  path="type"  value="整套房源" checked="checked"/>
           <div>整套房源</div>
         </label>
         <label class="housetypeRadio mx-auto">
-          <form:radiobutton path="type"  value="獨立房間" />
+          <form:radiobutton  path="type"  value="獨立房間" />
           <div>獨立房間</div>
         </label>
         <label class="housetypeRadio mx-auto">
-          <form:radiobutton path="type"  value="合住房間" />
+          <form:radiobutton  path="type"  value="合住房間" />
           <div>合住房間</div>
         </label>
     </div>
@@ -116,8 +118,8 @@
       <h2>房源的位置在哪邊?</h2>
     </div>
     <div style="height: 500px; width: 500px; border: 1px solid black;" class="mx-auto">
-   		<form:input path="address" class=" w-100" id="address" type="text" style="height: 50px;" placeholder="請輸入地址" />
-<!--       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2164.7151661821495!2d120.65017489534588!3d24.150595873442413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d8e4cf3616f%3A0x40ac8fb3b454be13!2z5LiA56yI5aO95Y-4!5e0!3m2!1szh-TW!2stw!4v1704394590596!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+   		<form:input path="address" class=" w-100" id="address" name="address" type="text" style="height: 50px;" placeholder="請輸入地址" />
+   		<div id="map" style="height: 400px; width: 100%;"></div>
     </div>
     <div class="w-75 mx-auto text-center ">
       <a class="btn btn-primary btn-sm" href="#houseInfo">下一步</a>
@@ -153,15 +155,25 @@
   </div>
 
 <!--   <br><br><br><br><br><br><br> -->
-  <div id="facilitySection" class="w-75 mx-auto mt-5 vh-100">
+  <div id="facilitySection" class="w-75 mx-auto mt-5">
 	    <div id="facilityTitle" class="w-75 mx-auto my-3">
 	      <h2>填寫房源提供那些設備?</h2>
 	    </div>
-	    <div>
+	    <div class="w-75 mx-auto row">
 	    	<c:forEach var="amenity" items="${amenities}">
-	        	<input type="checkbox" id="amenity-${amenity.amenityId}" name="amenityIds" value="${amenity.amenityId}">
-	        	<label for="amenity-${amenity.amenityId}">${amenity.amenityName}</label><br>
+	        		<div class="col-4 text-center">
+	        		<label for="amenity-${amenity.amenityId}" class="amenityCheckbox">
+	        			<input type="checkbox" id="amenity-${amenity.amenityId}" name="amenityIds" value="${amenity.amenityId}" >
+	        			<div>${amenity.amenityName}</div>
+	        		</label>
+	        		</div>
 	    	</c:forEach>
+	    
+<%-- 	    	<c:forEach var="amenity" items="${amenities}"> --%>
+<%-- 	        		<input type="checkbox" id="amenity-${amenity.amenityId}" name="amenityIds" value="${amenity.amenityId}" > --%>
+<%-- 	        		<label for="amenity-${amenity.amenityId}">${amenity.amenityName}</label> --%>
+<%-- 	    	</c:forEach> --%>
+				
 	    </div>
 	    <div class="w-75 mx-auto text-center ">
 	      <a class="btn btn-primary btn-sm" href="#safetySection">下一步</a>
@@ -191,8 +203,7 @@
     <div class="mt-3 w-75 mx-auto">
         <div style="height: 500px; width: 500px;" class="mx-auto test">
           
-<%--             <form:input id="file" name="photos" type="file" multiple="multiple" accept="image/*"/> --%>
-          	<input type="file" name="imageFiles" id="imageFiles" multiple="multiple"  />
+			<form:input path="multipartFile" type='file'/>
         </div>
     </div>
     <div class="w-75 mx-auto text-center ">
@@ -272,6 +283,7 @@
 
   <!-- Main Script -->
   <script src="js/script.js"></script>
+  <script src="js/addRoomMap.js"></script>
   <script>
     
     $(document).ready(function(){
@@ -295,12 +307,28 @@
 	          $(this).removeClass("unselectBtn").addClass("selectBtn");
 	          $("#acceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
 	      });
-
+    	
+    	
+    	// 取消預設按enter送出表單的功能
+        $('#myForm').on('keydown', function (event) {
+            // Check if the pressed key is Enter (key code 13)
+            if (event.which === 13) {
+                // Prevent the default form submission
+                event.preventDefault();
+            }
+        });
+    	
+    	
+    	
+    	
+    	
 
     });
+    
+    
 
   </script>
-
+  
 </body>
 
 </html>

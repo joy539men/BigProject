@@ -1,10 +1,9 @@
 package com.example.host.controller;
 
+
 import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.amenitiesBean;
 import com.example.demo.model.roomTableBean;
-import com.example.demo.model.userBean;
 import com.example.host.dao.AmenitiesRepository;
 import com.example.host.service.HostService;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.GeocodingResult;
+
 
 @Controller
 public class HostController {
@@ -74,9 +76,13 @@ public class HostController {
 		List<amenitiesBean> amenities = (List<amenitiesBean>) amenitiesRepository.findAll();
 	    model.addAttribute("amenities", amenities);
 		
+	    //
+	    String apiKey = "AIzaSyCoCS3e-5nUFhkFZq0gUiywb6OyAHb7GSs";
+        model.addAttribute("apiKey", apiKey);
+	    
 		roomTableBean bean = new roomTableBean();
 		model.addAttribute("roomTableBean", bean);
-		return "host/addRoomForm";
+		return "host/addRoomForm2";
 	}
 	
 	//傳送新增房間請求
@@ -96,39 +102,57 @@ public class HostController {
 		DateFormat dateFormat = new SimpleDateFormat("ddMMHHmm");
 	    Date date = new Date();
 	    String userId = dateFormat.format(date);
-		
-		//把照片從multipartFile存到本地資料夾
+	    String outputFileName = "roomImage_" + userId + ext;
+	    
+	    
+//		把照片從multipartFile存到本地資料夾
 		String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
 		try {
 			File imageFolder = new File(rootDirectory);
 			if (!imageFolder.exists())
 				imageFolder.mkdirs();
-			File file = new File(imageFolder, "roomImage_" + userId + ext);
+			File file = new File(imageFolder, outputFileName);
 			multipartFile.transferTo(file);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
+		
+		
 		//取得照片path
-		String filePath = "/images/roomPic/" + "roomImage_" + userId + ext;
+		String filePath = "/images/roomPic/" + outputFileName;
 		
 		//path存進roomTableBean表單的filePath欄位
 		bean.setFilePath(filePath);
-		service.update(bean);
+		
+		
+		 // 使用Google Maps Geocoding API將地址轉換成經緯度
+		String address = bean.getAddress();
+        GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyCoCS3e-5nUFhkFZq0gUiywb6OyAHb7GSs").build(); // Google API Key
+	    try {
+	    	GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
+	        if (results.length > 0) {
+	            String latitude = String.valueOf(results[0].geometry.location.lat);
+	            String longitude = String.valueOf(results[0].geometry.location.lng);
+	            
+	         // Invoke .shutdown() after your application is done making requests
+	            context.shutdown();
+	
+	            bean.setLat(latitude);
+	            bean.setLon(longitude);
+	        }
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+	    service.update(bean);
 		service.addRoomWithAmenities(bean, amenityIds);
-		return "redirect:/hostRooms";
+	    return "redirect:/hostRooms";
 	}
 	
-//	@PostMapping("/addRoom")
-//	public String insertRoom(@ModelAttribute roomTableBean bean) {
-//
-//		if (bean.getRoomId() != null) {
-//			service.update(bean);
-//		}
-//		service.save(bean);
-//		return "redirect:/hostRooms";
-//	}
-//	
+	
+	
+	
+
 	
 //	@ModelAttribute
 //	public roomTableBean editCustomerBean(@RequestParam(value = "roomId", required = false) Integer id) {
