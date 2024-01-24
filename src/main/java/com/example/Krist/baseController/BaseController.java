@@ -32,6 +32,17 @@ public class BaseController {
 		return "bookTripIndex";
 	}
 	
+	@GetMapping("/chatchat")
+	public String ChatChat() {
+		return "ChatChat";
+	}
+	
+	@GetMapping("/chat")
+	public String chat() {
+		return "chat";
+	}
+
+	
 //	@GetMapping("/Byron")
 //	public String Byron() {
 //		return "roomTableGalleryByron";

@@ -16,16 +16,18 @@ import com.example.Krist.webSocket.model.ChatMessage;
 public class ChatController {
 
     @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
+    @SendTo("/topic/public") // 大家都將發送目的地
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
         return chatMessage;
     }
 
+    
+    // 表示這個方法處理從客戶端發送到目的地/chat.addUser的消息,@Payload標註的參數傳遞給方法
     @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
+    @SendTo("/topic/public") // 大家都將發送目的地
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
                                SimpMessageHeaderAccessor headerAccessor) {
-        // Add username in web socket session
+    	// 發送消息的用戶名添加到WebSocket會話的標頭中
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }

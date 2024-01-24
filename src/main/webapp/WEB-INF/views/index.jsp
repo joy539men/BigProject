@@ -230,6 +230,9 @@
 			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> 
 			<a
 			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>
+			
+			<a
+			href="<c:url value="/chatchat"></c:url>">聊天系統測試版本</a>
 	</section>
 
 

@@ -114,7 +114,7 @@
 					                <li class="dropdown-item">
 					                    <hr />
 					                </li>
-					                <li><a class="dropdown-item" href="blog.html">旅程</a></li>
+					                <li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
 					                <li class="dropdown-item">
 					                    <hr />
 					                </li>
