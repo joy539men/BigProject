@@ -44,7 +44,7 @@ public class userController {
 	        if (user != null &&  PasswordHashing.verifyPassword(password, user.getPassword())) {
 	            // 驗證成功，將 userId 存到 session 當中，記得加入 HttpSession
 	            session.setAttribute("userId", user.getUserId());
-	            return "index"; 
+	            return "indexLogout"; 
 	        } else {
 	            // 驗證失敗
 	            return "login";

@@ -77,11 +77,11 @@
 										&amp; Policy</a></li>
 							</ul></li>
 					</ul>
-					<%-- <a  href="<c:url value="/hostOrders"></c:url>" class="btn btn-outline-primary me-5" >切 換 房 東 模 式</a> --%>
+					<a  href="<c:url value="/hostOrders"></c:url>" class="btn btn-outline-primary me-5" >切 換 房 東 模 式</a>
 					<!-- account btn -->
-					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
+					<%-- <a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a> --%>
 					<!-- account btn -->
-					<a href="<c:url value="/intoRegister"></c:url>" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
+					<a href="<c:url value="/logout"></c:url>" class="btn btn-primary ms-2 ms-lg-3">登 出</a>
 				</div>
 			</div>
 		</nav>

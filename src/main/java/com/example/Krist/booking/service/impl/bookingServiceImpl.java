@@ -1,5 +1,7 @@
 package com.example.Krist.booking.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +42,15 @@ public class bookingServiceImpl implements bookingService{
 		booking.setUser(user);
 		return bookingRepository.save(booking);
 	}
+
+//	@Override
+//	public List<bookingBean> findAllByUserId(Integer userId) {
+//		// TODO Auto-generated method stub
+//		return bookingRepository.findAllById(userId);
+//	}
+
+	
+
+	
 
 }
