@@ -193,7 +193,12 @@
 					                <li class="dropdown-item">
 					                    <hr />
 					                </li>
-					                <li><a class="dropdown-item" href="blog.html">旅程</a></li>
+					                 <li>
+					                <%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
+					                <a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a>
+					                
+					                
+					                </li>
 					                <li class="dropdown-item">
 					                    <hr />
 					                </li>
@@ -203,7 +208,7 @@
 					                    <hr />
 					                </li>
 					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-					                <li><a class="dropdown-item" href="legal.html">登出</a></li>
+					                <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
 					            </ul>
 					        </li>
 					    </ul>

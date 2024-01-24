@@ -14,42 +14,45 @@
 <html lang="en-us">
 
 <head>
-	<meta charset="utf-8">
-	<title>Book page</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-	<meta name="description" content="This is meta description">
-	<meta name="author" content="Themefisher">
-	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
-  
-  <!-- theme meta -->
-  <meta name="theme-name" content="wallet" />
+<meta charset="utf-8">
+<title>Book page</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="description" content="This is meta description">
+<meta name="author" content="Themefisher">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
 
-	<!-- # Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- theme meta -->
+<meta name="theme-name" content="wallet" />
 
-	<!-- # CSS Plugins -->
-	<link rel="stylesheet" href="plugins/slick/slick.css">
-	<link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
-	<link rel="stylesheet" href="plugins/font-awesome/brands.css">
-	<link rel="stylesheet" href="plugins/font-awesome/solid.css">
+<!-- # Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+	rel="stylesheet">
 
-	<!-- # Main Style Sheet -->
-	<link rel="stylesheet" href="css/style.css">
+<!-- # CSS Plugins -->
+<link rel="stylesheet" href="plugins/slick/slick.css">
+<link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
+<link rel="stylesheet" href="plugins/font-awesome/brands.css">
+<link rel="stylesheet" href="plugins/font-awesome/solid.css">
 
-  <!-- # Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<!-- # Main Style Sheet -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- # Bootstrap -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 
 <body>
-<!-- navigation -->
-<header class="navigation">
+	<!-- navigation -->
+	<header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> 
-				<img
+				<a class="navbar-brand" href="index.html"> <img
 					class="img-fluid" width="120" src="images/logo.png"
 					alt="CouchSurfing" />
 				</a>
@@ -87,178 +90,210 @@
 										&amp; Policy</a></li>
 							</ul></li>
 					</ul>
-					
+
 					<div>
-					    <!-- account btn -->
-					    <ul class="nav">
-					        <li class="nav-item dropdown">
-					            <a class="p-3 border rounded-pill"
-					                href="#" id="navbarDropdown" role="button"
-					                data-bs-toggle="dropdown" aria-expanded="false">
-					                <img style="width: 15px" src="images/icon/fish.png" alt="" />
-					                <img class="mb-1" style="width: 50px" src="images/logo.png" alt="" />
-					            </a>
-					            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					                <li class="dropdown-item">
-					                    <img class="img-fluid" style="width: 50px" src="images/logo.png" alt="" />
-					                    <h4>Krist</h4>
+						<!-- account btn -->
+						<ul class="nav">
+							<li class="nav-item dropdown"><a
+								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
+								role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<img style="width: 15px" src="images/icon/fish.png" alt="" />
+									<img class="mb-1" style="width: 50px" src="images/logo.png"
+									alt="" />
+							</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li class="dropdown-item"><img class="img-fluid"
+										style="width: 50px" src="images/logo.png" alt="" />
+										<h4>Krist</h4></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									 <li>
+					                <%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
+					                <a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a>
+					                
+					                
 					                </li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="blog.html">旅程</a></li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-					                <li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-					                <li><a class="dropdown-item" href="legal.html">登出</a></li>
-					            </ul>
-					        </li>
-					    </ul>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+									<li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<%-- <a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a> --%>
+									<li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
+									
+								</ul></li>
+						</ul>
 					</div>
-								
+
 				</div>
 			</div>
 		</nav>
 	</header>
 
-<hr>
-<!-- bookPage -->
-<section class="section pt-0 pb-0">
-  <div class="container">
-    <div class="row justify-content-center m-5">
-        <div class="col-12">
-            <div class="section-title">
-              <h5>訂單資料</h5>
-            </div>
-        </div>
-        
-        <div id="houseList" class="w-75 mx-auto row">
-		<c:forEach var="book" items="${bookTripRoomList}">
-			<div class="col-4">
-				<div id="houseA" class="card  houseCard mx-auto mb-5">
-					<img class="card-img-top" src="<c:url value = '${book.guest}'/>"
-						onclick="getRoomDetails(${book.guest})" />
-					<div class="card-body">
-						<h5 class="card-title ">${book.guest}</h5>
-						<span class="card-text">${book.guest}</span><br> 
-						<span class="card-text">${book.guest}人入住</span><br>
+	<hr>
+	<!-- bookPage -->
+	<section class="section pt-0 pb-0">
+		<div class="container">
+			<div class="row justify-content-center m-5">
+				<div class="col-12">
+					<div class="section-title">
+						<h5>訂單資料</h5>
 					</div>
-					
 				</div>
-			</div>
-		</c:forEach>
-	</div>
-        
-        
-    <%--     <div>
-          <div class="container border rounded">
-            <div class="row">
-              <div class="col-4 m-3 me-0">
-                <img class="img-fluid" style="width: 300px" src="<c:url value='${roomDetail.filePath }'/>" alt="">
-              </div>
-              <div class="col-4 ms-0 mt-3">
-                  <h3 class="mb-5">
-                    房間名稱 : ${roomDetail.title }
-                  </h3>
-                  <p class="">訂房編號 :</p><br>
-                  <h6>${booking.uuid }</h6>
-                  <h5 class="mt-5">訂房日期</h5>
-                  <h5>${booking.bookingTime }</h5>
-              </div>
-              <div class="col-3 mt-3">
 
-                <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
-                <h5 class="ms-5 mt-4">
-                  TW ${roomDetail.price } x ${booking.night } 晚 x ${booking.guest } 人
-                </h5>
-                <h6 class="ms-5 mb-5">總價 : ${amount }</h6>
-                <h5 class="ms-5">房客</h5>
-                <h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<hr>
-
-<!-- finsihBookPage -->
-<section class="section pt-0 mt-0">
-  <div class="container">
-    <div class="row justify-content-center m-5">
-        <div class="col-12">
-            <div class="section-title">
-              <h5>已完成住宿</h5>
-            </div>
-        </div>
-        <div>
-          <div class="container border rounded">
-            <div class="row">
-              <div class="col-4 m-3 me-0">
-                <img class="img-fluid" style="width: 300px" src="images/roomImages/zero-take-WvHrrR1C5Po-unsplash.jpg" alt="">
-              </div>
-              <div class="col-4 ms-0 mt-3">
-                  <h3 class="mb-5">
-                    房間名稱
-                  </h3>
-                  <p class="mb-5">訂房編號 : 88888888</p>
-                  <h5 class="mt-5">訂房日期</h5>
-                  <h5>2022/2/22</h5>
-              </div>
-              <div class="col-3 mt-3">
-                <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
-                <h5 class="ms-5 mt-4">
-                  TW 16888 X 2
-                </h5>
-                <h6 class="ms-5 mb-5">總價 : 33766</h6>
-                <h5 class="ms-5">房客</h5>
-                <h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<section>
-	<div id="houseList" class="w-75 mx-auto row">
-		<c:forEach var="room" items="${bookTripRoomList}">
+				<!--  <div id="houseList" class="w-75 mx-auto row">
+				<%-- <c:forEach var="list" items="${combinedList}">
 			<div class="col-4">
 				<div id="houseA" class="card  houseCard mx-auto mb-5">
-					<img class="card-img-top" src="<c:url value = '${room.filePath}'/>"
-						onclick="getRoomDetails(${room.roomId})" />
+					<img class="card-img-top" src="<c:url value = '${list.guest}'/>"
+						onclick="getRoomDetails(${list.guest})" />
 					<div class="card-body">
-						<h5 class="card-title ">${room.title}</h5>
-						<span class="card-text">${room.type}</span><br> 
-						<span class="card-text">${room.guestMax}人入住</span><br>
+						<h5 class="card-title ">${list.guest}</h5>
+						<span class="card-text">${list.guest}</span><br> 
+						<span class="card-text">${list.guest}人入住</span><br>
+						${list.title }
 					</div>
 					
 				</div>
 			</div>
 		</c:forEach> --%>
-	</div>
+				<!-- </div> -->
+				<%-- 
+	<div id="houseList" class="w-75 mx-auto row">
+		<c:forEach var="list" items="${combinedList}">
+			<div class="col-4">
+				<div id="houseA" class="card  houseCard mx-auto mb-5">
+					<img class="card-img-top" src="<c:url value = '${list.filePath}'/>"
+						 />
+					<div class="card-body">
+						<h5 class="card-title ">${room.title}</h5>
+						<span class="card-text">${room.title}</span><br> 
+						<span class="card-text">${room.title}人入住</span><br>
+					</div>
+					
+				</div>
+			</div>
+		</c:forEach>
+	</div>  --%>
 
-</section>
+
+				<c:forEach var="list" items="${combinedList}">
+					
+					<div>
+						<div class="container border rounded mb-5">
+							<div class="row ">
+							
+								<div class="col-4 m-3 me-0">
+									<img class="img-fluid" style="width: 300px"
+										src="<c:url value='${list.filePath }'/>" alt="">
+								</div>
+								<div class="col-4 ms-0 mt-3">
+									<h3 class="mb-5">房間名稱 : ${list.title }</h3>
+									<p class="">訂房編號 :</p>
+									<br>
+									<h6>${list.uuid }</h6>
+									<h5 class="mt-5">訂房日期</h5>
+									<h5>${list.bookingTime }</h5>
+								</div>
+								<div class="col-3 mt-3">
+
+									<a class="btn btn-outline-primary ms-5" href="<c:url value="/webSocket"></c:url>">傳訊息給房東</a>
+									<!-- <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a> -->
+									<h5 class="ms-5 mt-4">TW ${list.price } x ${list.night } 晚
+										x ${list.guest } 人</h5>
+									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
+									<h5 class="ms-5">房客</h5>
+									<h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+		
+				</c:forEach>
+			</div>
+
+
+		</div>
+
+	</section>
+
+
+	<hr>
+
+	<!-- finsihBookPage -->
+
+	<section class="section pt-0 mt-0">
+		<div class="container">
+			<div class="row justify-content-center m-5">
+				<div class="col-12">
+					<div class="section-title">
+						<h5>已完成住宿</h5>
+					</div>
+				</div>
+				<div>
+					<div class="container border rounded">
+						<div class="row">
+							<div class="col-4 m-3 me-0">
+								<img class="img-fluid" style="width: 300px"
+									src="images/roomImages/zero-take-WvHrrR1C5Po-unsplash.jpg"
+									alt="">
+							</div>
+							<div class="col-4 ms-0 mt-3">
+								<h3 class="mb-5">房間名稱</h3>
+								<p class="mb-5">訂房編號 : 88888888</p>
+								<h5 class="mt-5">訂房日期</h5>
+								<h5>2022/2/22</h5>
+							</div>
+							<div class="col-3 mt-3">
+								<a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
+								<h5 class="ms-5 mt-4">TW 16888 X 2</h5>
+								<h6 class="ms-5 mb-5">總價 : 33766</h6>
+								<h5 class="ms-5">房客</h5>
+								<h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<%-- <section>
+		<div id="houseList" class="w-75 mx-auto row">
+			<c:forEach var="room" items="${bookTripRoomList}">
+				<div class="col-4">
+					<div id="houseA" class="card  houseCard mx-auto mb-5">
+						<img class="card-img-top"
+							src="<c:url value = '${room.filePath}'/>"
+							onclick="getRoomDetails(${room.roomId})" />
+						<div class="card-body">
+							<h5 class="card-title ">${room.title}</h5>
+							<span class="card-text">${room.type}</span><br> <span
+								class="card-text">${room.guestMax}人入住</span><br>
+						</div>
+
+					</div>
+				</div>
+			</c:forEach>
+			
+		</div>
+
+	</section> --%>
 
 
 
-<!-- # JS Plugins -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
-<script src="plugins/slick/slick.min.js"></script>
-<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+	<!-- # JS Plugins -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="plugins/slick/slick.min.js"></script>
+	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
 
-<!-- Main Script -->
-<script src="js/script.js"></script>
+	<!-- Main Script -->
+	<script src="js/script.js"></script>
 
 </body>
 </html>

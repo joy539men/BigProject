@@ -121,7 +121,7 @@
 					                    <hr />
 					                </li>
 					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-					                <li><a class="dropdown-item" href="legal.html">登出</a></li>
+					               <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
 					            </ul>
 					        </li>
 					    </ul>
@@ -160,7 +160,7 @@
               </div>
               <div class="col-3 mt-3">
 
-                <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
+                 <a class="btn btn-outline-primary ms-5" href="<c:url value="/webSocket"></c:url>">傳訊息給房東</a>
                 <h5 class="ms-5 mt-4">
                   TW ${roomDetail.price } x ${booking.night } 晚 x ${booking.guest } 人
                 </h5>
@@ -201,7 +201,7 @@
                   <h5>2022/2/22</h5>
               </div>
               <div class="col-3 mt-3">
-                <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
+                <a class="btn btn-outline-primary ms-5" href="<c:url value="/webSocket"></c:url>">傳訊息給房東</a>
                 <h5 class="ms-5 mt-4">
                   TW 16888 X 2
                 </h5>

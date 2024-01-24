@@ -18,15 +18,15 @@ public class ImageController {
 	private ImageRepository imgRepo;
 	
 	
-	@GetMapping("/viewAllImages")
-	public String viewAllIamges(Model model)
-	{
-		  List<Image> list=	imgRepo.findAll();
-			model.addAttribute("imgList",list);
-			
-			return "viewAllImages";
-		
-	}
+//	@GetMapping("/viewAllImages")
+//	public String viewAllIamges(Model model)
+//	{
+//		  List<Image> list=	imgRepo.findAll();
+//			model.addAttribute("imgList",list);
+//			
+//			return "viewAllImages";
+//		
+//	}
 
 	
 }

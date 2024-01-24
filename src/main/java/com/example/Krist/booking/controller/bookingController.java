@@ -4,6 +4,7 @@ package com.example.Krist.booking.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,7 @@ public class bookingController {
 	        
 	        // 將幾個晚上也設定進入 bookingBean
 	        bookingBean.setNight(night);
+	        bookingBean.setTotalPrice((int) Math.round(amount));
 	        
 	        bookingService.save(bookingBean);
 	        model.addAttribute("amount", amount);
@@ -200,6 +202,25 @@ public class bookingController {
 //	    return "bookTrip";
 //	}
 	
+	// bookTrip 備份資料 
+//	@GetMapping("/bookTrip")
+//	public String bookTrip(Model model, HttpSession session) {
+//	    Integer userId = (Integer) session.getAttribute("userId");
+//
+//	    userBean userBean = userRepository.findById(userId).orElse(null);
+//	    // 檢查用戶是否登入
+//	    if (userId != null) {
+//	        // 用戶有登入資料則進行查詢
+//	        List<bookingBean> bookRoomList = bookingService.findAllByUser(userBean);
+//	        model.addAttribute("bookTripRoomList", bookRoomList);
+//	        return "bookTrip";
+//	    } else {
+//	        // 用戶為登入重新轉向
+//	        return "redirect:/login";  // 錯誤的話重新導入其他路徑
+//	    }
+//	}
+	
+	
 	@GetMapping("/bookTrip")
 	public String bookTrip(Model model, HttpSession session) {
 	    Integer userId = (Integer) session.getAttribute("userId");
@@ -209,11 +230,37 @@ public class bookingController {
 	    if (userId != null) {
 	        // 用戶有登入資料則進行查詢
 	        List<bookingBean> bookRoomList = bookingService.findAllByUser(userBean);
+	        List<roomTableBean> roomList = new ArrayList<>();
+	        for (bookingBean booking : bookRoomList) {
+	            roomList.add(booking.getRoomTable());
+	        }
+	        
+	        List<Map<String, Object>> combinedList = new ArrayList<>();
+	        for (bookingBean booking : bookRoomList) {
+	            Map<String, Object> itemMap = new HashMap<>();
+	            itemMap.put("id", booking.getBookingId());
+	            itemMap.put("title", booking.getRoomTable().getTitle());
+	            itemMap.put("description", booking.getRoomTable().getDescription());
+	            itemMap.put("filePath", booking.getRoomTable().getFilePath());
+	            itemMap.put("roomNum", booking.getRoomTable().getRoomNum());
+	            itemMap.put("guest", booking.getGuest());
+	            itemMap.put("address", booking.getRoomTable().getAddress());
+	            itemMap.put("uuid", booking.getUuid());
+	            itemMap.put("bookingTime", booking.getBookingTime());
+	            itemMap.put("night", booking.getNight());
+	            itemMap.put("totalPrice", booking.getTotalPrice());
+	            itemMap.put("price", booking.getRoomTable().getPrice());
+	            itemMap.put("bookingTime", booking.getBookingTime());
+	            combinedList.add(itemMap);
+	        }
+	        
+	        model.addAttribute("combinedList", combinedList);
 	        model.addAttribute("bookTripRoomList", bookRoomList);
+	        model.addAttribute("roomList", roomList);
 	        return "bookTrip";
 	    } else {
-	        // 用户未登录，重定向到登录页面或其他处理
-	        return "redirect:/login";  // 假设登录页面的路径是 "/login"
+	        // 用戶為登入重新轉向
+	        return "redirect:/login.jsp";  // 錯誤的話重新導入其他路徑
 	    }
 	}
 

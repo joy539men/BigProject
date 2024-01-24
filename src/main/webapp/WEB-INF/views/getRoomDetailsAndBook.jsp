@@ -124,7 +124,7 @@
 					                    <hr />
 					                </li>
 					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-					                <li><a class="dropdown-item" href="legal.html">登出</a></li>
+					                <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
 					            </ul>
 					        </li>
 					    </ul>
