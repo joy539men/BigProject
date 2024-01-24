@@ -108,7 +108,7 @@
 					                </li>
 					                <li>
 					                <%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
-					                <a class="dropdown-item" href="<c:url value="/index"></c:url>">旅程</a>
+					                <a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a>
 					                
 					                
 					                </li>

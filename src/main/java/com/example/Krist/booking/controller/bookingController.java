@@ -186,11 +186,38 @@ public class bookingController {
 	}	
 	
 //	@GetMapping("/bookTrip")
-//	public String bookTrip(Model model) {
-//		List<bookingBean> roomList = (List<bookingBean>) bookingService.;
-//		model.addAttribute("roomList", roomList);
-//		return "roomTableGallery";
+//	public String bookTrip(Model model, HttpSession session) {
+//	    Integer user = (Integer) session.getAttribute("userId");
+//
+//	    List<bookingBean> bookRoomList = (List<bookingBean>) bookingService.findAllByUserId(user);
+//	    
+//	    if (bookRoomList.isEmpty()) {
+//	        // 不存在匹配的记录，触发错误处理
+//	        return "index";
+//	    }
+//
+//	    model.addAttribute("bookTripRoomList", bookRoomList);
+//	    return "bookTrip";
 //	}
+	
+	@GetMapping("/bookTrip")
+	public String bookTrip(Model model, HttpSession session) {
+	    Integer userId = (Integer) session.getAttribute("userId");
+
+	    userBean userBean = userRepository.findById(userId).orElse(null);
+	    // 檢查用戶是否登入
+	    if (userId != null) {
+	        // 用戶有登入資料則進行查詢
+	        List<bookingBean> bookRoomList = bookingService.findAllByUser(userBean);
+	        model.addAttribute("bookTripRoomList", bookRoomList);
+	        return "bookTrip";
+	    } else {
+	        // 用户未登录，重定向到登录页面或其他处理
+	        return "redirect:/login";  // 假设登录页面的路径是 "/login"
+	    }
+	}
+
+
 	
 //	@GetMapping("/bookTrip")
 //	public String bookTrip(@ModelAttribute("bookingBean") bookingBean bookingBean, Model model, HttpSession session) {

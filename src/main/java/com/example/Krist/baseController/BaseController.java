@@ -27,9 +27,9 @@ public class BaseController {
 		return "calendarKrist";
 	}
 	
-	@GetMapping("/bookTrip")
+	@GetMapping("/bookTripIndex")
 	public String bookTrip() {
-		return "bookTrip";
+		return "bookTripIndex";
 	}
 	
 //	@GetMapping("/Byron")

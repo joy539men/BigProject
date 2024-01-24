@@ -1,5 +1,6 @@
 package com.example.Krist.booking.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +44,23 @@ public class bookingServiceImpl implements bookingService{
 		return bookingRepository.save(booking);
 	}
 
-//	@Override
-//	public List<bookingBean> findAllByUserId(Integer userId) {
-//		// TODO Auto-generated method stub
-//		return bookingRepository.findAllById(userId);
-//	}
+	@Override
+	public List<bookingBean> findAllByUser(userBean userId) {
+		// TODO Auto-generated method stub
+		return bookingRepository.findAllByUser(userId);
+	}
 
 	
+//	@Override
+//    public List<bookingBean> findAllByUserId(Integer  userId) {
+//        if ( userId == null) {
+//            // 用户未登录，可以返回空列表或者默认数据
+//            return Collections.emptyList(); // 或者返回默认数据
+//        } else {
+//            // 用户已登录，正常进行查询
+//            return bookingRepository.findAllByUserId( userId);
+//        }
+//    }
 
 	
 

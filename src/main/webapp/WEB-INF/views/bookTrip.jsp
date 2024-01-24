@@ -138,7 +138,25 @@
             </div>
         </div>
         
-        <div>
+        <div id="houseList" class="w-75 mx-auto row">
+		<c:forEach var="book" items="${bookTripRoomList}">
+			<div class="col-4">
+				<div id="houseA" class="card  houseCard mx-auto mb-5">
+					<img class="card-img-top" src="<c:url value = '${book.guest}'/>"
+						onclick="getRoomDetails(${book.guest})" />
+					<div class="card-body">
+						<h5 class="card-title ">${book.guest}</h5>
+						<span class="card-text">${book.guest}</span><br> 
+						<span class="card-text">${book.guest}人入住</span><br>
+					</div>
+					
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+        
+        
+    <%--     <div>
           <div class="container border rounded">
             <div class="row">
               <div class="col-4 m-3 me-0">
@@ -209,6 +227,26 @@
         </div>
     </div>
   </div>
+</section>
+
+<section>
+	<div id="houseList" class="w-75 mx-auto row">
+		<c:forEach var="room" items="${bookTripRoomList}">
+			<div class="col-4">
+				<div id="houseA" class="card  houseCard mx-auto mb-5">
+					<img class="card-img-top" src="<c:url value = '${room.filePath}'/>"
+						onclick="getRoomDetails(${room.roomId})" />
+					<div class="card-body">
+						<h5 class="card-title ">${room.title}</h5>
+						<span class="card-text">${room.type}</span><br> 
+						<span class="card-text">${room.guestMax}人入住</span><br>
+					</div>
+					
+				</div>
+			</div>
+		</c:forEach> --%>
+	</div>
+
 </section>
 
 

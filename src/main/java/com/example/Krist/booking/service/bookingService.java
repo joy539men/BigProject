@@ -11,7 +11,7 @@ public interface bookingService {
 	bookingBean update(bookingBean bean);
 	void deleteById(Integer key);
 	bookingBean createBooking (userBean user,  bookingBean bean);
-//	List<bookingBean> findAllByUserId(Integer userId);
+	List<bookingBean> findAllByUser(userBean userId);
 
 
 }
