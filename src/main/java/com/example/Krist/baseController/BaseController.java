@@ -27,6 +27,10 @@ public class BaseController {
 		return "calendarKrist";
 	}
 	
+	@GetMapping("/bookTrip")
+	public String bookTrip() {
+		return "bookTrip";
+	}
 
 	
 }

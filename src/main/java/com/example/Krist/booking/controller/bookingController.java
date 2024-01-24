@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,7 @@ import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.Krist.user.dao.userRepository;
 import com.example.demo.model.bookingBean;
 import com.example.demo.model.roomTableBean;
+import com.example.demo.model.userBean;
 
 @Controller
 public class bookingController {
@@ -71,15 +73,17 @@ public class bookingController {
 	    // 從 session 選擇 selectedRoomId 
 	    Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
 	    Integer night = (Integer) session.getAttribute("night");
+	    Integer selecteduserId = (Integer) session.getAttribute("userId");
 
 	    // 根據 selectedRoomId 從資料庫獲取相對應 roomTableBean
 	    roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
+	    userBean user = userRepository.findById(selecteduserId).orElse(null);
 
 	    // 如果 roomTable 不為 null 設定 roomTable 進入資裡面
-	    if (roomTable != null) {
+	    if (roomTable != null && user != null) {
 	        // 設置 bookingBean 的 roomTable 屬性
 	        bookingBean.setRoomTable(roomTable);
-
+	        bookingBean.setUser(user);
 	        // 若是拿到的 bookingId 不為 null 則更新，就是因為沒有這個動作導致存不進資料庫！！！
 	        if (bookingBean.getBookingId() != null) {
 	            bookingService.update(bookingBean);
@@ -101,6 +105,7 @@ public class bookingController {
 	        
 	        // 將幾個晚上也設定進入 bookingBean
 	        bookingBean.setNight(night);
+	        
 	        bookingService.save(bookingBean);
 	        model.addAttribute("amount", amount);
 	        model.addAttribute("booking", bookingBean);
@@ -179,4 +184,20 @@ public class bookingController {
 	        return 0;
 	    }
 	}	
+	
+//	@GetMapping("/bookTrip")
+//	public String bookTrip(Model model) {
+//		List<bookingBean> roomList = (List<bookingBean>) bookingService.;
+//		model.addAttribute("roomList", roomList);
+//		return "roomTableGallery";
+//	}
+	
+//	@GetMapping("/bookTrip")
+//	public String bookTrip(@ModelAttribute("bookingBean") bookingBean bookingBean, Model model, HttpSession session) {
+//		Integer selectedUserId = (Integer)session.getAttribute("userId");
+//		(Iterable<Integer>) user =  userRepository.findAllById(selectedUserId);
+//		bookingBean.setUser(user);
+//		
+//		return "bookTrip";
+//	}
 }
