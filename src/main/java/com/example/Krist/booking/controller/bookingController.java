@@ -88,20 +88,25 @@ public class bookingController {
 	        bookingBean.setUuid(UUID.randomUUID());
 	        bookingService.save(bookingBean);
 	        
-	        // 清除 Session中的selectedRoomId
-	        session.removeAttribute("selectedRoomId");
+	       
 	        
 	        // 將計算機金額加入 Model 當中
 	        double amount = calculateAmountLogic(
 	        	    new SimpleDateFormat("yyyy-MM-dd").format(bookingBean.getCheckinDate()),
 	        	    new SimpleDateFormat("yyyy-MM-dd").format(bookingBean.getCheckoutDate()),
-	        	    bookingBean.getGuest()
+	        	    bookingBean.getGuest(),
+	        	    session
 	        	);
 	        model.addAttribute("amount", amount);
 	        model.addAttribute("booking", bookingBean);
 	        model.addAttribute("roomDetail", roomTable);
 	        
+	        
+	        
 	        bookingBean.setTotalPrice((int) amount);
+	        
+	     // 清除 Session中的selectedRoomId *** 記得這個放最後面，不然前面會抓不到 session!!!!!!
+	        session.removeAttribute("selectedRoomId");
 
 	        return "book";
 	    } else {
@@ -116,13 +121,13 @@ public class bookingController {
 	@GetMapping("/calculateAmount")
 	@ResponseBody // 就是這個鬼東西搞了我整個晚上，因為在這邊 controller 只會回傳視圖，但現在要回傳 JSON 格式的話需要加上 @ResponseBody 的註解，這樣才能實現 AJAX
 	public Map<String, Double> calculateAmount(
-								  
+								  HttpSession session,
 								  @RequestParam("checkinDate") String checkinDate,
 	                              @RequestParam("checkoutDate") String checkoutDate,
 	                              @RequestParam("guest") int guest,
 	                              Model model) {
 	    // 這邊進行金額的計算
-	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest);
+	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest, session);
 
 	    
 
@@ -134,7 +139,7 @@ public class bookingController {
 	    return response;
 	}
 	
-	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest) {
+	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest, HttpSession session) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    try {
 	        // 字串日期軟換為 Date，記得要使用 new Data(dataFormat.parse(checkinDate).getTime()); 方法
@@ -145,8 +150,19 @@ public class bookingController {
 	        long diff = checkoutSqlDate.getTime() - checkinSqlDate.getTime();
 	        int stayDuration = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
-	        // 這邊使用簡單 100 元
-	        double nightlyRate = 100;
+	        // 這邊使用 session 抓取各個房間的價位去進行計算，先由 selectedRoomId 去取得 session 再由 repository 去抓取 Id 然後取得 roomTable 後拿到價錢
+	        Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
+	        // 驗證 selectedRoomId 是否為 null
+	        if (selectedRoomId == null) {
+	        	// 處理 selectedRoomId 為 null 的情況，例如返回到合適的頁面
+	        	return 0;  // 或者您可以根據實際需求進行其他處理
+	        }
+	        
+	        
+	        roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
+	     
+	        
+	        double nightlyRate = roomTable.getPrice();
 
 	        // 計算總金額
 	        return nightlyRate * stayDuration * guest;

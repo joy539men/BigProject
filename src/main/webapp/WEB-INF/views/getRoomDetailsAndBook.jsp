@@ -219,7 +219,7 @@
 										<div class="form-group">
 											<label for="checkinDate" class="form-label">入 住 日 期</label>
 											<form:input type="date" class="form-control shadow-none"
-												id="checkinDate" placeholder="ex: 克里斯" path="checkinDate" />
+												id="checkinDate" placeholder="ex: 1~5" path="checkinDate" />
 											<form:errors path="checkinDate" cssClass="error" />
 										</div>
 									</div>
@@ -235,7 +235,7 @@
 										<div class="form-group">
 											<label for="guest" class="form-label">旅 客 人 數</label>
 											<form:input type="number" class="form-control shadow-none"
-												id="guest" placeholder="ex: 克里斯" path="guest" />
+												id="guest" placeholder="ex: 1~5" path="guest" />
 											<form:errors path="guest" cssClass="error" />
 										</div>
 									</div>
@@ -248,8 +248,8 @@
 							</form:form>
 							<!-- 動態顯示的需付款金額 -->
 							<div id="amount">
-								<p>
-									Amount to be paid: $<span id="calculatedAmount"></span>
+								<p class= "ms-2">
+									總付款金額 : $<span id="calculatedAmount"></span>
 								</p>
 								
 							</div>
