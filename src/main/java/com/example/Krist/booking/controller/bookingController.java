@@ -70,6 +70,7 @@ public class bookingController {
 
 	    // 從 session 選擇 selectedRoomId 
 	    Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
+	    Integer night = (Integer) session.getAttribute("night");
 
 	    // 根據 selectedRoomId 從資料庫獲取相對應 roomTableBean
 	    roomTableBean roomTable = roomTableRepository.findById(selectedRoomId).orElse(null);
@@ -86,7 +87,7 @@ public class bookingController {
 
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
 	        bookingBean.setUuid(UUID.randomUUID());
-	        bookingService.save(bookingBean);
+//	        bookingService.save(bookingBean);
 	        
 	       
 	        
@@ -97,6 +98,10 @@ public class bookingController {
 	        	    bookingBean.getGuest(),
 	        	    session
 	        	);
+	        
+	        // 將幾個晚上也設定進入 bookingBean
+	        bookingBean.setNight(night);
+	        bookingService.save(bookingBean);
 	        model.addAttribute("amount", amount);
 	        model.addAttribute("booking", bookingBean);
 	        model.addAttribute("roomDetail", roomTable);
@@ -107,6 +112,7 @@ public class bookingController {
 	        
 	     // 清除 Session中的selectedRoomId *** 記得這個放最後面，不然前面會抓不到 session!!!!!!
 	        session.removeAttribute("selectedRoomId");
+	        session.removeAttribute("night");
 
 	        return "book";
 	    } else {
@@ -152,6 +158,8 @@ public class bookingController {
 
 	        // 這邊使用 session 抓取各個房間的價位去進行計算，先由 selectedRoomId 去取得 session 再由 repository 去抓取 Id 然後取得 roomTable 後拿到價錢
 	        Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
+	        session.setAttribute("night", stayDuration);
+	        
 	        // 驗證 selectedRoomId 是否為 null
 	        if (selectedRoomId == null) {
 	        	// 處理 selectedRoomId 為 null 的情況，例如返回到合適的頁面

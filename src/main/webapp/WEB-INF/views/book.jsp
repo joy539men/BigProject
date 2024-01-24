@@ -106,13 +106,14 @@
           <div class="container border rounded">
             <div class="row">
               <div class="col-4 m-3 me-0">
-                <img class="img-fluid" style="width: 300px" src="images/roomImages/zero-take-WvHrrR1C5Po-unsplash.jpg" alt="">
+                <img class="img-fluid" style="width: 300px" src="<c:url value='${roomDetail.filePath }'/>" alt="">
               </div>
               <div class="col-4 ms-0 mt-3">
                   <h3 class="mb-5">
                     房間名稱 : ${roomDetail.title }
                   </h3>
-                  <p class="mb-5">訂房編號 : 88888888</p>
+                  <p class="">訂房編號 :</p><br>
+                  <h6>${booking.uuid }</h6>
                   <h5 class="mt-5">訂房日期</h5>
                   <h5>${booking.bookingTime }</h5>
               </div>
@@ -120,7 +121,7 @@
 
                 <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
                 <h5 class="ms-5 mt-4">
-                  TW 16888 X 2
+                  TW ${roomDetail.price } x ${booking.night } 晚 x ${booking.guest } 人
                 </h5>
                 <h6 class="ms-5 mb-5">總價 : ${amount }</h6>
                 <h5 class="ms-5">房客</h5>
