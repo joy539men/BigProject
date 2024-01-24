@@ -31,6 +31,11 @@ public class BaseController {
 	public String bookTrip() {
 		return "bookTrip";
 	}
+	
+//	@GetMapping("/Byron")
+//	public String Byron() {
+//		return "roomTableGalleryByron";
+//	}
 
 	
 }

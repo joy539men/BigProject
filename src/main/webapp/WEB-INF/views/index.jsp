@@ -161,6 +161,10 @@
 						<a  class="btn btn-primary" href="<c:url value="/roomTableGallery"></c:url>"
 							>房 間 列 表 <span
 							style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+							
+							<a  class="btn btn-primary" href="<c:url value="/roomTableGalleryByron"></c:url>"
+							>房 間 列 表 Test<span
+							style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
 					</div>
 				</div>
 				<div class="col-lg-6">

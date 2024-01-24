@@ -225,7 +225,7 @@
 
 
 	<div id="houseList" class="w-75 mx-auto row">
-		<c:forEach var="room" items="${roomList}">
+		<c:forEach var="room" items="${roomListByron}">
 			<div class="col-4">
 				<div id="houseA" class="card  houseCard mx-auto mb-5">
 					<img class="card-img-top" src="<c:url value = '${room.filePath}'/>"
