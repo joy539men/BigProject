@@ -45,51 +45,92 @@
 
 <body>
 <!-- navigation -->
-<header class="navigation ">
-	<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">
-				<img loading="prelaod" decoding="async" class="img-fluid" width="120" src="images/logo.png" alt="CouchSurfing">
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-					<li class="nav-item"> <a class="nav-link" href="index.html">訂單</a>
-					</li>
-					<li class="nav-item "> <a class="nav-link" href="about.html">日曆</a>
-					</li>
-					<li class="nav-item "> <a class="nav-link" href="services.html">收件夾</a>
-					</li>
-					<li class="nav-item "> <a class="nav-link" href="contact.html">聯絡我們</a>
-					</li>
-					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item " href="blog.html">Blog</a>
-							</li>
-							<li><a class="dropdown-item " href="blog-details.html">Blog Details</a>
-							</li>
-							<li><a class="dropdown-item " href="service-details.html">Service Details</a>
-							</li>
-							<li><a class="dropdown-item " href="faq.html">FAQ&#39;s</a>
-							</li>
-							<li><a class="dropdown-item " href="legal.html">Legal</a>
-							</li>
-							<li><a class="dropdown-item " href="terms.html">Terms &amp; Condition</a>
-							</li>
-							<li><a class="dropdown-item " href="privacy-policy.html">Privacy &amp; Policy</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-        <div>
-          <!-- account btn --> <a href="#!" class="p-3 border rounded-pill "><i class="bi w-50 bi-list pe-4" style="font-size: 20px;"></i><img  style="width:50px" src="images/logo.png" alt=""></a>
-				  <!-- account btn <a href="#!" class="btn btn-primary ms-2 ms-lg-3">註 冊</a> -->
-        </div>
+<header class="navigation">
+		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
+			<div class="container">
+				<a class="navbar-brand" href="index.html"> 
+				<img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
+				</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" href="index.html">訂單</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="about.html">日曆</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="services.html">收件夾</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="blog.html">Blog</a></li>
+								<li><a class="dropdown-item" href="blog-details.html">Blog
+										Details</a></li>
+								<li><a class="dropdown-item" href="service-details.html">Service
+										Details</a></li>
+								<li><a class="dropdown-item" href="faq.html">FAQ&#39;s</a>
+								</li>
+								<li><a class="dropdown-item" href="legal.html">Legal</a></li>
+								<li><a class="dropdown-item" href="terms.html">Terms
+										&amp; Condition</a></li>
+								<li><a class="dropdown-item" href="privacy-policy.html">Privacy
+										&amp; Policy</a></li>
+							</ul></li>
+					</ul>
+					
+					<div>
+					    <!-- account btn -->
+					    <ul class="nav">
+					        <li class="nav-item dropdown">
+					            <a class="p-3 border rounded-pill"
+					                href="#" id="navbarDropdown" role="button"
+					                data-bs-toggle="dropdown" aria-expanded="false">
+					                <img style="width: 15px" src="images/icon/fish.png" alt="" />
+					                <img class="mb-1" style="width: 50px" src="images/logo.png" alt="" />
+					            </a>
+					            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					                <li class="dropdown-item">
+					                    <img class="img-fluid" style="width: 50px" src="images/logo.png" alt="" />
+					                    <h4>Krist</h4>
+					                </li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li>
+					                <%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
+					                <a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a>
+					                
+					                
+					                </li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+					                <li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
+					               <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
+					            </ul>
+					        </li>
+					    </ul>
+					</div>
+								
+				</div>
 			</div>
-		</div>
-	</nav>
-</header>
+		</nav>
+	</header>
 
 <hr>
 <!-- bookPage -->
@@ -106,21 +147,22 @@
           <div class="container border rounded">
             <div class="row">
               <div class="col-4 m-3 me-0">
-                <img class="img-fluid" style="width: 300px" src="images/roomImages/zero-take-WvHrrR1C5Po-unsplash.jpg" alt="">
+                <img class="img-fluid" style="width: 300px" src="<c:url value='${roomDetail.filePath }'/>" alt="">
               </div>
               <div class="col-4 ms-0 mt-3">
                   <h3 class="mb-5">
                     房間名稱 : ${roomDetail.title }
                   </h3>
-                  <p class="mb-5">訂房編號 : 88888888</p>
+                  <p class="">訂房編號 :</p><br>
+                  <h6>${booking.uuid }</h6>
                   <h5 class="mt-5">訂房日期</h5>
                   <h5>${booking.bookingTime }</h5>
               </div>
               <div class="col-3 mt-3">
 
-                <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
+                 <a class="btn btn-outline-primary ms-5" href="<c:url value="/webSocket"></c:url>">傳訊息給房東</a>
                 <h5 class="ms-5 mt-4">
-                  TW 16888 X 2
+                  TW ${roomDetail.price } x ${booking.night } 晚 x ${booking.guest } 人
                 </h5>
                 <h6 class="ms-5 mb-5">總價 : ${amount }</h6>
                 <h5 class="ms-5">房客</h5>
@@ -159,7 +201,7 @@
                   <h5>2022/2/22</h5>
               </div>
               <div class="col-3 mt-3">
-                <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
+                <a class="btn btn-outline-primary ms-5" href="<c:url value="/webSocket"></c:url>">傳訊息給房東</a>
                 <h5 class="ms-5 mt-4">
                   TW 16888 X 2
                 </h5>

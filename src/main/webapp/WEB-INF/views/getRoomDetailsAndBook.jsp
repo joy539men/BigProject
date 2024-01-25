@@ -34,21 +34,8 @@
 	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
 	rel="stylesheet" />
 
-<!-- # CSS Plugins -->
-<link rel="stylesheet" href="<c:url value='plugins/slick/slick.css' /> " />
-<link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css" />
-<link rel="stylesheet" href="plugins/font-awesome/brands.css" />
-<link rel="stylesheet" href="plugins/font-awesome/solid.css" />
-
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="../css/style.css" />
-
-<!-- # Bootstrap -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
 
 
@@ -108,35 +95,41 @@
 										&amp; Policy</a></li>
 							</ul></li>
 					</ul>
+					
 					<div>
-						<!-- account btn -->
-						<li class="dropdown"><a class="p-3 border rounded-pill"
-							href="#" id="navbarDropdown" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"><i
-								class="bi w-50 bi-list pe-4" style="font-size: 20px"></i><img
-								style="width: 50px" src="../images/logo.png" alt="" /></a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li class="dropdown-item"><img class="img-fluid"
-									style="width: 50px" src="images/logo.png" alt="" />
-									<h4>Krist</h4></li>
-								<li class="dropdown-item">
-									<hr />
-								</li>
-								<li><a class="dropdown-item" href="blog.html">旅程</a></li>
-								<li class="dropdown-item">
-									<hr />
-								</li>
-								<li><a class="dropdown-item" href="blog-details.html">訊息</a>
-								</li>
-								<li><a class="dropdown-item" href="service-details.html">行程規劃</a>
-								</li>
-								<li class="dropdown-item">
-									<hr />
-								</li>
-								<li><a class="dropdown-item" href="faq.html">幫助</a></li>
-								<li><a class="dropdown-item" href="legal.html">登出</a></li>
-							</ul></li>
+					    <!-- account btn -->
+					    <ul class="nav">
+					        <li class="nav-item dropdown">
+					            <a class="p-3 border rounded-pill"
+					                href="#" id="navbarDropdown" role="button"
+					                data-bs-toggle="dropdown" aria-expanded="false">
+					                <img style="width: 15px" src="../images/icon/fish.png" alt="" />
+					                <img class="mb-1" style="width: 50px" src="../images/logo.png" alt="" />
+					            </a>
+					            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					                <li class="dropdown-item">
+					                    <img class="img-fluid" style="width: 50px" src="../images/logo.png" alt="" />
+					                    <h4>Krist</h4>
+					                </li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+					                <li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+					                <li class="dropdown-item">
+					                    <hr />
+					                </li>
+					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
+					                <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
+					            </ul>
+					        </li>
+					    </ul>
 					</div>
+								
 				</div>
 			</div>
 		</nav>
@@ -151,62 +144,6 @@
 				<div class="col-lg-6">
     				<img  class="mb-2 img-cover" src="..${singleRoom.filePath}" alt="" />
    
-					<div>
-						<div id="multi-item-carousel" class="carousel slide"
-							data-bs-ride="carousel">
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<div class="row">
-										<!-- 第一組三張圖片 -->
-										<div class="col-md-4">
-											<img src="../images/roomImages/room_1.jpg"
-												class="carousel-img" alt="First slide" />
-										</div>
-										<div class="col-md-4">
-											<img src="../images/roomImages/room_2.jpg"
-												class="carousel-img" alt="Second slide" />
-										</div>
-										<div class="col-md-4">
-											<img src="../images/roomImages/room_3.jpg"
-												class="carousel-img" alt="Third slide" />
-										</div>
-									</div>
-								</div>
-
-								<div class="carousel-item">
-									<div class="row">
-										<!-- 第一組三張圖片 -->
-										<div class="col-md-4">
-											<img src="../images/roomImages/room_4.jpg"
-												class="carousel-img" alt="First slide" />
-										</div>
-										<div class="col-md-4">
-											<img src="../images/roomImages/room_5.jpg"
-												class="carousel-img" alt="Second slide" />
-										</div>
-										<div class="col-md-4">
-											<img src="../images/roomImages/room_6.jpg"
-												class="carousel-img" alt="Third slide" />
-										</div>
-									</div>
-								</div>
-								<!-- 可以添加更多carousel-item用來顯示更多組圖片 -->
-							</div>
-
-							<button class="carousel-control-prev" type="button"
-								data-bs-target="#multi-item-carousel" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next" type="button"
-								data-bs-target="#multi-item-carousel" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
-							<h4 class="mt-2">挪威TrøndelagInderøy的整套小木屋</h4>
-							<p>9位3 間臥室5 張床1 間衛浴</p>
-						</div>
-					</div>
 				</div>
 
 				<div class="col-lg-4">
@@ -217,7 +154,7 @@
 							</div>
 							<div class="col-5 mt-3 me-auto">
 								<h6>房東：${user.userName }</h6>
-								<p>超讚房東 : 一年待客經驗</p>
+								<h6>超讚房東 : 一年待客經驗</h6>>
 							</div>
 						</div>
 
@@ -243,23 +180,27 @@
 					<h3 class="p-2">特色介紹</h3>
 					<hr class="m-3">
 					<h5 class="mt-5">
-						<i class="bi bi-door-open-fill icon-color">&nbsp&nbsp&nbsp</i>自助入住
+						<img src="../images/icon/flash.png" style="width: 40px; height: 40px;"></img>  自助入住
 					</h5>
 					<p>使用鑰匙自助入住</p>
 
 					<h5 class="mt-5">
-						<i class="bi bi-door-open-fill icon-color">&nbsp&nbsp&nbsp</i>絕佳位置
+						<img src="../images/icon/house.png" style="width: 40px; height: 40px;"></img>  絕佳位置
 					</h5>
 					<p>最近有100%的房客給予房源位置5星評分。</p>
 
 					<h5 class="mt-5">
-						<i class="bi bi-door-open-fill icon-color">&nbsp&nbsp&nbsp</i>48小時內可免費取消
+						<img class="mb-3" src="../images/icon/king.png" style="width: 40px; height: 40px;"></img>   48小時內可免費取消
 					</h5>
 					<p>讓您可以放心取消</p>
 					<hr class="m-3">
 
 					<!-- 遷入 googlemap -->
 					<h3 class="p-2">Google Map</h3>
+					<div id="map" style="height: 400px; width: 100%;"></div>
+					
+					<hr class="m-3">
+					<h3 class="p-2">評 論 專 區</h3>
 					<div id="map" style="height: 400px; width: 100%;"></div>
 
 				</div>
@@ -278,7 +219,7 @@
 										<div class="form-group">
 											<label for="checkinDate" class="form-label">入 住 日 期</label>
 											<form:input type="date" class="form-control shadow-none"
-												id="checkinDate" placeholder="ex: 克里斯" path="checkinDate" />
+												id="checkinDate" placeholder="ex: 1~5" path="checkinDate" />
 											<form:errors path="checkinDate" cssClass="error" />
 										</div>
 									</div>
@@ -294,21 +235,21 @@
 										<div class="form-group">
 											<label for="guest" class="form-label">旅 客 人 數</label>
 											<form:input type="number" class="form-control shadow-none"
-												id="guest" placeholder="ex: 克里斯" path="guest" />
+												id="guest" placeholder="ex: 1~5" path="guest" />
 											<form:errors path="guest" cssClass="error" />
 										</div>
 									</div>
-									<div class="col-lg-12">
-										<button type="submit" class="btn w-100"
-											style="color: #00AEAE; background-color: #e0f2e5;">提
+									<div class="col-lg-12 text-center">
+										<button type="submit" class="btn btn-outline-primary "
+											">提
 											交 資 料</button>
 									</div>
 								</div>
 							</form:form>
 							<!-- 動態顯示的需付款金額 -->
 							<div id="amount">
-								<p>
-									Amount to be paid: $<span id="calculatedAmount">0.00</span>
+								<p class= "ms-2">
+									總付款金額 : $<span id="calculatedAmount"></span>
 								</p>
 								
 							</div>
@@ -319,62 +260,14 @@
 			</div>
 		</div>
 	</section>
-	<div></div>
 
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<!-- # JS Plugins -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<!-- <script src="plugins/jquery/jquery.min.js"></script> -->
 	<!-- <script src="plugins/bootstrap/bootstrap.min.js"></script> -->
 	<script src="plugins/slick/slick.min.js"></script>
 	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	
 	<script>
       document.addEventListener("DOMContentLoaded", function(){
         window.addEventListener("scroll", function(){
@@ -391,7 +284,7 @@
           console.log(scrollPosition);
 
           // 下滑時訂購單可以貼在旁邊以供參考
-          if(scrollPosition > 890) {
+          if(scrollPosition > 641) {
             bookPage.setAttribute("class", "col-4 fixed-top mt-4"); // 使用 setAttribute 修正类名
             bookPage.setAttribute("style", "width:416px; height:436px; left:842px ")
             information.setAttribute("class", "col-6 sticky-top")
@@ -530,6 +423,8 @@
     		    ]
   		});
 
+  		var roomId = 56;
+
   		$(document).ready(function() {
   		    // 監聽日期和人數輸入
   		    $("#checkinDate, #checkoutDate, #guest").on("input", function(){
@@ -539,16 +434,19 @@
   		        var guest = $("#guest").val();
 
   		        // 使用 AJAX 發送請求到後端計算總金額
-  		        $.get("/booking/calculateAmount", {checkinDate: checkinDate, checkoutDate: checkoutDate, guest: guest})
+  		        $.get("/pillowSurfing/calculateAmount", {checkinDate: checkinDate, checkoutDate: checkoutDate, guest: guest})
   		            .done(function(data) {
   		                // 更新總金額變化
-  		                $("#calculatedAmount").text(data);
+  		                $("#calculatedAmount").text(data.amount);
   		            })
   		            .fail(function(jqXHR, textStatus, errorThrown) {
   		                console.error("AJAX request failed:", textStatus, errorThrown);
   		            });
   		    });
   		});
+
+  		console.log("Checkout Date:", $("#checkoutDate").val());
+  		console.log("Checkin Date:", $("#checkinDate").val());
 
 
   		  		
