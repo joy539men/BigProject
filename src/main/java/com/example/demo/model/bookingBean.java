@@ -54,6 +54,17 @@ public class bookingBean {
 		
 	}
 	
+	public void acceptBooking() {
+		this.status = "已接受";
+	}
+	
+	public void rejectBooking() {
+		this.status = "已拒絕";
+	}
+	
+	public void cancelBooking() {
+		this.status = "已取消";
+	}
 
 	
 	public userBean getUser() {

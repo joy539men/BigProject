@@ -7,7 +7,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>PillowSurfing | 房間資訊</title>
+  <title>PillowSurfing | 編輯房間</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="This is meta description">
   <meta name="author" content="Themefisher">
@@ -15,13 +15,12 @@
   <link rel="icon" href="<c:url value='/images/logo.ico' />" type="image/x-icon">
 
   <!-- theme meta -->
-	
+
   <!-- # CSS Plugins -->
   <link rel="stylesheet" href="<c:url value='/plugins/slick/slick.css' />">
   <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/fontawesome.min.css' />">
   <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/brands.css' />">
   <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/solid.css' />">
-	
 
   <!-- # Main Style Sheet -->
   <link rel="stylesheet" href="<c:url value='/css/style.css' />">
@@ -83,7 +82,12 @@
     </nav>
   </header>
   <!-- /end of navigation -->
-  
+  <c:url var='saveAction' value='/hostRoomEdit/${room.roomId}' />
+		<form:form method='POST' modelAttribute="room" 
+		        action="${saveAction}" enctype="multipart/form-data" id="myForm">
+			<c:if test='${room.roomId != null}'>
+                 <form:hidden path="roomId" /><br>&nbsp;
+			</c:if> 
   <section class="w-75 mx-auto">
     <div id="statusFilter" class="w-75 mx-auto mt-5">
       
@@ -95,16 +99,16 @@
 		          	<strong>房源名稱</strong>
 		          </div>
 		          <div id="roomTitleInputDiv" class="col-9 ">
-		          	<input id="roomTitleInput" value="${room.title}"/>
+		          	<form:input path="title" id="roomTitleInput" value="${room.title}"/>
 		          </div>	
 	        </div> <!-- end of roomTitleDiv -->
 	        
 	        <div id="roomTypeDiv" class="row mx-3 align-items-center">
 		          <div id="roomType" class="col-3 align-content-center flex-wrap">
-		          	<strong>房源描述</strong>
+		          	<strong>房源類型</strong>
 		          </div>
 		          <div id="roomTypeInputDiv" class="col-9">
-		          	<input id="roomTypeInput" value="${room.type}"/>
+		          	<form:input path="type" id="roomTypeInput" value="${room.type}"/>
 		          </div>	
 	        </div> <!-- end of roomTypeDiv -->
 	        
@@ -113,7 +117,7 @@
 		          	<strong>房源描述</strong>
 		          </div>
 		          <div id="roomDescriptInputDiv" class="col-9">
-		          	<input id="roomDescriptInput" value="${room.description}"/>
+		          	<form:input path="description" id="roomDescriptInput" value="${room.description}"/>
 		          </div>	
 	        </div> <!-- end of roomDescriptDiv -->
 	        
@@ -122,7 +126,7 @@
 		          	<strong>接待人數</strong>
 		          </div>
 		          <div id="roomGuestInputDiv" class="col-9">
-		          	<input id="roomGuestInput" value="${room.guestMax}" type="number" min="0"/>
+		          	<form:input path="guestMax" id="roomGuestInput" value="${room.guestMax}" type="number" min="0"/>
 		          </div>	
 	        </div> <!-- end of roomGuestDiv -->
 	        
@@ -131,7 +135,7 @@
 		          	<strong>床位</strong>
 		          </div>
 		          <div id="roomBedInputDiv" class="col-9">
-		          	<input id="roomBedInput" value="${room.bedNum}" type="number" min="0"/>
+		          	<form:input path="bedNum" id="roomBedInput" value="${room.bedNum}" type="number" min="0"/>
 		          </div>	
 	        </div> <!-- end of roomBedDiv -->
 	        
@@ -140,7 +144,7 @@
 		          	<strong>衛浴</strong>
 		          </div>
 		          <div id="roomBathroomInputDiv" class="col-9">
-		          	<input id="roomBathroomInput" value="${room.bathroom}" type="number" min="0"/>
+		          	<form:input path="bathroom" id="roomBathroomInput" value="${room.bathroom}" type="number" min="0"/>
 		          </div>	
 	        </div> <!-- end of roomBathroomDiv -->
 	        
@@ -149,15 +153,16 @@
 		          	<strong>房間數</strong>
 		          </div>
 		          <div id="roomRoomInputDiv" class="col-9">
-		          	<input id="roomRoomInput" value="${room.roomNum}" type="number" min="0"/>
+		          	<form:input path="roomNum" id="roomRoomInput" value="${room.roomNum}" type="number" min="0"/>
 		          </div>	
 	        </div> <!-- end of roomRoomDiv -->
+	        
 	        <div id="roomPriceDiv" class="row mx-3 align-items-center">
 		          <div id="roomPrice" class="col-3 align-content-center flex-wrap">
 		          	<strong>定價</strong>
 		          </div>
 		          <div id="roomPriceInputDiv" class="col-9">
-		          	<input id="roomPriceInput" value="${room.price}" type="number" min="0"/>
+		          	<form:input path="price" id="roomPriceInput" value="${room.price}" type="number" min="0"/>
 		          </div>	
 	        </div> <!-- end of roomPriceDiv -->
 	        
@@ -173,6 +178,12 @@
                 			</c:forEach>
            				 </ul>
         			 </c:if>
+        			 <c:forEach var="amenity" items="${amenities}">
+		        		<label for="amenity-${amenity.amenityId}" class="amenityCheckbox">
+		        			<input type="checkbox" id="amenity-${amenity.amenityId}" name="amenityIds" value="${amenity.amenityId}" >
+		        			<div>${amenity.amenityName}</div>
+		        		</label>
+	    	</c:forEach>
 		          </div>	
 	        </div> <!-- end of amenityDiv -->
 	        
@@ -181,7 +192,7 @@
 		          	<strong>房間照片</strong>
 		          </div>
 		          <div id="roomPicInputDiv" class="col-9">
-			          <input id="roomPicInput"  type="hidden" />   <!-- 查看模式type="hidden"  編輯模式type="file" -->
+			          <form:input path="multipartFile" id="roomPicInput"  type="file" />   <!-- 查看模式type="hidden"  編輯模式type="file" -->
 			          <div style="width:300px ; height:300px">
 			       		<img src="<c:url value='${room.filePath}' />" >
 			          </div>
@@ -193,7 +204,7 @@
 		          	<strong>地址</strong>
 		          </div>
 		          <div id="roomRoomInputDiv" class="col-9">
-		          	<input id="address" type="text" value="${room.address}" />
+		          	<form:input path="address" id="address" value="${room.address}" />
 		          	<div id="map" style="height: 400px; width: 400px;"></div>
 		          </div>	
 	        </div> <!-- end of roomAddressDiv -->
@@ -213,16 +224,11 @@
       
 
   </section>
-  <c:set var="roomId" value="${room.roomId}" />
-
   <div class="text-center">
-  	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRoomEdit/${roomId}' />">編輯</a>
-  	<form action="<c:url value='/hostRoomDelete/${roomId}' />" method="post" style="display:inline-block">
-    	<button type="submit" class="btn btn-primary btn-sm">刪除</button>
-	</form>
-<%--  	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRoomDelete/${roomId}' />">刪除</a> --%>
+  	<button class="btn btn-primary btn-sm" type="submit">儲存</button>
+ 	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRooms' />">取消</a>
   </div>
-  
+  </form:form>
   
   <input id="lat" type="hidden" value="${room.lat}" />
   <input id="lon" type="hidden" value="${room.lon }" />

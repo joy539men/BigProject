@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -30,7 +30,7 @@
 
   <!-- # Main Style Sheet -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/providerStyle.css">
+  <link rel="stylesheet" href="./css/providerStyle.css">
 </head>
 
 <body>
@@ -87,14 +87,14 @@
     </nav>
   </header>
   <!-- /end of navigation -->
-		
+
   <section class="w-75 mx-auto">
     <div id="statusFilter" class="w-75 mx-auto mt-5">
       <a href="<c:url value='/hostOrders' />">
-        <span id="unacceptedOrder" class="selectBtn">待審核</span>
+        <span id="unacceptedOrder" class="unselectBtn">待審核</span>
       </a>|
-      <a href="<c:url value='/hostOrdersAccept' />">    
-        <span id="acceptedOrder" class="unselectBtn">已成立</span>
+      <a href="<c:url value='/hostOrdersAccept' />">
+        <span id="acceptedOrder" class="selectBtn">已成立</span>
       </a>
     </div>
     <div id="orderList" class="">
@@ -104,51 +104,48 @@
           <div id="detail" class="col-6 align-content-center flex-wrap">
             <div id="houseName" class="houseName">獨棟小屋 台中市大業里</div>
             <div id="housedetail" class="pt-1">
-              <span id="guest" >2位入住,</span>
+              <span id="guest">2位入住,</span>
               <span id="housedetail2">Dec 19, 2023 - Dec 21, 2023</span>
             </div>
           </div>
           <div id="price" class="col-3 text-start orderPrice">$ 3,900 TWD</div>
-          <div id="acceptBtn" class="col-3 text-center">
-            <a class="btn btn-primary btn-sm me-2">接受</a>
-            <a class="btn btn-primary btn-sm">拒絕</a>
+          <div id="acceptBtn" class="col-3 text-end">
+            <a class="me-2"><img src="<c:url value='/images/messenger.png'/>" ></a>
+            <a class="btn btn-primary btn-sm ms-5 me-3">取消</a>
           </div>
         </div>
       </div> <!-- end of orderA -->
-		
+
+      
 	<c:forEach var="booking" items="${bookings}">
-	     <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
+		<div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
 	        <div id="orderDate" class="ms-3 mt-3"><span>${booking.bookingTime}</span></div>
 	        <div id="orderDetail" class="row mx-3 align-items-center h-100">
 	          <div id="detail" class="col-6 align-content-center flex-wrap">
 	            <div id="houseName" class="houseName">${booking.roomTable.title}</div>
 	            <div id="housedetail" class="pt-1">
-	              <span id="guest" >${booking.guest}位入住,</span>
-	              <span id="housedetail2">${booking.checkinDate}  - ${booking.checkoutDate}</span>
+	              <span id="guest">${booking.guest}位入住,</span>
+	              <span id="housedetail2">${booking.checkinDate} - ${booking.checkoutDate}</span>
 	            </div>
 	          </div>
 	          <div id="price" class="col-3 text-start orderPrice">$ ${booking.totalPrice} TWD</div>
-	          <div id="statusBtn" class="col-3 text-center">
-	          	<div style="display:inline-block">
-	          		<form action="<c:url value='/acceptBooking' />" method="post">
-	        			<input type="hidden" name="bookingId" value="${booking.bookingId}">
-	       				<button type="submit" class="btn btn-primary btn-sm me-2">接受</button>
-   		 			</form>
-	          	</div>
-	          	<div style="display:inline-block">
-	          		<form action="<c:url value='/rejectBooking' />" method="post">
-		        		<input type="hidden" name="bookingId" value="${booking.bookingId}">
-		       			 <button type="submit" class="btn btn-primary btn-sm me-2">拒絕</button>
-   		 			</form>
-	          	</div>
-	          </div><!-- end of statusBtn -->
+	          <div id="acceptBtn" class="col-3 text-end">
+	            <a class="me-2"><img src="./images/messenger.png"></a>
+	            <form action="<c:url value='/cancelBooking' />" method="post" style="display:inline-block">
+			        <input type="hidden" name="bookingId" value="${booking.bookingId}">
+			       	<button type="submit" class="btn btn-primary btn-sm ms-5 me-3">取消</button>
+	   		 	</form>
+	          </div>
 	        </div>
-	      </div> <!-- end of orderA --> 
-	</c:forEach>
+      	</div> <!-- end of orderA -->
 	
-
+	
+	
+	</c:forEach>
       
-    </div>
+      
+    </div> <!-- end of orderList -->
+
 <!--     <div id="changePage" class="text-center">   -->
 <!--       <a><span>&#060;</span></a>   <  -->
 <!--       <a><span>&#062;</span></a>   >  -->
@@ -171,16 +168,6 @@
     
     $(document).ready(function(){
       
-//     	var pathValue = "${requestPath}";
-// //     	console.log(pathValue);
-    	
-//     	if (pathValue.includes("Accept")) {
-//     		$("#acceptedOrder").removeClass("unselectBtn").addClass("selectBtn");
-//     		$("#unacceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
-//     	  } else {
-//     		$("#acceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
-//       		$("#unacceptedOrder").removeClass("unselectBtn").addClass("selectBtn");
-//     	  }
      
 
 
