@@ -253,7 +253,7 @@ public class bookingController {
 	            itemMap.put("bookingTime", booking.getBookingTime());
 	            combinedList.add(itemMap);
 	        }
-	        
+	        model.addAttribute("userId",userId);
 	        model.addAttribute("combinedList", combinedList);
 	        model.addAttribute("bookTripRoomList", bookRoomList);
 	        model.addAttribute("roomList", roomList);
