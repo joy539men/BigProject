@@ -1,6 +1,7 @@
 package com.example.backstage.service.Impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -43,6 +44,12 @@ public class RoomServiceImpl_backstage implements RoomService_backstage {
 	public Optional<roomTableBean> findById(Integer roomId) {
 		Optional<roomTableBean> optional = roomRepository.findById(roomId);
 		return optional;
+	}
+
+	@Override
+	public List<Map<String,Object>> roomMap() {
+		List<Map<String,Object>> roomMap = roomRepository.roomMap();
+		return roomMap;
 	}
 
 }

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.example.demo.model.userBean" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,126 +71,94 @@
 </head>
 <body>
 	<header class="navigation">
-      <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">
-            <img
-              loading="prelaod"
-              decoding="async"
-              class="img-fluid"
-              width="120"
-              src="images/logo.png"
-              alt="CouchSurfing"
-            />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 border rounded-lg">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">風 格</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">日 期</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="services.html">人 數</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html"><i class="bi bi-search"></i></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                  <li>
-                    <a class="dropdown-item" href="blog-details.html">Blog Details</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="service-details.html">Service Details</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="faq.html">FAQ&#39;s</a>
-                  </li>
-                  <li><a class="dropdown-item" href="legal.html">Legal</a></li>
-                  <li>
-                    <a class="dropdown-item" href="terms.html">Terms &amp; Condition</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="privacy-policy.html">Privacy &amp; Policy</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <div>
-              <!-- account btn -->
-              <li class="dropdown">
-                <a
-                  class="p-3 border rounded-pill pb-4"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  ><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i
-                  ><img style="width: 50px; padding-top:5px" src="images/logo.png" alt=""
-                /></a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li class="dropdown-item">
-                    <img
-                      class="img-fluid"
-                      style="width: 50px"
-                      src="images/logo.png"
-                      alt=""
-                    />
-                    <h4>Krist</h4>
-                  </li>
-                  <li class="dropdown-item">
-                    <hr />
-                  </li>
-                  <li><a class="dropdown-item" href="blog.html">旅程</a></li>
-                  <li class="dropdown-item">
-                    <hr />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="blog-details.html">訊息</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="service-details.html"
-                      >行程規劃</a
-                    >
-                  </li>
-                  <li class="dropdown-item">
-                    <hr />
-                  </li>
-                  <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-                  <li><a class="dropdown-item" href="legal.html">登出</a></li>
-                </ul>
-              </li>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    
-    <div class="row w-75  mx-auto mb-4"> 
-      <div class="text-end">
-          <a class="btn btn btn-outline-primary " href="<c:url value = '/addRoomKrist'/>"> 新增房源</a>
-          <a class="btn btn-primary " href="<c:url value = ''/>"> 篩選條件</a>
-         
-      </div>
-    </div>
+		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
+			<div class="container">
+				<a class="navbar-brand" href="index.html"> <img
+					loading="prelaod" decoding="async" class="img-fluid" width="120"
+					src="images/logo.png" alt="CouchSurfing" />
+				</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mx-auto mb-2 mb-lg-0 border rounded-lg">
+						<li class="nav-item"><a class="nav-link" href="index.html">風
+								格</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">日
+								期</a></li>
+						<li class="nav-item"><a class="nav-link" href="services.html">人
+								數</a></li>
+						<li class="nav-item"><a class="nav-link" href="contact.html"><i
+								class="bi bi-search"></i></a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="blog.html">Blog</a></li>
+								<li><a class="dropdown-item" href="blog-details.html">Blog
+										Details</a></li>
+								<li><a class="dropdown-item" href="service-details.html">Service
+										Details</a></li>
+								<li><a class="dropdown-item" href="faq.html">FAQ&#39;s</a>
+								</li>
+								<li><a class="dropdown-item" href="legal.html">Legal</a></li>
+								<li><a class="dropdown-item" href="terms.html">Terms
+										&amp; Condition</a></li>
+								<li><a class="dropdown-item" href="privacy-policy.html">Privacy
+										&amp; Policy</a></li>
+							</ul></li>
+					</ul>
+					<div>
+						<!-- account btn -->
+						<li class="dropdown"><a class="p-3 border rounded-pill pb-4"
+							href="#" id="navbarDropdown" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"><i
+								class="bi w-50 bi-list pe-4"
+								style="font-size: 20px; color: grey;"></i><img
+								style="width: 50px; padding-top: 5px" src="images/logo.png"
+								alt="" /></a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li class="dropdown-item"><img class="img-fluid"
+									style="width: 50px" src="images/logo.png" alt="" />
+									<h4>Krist</h4></li>
+								<li class="dropdown-item">
+									<hr />
+								</li>
+								<li><a class="dropdown-item" href="blog.html">旅程</a></li>
+								<li class="dropdown-item">
+									<hr />
+								</li>
+								<li><a class="dropdown-item" href="blog-details.html">訊息</a>
+								</li>
+								<li><a class="dropdown-item" href="service-details.html">行程規劃</a>
+								</li>
+								<li class="dropdown-item">
+									<hr />
+								</li>
+								
+								<li><a class="dropdown-item" href="faq.html">${user}後臺管理</a></li>
+								<li><a class="dropdown-item" href="faq.html">幫助</a></li>
+								<li><a class="dropdown-item" href="legal.html">登出</a></li>
+							</ul></li>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
 
-   
+	<div class="row w-75  mx-auto mb-4">
+		<div class="text-end">
+			<a class="btn btn btn-outline-primary "
+				href="<c:url value = '/addRoomKrist'/>"> 新增房源</a> <a
+				class="btn btn-primary " href="<c:url value = ''/>"> 篩選條件</a>
+
+		</div>
+	</div>
+
+
 
 
 	<div id="houseList" class="w-75 mx-auto row">
@@ -199,10 +169,10 @@
 						onclick="getRoomDetails(${room.roomId})" />
 					<div class="card-body">
 						<h5 class="card-title ">${room.title}</h5>
-						<span class="card-text">${room.type}</span><br> 
-						<span class="card-text">${room.guestMax}人入住</span><br>
+						<span class="card-text">${room.type}</span><br> <span
+							class="card-text">${room.guestMax}人入住</span><br>
 					</div>
-					
+
 				</div>
 			</div>
 		</c:forEach>

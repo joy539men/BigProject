@@ -115,6 +115,7 @@ public class bookingController {
 	            bookingService.update(bookingBean);
 	        }
 
+	        bookingBean.setStatus("待確認");
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
 	        bookingService.save(bookingBean);
 	        
