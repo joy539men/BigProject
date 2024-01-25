@@ -13,7 +13,6 @@
   <link rel="icon" href="./images/logo.ico" type="image/x-icon">
 
   <!-- # CSS Plugins -->
-  
   <link rel="stylesheet" href="plugins/slick/slick.css">
   <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
   <link rel="stylesheet" href="plugins/font-awesome/brands.css">
@@ -40,11 +39,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item"> <a class="nav-link" href="#">訂單管理</a>
+            <li class="nav-item"> <a class="nav-link" href="<c:url value='/hostOrders' />">訂單管理</a>
             </li>
             <li class="nav-item "> <a class="nav-link" href="./calendar.html">日曆</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="#">房源管理</a>
+            <li class="nav-item "> <a class="nav-link" href="<c:url value='/hostRooms' />">房源管理</a>
             </li>
             <li class="nav-item "> <a class="nav-link" href="#">收件匣</a>
             </li>
@@ -55,7 +54,7 @@
                 </li>
                 <li><a class="dropdown-item " href="#">收入分析</a>
                 </li>
-                <li><a class="dropdown-item " href="#">建立新房源</a>
+                <li><a class="dropdown-item " href="<c:url value='/addRoom' />">建立新房源</a>
                 </li>
               </ul>
             </li>

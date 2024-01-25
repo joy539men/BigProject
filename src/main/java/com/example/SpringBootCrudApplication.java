@@ -11,9 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-<<<<<<< HEAD
-@ComponentScan(basePackages = {"com.example","com.example.demo.model", "com.example.Krist","com.example.Krist.webSocket", "com.example.Krist.webSocket.controller", "com.example.Krist.webSocket.model", "com.example.Krist.webSocket.config","com.example.Krist.webSocket"}) 
-=======
+
 @ComponentScan(basePackages = {"com.example",
 		"com.example.demo.model", 
 		"com.example.Krist",
@@ -23,7 +21,6 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 		"com.example.Krist.webSocket.config",
 		
 		}) 
->>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
 public class SpringBootCrudApplication {
 
 	public static void main(String[] args) {
