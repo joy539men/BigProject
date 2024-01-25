@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.sql.Date;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ public class bookingBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bookingId;
+	private UUID  uuid;
 	private Date    checkinDate;
 	private Date    checkoutDate;
 	private Integer totalPrice;
@@ -36,15 +38,16 @@ public class bookingBean {
 	
 	
 
-	public bookingBean(Integer bookingId, Date checkinDate, Date checkoutDate, Integer totalPrice, Date bookingTime, Integer guest, String  tips, Integer night) {
-		this.bookingId = bookingId;
-		this.checkinDate = checkinDate;
+	public bookingBean(Integer bookingId,UUID uuid,Date checkinDate, Date checkoutDate, Integer totalPrice, Date bookingTime, Integer guest, String  tips, Integer night) {
+		this.bookingId    = bookingId;
+		this.uuid         =  uuid;
+		this.checkinDate  = checkinDate;
 		this.checkoutDate = checkoutDate;
-		this.totalPrice = totalPrice;
-		this.bookingTime = bookingTime;
-		this.guest = guest;
-		this.tips = tips;
-		this.night = night;
+		this.totalPrice   = totalPrice;
+		this.bookingTime  = bookingTime;
+		this.guest        = guest;
+		this.tips         = tips;
+		this.night        = night;
 	}
 	
 	public bookingBean() {
@@ -156,6 +159,16 @@ public class bookingBean {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	
 
 
 

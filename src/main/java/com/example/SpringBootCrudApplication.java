@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-
 @ComponentScan(basePackages = {"com.example",
 		"com.example.demo.model", 
 		"com.example.Krist",

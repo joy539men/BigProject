@@ -77,6 +77,7 @@
 										&amp; Policy</a></li>
 							</ul></li>
 					</ul>
+					<%-- <a  href="<c:url value="/hostOrders"></c:url>" class="btn btn-outline-primary me-5" >切 換 房 東 模 式</a> --%>
 					<!-- account btn -->
 					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
@@ -160,6 +161,10 @@
 						<a  class="btn btn-primary" href="<c:url value="/roomTableGallery"></c:url>"
 							>房 間 列 表 <span
 							style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+							
+							<a  class="btn btn-primary" href="<c:url value="/roomTableGalleryByron"></c:url>"
+							>房 間 列 表 Test<span
+							style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -225,6 +230,9 @@
 			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> 
 			<a
 			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>
+			
+			<a
+			href="<c:url value="/chatchat"></c:url>">聊天系統測試版本</a>
 	</section>
 
 

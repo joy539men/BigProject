@@ -2,9 +2,6 @@ package com.example.Krist.baseController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.example.demo.model.userBean;
 
 @Controller
 public class BaseController {
@@ -30,6 +27,26 @@ public class BaseController {
 		return "calendarKrist";
 	}
 	
+	@GetMapping("/bookTripIndex")
+	public String bookTrip() {
+		return "bookTripIndex";
+	}
+	
+	@GetMapping("/chatchat")
+	public String ChatChat() {
+		return "ChatChat";
+	}
+	
+	@GetMapping("/chat")
+	public String chat() {
+		return "chat";
+	}
+
+	
+//	@GetMapping("/Byron")
+//	public String Byron() {
+//		return "roomTableGalleryByron";
+//	}
 
 	
 }
