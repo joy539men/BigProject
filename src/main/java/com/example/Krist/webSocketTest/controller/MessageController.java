@@ -140,17 +140,18 @@ public class MessageController {
             UserRoomContextHolder.setUserId(userId);
             UserRoomContextHolder.setRoomId(roomId);
 
-            messageBean.setSenderId(sender);
+//            messageBean.setSenderId(sender);
             session.setAttribute("webSocketRoomId", roomId);
+          
 
             userBean receiver = room.getUser();
 
             model.addAttribute("sender", sender);
             model.addAttribute("receiver", receiver);
 
-            messageBean.setReceiverId(receiver);
+//            messageBean.setReceiverId(receiver);
 
-            messageService.saveMessage(messageBean);
+//            messageService.saveMessage(messageBean);
 
             // 跳轉到聊天頁面，這裡假設聊天頁面的路徑是 "/chat-room"
             return "Message sent successfully!";

@@ -224,7 +224,7 @@ public class bookingController {
 	@GetMapping("/bookTrip")
 	public String bookTrip(Model model, HttpSession session) {
 	    Integer userId = (Integer) session.getAttribute("userId");
-
+	    
 	    userBean userBean = userRepository.findById(userId).orElse(null);
 	    // 檢查用戶是否登入
 	    if (userId != null) {
