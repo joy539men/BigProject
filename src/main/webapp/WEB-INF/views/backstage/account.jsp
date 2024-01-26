@@ -34,25 +34,7 @@
 	});
 	
 	
-    // 使用 jQuery 發送 AJAX 請求獲取 JSON 數據
-     $.ajax({
-        url: '/pillowSurfing/map',  // 請更換為實際的後端 API 地址
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            // 將 JSON 數據顯示在 div 中
-        	$('#jsonData').text(JSON.stringify(data));
-            for (var i = 0; i < data.length; i++) {
-        var latitude = data[i].lat;  // 第一個元素是緯度
-        var longitude = data[i].lon; // 第二個元素是經度
-
-        // 在這裡可以對獲得的經緯度進行操作，例如輸出到控制台
-        console.log("Latitude: " + latitude + ", Longitude: " + longitude);
-    }
-        },error: function() {
-            console.error('Failed to fetch JSON data.');
-        }
-    });
+   
     
    
 
@@ -93,7 +75,7 @@
 
 		<!-- 資料表格 -->
 		<div id="tableArea">
-			<a href='<c:url value="/map" />'>Map</a>
+			<a href='<c:url value="roomMap" />'>Map</a>
 			<div id="jsonData"></div>
 				<table class=" display  nowrap" id="tableArray" style="width: 100%">
 					<thead>

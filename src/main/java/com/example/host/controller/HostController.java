@@ -106,7 +106,7 @@ public class HostController {
 	    
 	    
 //		把照片從multipartFile存到本地資料夾
-		String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
+		String rootDirectory = "D:\\BigProject-1\\src\\main\\resources\\static\\images\\pic_backstage";
 		try {
 			File imageFolder = new File(rootDirectory);
 			if (!imageFolder.exists())
