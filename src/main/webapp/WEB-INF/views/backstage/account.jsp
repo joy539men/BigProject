@@ -32,6 +32,30 @@
 
 		})
 	});
+	
+	
+    // 使用 jQuery 發送 AJAX 請求獲取 JSON 數據
+     $.ajax({
+        url: '/pillowSurfing/map',  // 請更換為實際的後端 API 地址
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            // 將 JSON 數據顯示在 div 中
+        	$('#jsonData').text(JSON.stringify(data));
+            for (var i = 0; i < data.length; i++) {
+        var latitude = data[i].lat;  // 第一個元素是緯度
+        var longitude = data[i].lon; // 第二個元素是經度
+
+        // 在這裡可以對獲得的經緯度進行操作，例如輸出到控制台
+        console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+    }
+        },error: function() {
+            console.error('Failed to fetch JSON data.');
+        }
+    });
+    
+   
+
 </script>
 <body>
 
@@ -69,37 +93,40 @@
 
 		<!-- 資料表格 -->
 		<div id="tableArea">
-			<table class=" display  nowrap" id="tableArray" style="width: 100%">
-				<thead>
-					<tr>
-						<th>帳號 ID</th>
-						<th>帳號</th>
-						<th>建立帳號時間</th>
-						<th>帳號身分</th>
-						<th>帳號狀態</th>
-						<th></th>
-						<th style="width: 100px;">編輯 / 禁用</th>
-					</tr>
-				</thead>
-				<tbody id="result">
-					<c:forEach items="${users}" var="user">
+			<a href='<c:url value="/map" />'>Map</a>
+			<div id="jsonData"></div>
+				<table class=" display  nowrap" id="tableArray" style="width: 100%">
+					<thead>
 						<tr>
-							<th>${user.userId }</th>
-							<td>${user.account }</td>
-							<td>${user.registrationTime}</td>
-							<td>${user.identity }</td>
-							<td>${user.status }</td>
-							<td><a
-								href='<c:url value="/account_info/${user.userId }" />'
-								id="detial">詳細資料</a></td>
-							<td><a
-								href='<c:url value="/account_edit/${user.userId }" />'><i
-									class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href='<c:url value="/sendEmail/${user.userId }" />'><i class="bi bi-dash-circle-fill"></i></a></td>
+							<th>帳號 ID</th>
+							<th>帳號</th>
+							<th>建立帳號時間</th>
+							<th>帳號身分</th>
+							<th>帳號狀態</th>
+							<th></th>
+							<th style="width: 100px;">編輯 / 禁用</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody id="result">
+						<c:forEach items="${users}" var="user">
+							<tr>
+								<th>${user.userId }</th>
+								<td>${user.account }</td>
+								<td>${user.registrationTime}</td>
+								<td>${user.identity }</td>
+								<td>${user.status }</td>
+								<td><a
+									href='<c:url value="/account_info/${user.userId }" />'
+									id="detial">詳細資料</a></td>
+								<td><a
+									href='<c:url value="/account_edit/${user.userId }" />'><i
+										class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+									href='<c:url value="/sendEmail/${user.userId }" />'><i
+										class="bi bi-dash-circle-fill"></i></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 		</div>
 	</div>
 </body>

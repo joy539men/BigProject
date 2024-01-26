@@ -50,13 +50,21 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     /> -->
     
+<<<<<<< HEAD
     <link rel="stylesheet" href="css/main.css" />
     
+=======
+  
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
   </head>
 
   <body>
     <!-- navigation -->
+<<<<<<< HEAD
     <!-- <header class="navigation">
+=======
+   <!--  <header class="navigation">
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
       <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
         <div class="container">
           <a class="navbar-brand" href="index.html">
@@ -186,8 +194,13 @@
 
     <hr /> -->
 
+<<<<<<< HEAD
     <!-- Chat page -->
     <!-- <section class="section pt-1">
+=======
+    Chat page
+    <section class="section pt-1">
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-4 border rounded me-3 vh-100 shadow-sm">
@@ -228,10 +241,12 @@
     </section> -->
 
 	<section>
-		<div id="chatMessages"></div>
+		<div id="chatMessages">Hello</div>
 		<input type="text" id="messageInput" placeholder="Enter your message">
 		<button onclick="sendMessage()">Send</button>
+		
 	</section>
+<<<<<<< HEAD
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
 	<div id="username-page">
@@ -273,15 +288,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="js/main.js"></script>
+=======
+	
+	<section id ="messagesContainer"></section>
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
 
 	<!-- # JS Plugins -->
     <!-- <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
+<<<<<<< HEAD
 	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>  -->
+=======
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <!--   <script src="plugins/scrollmenu/scrollmenu.min.js"></script> -->
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
 
     <!-- Main Script -->
+<<<<<<< HEAD
 <!--     <script src="js/script.js"></script> -->
+=======
+   <!--  <script src="js/script.js"></script> -->
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
     
     <h1>WebSocket Example</h1>
 
@@ -295,11 +325,14 @@
 
         // 訂閱主題
         stompClient.subscribe('/topic/messages', function (message) {
-            console.log('Received message: ' + message.body);
-            // 在前端處理接收到的訊息，例如將其顯示在畫面上
-            const chatMessagesDiv = document.getElementById("chatMessages");
-            chatMessagesDiv.innerHTML += "<p>" + message.body + "</p>";
+        	var contentObject = JSON.parse(message.body);
+        	var contentValue = contentObject.content;
+            console.log('Received message: ' + contentValue);
+            // Further processing...
         });
+
+     // 在頁面上顯示訊息
+        displayMessage(content);
     });
 
     // 連接打開時的處理邏輯
@@ -308,12 +341,28 @@
     };
 
     // 接收到消息時的處理邏輯
-    socket.onmessage = function(event) {
-        console.log("Received message: " + event.data);
+    /* socket.onmessage = function(event) {
+        const receiveMessage = JSON.parse(even.data);
+        const contentValue = receiveMessage.content;
+        console.log("Received message:" + receiveMessage.content);
         // 在前端處理接收到的訊息，例如將其顯示在畫面上
         const chatMessagesDiv = document.getElementById("chatMessages");
-        chatMessagesDiv.innerHTML += "<p>" + event.data + "</p>";
+        chatMessagesDiv.innerHTML += "<p>" + contentValue + "</p>";
+    }; */
+
+    socket.onmessage = function(event) {
+    	const contentObject = JSON.parse(event.data);
+        const contentValue = contentObject.content;
+        console.log("Received message:" + contentValue);
+        
+        try {
+            const chatMessagesDiv = document.getElementById("chatMessages");
+            chatMessagesDiv.innerHTML += "<p>" + contentValue + "</p>";
+        } catch (error) {
+            console.error("Error processing message:", error);
+        }
     };
+
 
     // 連接關閉時的處理邏輯
     socket.onclose = function(event) {
@@ -329,7 +378,23 @@
 
         // 清空輸入框
         messageInput.value = "";
+<<<<<<< HEAD
     } */
+=======
+
+        
+    }
+
+ // 處理顯示訊息的函數
+    function displayMessage(content) {
+        // 在這裡添加代碼以將訊息顯示在畫面上，例如將其添加到 DOM 中的某個元素
+        var messageElement = document.createElement('div');
+        messageElement.textContent = content;
+        document.getElementById('messagesContainer').appendChild(messageElement);
+    }
+        
+>>>>>>> branch 'devBranch' of https://github.com/joy539men/BigProject.git
 </script>
+
   </body>
 </html>

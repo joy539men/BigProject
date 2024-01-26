@@ -90,6 +90,7 @@ public class bookingController {
 	            bookingService.update(bookingBean);
 	        }
 
+	        bookingBean.setStatus("待確認");
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
 	        bookingBean.setUuid(UUID.randomUUID());
 //	        bookingService.save(bookingBean);
@@ -224,7 +225,7 @@ public class bookingController {
 	@GetMapping("/bookTrip")
 	public String bookTrip(Model model, HttpSession session) {
 	    Integer userId = (Integer) session.getAttribute("userId");
-
+	    
 	    userBean userBean = userRepository.findById(userId).orElse(null);
 	    // 檢查用戶是否登入
 	    if (userId != null) {
@@ -253,7 +254,7 @@ public class bookingController {
 	            itemMap.put("bookingTime", booking.getBookingTime());
 	            combinedList.add(itemMap);
 	        }
-	        
+	        model.addAttribute("userId",userId);
 	        model.addAttribute("combinedList", combinedList);
 	        model.addAttribute("bookTripRoomList", bookRoomList);
 	        model.addAttribute("roomList", roomList);

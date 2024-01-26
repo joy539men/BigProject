@@ -1,6 +1,7 @@
 package com.example.backstage.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.backstage.service.RoomService_backstage;
 import com.example.demo.model.roomTableBean;
@@ -27,6 +29,7 @@ public class QueryRoomController_backstage {
 	@GetMapping("/room")
 	public String getAllRoom(Model model) {
 		List<roomTableBean> beans = roomService.findAll();
+		
 		model.addAttribute("rooms",beans);
 		return "backstage/room";
 	}
@@ -43,4 +46,13 @@ public class QueryRoomController_backstage {
 		return "backstage/room_info";
 	}
 
+	//地圖
+	@GetMapping("/map")
+	
+	public @ResponseBody List<Map<String,Object>> roomMap(){
+		List<Map<String,Object>> map = roomService.roomMap();
+//		System.out.println(map);
+		return map;
+	}
+	
 }
