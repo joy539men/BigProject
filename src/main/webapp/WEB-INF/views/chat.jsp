@@ -28,35 +28,35 @@
     <meta name="theme-name" content="wallet" />
 
     <!-- # Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+<!--     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-
+ -->
     <!-- # CSS Plugins -->
-    <link rel="stylesheet" href="plugins/slick/slick.css" />
+<!--     <link rel="stylesheet" href="plugins/slick/slick.css" />
     <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css" />
     <link rel="stylesheet" href="plugins/font-awesome/brands.css" />
-    <link rel="stylesheet" href="plugins/font-awesome/solid.css" />
+    <link rel="stylesheet" href="plugins/font-awesome/solid.css" /> -->
 
     <!-- # Main Style Sheet -->
-    <link rel="stylesheet" href="css/style.css" />
+   <!--  <link rel="stylesheet" href="css/style.css" /> -->
 
     <!-- # Bootstrap -->
-    <link
+  <!--   <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
+    /> -->
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    
   </head>
 
   <body>
     <!-- navigation -->
-    <header class="navigation">
+    <!-- <header class="navigation">
       <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
         <div class="container">
           <a class="navbar-brand" href="index.html">
@@ -134,7 +134,7 @@
               </li>
             </ul>
             <div>
-              <!-- account btn -->
+              account btn
               <li class="dropdown">
                 <a
                   class="p-3 border rounded-pill"
@@ -184,10 +184,10 @@
       </nav>
     </header>
 
-    <hr />
+    <hr /> -->
 
     <!-- Chat page -->
-    <section class="section pt-1">
+    <!-- <section class="section pt-1">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-4 border rounded me-3 vh-100 shadow-sm">
@@ -225,27 +225,68 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
 	<section>
 		<div id="chatMessages"></div>
 		<input type="text" id="messageInput" placeholder="Enter your message">
 		<button onclick="sendMessage()">Send</button>
 	</section>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	<div id="username-page">
+        <div class="username-page-container">
+            <h1 class="title">Type your username</h1>
+            <form id="usernameForm" name="usernameForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="accent username-submit">Start Chatting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="chat-page" class="hidden">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Spring WebSocket Chat Demo</h2>
+            </div>
+            <div class="connecting">
+                Connecting...
+            </div>
+            <ul id="messageArea">
+
+            </ul>
+            <form id="messageForm" name="messageForm" nameForm="messageForm">
+                <div class="form-group">
+                    <div class="input-group clearfix">
+                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                        <button type="submit" class="primary">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="js/main.js"></script>
 
 	<!-- # JS Plugins -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
-  <!--   <script src="plugins/scrollmenu/scrollmenu.min.js"></script> -->
+	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>  -->
 
     <!-- Main Script -->
-    <script src="js/script.js"></script>
+<!--     <script src="js/script.js"></script> -->
     
     <h1>WebSocket Example</h1>
 
 <script>
-    const socket = new SockJS('pillowSurfing/Krist/ws');
+   /*  const socket = new SockJS('pillowSurfing/Krist/ws');
     const stompClient = Stomp.over(socket);
 
     // 連接到 WebSocket
@@ -288,7 +329,7 @@
 
         // 清空輸入框
         messageInput.value = "";
-    }
+    } */
 </script>
   </body>
 </html>

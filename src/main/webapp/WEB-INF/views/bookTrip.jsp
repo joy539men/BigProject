@@ -200,8 +200,8 @@
 									<h5>${list.bookingTime }</h5>
 								</div>
 								<div class="col-3 mt-3">
-
-									<a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a>
+									<a class="btn btn-outline-primary ms-5" href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a>
+									<!-- <a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a> -->
 									<!-- <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a> -->
 									<h5 class="ms-5 mt-4">TW ${list.price } x ${list.night } 晚
 										x ${list.guest } 人</h5>
