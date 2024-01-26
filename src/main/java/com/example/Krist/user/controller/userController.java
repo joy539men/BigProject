@@ -2,6 +2,9 @@ package com.example.Krist.user.controller;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Krist.user.dao.userRepository;
 import com.example.Krist.user.service.userService;
@@ -104,7 +108,21 @@ public class userController {
 	// 利用 POST 表單取得用戶傳輸的資料
 	@PostMapping("/register")
 	public String register(@ModelAttribute("register") userBean userBean,  Model model) {
-	
+		
+		// 驗證 email 格式
+	    if (!isEmailValid(userBean.getEmail())) {
+	        model.addAttribute("error", "電子郵件格式不正確！");
+	        return "registerKrist";
+	    }
+	    
+	    // 檢查電子郵件是否已存在
+	    if (userRepository.existsByEmail(userBean.getEmail())) {
+	        model.addAttribute("error", "電子郵件已被使用！");
+	        return "registerKrist";
+	    }
+		
+	    // 設定當前時間為註冊時間
+		userBean.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
 		
 		// 利用 messageDigest 進行加密
 		try {
@@ -131,12 +149,26 @@ public class userController {
 		
 		
 		
-		
-		return "index";
+	    // 保存用戶信息到數據庫
+	    userRepository.save(userBean);
+	    return "index";
+	
 		
 	}
+
+	private boolean isEmailValid(String email) {
+		String emailRegex = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,6}$";
+		return email != null && email.matches(emailRegex);
+	}
 	
-    
+	@GetMapping("/check-email")
+    @ResponseBody
+    public Map<String, Boolean> checkEmail(@RequestParam String email) {
+        Map<String, Boolean> response = new HashMap<>();
+        boolean exists = userRepository.existsByEmail(email);
+        response.put("exists", exists);
+        return response;
+    }
 	// 驗證密碼的方法
     public class PasswordHashing {
 
@@ -166,5 +198,7 @@ public class userController {
             String hashedInputPassword = hashPassword(inputPassword);
             return hashedInputPassword != null && hashedInputPassword.equals(hashedPassword);
         }
+        
+        
     }
 }
