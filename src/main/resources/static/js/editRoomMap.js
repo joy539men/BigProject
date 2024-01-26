@@ -1,16 +1,15 @@
-$(document).ready(function () {
-    var map;
-    var initLat = 23.97565 ;
-    var initLng = 120.9738819 ;
-	var lat = $("#lat").val();
-    var lng = $("#lon").val();
-    
-
-    // 初始化地图 
+$(document).ready(function() {
+    var Lat = Number($("#lat").val());
+    var Lng = Number($("#lon").val());
+//    
+//    console.log(Lat);
+//    console.log(Lng);
+//    
+	// 初始化地图 
     function initializeMap() {
         var mapOptions = {
-            center: { lat: 23.97565, lng: 120.9738819 }, // 初始地图中心坐标
-            zoom: 8, // 初始缩放级别
+            center: { lat: Lat, lng: Lng }, // 初始地图中心坐标
+            zoom: 15, // 初始缩放级别
             mapTypeId: google.maps.MapTypeId.ROADMAP, // 设置地图类型为道路地图
             mapTypeControl: false, // 禁用地圖類型控制
             streetViewControl: false, // 禁用街景檢視
@@ -76,4 +75,5 @@ $(document).ready(function () {
 
     // 调用初始化函数
     initializeMap();
+
 });

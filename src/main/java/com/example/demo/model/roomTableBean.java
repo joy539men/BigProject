@@ -298,7 +298,15 @@ public class roomTableBean {
 	}
 
 	
-
+	@Override
+	public String toString() {
+        return "roomTableBean{" +
+                "roomId=" + roomId +
+                ", title='" + title + '\'' +
+                ", anemities=" + amenities +
+                // Add other properties as needed
+                '}';
+    }
 	
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.Krist.user.dao.userRepository;
+import com.example.Krist.webSocketTest.Utils.UserRoomContextHolder;
 import com.example.Krist.webSocketTest.service.MessageService;
 import com.example.demo.model.bookingBean;
 import com.example.demo.model.messageBean;
@@ -134,18 +135,23 @@ public class MessageController {
             roomTableBean room = roomOptional.get();
             Integer userId = (Integer) session.getAttribute("userId");
             userBean sender = userRepository.findById(userId).orElse(null);
+            
+         // 設定 UserRoomContextHolder 的值
+            UserRoomContextHolder.setUserId(userId);
+            UserRoomContextHolder.setRoomId(roomId);
 
-            messageBean.setSenderId(sender);
+//            messageBean.setSenderId(sender);
             session.setAttribute("webSocketRoomId", roomId);
+          
 
             userBean receiver = room.getUser();
 
             model.addAttribute("sender", sender);
             model.addAttribute("receiver", receiver);
 
-            messageBean.setReceiverId(receiver);
+//            messageBean.setReceiverId(receiver);
 
-            messageService.saveMessage(messageBean);
+//            messageService.saveMessage(messageBean);
 
             // 跳轉到聊天頁面，這裡假設聊天頁面的路徑是 "/chat-room"
             return "Message sent successfully!";

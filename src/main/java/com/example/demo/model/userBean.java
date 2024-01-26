@@ -35,7 +35,7 @@ public class userBean {
 	private String     status;
 	private String     statusNum;
 	private Timestamp  registrationTime;
-	private String     password1;
+//	private String     password1;
 	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -98,19 +98,19 @@ public class userBean {
 		this.statusNum         = statusNum;
 		this.registrationTime  = registrationTime;
 		this.birthday          = birthday;
-		this.password1         = password1;
+//		this.password1         = password1;
 		
 	}
 	
 	
 	
-	public String getPassword1() {
-		return password1;
-	}
+//	public String getPassword1() {
+//		return password1;
+//	}
 
-	public void setPassword1(String password1) {
-		this.password1 = password1;
-	}
+//	public void setPassword1(String password1) {
+//		this.password1 = password1;
+//	}
 
 	public Date getBirthday() {
 		return birthday;
