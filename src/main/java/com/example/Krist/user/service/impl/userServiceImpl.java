@@ -102,5 +102,9 @@ public class userServiceImpl implements userService{
 		return userRepository.findByUserNameAndPassword(account, password);
 	}
 
-
+	@Override
+    public boolean existsEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+	
 }
