@@ -22,7 +22,7 @@
     <meta name="description" content="This is meta description" />
     <meta name="author" content="Themefisher" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.png" type="../image/x-icon" />
 
     <!-- theme meta -->
     <meta name="theme-name" content="wallet" />
@@ -42,13 +42,13 @@
     <link rel="stylesheet" href="plugins/font-awesome/solid.css" />
 
     <!-- # Main Style Sheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- # Bootstrap -->
-    <link
+   <!--  <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
+    /> -->
 
     <style>
       .star_size {
@@ -68,7 +68,7 @@
               decoding="async"
               class="img-fluid"
               width="120"
-              src="images/logo.png"
+              src="../images/logo.png"
               alt="CouchSurfing"
             />
           </a>
@@ -139,10 +139,10 @@
             <div>
               <!-- account btn -->
               <li class="dropdown">
-                <a class="p-3 border rounded-pill"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i><img style="width: 50px" src="images/logo.png" alt=""/></a>
+                <a class="p-3 border rounded-pill"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i><img style="width: 50px" src="../images/logo.png" alt=""/></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-item">
-                    <img class="img-fluid" style="width: 50px" src="images/logo.png" alt=""/>
+                    <img class="img-fluid" style="width: 50px" src="../images/logo.png" alt="???"/>
                     <h4>Krist</h4>
                   </li>
                   <li class="dropdown-item">
@@ -203,6 +203,6 @@
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
 
     <!-- Main Script -->
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
   </body>
 </html>

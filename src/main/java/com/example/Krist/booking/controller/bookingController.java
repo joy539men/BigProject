@@ -4,6 +4,7 @@ package com.example.Krist.booking.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashMap;
@@ -249,6 +250,7 @@ public class bookingController {
 	            itemMap.put("totalPrice", booking.getTotalPrice());
 	            itemMap.put("price", booking.getRoomTable().getPrice());
 	            itemMap.put("bookingTime", booking.getBookingTime());
+	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
 	            combinedList.add(itemMap);
 	        }
 	        model.addAttribute("userId",userId);
@@ -280,11 +282,23 @@ public class bookingController {
 		    	model.addAttribute("roomOwner",roomOwner);
 			    model.addAttribute("singleRoom", room);
 			    
-			    
 		    }
 		
 		return "evaluationPage";
 	}
+	
+	
+	@PostMapping("/evaluateRoom")
+	public String evaluateRoom (@ModelAttribute("evaluateRoom") reviewBean reviewBean, Model model, HttpSession session) {
+		
+//		reviewBean.setReview_date(LocalDateTime);
+		
+		return null;
+		
+	}
+	
+	
+	
 
 
 	
