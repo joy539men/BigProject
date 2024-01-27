@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +31,7 @@ import com.example.Krist.booking.validate.bookingValidate;
 import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.Krist.user.dao.userRepository;
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
 
@@ -51,13 +54,7 @@ public class bookingController {
 	}
 	
 	
-	// 本方法送出新增roomPage資料的空白表單
-	@GetMapping("/roomPageTest")
-	public String showbookingForm(Model model) {
-		bookingBean bean = new bookingBean();
-		model.addAttribute("bookingBean", bean);
-		return "roomPageTest";
-	}
+
 
 	
 	
@@ -263,6 +260,30 @@ public class bookingController {
 	        // 用戶為登入重新轉向
 	        return "redirect:/login.jsp";  // 錯誤的話重新導入其他路徑
 	    }
+	}
+	
+	// 1/27 TODO
+	// 本方法送出新增evaluation資料的空白表單
+	@GetMapping("/evaluation/{roomId}")
+	public String evaluation(@PathVariable Integer roomId,Model model, reviewBean reviewBean, HttpSession session) {
+		 Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
+		    
+		    // 設定 session 儲存在網頁當中
+		    session.setAttribute("evaluationRoomId", roomId);
+		    roomTableBean room = roomOptional.orElse(null);
+		    
+		    if(room != null) {
+		    	
+		    	// 這一行是透過 room 不為空去搜尋是否有 user 的欄位出現
+		    	userBean roomOwner = room.getUser();
+		    	
+		    	model.addAttribute("roomOwner",roomOwner);
+			    model.addAttribute("singleRoom", room);
+			    
+			    
+		    }
+		
+		return "evaluationPage";
 	}
 
 
