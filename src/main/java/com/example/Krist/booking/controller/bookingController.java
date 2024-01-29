@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -299,7 +300,8 @@ public class bookingController {
 	
 	
 	@PostMapping("/evaluateRoom")
-	public String evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
+	@ResponseBody
+	public ResponseEntity<String> evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
 		
 		String starRating = reviewBean.getRating();
 		String accommodationExperience = reviewBean.getComment();
@@ -311,7 +313,8 @@ public class bookingController {
 		reviewBean.setComment(accommodationExperience);
 		reviewRepository.save(reviewBean);
 		
-		return "redirect:/";
+		// 返回JSON格式的成功消息
+	    return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"Review submitted successfully.\"}");
 		
 	}
 	

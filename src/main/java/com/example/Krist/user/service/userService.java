@@ -14,5 +14,6 @@ public interface userService {
 	Integer authenticateUser(String account, String password);
 	userBean findByAccountAndPassword(String account, String password);
 	userBean findByAccount(String account);
+	Boolean existsByPhone(String phone);
 	boolean existsEmail(String email);
 }
