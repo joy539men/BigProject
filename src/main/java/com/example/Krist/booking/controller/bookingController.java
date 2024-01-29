@@ -2,18 +2,23 @@ package com.example.Krist.booking.controller;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,16 +26,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.booking.service.bookingService;
 import com.example.Krist.booking.validate.bookingValidate;
 import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.Krist.user.dao.userRepository;
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
+import com.google.maps.DirectionsApi.Response;
 
 @Controller
 public class bookingController {
@@ -44,20 +53,19 @@ public class bookingController {
 	@Autowired
 	userRepository userRepository;
 	
-	public bookingController (bookingService bookingService, userRepository userRepository) {
+	@Autowired
+	reviewRepository reviewRepository;
+	
+	
+	public bookingController (bookingService bookingService, userRepository userRepository, reviewRepository reviewRepository) {
 		
 		this.bookingService = bookingService;
 		this.userRepository = userRepository;
+		this.reviewRepository = reviewRepository;
 	}
 	
 	
-	// 本方法送出新增roomPage資料的空白表單
-	@GetMapping("/roomPageTest")
-	public String showbookingForm(Model model) {
-		bookingBean bean = new bookingBean();
-		model.addAttribute("bookingBean", bean);
-		return "roomPageTest";
-	}
+
 
 	
 	
@@ -225,7 +233,7 @@ public class bookingController {
 	@GetMapping("/bookTrip")
 	public String bookTrip(Model model, HttpSession session) {
 	    Integer userId = (Integer) session.getAttribute("userId");
-
+	    
 	    userBean userBean = userRepository.findById(userId).orElse(null);
 	    // 檢查用戶是否登入
 	    if (userId != null) {
@@ -252,9 +260,10 @@ public class bookingController {
 	            itemMap.put("totalPrice", booking.getTotalPrice());
 	            itemMap.put("price", booking.getRoomTable().getPrice());
 	            itemMap.put("bookingTime", booking.getBookingTime());
+	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
 	            combinedList.add(itemMap);
 	        }
-	        
+	        model.addAttribute("userId",userId);
 	        model.addAttribute("combinedList", combinedList);
 	        model.addAttribute("bookTripRoomList", bookRoomList);
 	        model.addAttribute("roomList", roomList);
@@ -264,6 +273,50 @@ public class bookingController {
 	        return "redirect:/login.jsp";  // 錯誤的話重新導入其他路徑
 	    }
 	}
+	
+	// 1/27 TODO
+	// 本方法送出新增evaluation資料的空白表單
+	@GetMapping("/evaluation/{roomId}")
+	public String evaluation(@PathVariable Integer roomId,Model model, reviewBean reviewBean, HttpSession session) {
+		 Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
+		    
+		    // 設定 session 儲存在網頁當中
+		    session.setAttribute("evaluationRoomId", roomId);
+		    roomTableBean room = roomOptional.orElse(null);
+		    
+		    if(room != null) {
+		    	
+		    	// 這一行是透過 room 不為空去搜尋是否有 user 的欄位出現
+		    	userBean roomOwner = room.getUser();
+		    	
+		    	model.addAttribute("roomOwner",roomOwner);
+			    model.addAttribute("singleRoom", room);
+			    
+		    }
+		
+		return "evaluationPage";
+	}
+	
+	
+	@PostMapping("/evaluateRoom")
+	public String evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
+		
+		String starRating = reviewBean.getRating();
+		String accommodationExperience = reviewBean.getComment();
+		
+	
+		reviewBean.setReview_date(new Date(System.currentTimeMillis()));
+		
+		reviewBean.setRating(starRating);
+		reviewBean.setComment(accommodationExperience);
+		reviewRepository.save(reviewBean);
+		
+		return "redirect:/";
+		
+	}
+	
+	
+	
 
 
 	

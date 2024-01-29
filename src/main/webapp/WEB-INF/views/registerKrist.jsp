@@ -107,23 +107,26 @@
                 </div>
                 <div class="col-lg-4">
                     <!-- Registration Form -->
-                     <c:url var='register' value='/register' />
-                	 <form:form method="post" modelAttribute="register" action="${ register}">
+					<c:url var='register' value='/register' />
+                	 <form:form method="post" modelAttribute="register" action="${ register}" onsubmit="return validateForm()">
                 	  <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center mb-4">會員註冊</h2>
                                 <div class="mb-3">
+                                    姓名
+                                    <form:input type="text" class="form-control" id="name" path="userName"/>
+                                </div>
+                                <div class="mb-3">
                                     帳號
-                                    <form:input type="text" class="form-control" id="account" path="account"/>		
-    						 
+                                    <form:input type="text" class="form-control" id="account" path="account"/>
                                 </div>
                                 <div class="mb-3">
                                     密碼
                                      <form:input type="password" class="form-control" id="password" path="password"/>
                                 </div>
                                 <div class="mb-3">
-                                    姓名
-                                    <form:input type="text" class="form-control" id="name" path="userName"/>
+                                    確認密碼
+                                     <input type="password" class="form-control" id="password1" />
                                 </div>
                                 <div class="mb-3">
                                     電話
@@ -133,7 +136,7 @@
                                     Email
                                     <form:input type="email" class="form-control" id="email" path="email"/>
                                 </div>
-                                <div class="mb-3">
+								<div class="mb-3">
                                     生日
                                     <form:input type="date" class="form-control" id="date" path="birthday"/>
                                 </div>
@@ -153,14 +156,89 @@
 
     </section>
 
+	<script>
+
+		function validateAccount() {
+			var account = document.getElementById("account").value;
+			var accountPattern = /^(?=.*[A-Z]).{6,}$/; // 至少一個大寫字母且長度不低於6
+
+			if (!accountPattern.test(account)) {
+				alert("帳號格式不正確（至少包含一個大寫字母，且長度不低於6個字符）！");
+				return false;
+			}
+			return true;
+		}
+		function validatePassword() {
+			var password = document.getElementById("password").value;
+			var confirmPassword = document.getElementById("password1").value;
+			if (password !== confirmPassword) {
+				alert("密碼和確認密碼不匹配！");
+				return false;
+			}
+			if (password.length < 5) {
+				alert("密碼長度不得低於5個字符！");
+				return false;
+			}
+			return true;
+		}
+
+		function validatePhone() {
+			var phone = document.getElementById("phone").value;
+			// 這裡使用一個基本的正則表達式來檢查電話號碼是否為10位數字
+			var phonePattern = /^[0-9]{10}$/;
+			if (!phonePattern.test(phone)) {
+				alert("電話號碼格式不正確！");
+				return false;
+			}
+			return true;
+		}
+		
+		function validateEmail() {
+		    var email = document.getElementById("email").value;
+		    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 基本的 email 正則表達式
+
+		    if (!emailPattern.test(email)) {
+		        alert("電子郵件格式不正確！");
+		        return false;
+		    }
+		    return true;
+		}
+
+		function validateForm() {
+			return validateAccount() && validatePassword() && validatePhone() && validateEmail();
+		}
+	</script>
+
+
+	<script>
+		$(document).ready(function() {
+			$('#email').blur(function() {
+				var email = $(this).val();
+				if (email) { // 檢查 email 變量是否不為空
+					$.ajax({
+						url : '/pillowSurfing/check-email', // 這是您想發送請求的 URL
+						method : 'GET', // HTTP 請求方法
+						data : {
+							email : email
+						}, // 請求參數
+						success : function(response) {
+							if (response.exists) {
+								// 如果電子郵件已存在，執行相應操作，例如顯示錯誤消息
+								alert('電子郵件已被使用！');
+							}
+						},
+						error : function(xhr) {
+							// 處理錯誤情況
+						}
+					});
+				}
+			});
+		});
+	</script>
 
 
 
-
-
-
-
-    <!-- # JS Plugins -->
+	<!-- # JS Plugins -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
@@ -168,6 +246,8 @@
 
     <!-- Main Script -->
     <script src="js/script.js"></script>
+
+
 
 </body>
 
