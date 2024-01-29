@@ -91,7 +91,7 @@
     	<c:forEach var="room" items="${rooms}">
 	    	<div class="col-4">
           		<div id="houseA" class="card  houseCard mx-auto mb-4">
-            		<img class="card-img-top" src="<c:url value = '${room.filePath}'/>">
+          			<img class="card-img-top cardTopRoom" src="<c:url value = '${room.filePath}'/>">
             		<div class="card-body">
 	              		<h5 class="card-title ">${room.title}</h5>
 	              		<span class="card-text">${room.type}</span><br>

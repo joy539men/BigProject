@@ -14,6 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="user")
@@ -36,6 +39,16 @@ public class userBean {
 	private String     statusNum;
 	private Timestamp  registrationTime;
 	private String     password1;
+	private String	   filePath;
+	
+	@Transient
+	private MultipartFile imageFiles;
+	
+	@Transient
+	private MultipartFile multipartFile;
+
+	
+	
 	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -220,6 +233,34 @@ public class userBean {
 	public void setBooking(List<bookingBean> booking) {
 		this.booking = booking;
 	}
+
+	
+
+	public MultipartFile getImageFiles() {
+		return imageFiles;
+	}
+	
+	public void setImageFiles(MultipartFile imageFiles) {
+		this.imageFiles = imageFiles;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+	
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
+
+	
 	
 	
 	
