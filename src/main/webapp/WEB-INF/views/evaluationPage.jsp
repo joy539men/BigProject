@@ -247,6 +247,9 @@
 	
 			
 			$(document).ready(function(){
+
+				
+				
 			    $("#reviewForm").submit(function(event) {
 			        // 檢查是否已選擇星級
 			        if (selectedStars === 0) {
@@ -268,21 +271,19 @@
 			            	rating: starRating,
 			            	comment: accommodationExperience
 			            }),
-			            success: function(data, textStatus, xhr) {
+			            success: function(data) {
 			                // 判斷是否有重定向
-			                if (xhr.status === 302) {
-			                    // 手動處理重定向
-			                    window.location.href = xhr.getResponseHeader('/pillowSurfing');
-			                } else {
-			                    // 非重定向的處理邏輯
-			                    console.log("Success", data);
-			                }
+			                console.log("這是我的資料" + data)
+			                window.location.href = "/pillowSurfing/";
 			            },
 			            error: function(error) {
 			                console.log("Error", error);
+			                window.location.href = "/pillowSurfing/";
 			            }
 			        });
+			        window.location.href = "/pillowSurfing/";
 			    });
+			    
 			});
 						
 
