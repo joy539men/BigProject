@@ -1,0 +1,224 @@
+//package com.example.host.user;
+//
+//import java.sql.Blob;
+//import java.sql.Date;
+//import java.sql.Timestamp;
+//import java.util.HashSet;
+//import java.util.List;
+//import java.util.Set;
+//
+//import javax.persistence.CascadeType;
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import javax.persistence.OneToMany;
+//import javax.persistence.Table;
+//
+//import com.example.demo.model.bookingBean;
+//import com.example.demo.model.favoriteBean;
+//import com.example.demo.model.reviewBean;
+//import com.example.demo.model.roomTableBean;
+//
+//@Entity
+//@Table(name="user")
+//public class userBeanTestt {
+//	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Integer    userId;
+//	
+//	private String     account;
+//	private String     password;
+//	private String     userName;
+//	private String     email;
+//	private String     address;
+//	private String     phone;
+//	private Date       birthday;
+//	private String	   photo;
+//	private String     identity;
+//	private String     status;
+//	private String     statusNum;
+//	private Timestamp  registrationTime;
+//	private String     password1;
+//	
+//	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Set<reviewBean> reviews = new HashSet<>();
+//	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private List<bookingBean> booking;
+//	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private List<roomTableBean> roomTable;
+//	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private List<favoriteBean> favorite;
+//	
+//	
+//
+//
+//	public Set<reviewBean> getReviews() {
+//		return reviews;
+//	}
+//
+//	public void setReviews(Set<reviewBean> reviews) {
+//		this.reviews = reviews;
+//	}
+//
+//	public List<roomTableBean> getRoomTable() {
+//		return roomTable;
+//	}
+//
+//	public void setRoomTable(List<roomTableBean> roomTable) {
+//		this.roomTable = roomTable;
+//	}
+//
+//	public List<favoriteBean> getFavorite() {
+//		return favorite;
+//	}
+//
+//	public void setFavorite(List<favoriteBean> favorite) {
+//		this.favorite = favorite;
+//	}
+//
+//	public userBeanTestt(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone, String  identity, String  status, String  statusNum,  Date  birthday) {
+//		this.userId            = userId;
+//		this.account           = account;
+//		this.password          = password;
+//		this.userName          = userName;
+//		this.email             = email;
+//		this.address           = address;
+//		this.phone             = phone;
+//		this.identity          = identity;
+//		this.status            = status;
+//		this.statusNum         = statusNum;
+//		this.registrationTime = new Timestamp(System.currentTimeMillis());
+//		this.birthday          = birthday;
+//		this.password1         = password1;
+//		
+//	}
+//	
+//	
+//	
+//	public String getPassword1() {
+//		return password1;
+//	}
+//
+//	public void setPassword1(String password1) {
+//		this.password1 = password1;
+//	}
+//
+//	public Date getBirthday() {
+//		return birthday;
+//	}
+//
+//	public void setBirthday(Date birthday) {
+//		this.birthday = birthday;
+//	}
+//
+//	public userBeanTestt() {
+//		
+//	}
+//
+//	public Integer getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(Integer userId) {
+//		this.userId = userId;
+//	}
+//
+//	public String getAccount() {
+//		return account;
+//	}
+//
+//	public void setAccount(String account) {
+//		this.account = account;
+//	}
+//
+//	public String getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
+//
+//	public String getUserName() {
+//		return userName;
+//	}
+//
+//	public void setUserName(String userName) {
+//		this.userName = userName;
+//	}
+//
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+//
+//	public String getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(String address) {
+//		this.address = address;
+//	}
+//
+//	public String getPhone() {
+//		return phone;
+//	}
+//
+//	public void setPhone(String phone) {
+//		this.phone = phone;
+//	}
+//
+//	public String getIdentity() {
+//		return identity;
+//	}
+//
+//	public void setIdentity(String identity) {
+//		this.identity = identity;
+//	}
+//
+//	public String getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(String status) {
+//		this.status = status;
+//	}
+//
+//	public String getStatusNum() {
+//		return statusNum;
+//	}
+//
+//	public void setStatusNum(String statusNum) {
+//		this.statusNum = statusNum;
+//	}
+//
+//	public Timestamp getRegistrationTime() {
+//		return registrationTime;
+//	}
+//
+//	public void setRegistrationTime(Timestamp registrationTime) {
+//		this.registrationTime = registrationTime;
+//	}
+//
+//
+//	public List<bookingBean> getBooking() {
+//		return booking;
+//	}
+//
+//	public void setBooking(List<bookingBean> booking) {
+//		this.booking = booking;
+//	}
+//	
+//	
+//	
+//	
+//}

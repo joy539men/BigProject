@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.Krist.user.dao.userRepository;
 import com.example.Krist.user.service.userService;
 import com.example.demo.model.userBean;
+import com.example.host.user.service.userServiceYC;
 
 @Service
 public class userServiceImpl implements userService{
