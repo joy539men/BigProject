@@ -209,14 +209,14 @@
 		}
 	</script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
 			$('#email').blur(function() {
 				var email = $(this).val();
 				if (email) { // 檢查 email 變量是否不為空
 					$.ajax({
-						url : '/check-email', // 這是您想發送請求的 URL
+						url : '/pillowSurfing/check-email', // 這是您想發送請求的 URL
 						method : 'GET', // HTTP 請求方法
 						data : {
 							email : email
@@ -225,7 +225,7 @@
 							if (response.exists) {
 								// 如果電子郵件已存在，執行相應操作，例如顯示錯誤消息
 								alert('電子郵件已被使用！');
-							} 
+							}
 						},
 						error : function(xhr) {
 							// 處理錯誤情況
