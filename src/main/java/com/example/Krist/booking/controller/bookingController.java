@@ -4,10 +4,13 @@ package com.example.Krist.booking.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +32,7 @@ import com.example.Krist.booking.validate.bookingValidate;
 import com.example.Krist.roomTable.dao.roomTableRepository;
 import com.example.Krist.user.dao.userRepository;
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
 
@@ -51,13 +55,7 @@ public class bookingController {
 	}
 	
 	
-	// 本方法送出新增roomPage資料的空白表單
-	@GetMapping("/roomPageTest")
-	public String showbookingForm(Model model) {
-		bookingBean bean = new bookingBean();
-		model.addAttribute("bookingBean", bean);
-		return "roomPageTest";
-	}
+
 
 	
 	
@@ -252,6 +250,7 @@ public class bookingController {
 	            itemMap.put("totalPrice", booking.getTotalPrice());
 	            itemMap.put("price", booking.getRoomTable().getPrice());
 	            itemMap.put("bookingTime", booking.getBookingTime());
+	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
 	            combinedList.add(itemMap);
 	        }
 	        model.addAttribute("userId",userId);
@@ -264,6 +263,42 @@ public class bookingController {
 	        return "redirect:/login.jsp";  // 錯誤的話重新導入其他路徑
 	    }
 	}
+	
+	// 1/27 TODO
+	// 本方法送出新增evaluation資料的空白表單
+	@GetMapping("/evaluation/{roomId}")
+	public String evaluation(@PathVariable Integer roomId,Model model, reviewBean reviewBean, HttpSession session) {
+		 Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
+		    
+		    // 設定 session 儲存在網頁當中
+		    session.setAttribute("evaluationRoomId", roomId);
+		    roomTableBean room = roomOptional.orElse(null);
+		    
+		    if(room != null) {
+		    	
+		    	// 這一行是透過 room 不為空去搜尋是否有 user 的欄位出現
+		    	userBean roomOwner = room.getUser();
+		    	
+		    	model.addAttribute("roomOwner",roomOwner);
+			    model.addAttribute("singleRoom", room);
+			    
+		    }
+		
+		return "evaluationPage";
+	}
+	
+	
+	@PostMapping("/evaluateRoom")
+	public String evaluateRoom (@ModelAttribute("evaluateRoom") reviewBean reviewBean, Model model, HttpSession session) {
+		
+//		reviewBean.setReview_date(LocalDateTime);
+		
+		return null;
+		
+	}
+	
+	
+	
 
 
 	
