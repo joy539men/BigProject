@@ -119,10 +119,12 @@
                                 <div class="mb-3">
                                     帳號
                                     <form:input type="text" class="form-control" id="account" path="account"/>
+                                    <div id="accountError" class="text-danger"></div> 
                                 </div>
                                 <div class="mb-3">
                                     密碼
                                      <form:input type="password" class="form-control" id="password" path="password"/>
+                                     <div id="passwordError" class="text-danger"></div> 
                                 </div>
                                 <div class="mb-3">
                                     確認密碼
@@ -131,10 +133,12 @@
                                 <div class="mb-3">
                                     電話
                                     <form:input type="tel" class="form-control" id="phone" path="phone"/>
+                                    <div id="phoneError" class="text-danger"></div> 
                                 </div>
                                 <div class="mb-3">
                                     Email
                                     <form:input type="email" class="form-control" id="email" path="email"/>
+                                    <div id="emailError" class="text-danger"></div>
                                 </div>
 								<div class="mb-3">
                                     生日
@@ -168,46 +172,59 @@
 
 		function validateAccount() {
 			var account = document.getElementById("account").value;
-			var accountPattern = /^(?=.*[A-Z]).{6,}$/; // 至少一個大寫字母且長度不低於6
+			var accountPattern = /^[a-z0-9_]{6,12}$/;
+			var accountError = document.getElementById("accountError");
 
 			if (!accountPattern.test(account)) {
-				alert("帳號格式不正確（至少包含一個大寫字母，且長度不低於6個字符）！");
+				accountError.textContent = "帳號格式錯誤：6-12位，包含小寫字母、數字和_";
 				return false;
+			} else {
+				accountError.textContent = ''; // 清除錯誤信息
 			}
 			return true;
 		}
+
 		function validatePassword() {
-			var password = document.getElementById("password").value;
-			var confirmPassword = document.getElementById("password1").value;
-			if (password !== confirmPassword) {
-				alert("密碼和確認密碼不匹配！");
-				return false;
-			}
-			if (password.length < 5) {
-				alert("密碼長度不得低於5個字符！");
-				return false;
-			}
-			return true;
+		    var password = document.getElementById("password").value;
+		    var confirmPassword = document.getElementById("password1").value;
+		    var passwordError = document.getElementById("passwordError");
+
+		    if (password !== confirmPassword) {
+		        passwordError.textContent = "密碼和確認密碼不匹配！";
+		        return false;
+		    }
+		    if (password.length < 5) {
+		        passwordError.textContent = "密碼長度不得低於5個字符！";
+		        return false;
+		    }
+		    passwordError.textContent = ''; // 清除錯誤信息
+		    return true;
 		}
 
 		function validatePhone() {
-			var phone = document.getElementById("phone").value;
-			// 這裡使用一個基本的正則表達式來檢查電話號碼是否為10位數字
-			var phonePattern = /^[0-9]{10}$/;
-			if (!phonePattern.test(phone)) {
-				alert("電話號碼格式不正確！");
-				return false;
-			}
-			return true;
+		    var phone = document.getElementById("phone").value;
+		    var phonePattern = /^[0-9]{10}$/;
+		    var phoneError = document.getElementById("phoneError");
+
+		    if (!phonePattern.test(phone)) {
+		        phoneError.textContent = "電話號碼格式不正確！";
+		        return false;
+		    } else {
+		        phoneError.textContent = ''; // 清除錯誤信息
+		    }
+		    return true;
 		}
-		
+
 		function validateEmail() {
 		    var email = document.getElementById("email").value;
-		    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 基本的 email 正則表達式
+		    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+		    var emailError = document.getElementById("emailError");
 
 		    if (!emailPattern.test(email)) {
-		        alert("電子郵件格式不正確！");
+		        emailError.textContent = "電子郵件格式不正確！";
 		        return false;
+		    } else {
+		        emailError.textContent = ''; // 清除錯誤信息
 		    }
 		    return true;
 		}
@@ -217,32 +234,68 @@
 		}
 	</script>
 
-
 	<script>
-		$(document).ready(function() {
-			$('#email').blur(function() {
-				var email = $(this).val();
-				if (email) { // 檢查 email 變量是否不為空
-					$.ajax({
-						url : '/pillowSurfing/check-email', // 這是您想發送請求的 URL
-						method : 'POST', // HTTP 請求方法
-						data : {
-							email : email
-						}, // 請求參數
-						success : function(response) {
-							if (response.exists) {
-								// 如果電子郵件已存在，執行相應操作，例如顯示錯誤消息
-								alert('電子郵件已被使用！');
-							}
-						},
-						error : function(xhr) {
-							// 處理錯誤情況
+
+		function checkPhone() {
+			var phone = document.getElementById("phone").value;
+			var phonePattern = /^[0-9]{10}$/; // 或其他您需要的正則表達式
+			var phoneError = document.getElementById("phoneError");
+
+			if (!phonePattern.test(phone)) {
+				phoneError.textContent = "電話號碼格式不正確！";
+				return false;
+			} else {
+				// AJAX 請求檢查重複
+				$.ajax({
+					url : '/pillowSurfing/check-phone', // 確保這個 URL 是正確的
+					method : 'GET',
+					data : {
+						phone : phone
+					},
+					success : function(response) {
+						if (response.exists) {
+							phoneError.textContent = "電話號碼已被使用！";
+						} else {
+							phoneError.textContent = '';
 						}
-					});
-				}
-			});
+					}
+				});
+			}
+		}
+
+		// 將這些函數綁定到相應的輸入框事件
+		$(document).ready(function() {
+			$('#phone').blur(checkPhone);
 		});
 	</script>
+	
+	<script>
+	$(document).ready(function() {
+	    var emailError = document.getElementById("emailError");
+	    $('#email').blur(function() {
+	        var email = $(this).val();
+	        if (email) {
+	            $.ajax({
+	                url: '/pillowSurfing/check-email',
+	                method: 'GET',
+	                data: { email: email },
+	                success: function(response) {
+	                    if (response.exists) {
+	                        emailError.textContent = "電子郵件已被使用！";
+	                    } else {
+	                        emailError.textContent = ""; // 清除錯誤信息
+	                    }
+	                },
+	                error: function() {
+	                    emailError.textContent = "無法檢查電子郵件！";
+	                }
+	            });
+	        }
+	    });
+	});
+
+	</script>
+
 
 
 

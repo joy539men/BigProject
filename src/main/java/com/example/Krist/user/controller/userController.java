@@ -105,13 +105,13 @@ public class userController {
 	// 利用 POST 表單取得用戶傳輸的資料
 	@PostMapping("/register")
 	public String register(@ModelAttribute("register") userBean userBean, Model model) {
-
+		
 		// 驗證 email 格式
 		if (!isEmailValid(userBean.getEmail())) {
 			model.addAttribute("error", "電子郵件格式不正確！");
 			return "registerKrist";
 		}
-
+		
 		// 檢查電子郵件是否已存在
 		if (userRepository.existsByEmail(userBean.getEmail())) {
 			model.addAttribute("error", "電子郵件已被使用！");
@@ -149,19 +149,27 @@ public class userController {
 		return "index";
 
 	}
+	
+	@GetMapping("/check-phone")
+	@ResponseBody
+	public Map<String, Boolean> checkPhoneExists(@RequestParam String phone) {
+	    Map<String, Boolean> response = new HashMap<>();
+	    response.put("exists", userRepository.existsByPhone(phone));
+	    return response;
+	}
+
 
 	private boolean isEmailValid(String email) {
 		String emailRegex = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,6}$";
 		return email != null && email.matches(emailRegex);
 	}
 
-	@PostMapping("/check-email")
+	@GetMapping("/check-email")
 	@ResponseBody
 	public Map<String, Boolean> checkEmail(@RequestParam String email) {
 		Map<String, Boolean> response = new HashMap<>();
 		boolean exists = userServiceImpl.existsEmail(email);
 		response.put("exists", exists);
-		System.out.println(response);
 		return response;
 	}
 
