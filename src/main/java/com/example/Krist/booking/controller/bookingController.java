@@ -2,6 +2,7 @@ package com.example.Krist.booking.controller;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +26,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.booking.service.bookingService;
 import com.example.Krist.booking.validate.bookingValidate;
 import com.example.Krist.roomTable.dao.roomTableRepository;
@@ -35,6 +39,7 @@ import com.example.demo.model.bookingBean;
 import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
+import com.google.maps.DirectionsApi.Response;
 
 @Controller
 public class bookingController {
@@ -48,10 +53,15 @@ public class bookingController {
 	@Autowired
 	userRepository userRepository;
 	
-	public bookingController (bookingService bookingService, userRepository userRepository) {
+	@Autowired
+	reviewRepository reviewRepository;
+	
+	
+	public bookingController (bookingService bookingService, userRepository userRepository, reviewRepository reviewRepository) {
 		
 		this.bookingService = bookingService;
 		this.userRepository = userRepository;
+		this.reviewRepository = reviewRepository;
 	}
 	
 	
@@ -289,11 +299,19 @@ public class bookingController {
 	
 	
 	@PostMapping("/evaluateRoom")
-	public String evaluateRoom (@ModelAttribute("evaluateRoom") reviewBean reviewBean, Model model, HttpSession session) {
+	public String evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
 		
-//		reviewBean.setReview_date(LocalDateTime);
+		String starRating = reviewBean.getRating();
+		String accommodationExperience = reviewBean.getComment();
 		
-		return null;
+	
+		reviewBean.setReview_date(new Date(System.currentTimeMillis()));
+		
+		reviewBean.setRating(starRating);
+		reviewBean.setComment(accommodationExperience);
+		reviewRepository.save(reviewBean);
+		
+		return "redirect:/";
 		
 	}
 	
