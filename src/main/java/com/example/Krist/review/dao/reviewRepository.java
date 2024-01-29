@@ -1,4 +1,4 @@
-package com.example.Krist.booking.dao;
+package com.example.Krist.review.dao;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ import com.example.demo.model.roomTableBean;
 @Repository
 public interface reviewRepository extends JpaRepository<reviewBean, Integer>{
 
-
-	List<reviewBean> findAllByRoomTable(roomTableBean room);
+	List<reviewBean> findAllByroomTable(roomTableBean roomTableBean);
 
 }

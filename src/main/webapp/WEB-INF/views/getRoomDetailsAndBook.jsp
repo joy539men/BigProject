@@ -95,41 +95,41 @@
 										&amp; Policy</a></li>
 							</ul></li>
 					</ul>
-					
+
 					<div>
-					    <!-- account btn -->
-					    <ul class="nav">
-					        <li class="nav-item dropdown">
-					            <a class="p-3 border rounded-pill"
-					                href="#" id="navbarDropdown" role="button"
-					                data-bs-toggle="dropdown" aria-expanded="false">
-					                <img style="width: 15px" src="../images/icon/fish.png" alt="" />
-					                <img class="mb-1" style="width: 50px" src="../images/logo.png" alt="" />
-					            </a>
-					            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					                <li class="dropdown-item">
-					                    <img class="img-fluid" style="width: 50px" src="../images/logo.png" alt="" />
-					                    <h4>Krist</h4>
-					                </li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-					                <li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-					                <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
-					            </ul>
-					        </li>
-					    </ul>
+						<!-- account btn -->
+						<ul class="nav">
+							<li class="nav-item dropdown"><a
+								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
+								role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<img style="width: 15px" src="../images/icon/fish.png" alt="" />
+									<img class="mb-1" style="width: 50px" src="../images/logo.png"
+									alt="" />
+							</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li class="dropdown-item"><img class="img-fluid"
+										style="width: 50px" src="../images/logo.png" alt="" />
+										<h4>Krist</h4></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item"
+										href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+									<li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
+									<li><a href="<c:url value="/logout"></c:url>"
+										class="dropdown-item">登 出</a>></li>
+								</ul></li>
+						</ul>
 					</div>
-								
+
 				</div>
 			</div>
 		</nav>
@@ -142,8 +142,8 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
-    				<img  class="mb-2 img-cover" src="..${singleRoom.filePath}" alt="" />
-   
+					<img class="mb-2 img-cover" src="..${singleRoom.filePath}" alt="" />
+
 				</div>
 
 				<div class="col-lg-4">
@@ -154,7 +154,8 @@
 							</div>
 							<div class="col-5 mt-3 me-auto">
 								<h6>房東：${user.userName }</h6>
-								<h6>超讚房東 : 一年待客經驗</h6>>
+								<h6>超讚房東 : 一年待客經驗</h6>
+								>
 							</div>
 						</div>
 
@@ -180,11 +181,47 @@
 					<h3 class="p-2">特色介紹</h3>
 					<hr class="m-3">
 					<h5 class="mt-5">
-						<img src="../images/icon/flash.png" style="width: 40px; height: 40px;"></img>  自助入住
+						<img src="../images/icon/flash.png"
+							style="width: 40px; height: 40px;"></img> 自助入住
 					</h5>
 					<p>使用鑰匙自助入住</p>
 
 					<h5 class="mt-5">
+						<img src="../images/icon/house.png"
+							style="width: 40px; height: 40px;"></img> 絕佳位置
+					</h5>
+					<p>最近有100%的房客給予房源位置5星評分。</p>
+
+					<h5 class="mt-5">
+						<img class="mb-3" src="../images/icon/king.png"
+							style="width: 40px; height: 40px;"></img> 48小時內可免費取消
+					</h5>
+					<p>讓您可以放心取消</p>
+					<hr class="m-3">
+
+					<!-- 遷入 googlemap -->
+					<h3 class="p-2">Google Map</h3>
+					<div id="map" style="height: 400px; width: 100%;"></div>
+
+					<hr class="m-3">
+					<h3 class="p-2">評 論 專 區</h3>
+					<div id="map" style="width: 100%;"></div>
+
+
+
+
+					<c:forEach var="review" items="${reviews}">
+						<hr>
+						<h6>${review.user.userName}</h6>
+
+						<p>${review.review_date }</p>
+						<h5 class="">${review.comment }</h5>
+
+
+
+					</c:forEach>
+
+					<!-- <h5 class="mt-5">
 						<img src="../images/icon/house.png" style="width: 40px; height: 40px;"></img>  絕佳位置
 					</h5>
 					<p>最近有100%的房客給予房源位置5星評分。</p>
@@ -193,17 +230,17 @@
 						<img class="mb-3" src="../images/icon/king.png" style="width: 40px; height: 40px;"></img>   48小時內可免費取消
 					</h5>
 					<p>讓您可以放心取消</p>
-					<hr class="m-3">
+					<hr class="m-3"> -->
 
-					<!-- 遷入 googlemap -->
-					<h3 class="p-2">Google Map</h3>
-					<div id="map" style="height: 400px; width: 100%;"></div>
-					
-					<hr class="m-3">
-					<h3 class="p-2">評 論 專 區</h3>
-					<div id="map" style="height: 400px; width: 100%;"></div>
+
+
+
+
+					<div id="houseList" class="w-75 mx-auto row"></div>
 
 				</div>
+
+
 
 				<!-- 此為固定方塊 -->
 				<div id="fix-box">
@@ -240,18 +277,17 @@
 										</div>
 									</div>
 									<div class="col-lg-12 text-center">
-										<button type="submit" class="btn btn-outline-primary "
-											">提
+										<button type="submit" class="btn btn-outline-primary "">提
 											交 資 料</button>
 									</div>
 								</div>
 							</form:form>
 							<!-- 動態顯示的需付款金額 -->
 							<div id="amount">
-								<p class= "ms-2">
+								<p class="ms-2">
 									總付款金額 : $<span id="calculatedAmount"></span>
 								</p>
-								
+
 							</div>
 
 						</div>
@@ -267,7 +303,7 @@
 	<script src="plugins/slick/slick.min.js"></script>
 	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	
+
 	<script>
       document.addEventListener("DOMContentLoaded", function(){
         window.addEventListener("scroll", function(){
