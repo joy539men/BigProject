@@ -155,7 +155,7 @@ public class userController {
 		return email != null && email.matches(emailRegex);
 	}
 
-	@GetMapping("/check-email")
+	@PostMapping("/check-email")
 	@ResponseBody
 	public Map<String, Boolean> checkEmail(@RequestParam String email) {
 		Map<String, Boolean> response = new HashMap<>();

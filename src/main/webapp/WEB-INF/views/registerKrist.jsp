@@ -155,6 +155,14 @@
         </div>
 
     </section>
+    
+    <script src="plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
 
 	<script>
 
@@ -217,7 +225,7 @@
 				if (email) { // 檢查 email 變量是否不為空
 					$.ajax({
 						url : '/pillowSurfing/check-email', // 這是您想發送請求的 URL
-						method : 'GET', // HTTP 請求方法
+						method : 'POST', // HTTP 請求方法
 						data : {
 							email : email
 						}, // 請求參數
@@ -239,13 +247,8 @@
 
 
 	<!-- # JS Plugins -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
-
-    <!-- Main Script -->
-    <script src="js/script.js"></script>
+    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+    
 
 
 
