@@ -23,5 +23,7 @@ public interface HostService {
 	Map<String, String> convertAddress(String address);
 	roomTableBean getRoomById(Integer roomId);
 	void deleteById(Integer id);
+	List<roomTableBean> findByHostId(Integer userId);
+	List<roomTableBean> findByHostIdAndStatusNot(Integer hostId, String status);
 
 }
