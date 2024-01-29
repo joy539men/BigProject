@@ -2,10 +2,8 @@ package com.example.Krist.booking.controller;
 
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.booking.service.bookingService;
@@ -40,7 +39,6 @@ import com.example.demo.model.bookingBean;
 import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
-import com.google.maps.DirectionsApi.Response;
 
 @Controller
 public class bookingController {
@@ -299,24 +297,98 @@ public class bookingController {
 	}
 	
 	
-	@PostMapping("/evaluateRoom")
-	@ResponseBody
-	public ResponseEntity<String> evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
-		
-		String starRating = reviewBean.getRating();
-		String accommodationExperience = reviewBean.getComment();
-		
+//	@PostMapping("/evaluateRoom")
+//	@ResponseBody
+//	public ResponseEntity<String> evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
+//		
+//		String starRating = reviewBean.getRating();
+//		String accommodationExperience = reviewBean.getComment();
+//		Integer userId =  (Integer) session.getAttribute("userId");
+////		userBean user = userRepository.getById(userId);
+//		
+//	
+//		reviewBean.setReview_date(new Date(System.currentTimeMillis()));
+//		
+//		
+//		reviewBean.setUser(null);
+//		reviewBean.setRoomTable(null);
+//		reviewBean.setRating(starRating);
+//		reviewBean.setComment(accommodationExperience);
+//		reviewRepository.save(reviewBean);
+//		
+//		// 返回JSON格式的成功消息
+//	    return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"Review submitted successfully.\"}");
+//		
+//	}
 	
-		reviewBean.setReview_date(new Date(System.currentTimeMillis()));
-		
-		reviewBean.setRating(starRating);
-		reviewBean.setComment(accommodationExperience);
-		reviewRepository.save(reviewBean);
-		
-		// 返回JSON格式的成功消息
-	    return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"Review submitted successfully.\"}");
-		
+	
+//	@PostMapping("/evaluateRoom")
+//	public String evaluateRoom(@RequestBody reviewBean reviewBean, HttpSession session) {
+//	    try {
+//	        // 執行您的業務邏輯
+//	    	String starRating = reviewBean.getRating();
+//			String accommodationExperience = reviewBean.getComment();
+//			
+//			Integer roomId = (Integer) session.getAttribute("evaluationRoomId");
+//			Integer userId =  (Integer) session.getAttribute("userId");
+//			userBean user = userRepository.findById(userId).orElse(null);
+//			roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
+//			
+//			
+//			
+//			reviewBean.setReview_date(new Date(System.currentTimeMillis()));
+//			reviewBean.setUser(user);
+//			reviewBean.setRoomTable(room);
+//			reviewBean.setRating(starRating);
+//			reviewBean.setComment(accommodationExperience);
+//			reviewRepository.save(reviewBean);
+//
+//	        // 返回JSON格式的成功消息
+//	        return "index";
+//	    } catch (Exception e) {
+//	        // 如果有例外，可以在控制台中印出錯誤信息
+//	        e.printStackTrace();
+//
+//	        // 返回JSON格式的錯誤消息
+//	        return "index";
+//	    }
+//	}
+
+	
+	@PostMapping("/evaluateRoom")
+	public String evaluateRoom(@RequestParam("rating") String starRating,
+	                           @RequestParam("comment") String accommodationExperience,
+	                           Model model,
+	                           HttpSession session) {
+	    try {
+	        // 執行您的業務邏輯
+	        Integer roomId = (Integer) session.getAttribute("evaluationRoomId");
+	        Integer userId = (Integer) session.getAttribute("userId");
+	        userBean user = userRepository.findById(userId).orElse(null);
+	        roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
+
+	        reviewBean reviewBean = new reviewBean(); // 创建一个新的 reviewBean 对象
+
+	        reviewBean.setReview_date(new Date(System.currentTimeMillis()));
+	        reviewBean.setUser(user);
+	        reviewBean.setRoomTable(room);
+	        reviewBean.setRating(starRating);
+	        reviewBean.setComment(accommodationExperience);
+	        reviewRepository.save(reviewBean);
+	        
+	        
+
+	        // 返回JSON格式的成功消息
+	        return "index";
+	    } catch (Exception e) {
+	        // 如果有例外，可以在控制台中印出錯誤信息
+	        e.printStackTrace();
+
+	        // 返回JSON格式的錯誤消息
+	        return "index";
+	    }
 	}
+
 	
 	
 	

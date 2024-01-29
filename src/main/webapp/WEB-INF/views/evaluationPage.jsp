@@ -182,15 +182,14 @@
       <div class="container">
         <div class="row justify-content-center">
         
-        method="post" modelAttribute="bookingBean"
-								action=
+  
         
         
-        <form id="reviewForm" method = "post">
+        <%-- <form id="reviewForm" method = "POST">
           <h1 class="text-center">留下評價</h1>
           <div class="border rounded h-75 shadow-sm m-5 p-5">
             <div class="text-center star-rating" id = "star-rating">
-             <input type="hidden" id="starRatingInput" name="starRating" value="0">
+             <input type="hidden" id="starRatingInput" name="rating" value="0">
               <i class="bi bi-star-fill  star_size me-2"  onclick="rateStar(1)"></i>
 			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(2)"></i>
 			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(3)"></i>
@@ -200,25 +199,48 @@
 
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">請輸入您的住宿體驗</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" name="accommodationExperience" rows="3"></textarea>
+				<textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
 			  </div>
           </div>
           <button type="submit">提 交 評 論</button>
-          </form>
+          </form> --%>
+          
+          
+          <section>
+          	
+          	<form id="reviewForm" method="post" action="/pillowSurfing/evaluateRoom">
+    			<h1 class="text-center">留下評價</h1>
+   				 <div class="border rounded h-75 shadow-sm m-5 p-5">
+       			 	<div class="text-center star-rating" id="star-rating">
+            			<input type="hidden" id="starRatingInput" name="rating" value="0">
+            			
+            			<i class="bi bi-star-fill  star_size me-2" onclick="rateStar(1)"></i>
+            			<i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(2)"></i>
+            			<i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(3)"></i>
+            			<i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(4)"></i>
+            			<i class="bi bi-star-fill star_size  me-2" onclick="rateStar(5)"></i>
+        			</div>
+        			<div class="form-group">
+            			<label for="exampleFormControlTextarea1">請輸入您的住宿體驗</label>
+            			<textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
+        			</div>
+    			</div>
+    	
+    			<button class="btn btn-outline-primary ms-5" type="submit">提 交 評 論</button>
+			</form>
+          	
+          
+          </section>
         </div>
       </div>
     </section>
 
-    <!-- # JS Plugins -->
-   <!--  <script src="plugins/jquery/jquery.min.js"></script> -->
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 
     <!-- Main Script -->
-    <script src="../js/script.js"></script>
+    <!-- <script src="../js/script.js"></script> -->
     
     <script>
 		var selectedStars = 0;
@@ -226,6 +248,9 @@
 		function rateStar(star){
 			selectedStars = star;
 			highlightStars(star);
+
+			 // 将评分值设置到隐藏输入框中
+		    document.getElementById("starRatingInput").value = selectedStars;
 
 			}
 
@@ -244,9 +269,10 @@
 			
 			}
 
+
 	
 			
-			$(document).ready(function(){
+			/* $(document).ready(function(){
 
 				
 				
@@ -265,27 +291,32 @@
 			        // 使用 jQuery Ajax 方法發送 POST 請求
 			        $.ajax({
 			            type: 'POST',
-			            url: '/pillowSurfing/evaluateRoom',
+			            url: '/pillowSurfing/',
 			            contentType: 'application/json',
 			            data: JSON.stringify({
-			            	rating: starRating,
-			            	comment: accommodationExperience
+			                rating: starRating.toString(), // 將星級轉換為字串形式
+			                comment: accommodationExperience.toString()
 			            }),
+			            complete: function(xhr, textStatus) {
+			                console.log("Request completed with status: " + textStatus);
+			            },
 			            success: function(data) {
 			                // 判斷是否有重定向
-			                console.log("這是我的資料" + data)
-			                window.location.href = "/pillowSurfing/";
+			                console.log(data);
+			                window.location.href = "/pillowSufring";
 			            },
 			            error: function(error) {
-			                console.log("Error", error);
+			            	console.log("Error", errorThrown);
+			                console.log("Server response: " + xhr.responseText);
 			                window.location.href = "/pillowSurfing/";
 			            }
 			        });
-			        window.location.href = "/pillowSurfing/";
+			       
+			        
 			    });
 			    
 			});
-						
+						 */
 
 		
 
