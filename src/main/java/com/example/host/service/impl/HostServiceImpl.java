@@ -180,4 +180,14 @@ public class HostServiceImpl implements HostService {
         return hostRepository.findById(roomId).orElse(null);
     }
 
+	@Override
+	public List<roomTableBean> findByHostId(Integer userId) {
+		return hostRepository.findByUserUserId(userId);
+	}
+	
+	@Override
+    public List<roomTableBean> findByHostIdAndStatusNot(Integer hostId, String status) {
+        return hostRepository.findByUserUserIdAndStatusNot(hostId, status);
+    }
+
 }
