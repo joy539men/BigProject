@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,6 +49,12 @@ public class roomTableBean {
 	private String   lon;
 	private String   lat;
 	private String   filePath;
+	private String   images;
+	private LocalDate openDate;
+	private String   style;
+	private String   name;
+	
+	
 	
 	public MultipartFile getMultipartFile() {
 		return multipartFile;
@@ -296,8 +303,16 @@ public class roomTableBean {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-
 	
+
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
 	public void deleteRoomByUser() {
 		this.status = "已刪除";
 	}
@@ -311,6 +326,31 @@ public class roomTableBean {
                 // Add other properties as needed
                 '}';
     }
+
 	
+	public LocalDate getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(LocalDate openDate) {
+		this.openDate = openDate;
+	}
+	
+	
+	public String  getStyle() {
+		return style;
+	}
+
+	public void setStyle(String  style) {
+		this.style = style;
+	}
+	
+	public String  getName() {
+		return name;
+	}
+
+	public void setName(String  name) {
+		this.name = name;
+	}
 	
 }
