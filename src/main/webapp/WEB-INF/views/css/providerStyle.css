@@ -45,6 +45,13 @@ nav a {
     width: 20rem;
 }
 
+.cardTopRoom {
+	width: 100%; 
+  	height: 50px; 
+  	object-fit: cover; 
+  	border: 1px solid red;
+}
+
 .housetypeRadio {
     width: 75%;
     height: 150px;

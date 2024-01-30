@@ -1,6 +1,7 @@
 package com.example.backstage.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -47,11 +48,29 @@ public class QureyAccountController_backstage {
 	}
 	
 	@GetMapping("/sendEmail/{id}")
-	public  String sendEmail(@PathVariable Integer id){
+	public  String sendEmail(@PathVariable Integer id,Model model){
+		userBean userBean = null;
+		Optional<userBean> optional = userService.findById(id);
+		if (optional.isPresent()) {
+			userBean = optional.get();
+			userBean.setStatus("禁止使用");
+			userService.save(userBean);
+			System.out.println(userBean);
+		}
 		String userEmail = userService.getEmailByUserId(id);
 		String subject = "我是標題主旨";
 		String content = "這裡是內容";
 		mailService.sendEmail(userEmail, subject, content);
 		return "redirect:/account";
 	}
+	
+//	   @GetMapping("/backstage/login")
+//	    public String login(HttpServletRequest request, Model model) {
+//	        // 模拟用户登录，将用户信息存储在HttpServletRequest中
+//	        userBean user = new userBean();
+//	        user.setAccount("exampleUser");
+//	        request.setAttribute("user", user);
+//
+//	        return "redirect:/roomTableGallery";
+//	    }
 }

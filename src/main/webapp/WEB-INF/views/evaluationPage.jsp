@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
     <meta name="description" content="This is meta description" />
     <meta name="author" content="Themefisher" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.png" type="../image/x-icon" />
 
     <!-- theme meta -->
     <meta name="theme-name" content="wallet" />
@@ -36,19 +37,23 @@
     />
 
     <!-- # CSS Plugins -->
-    <link rel="stylesheet" href="plugins/slick/slick.css" />
+<!--     <link rel="stylesheet" href="plugins/slick/slick.css" />
     <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css" />
     <link rel="stylesheet" href="plugins/font-awesome/brands.css" />
-    <link rel="stylesheet" href="plugins/font-awesome/solid.css" />
+    <link rel="stylesheet" href="plugins/font-awesome/solid.css" /> -->
 
     <!-- # Main Style Sheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    
 
     <!-- # Bootstrap -->
-    <link
+   <!--  <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
+    /> -->
+    
+    <!-- Option 1: Include in HTML -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
     <style>
       .star_size {
@@ -68,7 +73,7 @@
               decoding="async"
               class="img-fluid"
               width="120"
-              src="images/logo.png"
+              src="../images/logo.png"
               alt="CouchSurfing"
             />
           </a>
@@ -139,10 +144,10 @@
             <div>
               <!-- account btn -->
               <li class="dropdown">
-                <a class="p-3 border rounded-pill"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i><img style="width: 50px" src="images/logo.png" alt=""/></a>
+                <a class="p-3 border rounded-pill"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i><img style="width: 50px" src="../images/logo.png" alt=""/></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-item">
-                    <img class="img-fluid" style="width: 50px" src="images/logo.png" alt=""/>
+                    <img class="img-fluid" style="width: 50px" src="../images/logo.png" alt="???"/>
                     <h4>Krist</h4>
                   </li>
                   <li class="dropdown-item">
@@ -177,32 +182,146 @@
     <section class="section pt-0">
       <div class="container">
         <div class="row justify-content-center">
+        
+  
+        
+        
+        <%-- <form id="reviewForm" method = "POST">
           <h1 class="text-center">留下評價</h1>
           <div class="border rounded h-75 shadow-sm m-5 p-5">
-            <div class="text-center">
-              <i class="bi bi-star-fill text-primary star_size me-2"></i>
-			  <i class="bi bi-star-fill text-primary star_size  me-2"></i>
-			  <i class="bi bi-star-fill text-primary star_size  me-2"></i>
-			  <i class="bi bi-star-fill star_size  me-2"></i>
-			  <i class="bi bi-star-fill star_size  me-2"></i>
+            <div class="text-center star-rating" id = "star-rating">
+             <input type="hidden" id="starRatingInput" name="rating" value="0">
+              <i class="bi bi-star-fill  star_size me-2"  onclick="rateStar(1)"></i>
+			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(2)"></i>
+			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(3)"></i>
+			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(4)"></i>
+			  <i class="bi bi-star-fill star_size  me-2" onclick="rateStar(5)"></i>
             </div>
 
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">請輸入您的住宿體驗</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+				<textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
 			  </div>
           </div>
+          <button type="submit">提 交 評 論</button>
+          </form> --%>
+          
+          
+          <section>
+          	
+          	<form id="reviewForm" method="post" action="/pillowSurfing/evaluateRoom">
+    			<h1 class="text-center">留下評價</h1>
+   				 <div class="border rounded h-75 shadow-sm m-5 p-5">
+       			 	<div class="text-center star-rating" id="star-rating">
+            			<input type="hidden" id="starRatingInput" name="rating" value="0">
+            			
+            			<i class="bi bi-star-fill  star_size me-2" onclick="rateStar(1)"></i>
+            			<i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(2)"></i>
+            			<i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(3)"></i>
+            			<i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(4)"></i>
+            			<i class="bi bi-star-fill star_size  me-2" onclick="rateStar(5)"></i>
+        			</div>
+        			<div class="form-group">
+            			<label for="exampleFormControlTextarea1">請輸入您的住宿體驗</label>
+            			<textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
+        			</div>
+    			</div>
+    	
+    			<button class="btn btn-outline-primary ms-5" type="submit">提 交 評 論</button>
+			</form>
+          	
+          
+          </section>
         </div>
       </div>
     </section>
 
-    <!-- # JS Plugins -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    
 
     <!-- Main Script -->
-    <script src="js/script.js"></script>
+    <!-- <script src="../js/script.js"></script> -->
+    
+    <script>
+		var selectedStars = 0;
+
+		function rateStar(star){
+			selectedStars = star;
+			highlightStars(star);
+
+			 // 将评分值设置到隐藏输入框中
+		    document.getElementById("starRatingInput").value = selectedStars;
+
+			}
+
+		function highlightStars(star){
+			const starElements = document.querySelectorAll('.star-rating i');
+
+			starElements.forEach((starElement, index) => {
+				if(index < star) {
+					starElement.classList.add("text-primary");
+				}else {
+					starElement.classList.remove("text-primary");
+				}
+
+				})
+				
+			
+			}
+
+
+	
+			
+			/* $(document).ready(function(){
+
+				
+				
+			    $("#reviewForm").submit(function(event) {
+			        // 檢查是否已選擇星級
+			        if (selectedStars === 0) {
+			            alert("請選擇星級");
+			            event.preventDefault();  // 阻止表單的默認提交行為
+			            return;
+			        }
+
+			        // 獲取星級和評論
+			        var starRating = selectedStars;
+			        var accommodationExperience = $("#exampleFormControlTextarea1").val();
+
+			        // 使用 jQuery Ajax 方法發送 POST 請求
+			        $.ajax({
+			            type: 'POST',
+			            url: '/pillowSurfing/',
+			            contentType: 'application/json',
+			            data: JSON.stringify({
+			                rating: starRating.toString(), // 將星級轉換為字串形式
+			                comment: accommodationExperience.toString()
+			            }),
+			            complete: function(xhr, textStatus) {
+			                console.log("Request completed with status: " + textStatus);
+			            },
+			            success: function(data) {
+			                // 判斷是否有重定向
+			                console.log(data);
+			                window.location.href = "/pillowSufring";
+			            },
+			            error: function(error) {
+			            	console.log("Error", errorThrown);
+			                console.log("Server response: " + xhr.responseText);
+			                window.location.href = "/pillowSurfing/";
+			            }
+			        });
+			       
+			        
+			    });
+			    
+			});
+						 */
+
+		
+
+    </script>
   </body>
 </html>

@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.backstage.service.UserService_backstage;
 import com.example.demo.model.userBean;
@@ -42,7 +42,7 @@ public class UserEditController_backstage {
 		return view;
 	}
 	//編輯完成表單接收
-	@PutMapping("/account_edit/UserUpdate/{id}")
+	@PostMapping("/account_edit/UserUpdate/{id}")
 	public String updateForm(@ModelAttribute userBean userBean,
 			BindingResult result
 			) {
@@ -60,7 +60,7 @@ public class UserEditController_backstage {
 		if (optional.isPresent()) {
 			userBean = optional.get();
 			model.addAttribute("user_id", userBean.getUserId());
-			System.out.println(userBean);
+//			System.out.println(userBean);
 		}
 		return userBean;
 	}

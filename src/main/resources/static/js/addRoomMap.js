@@ -1,7 +1,12 @@
 $(document).ready(function () {
     var map;
+    var initLat = 23.97565 ;
+    var initLng = 120.9738819 ;
+	var lat = $("#lat").val();
+    var lng = $("#lon").val();
+    
 
-    // 初始化地图
+    // 初始化地图 
     function initializeMap() {
         var mapOptions = {
             center: { lat: 23.97565, lng: 120.9738819 }, // 初始地图中心坐标

@@ -21,6 +21,8 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "roomTable")
 public class roomTableBean {
@@ -302,6 +304,7 @@ public class roomTableBean {
 		this.filePath = filePath;
 	}
 	
+
 	public String getImages() {
 		return images;
 	}
@@ -309,6 +312,21 @@ public class roomTableBean {
 	public void setImages(String images) {
 		this.images = images;
 	}
+
+	public void deleteRoomByUser() {
+		this.status = "已刪除";
+	}
+	
+	@Override
+	public String toString() {
+        return "roomTableBean{" +
+                "roomId=" + roomId +
+                ", title='" + title + '\'' +
+                ", anemities=" + amenities +
+                // Add other properties as needed
+                '}';
+    }
+
 	
 	public LocalDate getOpenDate() {
 		return openDate;

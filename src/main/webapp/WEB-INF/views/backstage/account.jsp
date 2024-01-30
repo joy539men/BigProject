@@ -8,30 +8,28 @@
 
 <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css' />" />
 <link rel="stylesheet" href="<c:url value='/css/back.css'  />" />
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/map.css">
 </head>
 <script>
-	$(document).ready(function() {
+$(document).ready(function () {
 
-		$('#tableArray').DataTable({
-			searching : false,
-			language : {
-				url : '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
-			},
-			scrollCollapse : true,
-			scrollY : '40vh',
-			scrollX : true,
-
-		})
-	});
+	$('#tableArray').DataTable({
+		searching: false,
+		language: {
+			url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+		},
+		scrollY: '55vh',
+	})
+});
 </script>
 <body>
 
@@ -39,7 +37,6 @@
 
 	<!-- 主要内容 -->
 	<div id="main">
-		<div class="container">
 			<div class="row">
 				<div class="col-5">
 					<span class="fs-1">後台管理系統</span> <span class="fs-2"> <i
@@ -51,7 +48,7 @@
 					<span id="adminlogout">登出</span>
 				</div>
 			</div>
-			<div class="row my-4">
+			<div class="row mt-4">
 				<div class="col-5">
 					<form id="searchForm" class="d-flex"
 						action="${pageContext.request.contextPath}/backend/search"
@@ -64,11 +61,27 @@
 				</div>
 				<div class="col-5"></div>
 				<div class="col-2"></div>
-			</div>
 		</div>
 
 		<!-- 資料表格 -->
 		<div id="tableArea">
+			<a id="openPopup">Map</a>
+			<!-- 背景層 -->
+			<div id="overlay"></div>
+			<div id="popup">
+				<!-- 這裡放置彈出框的内容 -->
+				<div id="popWindow">
+					<div id="disRange">
+						<label for="dis">請選擇範圍距離 : </label> <input type="number"
+							name="dis" id="dis" min="1" step="1"/>&nbsp;<span>公里</span>
+						<button type="button" onclick="updateMarkers()">更新距離</button>
+						<button id="goToUserLocation">回到您的位置</button>
+						<span id="distanceDisplay">目前距離範圍：未選擇</span>
+					</div>
+					<div id="map"></div>
+				</div>
+			</div>
+			<div id="jsonData"></div>
 			<table class=" display  nowrap" id="tableArray" style="width: 100%">
 				<thead>
 					<tr>
@@ -95,13 +108,17 @@
 							<td><a
 								href='<c:url value="/account_edit/${user.userId }" />'><i
 									class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href='<c:url value="/sendEmail/${user.userId }" />'><i class="bi bi-dash-circle-fill"></i></a></td>
+								href='#' onclick="sendEmail('${user.userId }')"><i
+									class="bi bi-dash-circle-fill"></i></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	<script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

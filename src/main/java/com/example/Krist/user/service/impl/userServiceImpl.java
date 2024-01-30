@@ -102,5 +102,17 @@ public class userServiceImpl implements userService{
 		return userRepository.findByUserNameAndPassword(account, password);
 	}
 
+	@Override
+	public Boolean existsByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return userRepository.existsByPhone(phone);
+	}
+	
+	@Override
+    public boolean existsEmail(String email) {
+		// TODO Auto-generated method stub
+        return userRepository.existsByEmail(email);
+    }
 
+	
 }

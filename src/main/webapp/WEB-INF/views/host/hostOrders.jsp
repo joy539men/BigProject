@@ -49,11 +49,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item"> <a class="nav-link" href="#">訂單管理</a>
+            <li class="nav-item"> <a class="nav-link" href="<c:url value='/hostOrders' />">訂單管理</a>
             </li>
             <li class="nav-item "> <a class="nav-link" href="./calendar.html">日曆</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="#">房源管理</a>
+            <li class="nav-item "> <a class="nav-link" href="<c:url value='/hostRooms' />">房源管理</a>
             </li>
             <li class="nav-item "> <a class="nav-link" href="#">收件匣</a>
             </li>
@@ -64,7 +64,7 @@
                 </li>
                 <li><a class="dropdown-item " href="#">收入分析</a>
                 </li>
-                <li><a class="dropdown-item " href="#">建立新房源</a>
+                <li><a class="dropdown-item " href="<c:url value='/addRoom' />">建立新房源</a>
                 </li>
               </ul>
             </li>
@@ -88,18 +88,12 @@
   </header>
   <!-- /end of navigation -->
 		
-		<c:forEach var="booking" items="${bookings}">
-			<p>${booking.bookingId}</p>
-		</c:forEach>
-			
-
-
   <section class="w-75 mx-auto">
     <div id="statusFilter" class="w-75 mx-auto mt-5">
-      <a >
-        <span id="unacceptedOrder" class="selectBtn">待審核</span>
+      <a href="<c:url value='/hostOrders' />">
+        <span id="unacceptedOrder" class="selectBtn">待確認</span>
       </a>|
-      <a href="./order_accep.html">
+      <a href="<c:url value='/hostOrdersAccept' />">    
         <span id="acceptedOrder" class="unselectBtn">已成立</span>
       </a>
     </div>
@@ -121,48 +115,44 @@
           </div>
         </div>
       </div> <!-- end of orderA -->
+		
+	<c:forEach var="booking" items="${bookings}">
+	     <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
+	        <div id="orderDate" class="ms-3 mt-3"><span>${booking.bookingTime}</span></div>
+	        <div id="orderDetail" class="row mx-3 align-items-center h-100">
+	          <div id="detail" class="col-6 align-content-center flex-wrap">
+	            <div id="houseName" class="houseName">${booking.roomTable.title}</div>
+	            <div id="housedetail" class="pt-1">
+	              <span id="guest" >${booking.guest}位入住,</span>
+	              <span id="housedetail2">${booking.checkinDate}  - ${booking.checkoutDate}</span>
+	            </div>
+	          </div>
+	          <div id="price" class="col-3 text-start orderPrice">$ ${booking.totalPrice} TWD</div>
+	          <div id="statusBtn" class="col-3 text-center">
+	          	<div style="display:inline-block">
+	          		<form action="<c:url value='/acceptBooking' />" method="post">
+	        			<input type="hidden" name="bookingId" value="${booking.bookingId}">
+	       				<button type="submit" class="btn btn-primary btn-sm me-2">接受</button>
+   		 			</form>
+	          	</div>
+	          	<div style="display:inline-block">
+	          		<form action="<c:url value='/rejectBooking' />" method="post">
+		        		<input type="hidden" name="bookingId" value="${booking.bookingId}">
+		       			 <button type="submit" class="btn btn-primary btn-sm me-2">拒絕</button>
+   		 			</form>
+	          	</div>
+	          </div><!-- end of statusBtn -->
+	        </div>
+	      </div> <!-- end of orderA --> 
+	</c:forEach>
+	
 
-      <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
-        <div id="orderDate" class="ms-3 mt-3"><span>Dec 19, 2023</span></div>
-        <div id="orderDetail" class="row mx-3 align-items-center h-100">
-          <div id="detail" class="col-6 align-content-center flex-wrap">
-            <div id="houseName" class="houseName">獨棟小屋 台中市大業里</div>
-            <div id="housedetail" class="pt-1">
-              <span id="guest" >2位入住,</span>
-              <span id="housedetail2">Dec 19, 2023 - Dec 21, 2023</span>
-            </div>
-          </div>
-          <div id="price" class="col-3 text-start orderPrice">$ 3,900 TWD</div>
-          <div id="acceptBtn" class="col-3 text-center">
-            <a class="btn btn-primary btn-sm me-2">接受</a>
-            <a class="btn btn-primary btn-sm">拒絕</a>
-          </div>
-        </div>
-      </div> <!-- end of orderA -->
-
-      <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
-        <div id="orderDate" class="ms-3 mt-3"><span>Dec 19, 2023</span></div>
-        <div id="orderDetail" class="row mx-3 align-items-center h-100">
-          <div id="detail" class="col-6 align-content-center flex-wrap">
-            <div id="houseName" class="houseName">獨棟小屋 台中市大業里</div>
-            <div id="housedetail" class="pt-1">
-              <span id="guest" >2位入住,</span>
-              <span id="housedetail2">Dec 19, 2023 - Dec 21, 2023</span>
-            </div>
-          </div>
-          <div id="price" class="col-3 text-start orderPrice">$ 3,900 TWD</div>
-          <div id="acceptBtn" class="col-3 text-center">
-            <a class="btn btn-primary btn-sm me-2">接受</a>
-            <a class="btn btn-primary btn-sm">拒絕</a>
-          </div>
-        </div>
-      </div> <!-- end of orderA -->
       
     </div>
-    <div id="changePage" class="text-center">  
-      <a><span>&#060;</span></a>  <!--  <  -->
-      <a><span>&#062;</span></a>  <!--  >  -->
-    </div>
+<!--     <div id="changePage" class="text-center">   -->
+<!--       <a><span>&#060;</span></a>   <  -->
+<!--       <a><span>&#062;</span></a>   >  -->
+<!--     </div> -->
 
   </section>
 
@@ -181,15 +171,17 @@
     
     $(document).ready(function(){
       
-      $("#acceptedOrder").click(function(){
-          $(this).removeClass("unselectBtn").addClass("selectBtn");
-          $("#unacceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
-      });
-
-      $("#unacceptedOrder").click(function(){
-          $(this).removeClass("unselectBtn").addClass("selectBtn");
-          $("#acceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
-      });
+//     	var pathValue = "${requestPath}";
+// //     	console.log(pathValue);
+    	
+//     	if (pathValue.includes("Accept")) {
+//     		$("#acceptedOrder").removeClass("unselectBtn").addClass("selectBtn");
+//     		$("#unacceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
+//     	  } else {
+//     		$("#acceptedOrder").removeClass("selectBtn").addClass("unselectBtn");
+//       		$("#unacceptedOrder").removeClass("unselectBtn").addClass("selectBtn");
+//     	  }
+     
 
 
     });

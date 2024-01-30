@@ -1,5 +1,6 @@
 package com.example.Krist.roomTable.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.roomTable.dao.roomTableRepository;
+import com.example.backstage.dao.RoomRepository_backstage;
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
 import com.example.demo.model.userBean;
 
@@ -22,6 +26,8 @@ public class roomController {
 	@Autowired
 	private roomTableRepository roomTableRepository;
 
+	@Autowired
+	private reviewRepository reviewRepository;
 
 	
 	
@@ -36,20 +42,29 @@ public class roomController {
 	
 	
 	@GetMapping("/getRoomDetailsAndBook/{roomId}")
-	public String getRoomDetailsAndBook(@PathVariable Integer roomId,Model model, bookingBean bookingBean, HttpSession session) {
+	public String getRoomDetailsAndBook(@PathVariable Integer roomId,Model model, bookingBean bookingBean,reviewBean reviewBean , HttpSession session) {
 	    Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
+	    roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
+	    List<reviewBean> reviewRoom = reviewRepository.findAllByRoomTable(room);
+	    
+	    
 	    
 	    // 設定 session 儲存在網頁當中
 	    session.setAttribute("selectedRoomId", roomId);
-	    roomTableBean room = roomOptional.orElse(null);
+	    roomTableBean singleRoom = roomOptional.orElse(null);
 	    
 	    if(room != null) {
 	    	
 	    	// 這一行是透過 room 不為空去搜尋是否有 user 的欄位出現
 	    	userBean user = room.getUser();
 	    	
+	   
+	   
+	    	
 	    	model.addAttribute("user",user);
-		    model.addAttribute("singleRoom", room);
+		    model.addAttribute("singleRoom", singleRoom);
+		    model.addAttribute("reviews", reviewRoom);
+		   
 		    
 		    
 	    }
