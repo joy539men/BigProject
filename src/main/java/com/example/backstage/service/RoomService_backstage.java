@@ -14,5 +14,7 @@ public interface RoomService_backstage {
 
 	Optional<roomTableBean> findById(Integer uid);
 	
-	List<Map<String,Object>> roomMap();
+	List<Map<String,Object>> roomMap(Double lat, Double lon,Double dis);
+	
+	
 }

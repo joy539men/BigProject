@@ -1,0 +1,30 @@
+#popWindow {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+	height: 90%;
+	margin-top: 15px;
+}
+
+#disRange {
+	text-align: center;
+}
+
+label,span {
+	font-size: large;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#dis {
+	display: inline-block;
+	width: 70px;
+	vertical-align: middle;
+}
+
+button{
+	border-radius: 5px;
+}

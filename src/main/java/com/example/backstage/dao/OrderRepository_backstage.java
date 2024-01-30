@@ -1,6 +1,5 @@
 package com.example.backstage.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +12,7 @@ public interface OrderRepository_backstage extends JpaRepository<bookingBean,Int
 	
 	@Query(value="SELECT * FROM booking WHERE checkin_date >= :checkinDate AND checkout_date <= :checkoutDate", nativeQuery = true)
 	List<bookingBean> searchDate(@Param("checkinDate")String checkinDate,@Param("checkoutDate") String checkoutDate);
+
+	List<bookingBean> findByRoomTableRoomId(Integer roomId);
 	
 }

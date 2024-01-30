@@ -47,9 +47,10 @@ public class RoomServiceImpl_backstage implements RoomService_backstage {
 	}
 
 	@Override
-	public List<Map<String,Object>> roomMap() {
-		List<Map<String,Object>> roomMap = roomRepository.roomMap();
+	public List<Map<String,Object>> roomMap(Double lat, Double lon,Double dis) {
+		List<Map<String,Object>> roomMap = roomRepository.roomMap(lat,lon,dis);
 		return roomMap;
 	}
+
 
 }

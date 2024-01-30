@@ -8,15 +8,16 @@
 
 <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css' />" />
 <link rel="stylesheet" href="<c:url value='/css/back.css'  />" />
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/map.css">
 </head>
 <script>
 	$(document).ready(function() {
@@ -32,12 +33,6 @@
 
 		})
 	});
-	
-	
-   
-    
-   
-
 </script>
 <body>
 
@@ -57,7 +52,7 @@
 					<span id="adminlogout">登出</span>
 				</div>
 			</div>
-			<div class="row my-4">
+			<div class="row mt-4">
 				<div class="col-5">
 					<form id="searchForm" class="d-flex"
 						action="${pageContext.request.contextPath}/backend/search"
@@ -75,42 +70,60 @@
 
 		<!-- 資料表格 -->
 		<div id="tableArea">
-			<a href='<c:url value="roomMap" />'>Map</a>
+			<a id="openPopup">Map</a>
+			<!-- 背景層 -->
+			<div id="overlay"></div>
+			<div id="popup">
+				<!-- 這裡放置彈出框的内容 -->
+				<div id="popWindow">
+					<div id="disRange">
+						<label for="dis">請選擇範圍距離 : </label> <input type="number"
+							name="dis" id="dis" min="1" step="1"/>&nbsp;<span>公里</span>
+						<button type="button" onclick="updateMarkers()">更新距離</button>
+						<button id="goToUserLocation">回到您的位置</button>
+						<span id="distanceDisplay">目前距離範圍：未選擇</span>
+					</div>
+					<div id="map"></div>
+				</div>
+			</div>
 			<div id="jsonData"></div>
-				<table class=" display  nowrap" id="tableArray" style="width: 100%">
-					<thead>
+			<table class=" display  nowrap" id="tableArray" style="width: 100%">
+				<thead>
+					<tr>
+						<th>帳號 ID</th>
+						<th>帳號</th>
+						<th>建立帳號時間</th>
+						<th>帳號身分</th>
+						<th>帳號狀態</th>
+						<th></th>
+						<th style="width: 100px;">編輯 / 禁用</th>
+					</tr>
+				</thead>
+				<tbody id="result">
+					<c:forEach items="${users}" var="user">
 						<tr>
-							<th>帳號 ID</th>
-							<th>帳號</th>
-							<th>建立帳號時間</th>
-							<th>帳號身分</th>
-							<th>帳號狀態</th>
-							<th></th>
-							<th style="width: 100px;">編輯 / 禁用</th>
+							<th>${user.userId }</th>
+							<td>${user.account }</td>
+							<td>${user.registrationTime}</td>
+							<td>${user.identity }</td>
+							<td>${user.status }</td>
+							<td><a
+								href='<c:url value="/account_info/${user.userId }" />'
+								id="detial">詳細資料</a></td>
+							<td><a
+								href='<c:url value="/account_edit/${user.userId }" />'><i
+									class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+								href='#' onclick="sendEmail('${user.userId }')"><i
+									class="bi bi-dash-circle-fill"></i></a></td>
 						</tr>
-					</thead>
-					<tbody id="result">
-						<c:forEach items="${users}" var="user">
-							<tr>
-								<th>${user.userId }</th>
-								<td>${user.account }</td>
-								<td>${user.registrationTime}</td>
-								<td>${user.identity }</td>
-								<td>${user.status }</td>
-								<td><a
-									href='<c:url value="/account_info/${user.userId }" />'
-									id="detial">詳細資料</a></td>
-								<td><a
-									href='<c:url value="/account_edit/${user.userId }" />'><i
-										class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-									href='<c:url value="/sendEmail/${user.userId }" />'><i
-										class="bi bi-dash-circle-fill"></i></a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
+	<script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

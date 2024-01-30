@@ -1,10 +1,10 @@
 package com.example.backstage.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.roomTableBean;
 
 public interface OrderService_backstage {
 	
@@ -17,4 +17,8 @@ public interface OrderService_backstage {
 	void deleteById(Integer id);
 	
 	List<bookingBean> searchDate(String checkingDate, String checkoutDate);
+
+	List<bookingBean> findByRoomTableRoomId(Integer roomId);
+	
+	boolean hasOrderDuringCurrentDate(roomTableBean room);
 }

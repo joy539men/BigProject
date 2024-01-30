@@ -56,7 +56,6 @@ nav>img {
 	border-radius: 50px;
 	font-size: 25px;
 	padding: 5px 10px;
-
 }
 
 #main {
@@ -68,15 +67,16 @@ nav>img {
 	width: 300px;
 }
 
-
 #tableArea {
 	border: 1px solid;
 	border-radius: 10px;
-/* 	margin-top: 30px; */
 	padding: 20px;
 }
-
-
+#roomBtn {
+	border-radius: 5px;
+	margin-top: 5px;
+	border-style: dotted;
+}
 /* 詳細資料按鈕 */
 #detial {
 	text-decoration: none;
@@ -86,7 +86,6 @@ nav>img {
 	font-size: 15px;
 	padding: 2px 5px;
 	color: black;
-	
 }
 
 #detial:hover {
@@ -95,10 +94,7 @@ nav>img {
 }
 
 /* 資料呈現置中 */
-tbody td,
-tbody th,
-thead th,
-tfoot td {
+tbody td, tbody th, thead th, tfoot td {
 	vertical-align: middle;
 	text-align: center;
 }
@@ -116,8 +112,7 @@ tfoot td {
 	font-size: 20px
 }
 
-tfoot a,
-tfoot input {
+tfoot a, tfoot input {
 	border-radius: 10px;
 	background-color: #05aeadff;
 	color: rgb(230, 237, 229);
@@ -130,12 +125,14 @@ tfoot input {
 	text-decoration: none;
 }
 
-tfoot a:hover,
-tfoot input:hover {
+tfoot a:hover, tfoot input:hover {
 	background-color: #006bafff;
 	color: #d5dcd4ff;
 }
-
+ /* 阻止內容自動換行 */
+ .no-wrap {
+	white-space: nowrap;
+}
 .container1 {
 	margin: 110px auto;
 	width: 65%;
@@ -167,4 +164,32 @@ table input {
 	border-radius: 5px;
 	padding: 1px 10px;
 	width: 40%;
+}
+
+/* 背景層樣式 */
+#overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+	filter: blur(1px); /* 模糊效果*/
+	z-index: 2; /* 位於其他元素上方 */
+}
+
+/* 彈出框 */
+#popup {
+	display: none;
+	position: fixed; 
+	top: 50%;
+	left: 50%;
+	width:80%;
+	height:90%;
+	transform: translate(-50%, -50%);/*  將彈出框的中心定位在屏幕中心 */
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	z-index: 3; /* 位於背景層上方 */
 }

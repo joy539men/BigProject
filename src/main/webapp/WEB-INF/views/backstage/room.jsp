@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%><%@ taglib
-	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%@ taglib
+	prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html lang="en">
 
 <head>
@@ -10,18 +11,26 @@
 
 <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css' />" />
 <link rel="stylesheet" href="<c:url value='/css/back.css'  />" />
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </head>
 <script>
-	$(document).ready(function(){
-// 		<c:forEach var='room' items='${rooms}'>
-// 		var selectStatus = "${room.status}"
-// 		$("selectStatus").val(selectStatus)
-// 		console.log(selectStatus)
-// 		</c:forEach>
-	})
+	$(document).ready(function() {
+
+		$('#tableArray').DataTable({
+			searching : false,
+			language : {
+				url : '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+			},
+			scrollY : '40vh',
+		})
+	});
 </script>
 <body>
 
@@ -41,7 +50,7 @@
 					<span id="adminlogout">登出</span>
 				</div>
 			</div>
-			<div class="row my-4">
+			<div class="row mt-4">
 				<div class="col">
 					<form class="d-flex">
 						<input type="search" id="search" placeholder="搜尋">
@@ -54,52 +63,57 @@
 				<div class="col"></div>
 			</div>
 		</div>
-		<hr />
 		<!-- 資料表格 -->
 		<div id="tableArea">
-<%-- 			<form:form action="/room/edit/${room.roomId }" method="POST" --%>
-<%-- 				modelAttribute="roomBean"> --%>
-				<table class="table table-hover">
-					<thead>
+			<table class="display " id="tableArray" style="width: 100%">
+				<thead>
+					<tr>
+						<th class="no-wrap">房間 ID</th>
+						<th>房間名稱</th>
+						<th class="no-wrap">房間擁有者帳號</th>
+						<th>房間地址</th>
+						<th class="no-wrap">價格</th>
+						<th>房間目前狀態</th>
+						<th></th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var='room' items='${rooms}'>
+
 						<tr>
-							<th>房間 ID</th>
-							<th>房間名稱</th>
-							<th>房間擁有者帳號</th>
-							<th>房間地址</th>
-							<th>價格</th>
-							<th>房間目前狀態</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var='room' items='${rooms}'>
-							<tr>
-								<th>${room.roomId }</th>
-								<td>${room.title }</td>
-								<td>${room.user.account}</td>
-								<td>${room.address }</td>
-								<td>${room.price }</td>
-								<td><select id="selectStatus" name="status">
+							<th>${room.roomId }</th>
+							<td>${room.title }</td>
+							<td>${room.user.account}</td>
+							<td>${room.address }</td>
+							<td  class="no-wrap">${room.price }</td>
+							<td  class="no-wrap">
+								<form action="<c:url value='/updateRoomStatus' />" method="POST">
+									<input type="hidden" name="roomIds" value="${room.roomId }">
+									<select id="selectStatus" name="status">
 										<option value="未開放" ${room.status == "未開放" ? "selected" : ""}>未開放</option>
 										<option value="可使用" ${room.status == "可使用" ? "selected" : ""}>可使用</option>
-										<option value="使用中" ${room.status == "使用中" ? "selected" : "" } >使用中</option>
-										<option value="待審核" ${room.status == "待審核" ? "selected" : "" } >待審核</option>
-										<option value="禁止使用" ${room.status == "禁止使用" ? "selected" : "" }>禁止使用</option>
-										<option value="未開放" ${room.status == "未開放" ? "selected" : ""}>未開放</option>
-<!-- 										<option value="1" >可使用</option> -->
-<!-- 										<option value="2" >使用中</option> -->
-<!-- 										<option value="3"  >待審核</option> -->
-<!-- 										<option value="4" >禁止使用</option> -->
-										</select></td>
-								<td><a href='<c:url value="/room_info/${room.roomId }" />'
-									id="detial">詳細資訊</a></td>
+										<option value="使用中" ${room.status == "使用中" ? "selected" : "" }>使用中</option>
+										<option value="待審核" ${room.status == "待審核" ? "selected" : "" }>待審核</option>
+										<option value="禁止使用"
+											${room.status == "禁止使用" ? "selected" : "" }>禁止使用</option>
+									</select><br><button type="submit" id="roomBtn">修改房間狀態</button></form> 
+								<%-- 																			<form:option value="未開放" >未開放</form:option> --%>
+								<%-- 																			<form:option value="可使用" >可使用</form:option> --%>
+								<%-- 																			<form:option value="使用中" >使用中</form:option> --%>
+								<%-- 																			<form:option value="待審核"  >待審核</form:option> --%>
+								<%-- 																			<form:option value="禁止使用" >禁止使用</form:option> --%>
+								<!-- 							</select></td> -->
+							<td class="no-wrap"><a href='<c:url value="/room_info/${room.roomId }" />'
+								id="detial">詳細資訊</a></td>
+							
+						</tr>
 
-							</tr>
-						</c:forEach>
+					</c:forEach>
 
-					</tbody>
-				</table>
-<%-- 			</form:form> --%>
+				</tbody>
+			</table>
+
 		</div>
 	</div>
 
