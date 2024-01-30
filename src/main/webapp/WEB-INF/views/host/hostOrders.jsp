@@ -91,7 +91,7 @@
   <section class="w-75 mx-auto">
     <div id="statusFilter" class="w-75 mx-auto mt-5">
       <a href="<c:url value='/hostOrders' />">
-        <span id="unacceptedOrder" class="selectBtn">待審核</span>
+        <span id="unacceptedOrder" class="selectBtn">待確認</span>
       </a>|
       <a href="<c:url value='/hostOrdersAccept' />">    
         <span id="acceptedOrder" class="unselectBtn">已成立</span>

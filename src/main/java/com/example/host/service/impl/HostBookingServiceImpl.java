@@ -50,5 +50,10 @@ public class HostBookingServiceImpl implements HostBookingService {
 	public List<bookingBean> findUncheckBookings() {
 		return repository.findByStatus("待確認");
 	}
+	
+	@Override
+	public List<bookingBean> findByHostAndStatus(Integer userId, String status) {
+        return repository.findByRoomTableUserUserIdAndStatus(userId, status);
+    }
 
 }
