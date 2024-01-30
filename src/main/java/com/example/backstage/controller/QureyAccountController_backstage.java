@@ -64,13 +64,13 @@ public class QureyAccountController_backstage {
 		return "redirect:/account";
 	}
 	
-	   @GetMapping("/backstage/login")
-	    public String login(HttpServletRequest request, Model model) {
-	        // 模拟用户登录，将用户信息存储在HttpServletRequest中
-	        userBean user = new userBean();
-	        user.setAccount("exampleUser");
-	        request.setAttribute("user", user);
-
-	        return "redirect:/roomTableGallery";
-	    }
+//	   @GetMapping("/backstage/login")
+//	    public String login(HttpServletRequest request, Model model) {
+//	        // 模拟用户登录，将用户信息存储在HttpServletRequest中
+//	        userBean user = new userBean();
+//	        user.setAccount("exampleUser");
+//	        request.setAttribute("user", user);
+//
+//	        return "redirect:/roomTableGallery";
+//	    }
 }
