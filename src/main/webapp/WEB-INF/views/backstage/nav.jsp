@@ -14,6 +14,6 @@
 			</ul>
 		</div>
 		<div>
-			<a href="" class="text-success" style="text-decoration: none;">返回首頁</a>
+			<a href="<c:url value="/" />" class="text-success" style="text-decoration: none;">返回首頁</a>
 		</div>
 	</nav>

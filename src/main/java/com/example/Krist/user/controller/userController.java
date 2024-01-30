@@ -44,9 +44,14 @@ public class userController {
 	public String login(@RequestParam String account, @RequestParam String password, Model model, HttpSession session) {
 		// 利用 Account 取得 user 的 userBean
 		userBean user = userService.findByAccount(account);
-
+		
 		// 驗證密碼和 userId 不為空值
 		if (user != null && PasswordHashing.verifyPassword(password, user.getPassword())) {
+			  // 驗證成功，判斷是否是管理者
+	        if ("admin123".equals(user.getAccount())) { 
+	            // 如果是管理者，将管理员信息存储到 session
+	            session.setAttribute("isAdmin", true);
+	        }
 			// 驗證成功，將 userId 存到 session 當中，記得加入 HttpSession
 			session.setAttribute("userId", user.getUserId());
 			return "indexLogout";
@@ -77,6 +82,7 @@ public class userController {
 	public String logout(HttpSession session) {
 		// 登出的時候，要註銷 session 然後將其跳轉到登入畫面
 		session.removeAttribute("userId");
+		session.removeAttribute("isAdmin");
 		return "redirect:/login";
 	}
 
