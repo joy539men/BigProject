@@ -294,7 +294,7 @@ button.switch-month:active {
 					<div class="border rounded me-3 shadow-sm">
 						<div class="row m-2 mt-1">
 							<div class="text-center col-5">
-								<img class="img-fluid w-50" src="images/logo.png" alt="" />
+								<img class="img-fluid w-50" src="../${user.filePath}" alt="${user.userName }" />
 							</div>
 							<div class="col-5 mt-3 me-auto">
 								<h6>房東：${user.userName }</h6>
