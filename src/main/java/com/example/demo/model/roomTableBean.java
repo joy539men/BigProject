@@ -298,6 +298,10 @@ public class roomTableBean {
 	}
 
 	
+	public void deleteRoomByUser() {
+		this.status = "已刪除";
+	}
+	
 	@Override
 	public String toString() {
         return "roomTableBean{" +

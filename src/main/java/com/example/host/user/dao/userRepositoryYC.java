@@ -1,4 +1,4 @@
-package com.example.Krist.user.dao;
+package com.example.host.user.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -6,7 +6,8 @@ import com.example.demo.model.userBean;
 
 
 
-public interface userRepository extends JpaRepository<userBean, Integer>{
+
+public interface userRepositoryYC extends JpaRepository<userBean, Integer>{
 //	Optional<userBean> findByUserName(String userName);
 	
 	userBean findByUserName(String userName);
@@ -16,9 +17,5 @@ public interface userRepository extends JpaRepository<userBean, Integer>{
 	userBean findByAccount(String account);
 	
 	userBean findByAccountAndPassword(String account, String password);
-	
-	Boolean existsByPhone(String phone);
-	
-	Boolean existsByEmail(String email);
 
 }

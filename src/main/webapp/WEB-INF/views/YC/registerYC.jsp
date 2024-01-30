@@ -38,7 +38,7 @@
 
     <!-- # Main Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
-
+	<link rel="stylesheet" href="<c:url value='/css/providerStyle.css' />"> 
 
 </head>
 
@@ -107,47 +107,40 @@
                 </div>
                 <div class="col-lg-4">
                     <!-- Registration Form -->
-					<c:url var='register' value='/register' />
-                	 <form:form method="post" modelAttribute="register" action="${ register}" onsubmit="return validateForm()">
+                     <c:url var='register' value='/registerYC' />
+                	 <form:form method="post" modelAttribute="register" action="${ register}" enctype="multipart/form-data">
                 	  <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center mb-4">會員註冊</h2>
+                                <div class="mb-3">
+                                    帳號
+                                    <form:input type="text" class="form-control" id="account" path="account"/>		
+    						 
+                                </div>
+                                <div class="mb-3">
+                                    密碼
+                                     <form:input type="password" class="form-control" id="password" path="password"/>
+                                </div>
                                 <div class="mb-3">
                                     姓名
                                     <form:input type="text" class="form-control" id="name" path="userName"/>
                                 </div>
                                 <div class="mb-3">
-                                    帳號
-                                    <form:input type="text" class="form-control" id="account" path="account"/>
-                                    <div id="accountError" class="text-danger"></div> 
-                                </div>
-                                <div class="mb-3">
-                                    密碼
-                                     <form:input type="password" class="form-control" id="password" path="password"/>
-                                     <div id="passwordError" class="text-danger"></div> 
-                                </div>
-                                <div class="mb-3">
-                                    確認密碼
-                                     <input type="password" class="form-control" id="password1" />
-                                </div>
-                                <div class="mb-3">
                                     電話
                                     <form:input type="tel" class="form-control" id="phone" path="phone"/>
-                                    <div id="phoneError" class="text-danger"></div> 
                                 </div>
                                 <div class="mb-3">
                                     Email
                                     <form:input type="email" class="form-control" id="email" path="email"/>
-                                    <div id="emailError" class="text-danger"></div>
                                 </div>
-								<div class="mb-3">
+                                <div class="mb-3">
                                     生日
                                     <form:input type="date" class="form-control" id="date" path="birthday"/>
                                 </div>
-                          <!--       <div class="mb-3">
-                                    <label for="profilePicture" class="form-label">上傳大頭貼</label>
-                                    <input type="file" class="form-control" id="profilePicture">
-                                </div> -->
+                                 <div class="mb-3">
+<!--                                     <label for="profilePicture" class="form-label">上傳大頭貼</label> -->
+                                    <form:input path="multipartFile" type="file" class="form-control" id="profilePicture" />
+                                </div>
                                 <div class="d-grid ">
                                     <button type="submit" class="btn btn-primary" style="font-size: 20px;">註冊</button>
                                 </div>
@@ -159,151 +152,33 @@
         </div>
 
     </section>
-    
+
+								
+                                
+
+
+
+
+
+
+
+    <!-- # JS Plugins -->
+    <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <!-- Main Script -->
     <script src="js/script.js"></script>
+    <script>
+    $(document).ready(function() {
+        
+    });
 
-	<script>
-
-		function validateAccount() {
-			var account = document.getElementById("account").value;
-			var accountPattern = /^[a-z0-9_]{6,12}$/;
-			var accountError = document.getElementById("accountError");
-
-			if (!accountPattern.test(account)) {
-				accountError.textContent = "帳號格式錯誤：6-12位，包含小寫字母、數字和_";
-				return false;
-			} else {
-				accountError.textContent = ''; // 清除錯誤信息
-			}
-			return true;
-		}
-
-		function validatePassword() {
-		    var password = document.getElementById("password").value;
-		    var confirmPassword = document.getElementById("password1").value;
-		    var passwordError = document.getElementById("passwordError");
-
-		    if (password !== confirmPassword) {
-		        passwordError.textContent = "密碼和確認密碼不匹配！";
-		        return false;
-		    }
-		    if (password.length < 5) {
-		        passwordError.textContent = "密碼長度不得低於5個字符！";
-		        return false;
-		    }
-		    passwordError.textContent = ''; // 清除錯誤信息
-		    return true;
-		}
-
-		function validatePhone() {
-		    var phone = document.getElementById("phone").value;
-		    var phonePattern = /^[0-9]{10}$/;
-		    var phoneError = document.getElementById("phoneError");
-
-		    if (!phonePattern.test(phone)) {
-		        phoneError.textContent = "電話號碼格式不正確！";
-		        return false;
-		    } else {
-		        phoneError.textContent = ''; // 清除錯誤信息
-		    }
-		    return true;
-		}
-
-		function validateEmail() {
-		    var email = document.getElementById("email").value;
-		    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-		    var emailError = document.getElementById("emailError");
-
-		    if (!emailPattern.test(email)) {
-		        emailError.textContent = "電子郵件格式不正確！";
-		        return false;
-		    } else {
-		        emailError.textContent = ''; // 清除錯誤信息
-		    }
-		    return true;
-		}
-
-		function validateForm() {
-			return validateAccount() && validatePassword() && validatePhone() && validateEmail();
-		}
-	</script>
-
-	<script>
-
-		function checkPhone() {
-			var phone = document.getElementById("phone").value;
-			var phonePattern = /^[0-9]{10}$/; // 或其他您需要的正則表達式
-			var phoneError = document.getElementById("phoneError");
-
-			if (!phonePattern.test(phone)) {
-				phoneError.textContent = "電話號碼格式不正確！";
-				return false;
-			} else {
-				// AJAX 請求檢查重複
-				$.ajax({
-					url : '/pillowSurfing/check-phone', // 確保這個 URL 是正確的
-					method : 'GET',
-					data : {
-						phone : phone
-					},
-					success : function(response) {
-						if (response.exists) {
-							phoneError.textContent = "電話號碼已被使用！";
-						} else {
-							phoneError.textContent = '';
-						}
-					}
-				});
-			}
-		}
-
-		// 將這些函數綁定到相應的輸入框事件
-		$(document).ready(function() {
-			$('#phone').blur(checkPhone);
-		});
-	</script>
-	
-	<script>
-	$(document).ready(function() {
-	    var emailError = document.getElementById("emailError");
-	    $('#email').blur(function() {
-	        var email = $(this).val();
-	        if (email) {
-	            $.ajax({
-	                url: '/pillowSurfing/check-email',
-	                method: 'GET',
-	                data: { email: email },
-	                success: function(response) {
-	                    if (response.exists) {
-	                        emailError.textContent = "電子郵件已被使用！";
-	                    } else {
-	                        emailError.textContent = ""; // 清除錯誤信息
-	                    }
-	                },
-	                error: function() {
-	                    emailError.textContent = "無法檢查電子郵件！";
-	                }
-	            });
-	        }
-	    });
-	});
-
-	</script>
-
-
-
-
-	<!-- # JS Plugins -->
-    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
     
-
-
+    
+    
+    </script>>
 
 </body>
 
