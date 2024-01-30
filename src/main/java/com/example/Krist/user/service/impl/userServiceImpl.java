@@ -1,10 +1,15 @@
 package com.example.Krist.user.service.impl;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Krist.user.dao.userRepository;
 import com.example.Krist.user.service.userService;
@@ -114,5 +119,136 @@ public class userServiceImpl implements userService{
         return userRepository.existsByEmail(email);
     }
 
+	@Override
+	public String saveFile(MultipartFile multipartFile) {
+    	//取得照片檔名以獲得檔案類型
+    			String originalFilename = multipartFile.getOriginalFilename();
+    			String ext = "";
+    			if (originalFilename.lastIndexOf(".") > -1) {
+    				ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+    			}
+    			
+    			//暫時性替帶userId
+    			DateFormat dateFormat = new SimpleDateFormat("ddMMHHmm");
+    		    Date date = new Date();
+    		    String userId = dateFormat.format(date);
+    		    String outputFileName = "userImage_" + userId + ext;
+    		    
+    		    
+//    			把照片從multipartFile存到本地資料夾
+    		    
+    		    String rootDirectory = "C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
+    			try {
+    				File imageFolder = new File(rootDirectory);
+    				if (!imageFolder.exists())
+    					imageFolder.mkdirs();
+    				File file = new File(imageFolder, outputFileName);
+    				multipartFile.transferTo(file);
+    			} catch (Exception e) {
+    				e.printStackTrace();
+    				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+    			}
+    			
+    			
+    			//取得照片path
+    			String filePath = "/images/userPic/" + outputFileName;
+        return filePath;
+    }
 	
+	@Override
+	public String updateFile(MultipartFile multipartFile,String originalFilePath,Integer userId) {
+		String targetFilePath = "C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static" + originalFilePath;
+//		System.out.println(targetFilePath);
+//		
+//		//刪除舊檔案
+//		File fileToDelete = new File(targetFilePath);
+//		// Check if the file exists before attempting to delete
+//        if (fileToDelete.exists()) {
+//            // Attempt to delete the file
+//            if (fileToDelete.delete()) {
+//                System.out.println("File deleted successfully.");
+//            } else {
+//                System.out.println("Failed to delete the file.");
+//            }
+//        } else {
+//            System.out.println("File does not exist.");
+//        }
+		return saveFileTest(multipartFile,userId);
+	}
+	
+//	@Override
+//	public void renameFile(String filePath,Integer userId) {
+//		String ext = "";
+//		if (filePath.lastIndexOf(".") > -1) {
+//			ext = filePath.substring(filePath.lastIndexOf("."));
+//		}
+//		String newFileName = "userPhoto_" + userId + ext;
+//	    // Construct the new file path with the final file name
+//	    String newFilePath = filePath.replaceFirst("[^/]+$", newFileName);
+//
+//	    // Perform the file renaming
+//	    File oldFile = new File("C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static" + filePath);
+//	    File newFile = new File("C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static" + newFilePath);
+//
+//	    if (oldFile.exists()) {
+//	        oldFile.renameTo(newFile);
+//	    }
+//	}
+	
+	@Override
+	public userBean updateUser(Integer userId, userBean updateUser ) {
+		userBean existingUser = userRepository.findById(userId).orElse(null);
+        if (existingUser != null) {
+        	existingUser.setAccount(updateUser.getAccount());
+        	existingUser.setPassword(updateUser.getPassword());
+        	existingUser.setUserName(updateUser.getUserName());
+        	existingUser.setEmail(updateUser.getEmail());
+        	existingUser.setAddress(updateUser.getAddress());
+        	existingUser.setPhone(updateUser.getPhone());
+        	existingUser.setBirthday(updateUser.getBirthday());
+        	existingUser.setFilePath(updateUser.getFilePath());
+        	
+        	return userRepository.save(existingUser);
+        }
+		return null;
+	}
+
+	@Override
+	public String saveFileTest(MultipartFile multipartFile, Integer userId) {
+		//取得照片檔名以獲得檔案類型
+		String originalFilename = multipartFile.getOriginalFilename();
+		String ext = "";
+		if (originalFilename.lastIndexOf(".") > -1) {
+			ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+		}
+		
+		//暫時性替帶userId
+//		DateFormat dateFormat = new SimpleDateFormat("ddMMHHmm");
+//	    Date date = new Date();
+//	    String userId = dateFormat.format(date);
+	    String outputFileName = "userImage_" + userId + ext;
+	    
+	    
+//		把照片從multipartFile存到本地資料夾
+	    
+	    String rootDirectory = "C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
+		try {
+			File imageFolder = new File(rootDirectory);
+			if (!imageFolder.exists())
+				imageFolder.mkdirs();
+			File file = new File(imageFolder, outputFileName);
+			multipartFile.transferTo(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+		}
+		
+		
+		//取得照片path
+		String filePath = "/images/userPic/" + outputFileName;
+		return filePath;
+		
+	}
+
+
 }
