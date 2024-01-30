@@ -108,7 +108,10 @@ public class userControllerYC {
 		return "YC/registerYC";
 	}
 	
-	// 利用 POST 表單取得用戶傳輸的資料
+
+	
+	// 利用 POST 表單取得用戶傳輸的資料 
+	//普通照片
 	@PostMapping("/registerYC")
 	public String register(@ModelAttribute("register") userBean userBean,  Model model) {
 //		Integer a = userBean.getUserId();

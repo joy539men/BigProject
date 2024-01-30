@@ -1,6 +1,8 @@
 package com.example.host.service.impl;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -11,6 +13,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -126,31 +130,93 @@ public class HostServiceImpl implements HostService {
     				ext = originalFilename.substring(originalFilename.lastIndexOf("."));
     			}
     			
-    			//暫時性替帶userId
-    			DateFormat dateFormat = new SimpleDateFormat("ddMMHHmm");
-    		    Date date = new Date();
-    		    String userId = dateFormat.format(date);
-    		    String outputFileName = "roomImage_" + userId + ext;
-    		    
-    		    
-//    			把照片從multipartFile存到本地資料夾
-    			String rootDirectory = "D:\\BigProject-1\\src\\main\\resources\\static\\images\\pic_backstage";
-    			try {
-    				File imageFolder = new File(rootDirectory);
-    				if (!imageFolder.exists())
-    					imageFolder.mkdirs();
-    				File file = new File(imageFolder, outputFileName);
-    				multipartFile.transferTo(file);
-    			} catch (Exception e) {
-    				e.printStackTrace();
-    				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-    			}
+    			// 獲取圖片寬高比例
+    			int targetWidth = 650;  // 目標寬度，根據你的需求設定
+    			int targetHeight = 400;
     			
     			
-    			//取得照片path
-    			String filePath = "/images/pic_backstage/" + outputFileName;
-        return filePath;
+    			BufferedImage originalImage;
+				try {
+					originalImage = ImageIO.read(multipartFile.getInputStream());
+					// 創建縮放後的圖片
+	    			BufferedImage resizedImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+	    			resizedImage.createGraphics().drawImage(originalImage.getScaledInstance(targetWidth, targetHeight, java.awt.Image.SCALE_SMOOTH), 0, 0, null);
+	    			
+	    			
+	    			//暫時性替帶userId
+	    			DateFormat dateFormat = new SimpleDateFormat("ddMMHHmm");
+	    		    Date date = new Date();
+	    		    String userId = dateFormat.format(date);
+	    		    String outputFileName = "roomImage_" + userId + ext;
+	    		    
+	    		    
+//	    			把照片從multipartFile存到本地資料夾
+	    		    String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
+	    			try {
+	    				File imageFolder = new File(rootDirectory);
+	    				if (!imageFolder.exists())
+	    					imageFolder.mkdirs();
+	    				File file = new File(imageFolder, outputFileName);
+	    				ImageIO.write(resizedImage, "jpg", file);
+//	    				multipartFile.transferTo(file);
+	    				
+	    				//取得照片path
+	        			String filePath = "/images/roomPic/" + outputFileName;
+	        			return filePath;
+	    			} catch (Exception e) {
+	    				e.printStackTrace();
+	    				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+	    			}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+    			
+    			
+    			
+    			
+    			
+    			
+        return null;
     }
+    
+    
+//    @Override   //未裁切版
+//    public String saveFile(MultipartFile multipartFile) {
+//    	//取得照片檔名以獲得檔案類型
+//    			String originalFilename = multipartFile.getOriginalFilename();
+//    			String ext = "";
+//    			if (originalFilename.lastIndexOf(".") > -1) {
+//    				ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//    			}
+//    			
+//    			//暫時性替帶userId
+//    			DateFormat dateFormat = new SimpleDateFormat("ddMMHHmm");
+//    		    Date date = new Date();
+//    		    String userId = dateFormat.format(date);
+//    		    String outputFileName = "roomImage_" + userId + ext;
+//    		    
+//    		    
+////    			把照片從multipartFile存到本地資料夾
+//    			String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
+//    			try {
+//    				File imageFolder = new File(rootDirectory);
+//    				if (!imageFolder.exists())
+//    					imageFolder.mkdirs();
+//    				File file = new File(imageFolder, outputFileName);
+//    				multipartFile.transferTo(file);
+//    			} catch (Exception e) {
+//    				e.printStackTrace();
+//    				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+//    			}
+//    			
+//    			
+//    			//取得照片path
+//    			String filePath = "/images/roomPic/" + outputFileName;
+//        return filePath;
+//    }
     
     @Override  // 使用Google Maps Geocoding API將地址轉換成經緯度
     public Map<String, String> convertAddress(String address) {
