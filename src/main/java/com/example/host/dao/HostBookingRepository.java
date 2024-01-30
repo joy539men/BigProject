@@ -15,4 +15,6 @@ public interface HostBookingRepository extends JpaRepository<bookingBean, Intege
     Iterable<bookingBean> findAllBookingsWithRoom();
 
     List<bookingBean> findByStatus(String status);
+    
+    List<bookingBean> findByRoomTableUserUserIdAndStatus(Integer userId, String status);
 }
