@@ -20,19 +20,16 @@
 <link rel="stylesheet" href="css/map.css">
 </head>
 <script>
-	$(document).ready(function() {
+$(document).ready(function () {
 
-		$('#tableArray').DataTable({
-			searching : false,
-			language : {
-				url : '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
-			},
-			scrollCollapse : true,
-			scrollY : '40vh',
-			scrollX : true,
-
-		})
-	});
+	$('#tableArray').DataTable({
+		searching: false,
+		language: {
+			url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json',
+		},
+		scrollY: '55vh',
+	})
+});
 </script>
 <body>
 
@@ -40,7 +37,6 @@
 
 	<!-- 主要内容 -->
 	<div id="main">
-		<div class="container">
 			<div class="row">
 				<div class="col-5">
 					<span class="fs-1">後台管理系統</span> <span class="fs-2"> <i
@@ -65,7 +61,6 @@
 				</div>
 				<div class="col-5"></div>
 				<div class="col-2"></div>
-			</div>
 		</div>
 
 		<!-- 資料表格 -->
