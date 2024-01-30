@@ -207,7 +207,7 @@ public class userServiceImpl implements userService{
         	existingUser.setPhone(updateUser.getPhone());
         	existingUser.setBirthday(updateUser.getBirthday());
         	existingUser.setFilePath(updateUser.getFilePath());
-        	
+        		
         	return userRepository.save(existingUser);
         }
 		return null;

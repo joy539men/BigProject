@@ -18,7 +18,7 @@ public interface userService {
 	userBean findByAccount(String account);
 	Boolean existsByPhone(String phone);
 	boolean existsEmail(String email);
-	
+		
 	String saveFile(MultipartFile multipartFile);
 	userBean updateUser(Integer userId, userBean updateUser);
 	String saveFileTest(MultipartFile multipartFile, Integer userId);

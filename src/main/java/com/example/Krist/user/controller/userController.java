@@ -113,7 +113,7 @@ public class userController {
 	// 利用 POST 表單取得用戶傳輸的資料
 	@PostMapping("/register")
 	public String register(@ModelAttribute("register") userBean userBean, Model model) {
-		
+			
 		// 驗證 email 格式
 		if (!isEmailValid(userBean.getEmail())) {
 			model.addAttribute("error", "電子郵件格式不正確！");
