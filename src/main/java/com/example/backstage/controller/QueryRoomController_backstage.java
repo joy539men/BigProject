@@ -75,7 +75,6 @@ public class QueryRoomController_backstage {
 
 	// 地圖
 	@GetMapping("/map/{lat}/{lng}/{dis}")
-
 	public @ResponseBody List<Map<String, Object>> roomMap(@PathVariable Double lat, @PathVariable Double lng,
 			@PathVariable Double dis) {
 		List<Map<String, Object>> map = roomService.roomMap(lat, lng, dis);
@@ -86,7 +85,7 @@ public class QueryRoomController_backstage {
 			String longitudeStr = (String) room.get("lon");
 //			System.out.println(latitudeStr);
 
-			// 轉換為數字，如果轉換失敗，保留原始字符串值
+			// 轉換為數字
 			Double latitude = convertStringToDouble(latitudeStr);
 			Double longitude = convertStringToDouble(longitudeStr);
 			Map<String, Object> modifiedRoom = new HashMap<>(room);

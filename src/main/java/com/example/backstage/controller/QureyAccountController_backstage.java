@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,7 @@ public class QureyAccountController_backstage {
 		return "backstage/account";
 	}
 	
+	//發送Email
 	@GetMapping("/sendEmail/{id}")
 	public  String sendEmail(@PathVariable Integer id,Model model){
 		userBean userBean = null;
@@ -64,13 +66,11 @@ public class QureyAccountController_backstage {
 		return "redirect:/account";
 	}
 	
-//	   @GetMapping("/backstage/login")
-//	    public String login(HttpServletRequest request, Model model) {
-//	        // 模拟用户登录，将用户信息存储在HttpServletRequest中
-//	        userBean user = new userBean();
-//	        user.setAccount("exampleUser");
-//	        request.setAttribute("user", user);
-//
-//	        return "redirect:/roomTableGallery";
-//	    }
+	@GetMapping("/backstage/logout")
+	public String logout(HttpSession session) {
+		// 登出的時候，要註銷 session 然後將其跳轉到登入畫面
+		session.removeAttribute("userId");
+		session.removeAttribute("isAdmin");
+		return "redirect:/login";
+	}
 }
