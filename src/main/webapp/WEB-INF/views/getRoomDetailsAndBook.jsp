@@ -518,16 +518,8 @@ button.switch-month:active {
 
 		function initMap() {
 
-			var latitude = $
-			{
-				singleRoom.lat
-			}
-			;
-			var longtitude = $
-			{
-				singleRoom.lon
-			}
-			;
+			var latitude = ${singleRoom.lat};
+			var longtitude = ${singleRoom.lon};
 			var map = new google.maps.Map(document.getElementById('map'), {
 				center : {
 					lat : latitude,
