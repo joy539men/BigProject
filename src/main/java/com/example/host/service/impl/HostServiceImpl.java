@@ -134,7 +134,7 @@ public class HostServiceImpl implements HostService {
     		    
     		    
 //    			把照片從multipartFile存到本地資料夾
-    			String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
+    			String rootDirectory = "D:\\BigProject-1\\src\\main\\resources\\static\\images\\pic_backstage";
     			try {
     				File imageFolder = new File(rootDirectory);
     				if (!imageFolder.exists())
@@ -148,7 +148,7 @@ public class HostServiceImpl implements HostService {
     			
     			
     			//取得照片path
-    			String filePath = "/images/roomPic/" + outputFileName;
+    			String filePath = "/images/pic_backstage/" + outputFileName;
         return filePath;
     }
     
