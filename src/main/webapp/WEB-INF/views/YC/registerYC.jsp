@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/brands.css">
     <link rel="stylesheet" href="plugins/font-awesome/solid.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" rel="stylesheet">
 
     <!-- # Main Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -137,10 +138,25 @@
                                     生日
                                     <form:input type="date" class="form-control" id="date" path="birthday"/>
                                 </div>
-                                 <div class="mb-3">
-<!--                                     <label for="profilePicture" class="form-label">上傳大頭貼</label> -->
-                                    <form:input path="multipartFile" type="file" class="form-control" id="profilePicture" />
-                                </div>
+<!--                                  <div class="mb-3"> -->
+<!-- <!--                                     <label for="profilePicture" class="form-label">上傳大頭貼</label> --> 
+<%--                                     <form:input path="multipartFile" type="file" class="form-control" id="profilePicture" /> --%>
+<!--                                 </div> -->
+                                
+                                 <!-- test  -->
+                                <label class="btn btn-info"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 上傳圖片</label>
+
+								<div id="oldImg" style="display:none;"></div>
+								
+								<button id="crop_img" type="button" class="btn btn-info"><i class="fa fa-scissors"></i> 裁剪圖片</button>
+								
+								<div id="newImgInfo"></div>
+								<div id="newImg"></div>
+								                                
+                                <!-- test end -->
+                                
+                                
+                                
                                 <div class="d-grid ">
                                     <button type="submit" class="btn btn-primary" style="font-size: 20px;">註冊</button>
                                 </div>
@@ -167,18 +183,15 @@
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+
     <!-- Main Script -->
     <script src="js/script.js"></script>
-    <script>
-    $(document).ready(function() {
-        
-    });
+   
 
     
     
     
-    </script>>
 
 </body>
 
