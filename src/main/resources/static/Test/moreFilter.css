@@ -1,0 +1,360 @@
+.pbtn-group {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 26px;
+}
+/* Ensure the last button does not have margin-right */
+.pbtn-group .btn:last-child {
+    margin-right: 0;
+}
+
+/* Align buttons to the left */
+.pbtn-group {
+display: flex;
+flex-wrap: wrap;
+padding: 25px;
+margin-left: 55px;
+}
+.button-pillow {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 5rem;
+    border: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+button-pillow:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+
+
+.button-pillow.active {
+background-color: black; /* 背景顏色設為黑色 */
+color: white; /* 字體顏色設為白色 */
+}
+.custom-modal {
+    width: 780px;
+    height: 635px;
+    
+}
+/* noUiSlider 手柄顏色 */
+.noUi-handle {
+     background: rgb(177, 175, 175); /* 設置手柄為黑色 */
+     border-color: rgb(177, 175, 175); /* 若有邊框，也設為黑色 */
+     border-radius: 10px;
+}
+
+/* noUiSlider 連接部分顏色（如果需要） */
+.noUi-connect {
+     background: black; /* 設置已選區域為黑色 */
+}
+
+/* 這裡是進階篩選按鈕 */
+.more-search-custom-btn {
+background-color: #ffffff;
+border: 1px solid #9e9e9e;
+color: #000000;
+padding: 4px 12px;
+font-size: 16px;
+border-radius: 2px;
+border-radius: 10px
+
+
+}
+/* 按鈕文字樣式 */
+.more-search-btn-text {
+display: inline-block;
+margin-right: 5px;
+vertical-align: middle;
+}
+/* 圖標的通用樣式 */
+.more-search-btn-icon {
+display: inline-block;
+width: 20px; /* 根據實際圖標尺寸調整 */
+height: 20px; /* 根據實際圖標尺寸調整 */
+
+background-size: contain;
+background-repeat: no-repeat;
+vertical-align: middle;
+}
+.modal .modal-body .row h5 {
+    text-align: left;
+  }
+  /* noUiSlider 連接部分顏色（如果需要） */
+  .noUi-connect {
+    background: black; /* 設置已選區域為黑色 */
+  }
+  .modal .close {
+    border: none !important;
+    background-color: transparent !important;
+  }
+  .modal .close {
+    border: none !important;
+    background-color: transparent !important;
+  }
+  
+  .modal .close:active {
+    box-shadow: 5px 5px rgba(0,0,0,0.1); /* 點擊時的陰影效果 */
+  }
+  
+
+/* 這裡是地區篩選 */
+.wrapper {
+    max-height: 70px;
+    max-width: 1196px;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+.item {
+    min-width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #ddd;
+    margin-right: 2px;
+}
+
+.scroll-buttons {
+    display: flex;
+    align-items: baseline;
+    
+}
+
+
+.btn:focus{
+    box-shadow: none!important;
+}
+
+.item:focus{
+    box-shadow: none!important;
+}
+
+
+
+
+
+
+.arrow-button {
+    width: 65px;
+    height: 37px;
+    border-radius: 30px; /* 圓形效果 */
+    border: none; /* 移除邊框 */
+    background-color: (#ffffff,0); /* 設置背景顏色，您可以根據需要更改 */
+    cursor: pointer; /* 鼠標懸停時顯示手型光標 */
+    outline: none; /* 點擊時移除外框 */
+    transition: box-shadow 0.3s; /* 平滑的陰影過渡效果 */
+}
+
+
+
+  
+.side{
+    height:0px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    transition: ease-in 0.3s;
+    overflow-y: hidden;
+    position: fixed;
+    z-index: 1234;
+    left: 0px;
+    }
+    .searbutton1 {
+        background-color: rgb(207, 207, 207);
+        color: rgb(0, 0, 0);
+        border: none;
+        margin: -27px;
+        border-radius: 18px; /* 膠囊形狀 */
+        cursor: pointer;
+        width: 185px;
+        height: 60px;
+    }
+.searbutton2 {
+        background-color: rgb(207, 207, 207);
+        color: rgb(0, 0, 0);
+        border: none;
+        margin: -27px;
+        border-radius: 18px; /* 膠囊形狀 */
+        cursor: pointer;
+        width: 354px;
+        height: 60px;
+    }
+.searbutton3 {
+        background-color: rgb(207, 207, 207);
+        color: rgb(0, 0, 0);
+        border: none;
+        margin: -23px;
+        border-radius: 18px; /* 膠囊形狀 */
+        cursor: pointer;
+        width: 351px;
+        height: 60px;
+    }
+    #searbutton4 {
+        margin: 0; /* 移除 margin，防止影響對齊 */
+        height: 48px; /* 統一按鈕高度 */
+        width: 48px; /* 如果需要的話，可以調整寬度 */
+        padding: 0; /* 移除 padding */
+        border-radius: 0; /* 移除圓角 */
+        display: flex; /* 使用 flexbox 顯示內容 */
+        align-items: center; /* 垂直置中內容 */
+        justify-content: center; /* 水平置中內容 */
+
+    }
+.popupWindow{
+    display: none; 
+    position: fixed; 
+    width: 478px; 
+    height: 498px; 
+    background-color: white; 
+    border: 1px solid rgb(109, 109, 109); 
+    border-radius: 20px; 
+    z-index: 1000; 
+    top: 43%; 
+    left: 35%; 
+    transform: translate(-50%, -51.4%);
+}   
+.square-button {
+        width: 30%;
+        height: 30%;
+        background-color: rgb(255, 255, 255,0);
+        border: none;
+        cursor: pointer;
+    }
+#secondPopupWindow {
+        display: none;
+    position: fixed; /* 固定位置 */
+    top: 36%; /* 置中 */
+    left: 50%;
+    transform: translate(-51%, -34%); /* 完全置中 */
+    width: 848px;
+    height: 565px;
+    background-color: white; /* 背景顏色 */
+    border: 1px solid rgb(109, 109, 109); /* 邊框 */
+    border-radius: 20px; /* 圓角 */
+    z-index: 10; /* 確保在最上層 */
+    display: none; /* 預設不顯示 */
+}
+#thirdPopupWindow{
+    display: none; 
+    position: fixed; 
+    width: 403px; 
+    height: 158px; 
+    background-color: white; 
+    border: 1px solid rgb(109, 109, 109); 
+    border-radius: 20px; 
+    z-index: 1000; 
+    top: 41%; 
+    left: 46%; 
+    transform: translate(24%, -58%);
+}   
+.number-selector {
+    width: 395px;
+    height: 154px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    }
+.selector-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    }
+.selector-item:last-child {
+    margin-bottom: 0;
+    }
+.selector-title {
+    font-size: 18px;
+    color: #333;
+    }
+.selector-subtitle {
+    font-size: 14px;
+    color: #666;
+    }
+.btn-counter {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    user-select: none;
+}
+.counter-value {
+    min-width: 32px;
+    text-align: center;
+    font-size: 16px;
+    }
+.confirm{
+    width: 60px;
+    height: 37px;
+    margin-left: 147px;
+    margin-top: 0%;
+    border: 0px;
+    border-radius: 25px;
+    }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明灰色 */
+    z-index: 999; /* 確保它在頁面的上層 */
+    display: none; /* 預設不顯示 */
+}
+
+header {
+    z-index: 1000; /* 確保 header 在遮罩上層 */
+}
+
+.check-in{
+    color: #333;
+}      
+.btn-group .btn {
+    border-radius: 0; /* 移除所有按鈕的圓角 */
+    border: 2px solid #cccccc; /* 統一設置邊框 */
+    margin-left: -2px; /* 重疊按鈕之間的邊框 */
+    background-color: #ffffff; /* 設置背景顏色為白色 */
+    
+}
+.btn-group .btn:first-child {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px; /* 只給第一個按鈕左側圓角 */
+}
+.btn-group .btn:last-child {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px; /* 只給最後一個按鈕右側圓角 */
+}
+
+.btn-group .btn:not(:last-child) {
+    border-right: none; /* 移除除了最後一個按鈕外的按鈕右側邊框 */
+}
+.btn-group .btn:focus {
+    box-shadow: none; /* 移除焦點時的外框陰影 */
+}
+.btn-search-icon {
+    padding: 0; /* 移除按鈕內邊距 */
+    display: inline-flex; /* 使用 flexbox 顯示內容 */
+    align-items: center; /* 垂直置中內容 */
+    justify-content: center; /* 水平置中內容 */
+}
+
