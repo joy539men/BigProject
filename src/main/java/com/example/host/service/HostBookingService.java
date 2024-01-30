@@ -16,5 +16,6 @@ public interface HostBookingService {
 	Optional<bookingBean> findById(Integer bookingId);
 	List<bookingBean> findAcceptedBookings();
 	List<bookingBean> findUncheckBookings();
+	List<bookingBean> findByHostAndStatus(Integer userId, String status);
 	
 }
