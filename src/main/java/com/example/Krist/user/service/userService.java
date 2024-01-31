@@ -3,6 +3,8 @@ package com.example.Krist.user.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.demo.model.userBean;
 
 public interface userService {
@@ -16,4 +18,9 @@ public interface userService {
 	userBean findByAccount(String account);
 	Boolean existsByPhone(String phone);
 	boolean existsEmail(String email);
+		
+	String saveFile(MultipartFile multipartFile);
+	userBean updateUser(Integer userId, userBean updateUser);
+	String saveFileTest(MultipartFile multipartFile, Integer userId);
+	String updateFile(MultipartFile multipartFile, String originalFilePath, Integer userId);
 }

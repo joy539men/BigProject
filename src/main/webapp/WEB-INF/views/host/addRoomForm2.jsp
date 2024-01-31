@@ -134,19 +134,19 @@
     <div class="mt-3 w-75 mx-auto">
       <div id="guestNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">房客人數</div>
-        <div class="col-4 verticalCenter"><form:input path="guestMax" type="number" name="guestNum" value="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="guestMax" type="number" name="guestNum" value="0" min="0" style="width:100px" class="mx-auto" /></div>
       </div>
       <div id="roomNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">房間</div>
-        <div class="col-4 verticalCenter"><form:input path="roomNum" type="number" name="roomNum" value="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="roomNum" type="number" name="roomNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
       </div>
       <div id="bedNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">床位</div>
-        <div class="col-4 verticalCenter"><form:input path="bedNum" type="number" name="bedNum" value="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="bedNum" type="number" name="bedNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
       </div>
       <div id="bathroomNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">衛浴</div>
-        <div class="col-4 verticalCenter"><form:input path="bathroom" type="number" name="bathroomNum" value="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="bathroom" type="number" name="bathroomNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
       </div>
     </div>
     <div class="w-75 mx-auto text-center ">

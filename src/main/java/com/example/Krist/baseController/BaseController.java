@@ -22,11 +22,20 @@ public class BaseController {
     }
 	
 	
+	@GetMapping("/calendar")
+	public String calendar() {
+		return "calendarKrist";
+	}
+	
 	@GetMapping("/bookTripIndex")
 	public String bookTrip() {
 		return "bookTripIndex";
 	}
 	
+	@GetMapping("/chatchat")
+	public String ChatChat() {
+		return "ChatChat";
+	}
 	
 	@GetMapping("/chat")
 	public String chat() {

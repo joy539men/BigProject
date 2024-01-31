@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.roomTable.dao.roomTableRepository;
-import com.example.Krist.user.dao.userRepository;
 import com.example.backstage.dao.RoomRepository_backstage;
 import com.example.demo.model.bookingBean;
 import com.example.demo.model.reviewBean;
@@ -29,9 +28,6 @@ public class roomController {
 
 	@Autowired
 	private reviewRepository reviewRepository;
-	
-	@Autowired
-	private userRepository userRepository;
 
 	
 	
@@ -55,7 +51,6 @@ public class roomController {
 	    
 	    // 設定 session 儲存在網頁當中
 	    session.setAttribute("selectedRoomId", roomId);
-	    
 	    roomTableBean singleRoom = roomOptional.orElse(null);
 	    
 	    if(room != null) {
@@ -65,7 +60,7 @@ public class roomController {
 	    	
 	   
 	   
-	   
+	    	
 	    	model.addAttribute("user",user);
 		    model.addAttribute("singleRoom", singleRoom);
 		    model.addAttribute("reviews", reviewRoom);
