@@ -24,6 +24,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="<c:url value="/css/style.css"/>">	
 </head>
 <script>
 			$(document).ready(function () {
@@ -62,7 +63,7 @@
 				Swal.fire({
 					icon: 'question',
 					title: '刪除商品',
-					text: '確定要刪除訂單編號為: ' + bookingId + ' 這筆紀錄?',
+					text: '確定要刪除這筆訂單紀錄?',
 					showCancelButton: true,
 				}).then((result) => {
 					console.log(result)
@@ -89,7 +90,7 @@
 			</div>
 			<div class="col-5"></div>
 			<div class="col-2" id="adminlogoutdiv">
-				<span id="adminlogout">登出</span>
+				<a href="<c:url value="/logout"></c:url>" class="btn btn-primary ms-2 ms-lg-3">登 出</a>
 			</div>
 		</div>
 		<div class="row mt-4">
@@ -107,7 +108,7 @@
 					日期 : <input type="date" name="checkinDateSearch" id=""> <i
 						class="bi bi-arrow-right-circle-fill mx-2"></i> <input type="date"
 						name="checkoutDateSearch" id="">
-					<button class="btn ms-2" type="submit">搜尋</button>
+					<button class="dateBtn " type="submit">搜尋</button>
 				</form>
 			</div>
 		</div>

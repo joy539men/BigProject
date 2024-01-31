@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.SystemPropertyUtils;
 
 import com.example.backstage.dao.OrderRepository_backstage;
 import com.example.backstage.dao.RoomRepository_backstage;
@@ -80,19 +81,27 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 	// 每分鐘檢查一次，檢查所有已接受訂單的入住日期到達當前日期，將房間狀態設為使用中
 	@Scheduled(cron = "0 * * * * *")
 	public void checkAndUpdateRoomStatus() {
-		List<bookingBean> bookings = bookingRepository.findAll();
+		List<roomTableBean> availableRooms = roomRepository.roomAvailable();
+//		System.out.println(availableRooms);
+		for (roomTableBean room : availableRooms) {
+			System.out.println(room);
+			List<bookingBean> bookingsForRoom = bookingRepository.findByRoomTable(room);
 
-		for (bookingBean booking : bookings) {
-			if ("已接受".equals(booking.getStatus())) {
-				LocalDate currentDate = LocalDate.now();
-				LocalDate checkinDate = convertToLocalDate(booking.getCheckinDate());
-//      	        LocalDate checkoutDate = convertToLocalDate(booking.getCheckoutDate());
+//			System.out.println(bookingsForRoom);
+			for (bookingBean booking : bookingsForRoom) {
+				System.out.println(booking);
+				if ("已接受".equals(booking.getStatus())) {
+					LocalDate currentDate = LocalDate.now();
+					LocalDate checkinDate = convertToLocalDate(booking.getCheckinDate());
+					LocalDate checkoutDate = convertToLocalDate(booking.getCheckoutDate());
 
-				if (currentDate.isEqual(
-						checkinDate) /*
-										 * || (currentDate.isAfter(checkinDate) && currentDate.isBefore(checkoutDate))
-										 */) {
-					updateRoomStatusToInUse(booking.getRoomTable().getRoomId());
+					if (currentDate.isEqual(checkinDate)
+							|| (currentDate.isAfter(checkinDate) && currentDate.isBefore(checkoutDate))
+							|| currentDate.isEqual(checkoutDate)) {
+						updateRoomStatusToInUse(booking.getRoomTable().getRoomId());
+					} else {
+						updateRoomStatusToAvailable(booking.getRoomTable().getRoomId());
+					}
 				}
 			}
 		}
@@ -111,6 +120,15 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 		}
 	}
 
+	private void updateRoomStatusToAvailable(Integer roomId) {
+		roomTableBean room = roomRepository.findById(roomId).orElse(null);
+
+		if (room != null) {
+			room.setStatus("可使用");
+			roomRepository.save(room);
+		}
+	}
+
 	// 檢查房間是否有訂單在當前日期
 	@Override
 	public boolean hasOrderDuringCurrentDate(roomTableBean room) {
@@ -118,18 +136,24 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 		LocalDate currentDate = LocalDate.now();
 		// 獲取該房間的所有訂單
 		List<bookingBean> orders = bookingRepository.findByRoomTableRoomId(room.getRoomId());
-//		System.out.println(orders);
+		System.out.println(orders);
 		// 檢查是否有訂單在當前日期
 		for (bookingBean order : orders) {
 			LocalDate checkinDate = convertToLocalDate(order.getCheckinDate());
 			LocalDate checkoutDate = convertToLocalDate(order.getCheckoutDate());
-//			System.out.println(checkinDate);
-//			System.out.println(checkoutDate);
+			System.out.println(checkinDate);
+			System.out.println(checkoutDate);
 			if ((currentDate.isEqual(checkinDate) || currentDate.isAfter(checkinDate))
 					&& (currentDate.isEqual(checkoutDate) || currentDate.isBefore(checkoutDate))) {
+
+				System.out.println(currentDate.isAfter(checkinDate));
+				System.out.println((currentDate.isEqual(checkinDate) || currentDate.isAfter(checkinDate)));
+				System.out.println((currentDate.isEqual(checkoutDate) || currentDate.isBefore(checkoutDate)));
+				System.out.println(currentDate.isBefore(checkoutDate));
 				return true;
 			}
 		}
 		return false;
 	}
+
 }

@@ -18,6 +18,7 @@
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/map.css">
+<link rel="stylesheet" href="<c:url value="/css/style.css"/>">
 </head>
 <script>
 $(document).ready(function () {
@@ -45,11 +46,11 @@ $(document).ready(function () {
 				</div>
 				<div class="col-5"></div>
 				<div class="col-2" id="adminlogoutdiv">
-					<span id="adminlogout">登出</span>
+					<a href="<c:url value="/logout"></c:url>" class="btn btn-primary ms-2 ms-lg-3">登 出</a>
 				</div>
 			</div>
 			<div class="row mt-4">
-				<div class="col-5">
+				<div class="col">
 					<form id="searchForm" class="d-flex"
 						action="${pageContext.request.contextPath}/backend/search"
 						method="get">
@@ -59,8 +60,8 @@ $(document).ready(function () {
 						</button>
 					</form>
 				</div>
-				<div class="col-5"></div>
-				<div class="col-2"></div>
+				<div class="col"></div>
+				<div class="col"></div>
 		</div>
 
 		<!-- 資料表格 -->
@@ -81,7 +82,6 @@ $(document).ready(function () {
 					<div id="map"></div>
 				</div>
 			</div>
-			<div id="jsonData"></div>
 			<table class=" display  nowrap" id="tableArray" style="width: 100%">
 				<thead>
 					<tr>

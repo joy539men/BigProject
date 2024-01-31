@@ -146,11 +146,11 @@ public class userController {
 			userBean.setPassword(stringBuilder.toString());
 			userService.save(userBean);
 
-//			MultipartFile multipartFile = userBean.getMultipartFile();
-//			Integer userId = userBean.getUserId();
-//			String filePath = userService.saveFileTest(multipartFile,userId);    //用saveFile把照片存到指定路徑，並回傳路徑
-//			userBean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-//			userService.save(userBean);
+			MultipartFile multipartFile = userBean.getMultipartFile();
+			Integer userId = userBean.getUserId();
+			String filePath = userService.saveFileTest(multipartFile,userId);    //用saveFile把照片存到指定路徑，並回傳路徑
+			userBean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+			userService.save(userBean);
 			
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
@@ -219,92 +219,92 @@ public class userController {
 
 	}
 	
-//	//查看會員資料
-//    @GetMapping("/userDataYC")
-//    public String getUserData(HttpSession session,Model model) {
-//        // 在主頁拿到 userId
-//        Integer userId = (Integer) session.getAttribute("userId");
-//
-//        if (userId != null) {
-//        	userBean user = null;
-//        	Optional<userBean> optional = userService.getUserBeanById(userId);
+	//查看會員資料
+    @GetMapping("/userProfile")
+    public String getUserData(HttpSession session,Model model) {
+        // 在主頁拿到 userId
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId != null) {
+        	userBean user = null;
+        	Optional<userBean> optional = userService.getUserBeanById(userId);
+    		// 解析 Optional，如果有值，就取得實際的 roomTableBean 物件，否則為 null
+    		if (optional.isPresent()) {
+    			user = optional.get();
+    			model.addAttribute("user", user);
+    		}
+        	
+            return "userProfile"; 
+        } else {
+            // 若是資料庫沒有該資料，跳轉到 login 頁面
+            return "redirect:/login";
+        }
+        
+     }
+    
+    //會員資料 編輯表單
+    @GetMapping("/userProfileEdit")
+    public String editUserData(HttpSession session,Model model) {
+        // 在主頁拿到 userId
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId != null) {
+        	userBean user = null;
+        	Optional<userBean> optional = userService.getUserBeanById(userId);
+    		// 解析 Optional，如果有值，就取得實際的 roomTableBean 物件，否則為 null
+    		if (optional.isPresent()) {
+    			user = optional.get();
+    			model.addAttribute("user", user);
+    		}
+        	
+            return "userMod"; 
+        } else {
+            // 若是資料庫沒有該資料，跳轉到 login 頁面
+            return "redirect:/login";
+        }
+        
+     }
+    
+  //儲存更新後的會員資料
+  	@PostMapping("/userModSave")
+      public String editRoomSubmit(@ModelAttribute userBean updatedUser,HttpSession session) {
+  		Integer userId = (Integer) session.getAttribute("userId");
+        
+  		
+  		if (userId != null) {
+        	userBean originalUser = null;
+        	Optional<userBean> optional = userService.getUserBeanById(userId);
 //    		// 解析 Optional，如果有值，就取得實際的 roomTableBean 物件，否則為 null
-//    		if (optional.isPresent()) {
-//    			user = optional.get();
-//    			model.addAttribute("user", user);
-//    		}
-//        	
-//            return "YC/userData"; 
-//        } else {
-//            // 若是資料庫沒有該資料，跳轉到 login 頁面
-//            return "redirect:/loginYC";
-//        }
-//        
-//     }
-//    
-//    //會員資料 編輯表單
-//    @GetMapping("/userDataEditYC")
-//    public String editUserData(HttpSession session,Model model) {
-//        // 在主頁拿到 userId
-//        Integer userId = (Integer) session.getAttribute("userId");
-//
-//        if (userId != null) {
-//        	userBean user = null;
-//        	Optional<userBean> optional = userService.getUserBeanById(userId);
-//    		// 解析 Optional，如果有值，就取得實際的 roomTableBean 物件，否則為 null
-//    		if (optional.isPresent()) {
-//    			user = optional.get();
-//    			model.addAttribute("user", user);
-//    		}
-//        	
-//            return "YC/userDataForm"; 
-//        } else {
-//            // 若是資料庫沒有該資料，跳轉到 login 頁面
-//            return "redirect:/login";
-//        }
-//        
-//     }
-//    
-//  //儲存更新後的會員資料
-//  	@PostMapping("/userDataSaveYC")
-//      public String editRoomSubmit(@ModelAttribute userBean updatedUser,HttpSession session) {
-//  		Integer userId = (Integer) session.getAttribute("userId");
-//        
-//  		
-//  		if (userId != null) {
-//        	userBean originalUser = null;
-//        	Optional<userBean> optional = userService.getUserBeanById(userId);
-////    		// 解析 Optional，如果有值，就取得實際的 roomTableBean 物件，否則為 null
-//    		if (optional.isPresent()) {
-//    			originalUser = optional.get();
-//    		}
-//        	
-//    		// Process the uploaded file
-//    	    MultipartFile multipartFile = updatedUser.getMultipartFile();
-//    	    String filePath;
-//    	    String originalPath =originalUser.getFilePath();
-//
-//    	    if (multipartFile != null && !multipartFile.isEmpty()) {
-//    	        // If a new file is uploaded, save it and update the filePath
-////    	        filePath = userService.saveFile(multipartFile);
-//    	    	filePath = userService.updateFile(multipartFile, originalPath,userId);
-//    	    } else {
-//    	        // If no new file is uploaded, use the original filePath
-//    	        filePath = originalUser.getFilePath();
-//    	    }
-//    	    updatedUser.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-//    	    updatedUser.setAccount(originalUser.getAccount()); 
-//    	    updatedUser.setPassword(originalUser.getPassword()); 
-//    	    
-//    	    userService.updateUser(userId,updatedUser);
-//    	    //            return "index"; 
-//            return "redirect:/userDataYC";
-//        } else {
-//            // 若是資料庫沒有該資料，跳轉到 login 頁面
-//            return "redirect:/login";
-//        }
-//
-//  	    
-//      }
+    		if (optional.isPresent()) {
+    			originalUser = optional.get();
+    		}
+        	
+    		// Process the uploaded file
+    	    MultipartFile multipartFile = updatedUser.getMultipartFile();
+    	    String filePath;
+    	    String originalPath =originalUser.getFilePath();
+
+    	    if (multipartFile != null && !multipartFile.isEmpty()) {
+    	        // If a new file is uploaded, save it and update the filePath
+//    	        filePath = userService.saveFile(multipartFile);
+    	    	filePath = userService.updateFile(multipartFile, originalPath,userId);
+    	    } else {
+    	        // If no new file is uploaded, use the original filePath
+    	        filePath = originalUser.getFilePath();
+    	    }
+    	    updatedUser.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+    	    updatedUser.setAccount(originalUser.getAccount()); 
+    	    updatedUser.setPassword(originalUser.getPassword()); 
+    	    
+    	    userService.updateUser(userId,updatedUser);
+    	    //            return "index"; 
+            return "index";
+        } else {
+            // 若是資料庫沒有該資料，跳轉到 login 頁面
+            return "redirect:/login";
+        }
+
+  	    
+      }
     
 }

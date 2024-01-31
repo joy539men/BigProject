@@ -52,5 +52,11 @@ public class RoomServiceImpl_backstage implements RoomService_backstage {
 		return roomMap;
 	}
 
+	@Override
+	public List<roomTableBean> roomAvailable() {
+		List<roomTableBean> beans = roomRepository.roomAvailable();
+		return beans;
+	}
+
 
 }
