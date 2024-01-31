@@ -110,49 +110,101 @@ public class userControllerYC {
 	
 
 	
-	// 利用 POST 表單取得用戶傳輸的資料 
-	//普通照片
-	@PostMapping("/registerYC")
-	public String register(@ModelAttribute("register") userBean userBean,  Model model) {
-//		Integer a = userBean.getUserId();
+//	// 利用 POST 表單取得用戶傳輸的資料 
+//	//普通照片
+//	@PostMapping("/registerYC")
+//	public String register(@ModelAttribute("register") userBean userBean,  Model model) {
+////		Integer a = userBean.getUserId();
+//		
+//		userBean.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
+//		
+//		// 利用 messageDigest 進行加密
+//		try {
+//			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+//			
+//			// 將原始碼轉換為哈希計算
+//			byte[] hashedByteds = messageDigest.digest(userBean.getPassword().getBytes());
+//			
+//			// 將字串轉換為十六位組進行哈希計算
+//			StringBuilder stringBuilder = new StringBuilder();
+//			for(byte b: hashedByteds) {
+//				stringBuilder.append(String.format("%02x", b));
+//			}
+//			
+//			userBean.setPassword(stringBuilder.toString());
+//			userService.save(userBean);
+//			
+//			MultipartFile multipartFile = userBean.getMultipartFile();
+//			Integer userId = userBean.getUserId();
+//			String filePath = userService.saveFileTest(multipartFile,userId);    //用saveFile把照片存到指定路徑，並回傳路徑
+//			userBean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+//			userService.save(userBean);
+//			
+//			
+//		} catch (NoSuchAlgorithmException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return "registerYC";
+//		}
+//		
+//		
+//		
+//		
+//		return "index";
+//		
+//	}
+	
+	
+//	// 利用 POST 表單取得用戶傳輸的資料 
+//		//裁切照片
+//		@PostMapping("/registerYC")
+//		public String register(@ModelAttribute("register") userBean userBean,  Model model,@RequestParam("multipartFile") MultipartFile multipartFile) {
+////			Integer a = userBean.getUserId();
+//			
+//			userBean.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
+//			
+//			// 利用 messageDigest 進行加密
+//			try {
+//				MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+//				
+//				// 將原始碼轉換為哈希計算
+//				byte[] hashedByteds = messageDigest.digest(userBean.getPassword().getBytes());
+//				
+//				// 將字串轉換為十六位組進行哈希計算
+//				StringBuilder stringBuilder = new StringBuilder();
+//				for(byte b: hashedByteds) {
+//					stringBuilder.append(String.format("%02x", b));
+//				}
+//				
+//				userBean.setPassword(stringBuilder.toString());
+//				userService.save(userBean);
+//				
+//				// Handle the cropped image
+//				   if (multipartFile != null && !multipartFile.isEmpty()) {
+//				       Integer userId = userBean.getUserId(); // Assuming you have a userId in your UserBean
+//				       String filePath = userService.saveFileTest(multipartFile, userId);
+//				       userBean.setFilePath(filePath); // Assuming UserBean has a field for the file path
+//				       userService.save(userBean);
+//				   }else {
+//					   userService.save(userBean);
+//				   }
+//				
+//				
+//				
+//			} catch (NoSuchAlgorithmException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				return "registerYC";
+//			}
+//			
+//			
+//			
+//			
+//			return "index";
+//			
+//		}
 		
-		userBean.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
-		
-		// 利用 messageDigest 進行加密
-		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-			
-			// 將原始碼轉換為哈希計算
-			byte[] hashedByteds = messageDigest.digest(userBean.getPassword().getBytes());
-			
-			// 將字串轉換為十六位組進行哈希計算
-			StringBuilder stringBuilder = new StringBuilder();
-			for(byte b: hashedByteds) {
-				stringBuilder.append(String.format("%02x", b));
-			}
-			
-			userBean.setPassword(stringBuilder.toString());
-			userService.save(userBean);
-			
-			MultipartFile multipartFile = userBean.getMultipartFile();
-			Integer userId = userBean.getUserId();
-			String filePath = userService.saveFileTest(multipartFile,userId);    //用saveFile把照片存到指定路徑，並回傳路徑
-			userBean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-			userService.save(userBean);
-			
-			
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "registerYC";
-		}
-		
-		
-		
-		
-		return "index";
-		
-	}
+	
 //	
 //	// 利用 POST 表單取得用戶傳輸的資料
 //	@PostMapping("/registerYC")
