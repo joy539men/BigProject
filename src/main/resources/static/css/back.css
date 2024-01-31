@@ -66,6 +66,9 @@ nav>img {
 	border-radius: 5px;
 	width: 300px;
 }
+#dateBtn{
+	border-radius: 5px;
+}
 
 #tableArea {
 	border: 1px solid;

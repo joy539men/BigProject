@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.backstage.service.OrderService_backstage;
 import com.example.demo.model.bookingBean;
@@ -37,7 +37,7 @@ public class OrderEditController_backstage {
 	}
 
 	// 編輯完成表單接收
-	@PutMapping("/order_edit/OrderUpdate/{id}")
+	@PostMapping("/order_edit/OrderUpdate/{id}")
 	public String updateForm(@ModelAttribute bookingBean bookingBean, BindingResult result) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {

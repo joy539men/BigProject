@@ -16,5 +16,5 @@ public interface RoomService_backstage {
 	
 	List<Map<String,Object>> roomMap(Double lat, Double lon,Double dis);
 	
-	
+	List<roomTableBean> roomAvailable();
 }

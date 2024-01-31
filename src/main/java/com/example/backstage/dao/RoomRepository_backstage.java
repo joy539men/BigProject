@@ -14,7 +14,9 @@ public interface RoomRepository_backstage extends JpaRepository<roomTableBean,In
 	@Query(value="SELECT *, ( 6371 * acos( cos( radians(:lat1) ) "
 			+ "* cos( radians( lat )) * cos( radians( lon ) - radians(:lon1) ) + "
 			+ "sin( radians(:lat1) ) * sin( radians( lat ) ) ) ) AS distance FROM"
-			+ " room_table HAVING distance < :dis ORDER BY distance",nativeQuery = true)
+			+ " room_table WHERE status = '可使用'  HAVING distance < :dis ORDER BY distance",nativeQuery = true)
 	List<Map<String,Object>> roomMap(@Param("lat1") Double lat,@Param("lon1") Double lon,@Param("dis") Double dis);
 	
+	@Query("SELECT r FROM roomTableBean r WHERE r.status = '可使用'")
+	List<roomTableBean> roomAvailable();
 }
