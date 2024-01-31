@@ -22,7 +22,7 @@ async function initMap() {
 	infoWindow.setPosition(myLocation);
 	infoWindow.setContent("您的位置");
 	infoWindow.open(map);
-	updateMarkers()
+	updateMarkers();
 
 	function getLocation() {
 		return new Promise((resolve, reject) => {
@@ -65,8 +65,6 @@ async function initMap() {
 			}
 		}
 	});
-
-
 }
 
 function displayMarkers(data) {
@@ -95,7 +93,7 @@ function displayMarkers(data) {
 			// 顯示被點擊地標的訊息視窗
 			infowindow.open(this.map, marker);
 			this.infowindow = infowindow;
-			console.log("按下marker")
+//			console.log("按下marker")
 
 			google.maps.event.addListenerOnce(infowindow, 'domready', function() {
 				// 為超連結添加點擊事件
@@ -122,7 +120,6 @@ function updateMarkers() {
 
 	const distanceDisplay = $('#distanceDisplay');
 	const distance = $('#dis').val() || 3; // 默認距離 3 公里
-
 	distanceDisplay.text(`目前距離範圍：${distance} 公里`);
 
 	$.ajax({
@@ -134,12 +131,22 @@ function updateMarkers() {
 			// $('#jsonData').text(JSON.stringify(data));
 
 			displayMarkers(data);
+			
+			// 創建包含用戶位置和標記的邊界框
+            var bounds = new google.maps.LatLngBounds();
+            bounds.extend(myLocation);
+            markers.forEach(marker => bounds.extend(marker.marker.getPosition()));
+
+            // 使用 fitBounds 調整地圖視野以包含邊界框內的所有點
+            map.fitBounds(bounds);
 
 		}, error: function() {
 			console.error('Failed to fetch JSON data.');
 		}
 	});
+
 }
+
 function showMap() {
 	initMap()
 }

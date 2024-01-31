@@ -21,4 +21,5 @@ public interface OrderService_backstage {
 	List<bookingBean> findByRoomTableRoomId(Integer roomId);
 	
 	boolean hasOrderDuringCurrentDate(roomTableBean room);
+	
 }

@@ -168,6 +168,14 @@ public class bookingBean {
 		this.uuid = uuid;
 	}
 
+	@Override
+	public String toString() {
+		return "bookingBean [bookingId=" + bookingId + ", uuid=" + uuid + ", checkinDate=" + checkinDate
+				+ ", checkoutDate=" + checkoutDate + ", totalPrice=" + totalPrice + ", bookingTime=" + bookingTime
+				+ ", guest=" + guest + ", tips=" + tips + ", night=" + night + ", status=" + status + ", user=" + user
+				+ ", roomTable=" + roomTable + "]";
+	}
+
 	
 
 

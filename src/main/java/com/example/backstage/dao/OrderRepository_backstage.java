@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.demo.model.bookingBean;
+import com.example.demo.model.roomTableBean;
 
 public interface OrderRepository_backstage extends JpaRepository<bookingBean,Integer>{
 	
@@ -15,4 +16,5 @@ public interface OrderRepository_backstage extends JpaRepository<bookingBean,Int
 
 	List<bookingBean> findByRoomTableRoomId(Integer roomId);
 	
+	List<bookingBean>findByRoomTable(roomTableBean room);
 }

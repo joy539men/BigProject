@@ -20,6 +20,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="<c:url value="/css/style.css"/>">	
 </head>
 <script>
 	$(document).ready(function() {
@@ -47,7 +48,7 @@
 			</div>
 			<div class="col-5"></div>
 			<div class="col-2" id="adminlogoutdiv">
-				<span id="adminlogout">登出</span>
+				<a href="<c:url value="/logout"></c:url>" class="btn btn-primary ms-2 ms-lg-3">登 出</a>
 			</div>
 		</div>
 		<div class="row mt-4">
