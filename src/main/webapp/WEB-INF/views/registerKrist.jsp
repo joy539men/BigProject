@@ -115,6 +115,7 @@
                                 <div class="mb-3">
                                     姓名
                                     <form:input type="text" class="form-control" id="name" path="userName"/>
+                                    <div id="nameError" class="text-danger"></div>
                                 </div>
                                 <div class="mb-3">
                                     帳號
@@ -144,10 +145,10 @@
                                     生日
                                     <form:input type="date" class="form-control" id="date" path="birthday"/>
                                 </div>
-                          <!--       <div class="mb-3">
+                            	<div class="mb-3">
                                     <label for="profilePicture" class="form-label">上傳大頭貼</label>
-                                    <input type="file" class="form-control" id="profilePicture">
-                                </div> -->
+                                    <form:input type="file" class="form-control" id="profilePicture" path="multipartFile"/>
+                                </div> 
                                 <div class="d-grid ">
                                     <button type="submit" class="btn btn-primary" style="font-size: 20px;">註冊</button>
                                 </div>
@@ -159,7 +160,6 @@
         </div>
 
     </section>
-    
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
@@ -169,7 +169,20 @@
     <script src="js/script.js"></script>
 
 	<script>
+	// 驗證姓名
+		function validateName() {
+			var name = document.getElementById("name").value;
+			var nameError = document.getElementById("nameError");
 
+			if (name.trim() === '') {
+				nameError.textContent = "姓名不能為空。";
+				return false;
+			} else {
+				nameError.textContent = ''; // 清除錯誤信息
+			}
+			return true;
+		}
+	// 驗證帳號
 		function validateAccount() {
 			var account = document.getElementById("account").value;
 			var accountPattern = /^[a-z0-9_]{6,12}$/;
@@ -183,54 +196,56 @@
 			}
 			return true;
 		}
-
+	// 驗證密碼
 		function validatePassword() {
-		    var password = document.getElementById("password").value;
-		    var confirmPassword = document.getElementById("password1").value;
-		    var passwordError = document.getElementById("passwordError");
+			var password = document.getElementById("password").value;
+			var confirmPassword = document.getElementById("password1").value;
+			var passwordError = document.getElementById("passwordError");
+			var passwordPattern = /^[A-Za-z0-9]{6,20}$/; // 正則表達式，表示6到20個字元，包括字母和數字
 
-		    if (password !== confirmPassword) {
-		        passwordError.textContent = "密碼和確認密碼不匹配！";
-		        return false;
-		    }
-		    if (password.length < 5) {
-		        passwordError.textContent = "密碼長度不得低於5個字符！";
-		        return false;
-		    }
-		    passwordError.textContent = ''; // 清除錯誤信息
-		    return true;
+			if (password !== confirmPassword) {
+				passwordError.textContent = "密碼和確認密碼不匹配！";
+				return false;
+			}
+			if (!passwordPattern.test(password)) {
+				passwordError.textContent = "密碼需由6-20個字元組成，字母不區分大小寫。";
+				return false;
+			}
+			passwordError.textContent = ''; // 清除錯誤信息
+			return true;
 		}
-
+	// 驗證電話
 		function validatePhone() {
-		    var phone = document.getElementById("phone").value;
-		    var phonePattern = /^[0-9]{10}$/;
-		    var phoneError = document.getElementById("phoneError");
+			var phone = document.getElementById("phone").value;
+			var phonePattern = /^[0-9]{10}$/;
+			var phoneError = document.getElementById("phoneError");
 
-		    if (!phonePattern.test(phone)) {
-		        phoneError.textContent = "電話號碼格式不正確！";
-		        return false;
-		    } else {
-		        phoneError.textContent = ''; // 清除錯誤信息
-		    }
-		    return true;
+			if (!phonePattern.test(phone)) {
+				phoneError.textContent = "電話號碼格式不正確！";
+				return false;
+			} else {
+				phoneError.textContent = ''; // 清除錯誤信息
+			}
+			return true;
 		}
-
+	// 驗證信箱
 		function validateEmail() {
-		    var email = document.getElementById("email").value;
-		    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-		    var emailError = document.getElementById("emailError");
+			var email = document.getElementById("email").value;
+			var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+			var emailError = document.getElementById("emailError");
 
-		    if (!emailPattern.test(email)) {
-		        emailError.textContent = "電子郵件格式不正確！";
-		        return false;
-		    } else {
-		        emailError.textContent = ''; // 清除錯誤信息
-		    }
-		    return true;
+			if (!emailPattern.test(email)) {
+				emailError.textContent = "電子郵件格式不正確！";
+				return false;
+			} else {
+				emailError.textContent = ''; // 清除錯誤信息
+			}
+			return true;
 		}
 
 		function validateForm() {
-			return validateAccount() && validatePassword() && validatePhone() && validateEmail();
+			return validateAccount() && validatePassword() && validatePhone()
+					&& validateEmail();
 		}
 	</script>
 
@@ -295,15 +310,6 @@
 	});
 
 	</script>
-
-
-
-
-	<!-- # JS Plugins -->
-    <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
-    
-
-
 
 </body>
 

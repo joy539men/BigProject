@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -33,12 +32,11 @@ public class userBean {
 	private String     address;
 	private String     phone;
 	private Date       birthday;
-	private Blob	   photo;
 	private String     identity;
 	private String     status;
 	private String     statusNum;
 	private Timestamp  registrationTime;
-	private String     password1;
+//	private String     password1;
 	private String	   filePath;
 	
 	@Transient
@@ -63,15 +61,6 @@ public class userBean {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<favoriteBean> favorite;
 	
-	
-
-	public Blob getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Blob photo) {
-		this.photo = photo;
-	}
 
 	public Set<reviewBean> getReviews() {
 		return reviews;
@@ -97,7 +86,7 @@ public class userBean {
 		this.favorite = favorite;
 	}
 
-	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone,Blob	photo , String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
+	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone, String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
 		this.userId            = userId;
 		this.account           = account;
 		this.password          = password;
@@ -105,7 +94,6 @@ public class userBean {
 		this.email             = email;
 		this.address           = address;
 		this.phone             = phone;
-		this.photo             = photo;
 		this.identity          = identity;
 		this.status            = status;
 		this.statusNum         = statusNum;
