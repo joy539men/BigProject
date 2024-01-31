@@ -63,7 +63,7 @@ public class HostController {
 			model.addAttribute("rooms", rooms);
 			return "host/hostRooms"; 
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
-            return "redirect:/loginYC";
+            return "redirect:/login";
         }
 
 
@@ -80,7 +80,7 @@ public class HostController {
 		    model.addAttribute("room", room);
 		    return "host/hostRoomDetail";
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
-            return "redirect:/loginYC";
+            return "redirect:/login";
         }
 
 		
@@ -101,7 +101,7 @@ public class HostController {
 			model.addAttribute("roomTableBean", bean);
 			return "host/addRoomForm2";
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
-            return "redirect:/loginYC";
+            return "redirect:/login";
         }
 		
 		
@@ -135,7 +135,7 @@ public class HostController {
 			service.addRoomWithAmenities(bean, amenityIds);
 		    return "redirect:/hostRooms";
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
-            return "redirect:/loginYC";
+            return "redirect:/login";
         }
 		
 	}

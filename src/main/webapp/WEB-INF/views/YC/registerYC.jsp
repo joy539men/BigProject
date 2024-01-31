@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/brands.css">
     <link rel="stylesheet" href="plugins/font-awesome/solid.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" rel="stylesheet">
 
     <!-- # Main Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -137,12 +138,27 @@
                                     生日
                                     <form:input type="date" class="form-control" id="date" path="birthday"/>
                                 </div>
-                                 <div class="mb-3">
-<!--                                     <label for="profilePicture" class="form-label">上傳大頭貼</label> -->
-                                    <form:input path="multipartFile" type="file" class="form-control" id="profilePicture" />
-                                </div>
+<!--                                  <div class="mb-3"> -->
+<!-- <!--                                     <label for="profilePicture" class="form-label">上傳大頭貼</label> --> 
+<%--                                     <form:input path="multipartFile" type="file" class="form-control" id="profilePicture" /> --%>
+<!--                                 </div> -->
+                                
+                                 <!-- test  -->
+                                <label class="btn btn-info"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 上傳圖片</label>
+
+								<div id="oldImg" style="display:none;"></div>
+								
+<!-- 								<button id="crop_img" type="button" class="btn btn-info"><i class="fa fa-scissors"></i> 裁剪圖片</button> -->
+								
+<!-- 								<div id="newImgInfo"></div> -->
+<!-- 								<div id="newImg"></div> -->
+								                                
+                                <!-- test end -->
+                                
+                                
+                                
                                 <div class="d-grid ">
-                                    <button type="submit" class="btn btn-primary" style="font-size: 20px;">註冊</button>
+                                    <button id="submitForm" type="submit" class="btn btn-primary" style="font-size: 20px;">註冊</button>
                                 </div>
                        		</div>
                     	</div>
@@ -167,18 +183,131 @@
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+
     <!-- Main Script -->
     <script src="js/script.js"></script>
-    <script>
-    $(document).ready(function() {
-        
+   
+	<script>
+    $(document).ready(function(){
+		    	var width_crop =200, // 圖片裁切寬度 px 值
+			    height_crop = 200, // 圖片裁切高度 px 值
+			    type_crop = "square", // 裁切形狀: square 為方形, circle 為圓形
+			    width_preview = 350, // 預覽區塊寬度 px 值
+			    height_preview = 350, // 預覽區塊高度 px 值
+			    compress_ratio = 1, // 圖片壓縮比例 0~1
+			    type_img = "jpeg", // 圖檔格式 jpeg png webp
+			    color = "#ffffff",
+			    oldImg = new Image(),
+			    myCrop, file, oldImgDataUrl;
+		
+		    // 裁切初始參數設定
+		    myCrop = $("#oldImg").croppie({
+			    viewport: { // 裁切區塊
+				    width: width_crop,
+				    height: height_crop,
+				    type: type_crop,
+				    background: color
+		    	},
+		    	boundary: { // 預覽區塊
+				    width: width_preview,
+				    height: height_preview,
+				    background: color
+			    }
+		    });
+		
+		function readFile(input) {
+		    if (input.files && input.files[0]){
+		    	file = input.files[0];
+		    } else {
+		    	alert("瀏覽器不支援此功能！建議使用最新版本 Chrome");
+		    return;
+		    }
+		
+		    if (file.type.indexOf("image") == 0) {
+			    var reader = new FileReader();
+			
+				reader.onload = function(e) {
+					oldImgDataUrl = e.target.result;
+					oldImg.src = oldImgDataUrl; // 載入 oldImg 取得圖片資訊
+					myCrop.croppie("bind", {
+						url: oldImgDataUrl
+			    	});
+			    };
+		
+			    reader.readAsDataURL(file);
+			  } else {
+			  		alert("您上傳的不是圖檔！");
+			  }
+		}
+		
+// 		function displayCropImg(src) {
+// 		    var html = "<img src='" + src + "' />";
+// 		    $("#newImg").html(html);
+// 		}
+		
+		$("#upload_img").on("change", function() {
+		    $("#oldImg").show();
+		    readFile(this);
+		});
+		
+
+		function dataURItoBlob(dataURI) {
+		   // Convert data URI to Blob
+		   var byteString = atob(dataURI.split(',')[1]);
+		   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+		   var ab = new ArrayBuffer(byteString.length);
+		   var ia = new Uint8Array(ab);
+		
+		   for (var i = 0; i < byteString.length; i++) {
+		      ia[i] = byteString.charCodeAt(i);
+		   }
+		
+		   return new Blob([ab], { type: mimeString });
+		}
+				
+		$("#submitForm").on("click", function() {
+		    myCrop.croppie("result", {
+			    type: "canvas",
+			    format: type_img,
+			    quality: compress_ratio
+		    }).then(function(src) {
+// 			    displayCropImg(src);
+ 			    // Get other form data
+			      var formData = new FormData($("form")[0]);
+			      
+			      // Append the cropped image as a Blob to the FormData object
+			      var blob = dataURItoBlob(src);
+			      formData.append("multipartFile", blob, "cropped_image.jpg");
+
+			      // Perform the AJAX request to submit the form data
+			      $.ajax({
+			         url: "/pillowSurfing/registerYC", // replace with your backend endpoint
+			         type: "POST",
+			         data: formData,
+			         processData: false,
+			         contentType: false,
+			         success: function (response) {
+			        	 console.log(response);
+			        	 console.log("AJAX request successful");
+			        	 var jsonResponse = JSON.parse(response);
+			        	 window.location.href = jsonResponse.redirectUrl;
+			         },
+			         error: function (error) {
+			        	 console.error("AJAX request failed",error);
+			         }
+			      });
+		    });
+		});
+		        
+
+
     });
 
+    </script>
     
     
     
-    </script>>
 
 </body>
 

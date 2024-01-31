@@ -133,6 +133,15 @@
 					// add between dates to [selected]
 					selected = addChosenDates(firstClicked, secondClicked, selected);
 				}
+				
+				// ### 取得 ID
+				var checkinDay = document.getElementById("checkinDate");
+				
+				 // ### 取得日期的值
+        		checkinDay.value =  firstClicked.year + "-" + firstClicked.month + "-" + firstClicked.date;
+       			console.log("這邊是測試資料" + checkinDay.value);
+				
+				
 				// console.log(selected);
 				selectDates(selected);
 			});			
@@ -312,6 +321,10 @@
 
 		// Finding between dates MADNESS. Needs refactoring and smartening up :)
 		function addChosenDates(firstClicked, secondClicked, selected) {
+			
+			// ### 取得 ID
+			
+			
 			if (secondClicked.date > firstClicked.date || 
 				secondClicked.month > firstClicked.month ||
 				secondClicked.year > firstClicked.year) {
@@ -319,6 +332,18 @@
 				var added_year = secondClicked.year;
 				var added_month = secondClicked.month;
 				var added_date = secondClicked.date;
+				var checkoutDay = document.getElementById("checkoutDate");
+				// ### 取得 checkout 日期 
+				checkoutDay.value = formatDate(new Date(added_year, added_month, added_date));
+
+				function formatDate(date) {
+				    var year = date.getFullYear();
+				    var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份是从0开始计数的，所以要加1
+				    var day = date.getDate().toString().padStart(2, '0');
+				    return year + '-' + month + '-' + day;
+				}
+				
+				console.log(checkoutDay);
 				console.log(selected);
 
 				if (added_year > firstClicked.year) {	
