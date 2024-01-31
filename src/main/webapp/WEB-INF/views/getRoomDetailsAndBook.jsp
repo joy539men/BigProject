@@ -514,79 +514,47 @@ button.switch-month:active {
 	<!-- <link rel="stylesheet" href="../calendar-03/js/calendarMain.js" /> -->
 
 	<script>
-		document
-				.addEventListener(
-						"DOMContentLoaded",
-						function() {
-							window
-									.addEventListener(
-											"scroll",
-											function() {
-												var bookPage = document
-														.getElementById("fix-box");
-												var information = document
-														.getElementById("fix-information")
-												var scrollPosition = window.scrollY
-														|| window.pageYOffset
-														|| document.documentElement.scrollTop;
+		document.addEventListener("DOMContentLoaded",function() {
+			window.addEventListener("scroll",function() {
+				var bookPage = document
+						.getElementById("fix-box");
+				var information = document
+						.getElementById("fix-information")
+				var scrollPosition = window.scrollY
+						|| window.pageYOffset
+						|| document.documentElement.scrollTop;
 
-												// 計算寬度
-												var rightWidth = document
-														.getElementById("bookButtom").offsetWidth;
-												console.log(rightWidth);
-												var imageWidth = document
-														.getElementById("fix-box").offsetWidth;
-												var mathWidth = rightWidth
-														- imageWidth;
-												console.log(mathWidth);
-												console.log(scrollPosition);
+				// 計算寬度
+				var rightWidth = document
+						.getElementById("bookButtom").offsetWidth;
+				console.log(rightWidth);
+				var imageWidth = document
+						.getElementById("fix-box").offsetWidth;
+				var mathWidth = rightWidth
+						- imageWidth;
+				console.log(mathWidth);
+				console.log(scrollPosition);
 
-												// 下滑時訂購單可以貼在旁邊以供參考
-												if (scrollPosition > 641) {
-													bookPage
-															.setAttribute(
-																	"class",
-																	"col-4 fixed-top mt-4"); // 使用 setAttribute 修正类名
-													bookPage
-															.setAttribute(
-																	"style",
-																	"width:416px; height:436px; left:842px ")
-													information.setAttribute(
-															"class",
-															"col-6 sticky-top")
-													information.setAttribute(
-															"style",
-															"right:598px;")
-												} else {
-													bookPage.setAttribute(
-															"class", "col-4"); // 使用 setAttribute 修正类名
-													bookPage
-															.setAttribute(
-																	"style",
-																	"width:416px; height:436px; ")
-													information.setAttribute(
-															"class", "col-6")
-												}
-											})
-						})
+						// 下滑時訂購單可以貼在旁邊以供參考
+						if (scrollPosition > 641) {
+							bookPage.setAttribute("class","col-4 fixed-top mt-4"); // 使用 setAttribute 修正类名
+							bookPage.setAttribute("style","width:416px; height:436px; left:842px ")
+							information.setAttribute("class","col-6 sticky-top")
+							information.setAttribute("style","right:598px;")
+						} else {
+							bookPage.setAttribute("class", "col-4"); // 使用 setAttribute 修正类名
+							bookPage.setAttribute("style","width:416px; height:436px; ")
+							information.setAttribute("class", "col-6")
+						}
+					})
+})
 
 		function initMap() {
 
-			var latitude = $
-			{
-				singleRoom.lat
-			}
-			;
-			var longtitude = $
-			{
-				singleRoom.lon
-			}
-			;
+			var latitude = ${singleRoom.lat};
+			var longtitude = ${singleRoom.lon};
 			var map = new google.maps.Map(document.getElementById('map'), {
-				center : {
-					lat : latitude,
-					lng : longtitude
-				},
+				center : {lat : latitude,lng : longtitude},
 				zoom : 12,
 				styles : [
 				// 在這裡放入你的地圖樣式設定
