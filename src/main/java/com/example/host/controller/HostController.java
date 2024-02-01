@@ -152,27 +152,27 @@ public class HostController {
 	    return "host/editRoomForm";
 	}
 	
-	//儲存更新後的房間資訊
-	@PostMapping("/hostRoomEdit/{roomId}")
-    public String editRoomSubmit(@PathVariable Integer roomId, @ModelAttribute roomTableBean updatedRoom,@RequestParam Set<Integer> amenityIds) {
-		// Get the original room
-	    roomTableBean originalRoom = service.getRoomById(roomId);
-
-	    // Process the uploaded file
-	    MultipartFile multipartFile = updatedRoom.getMultipartFile();
-	    String filePath;
-
-	    if (multipartFile != null && !multipartFile.isEmpty()) {
-	        // If a new file is uploaded, save it and update the filePath
-	        filePath = service.saveFile(multipartFile);
-	    } else {
-	        // If no new file is uploaded, use the original filePath
-	        filePath = originalRoom.getFilePath();
-	    }
-		updatedRoom.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-		service.updateRoomWithAmenities(roomId,  updatedRoom,  amenityIds) ;
-        return "redirect:/hostRooms"; // Redirect to the list of rooms or another appropriate page
-    }
+//	//儲存更新後的房間資訊
+//	@PostMapping("/hostRoomEdit/{roomId}")
+//    public String editRoomSubmit(@PathVariable Integer roomId, @ModelAttribute roomTableBean updatedRoom,@RequestParam Set<Integer> amenityIds) {
+//		// Get the original room
+//	    roomTableBean originalRoom = service.getRoomById(roomId);
+//
+//	    // Process the uploaded file
+//	    MultipartFile multipartFile = updatedRoom.getMultipartFile();
+//	    String filePath;
+//
+//	    if (multipartFile != null && !multipartFile.isEmpty()) {
+//	        // If a new file is uploaded, save it and update the filePath
+//	        filePath = service.saveFile(multipartFile);
+//	    } else {
+//	        // If no new file is uploaded, use the original filePath
+//	        filePath = originalRoom.getFilePath();
+//	    }
+//		updatedRoom.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+//		service.updateRoomWithAmenities(roomId,  updatedRoom,  amenityIds) ;
+//        return "redirect:/hostRooms"; // Redirect to the list of rooms or another appropriate page
+//    }
 	
 	//刪除房間資訊(使用者看不到 不是真從資料庫刪除)
 	@PostMapping("/hostRoomDelete/{roomId}")
