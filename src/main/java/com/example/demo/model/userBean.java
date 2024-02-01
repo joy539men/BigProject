@@ -36,7 +36,6 @@ public class userBean {
 	private String     status;
 	private String     statusNum;
 	private Timestamp  registrationTime;
-//	private String     password1;
 	private String	   filePath;
 	
 	@Transient
@@ -44,6 +43,12 @@ public class userBean {
 	
 	@Transient
 	private MultipartFile multipartFile;
+	
+	@Transient
+    private String newPassword;
+
+    @Transient
+    private String confirmPassword;
 
 	
 	
@@ -99,19 +104,26 @@ public class userBean {
 		this.statusNum         = statusNum;
 		this.registrationTime  = registrationTime;
 		this.birthday          = birthday;
-//		this.password1         = password1;
 		
 	}
 	
 	
-	
-//	public String getPassword1() {
-//		return password1;
-//	}
-
-//	public void setPassword1(String password1) {
-//		this.password1 = password1;
-//	}
+	// 獲取用戶輸入的新密碼
+	public String getNewPassword() {
+        return newPassword;
+    }
+	// 設置用戶輸入的新密碼到 userBean 對象中
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+    // 獲取用戶輸入的確認新密碼
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+    // 設置用戶輸入的確認新密碼到 userBean 對象中
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
 	public Date getBirthday() {
 		return birthday;
