@@ -71,17 +71,15 @@ public class bookingController {
 			// 若是有錯誤訊息則跳回 roomTable 頁面
 			return "roomTable";
 		}
-
 		// 從 session 選擇 selectedRoomId
 		Integer selectedRoomId = (Integer) session.getAttribute("selectedRoomId");
 		Integer night = (Integer) session.getAttribute("night");
 		Integer selecteduserId = (Integer) session.getAttribute("userId");
 		
 		if(selecteduserId == null) {
-			
 			model.addAttribute("loginError", true);
 			model.addAttribute("showLoginAlertMessage", "請先登入");
-			
+
 			return "redirect:/login";
 		}
 
@@ -186,8 +184,8 @@ public class bookingController {
 	@GetMapping("/bookTrip")
 	public String bookTrip(Model model, HttpSession session) {
 		Integer userId = (Integer) session.getAttribute("userId");
-
 		userBean userBean = userRepository.findById(userId).orElse(null);
+		
 		// 檢查用戶是否登入
 		if (userId != null) {
 			// 用戶有登入資料則進行查詢
@@ -238,13 +236,11 @@ public class bookingController {
 		roomTableBean room = roomOptional.orElse(null);
 
 		if (room != null) {
-
 			// 這一行是透過 room 不為空去搜尋是否有 user 的欄位出現
 			userBean roomOwner = room.getUser();
 
 			model.addAttribute("roomOwner", roomOwner);
 			model.addAttribute("singleRoom", room);
-
 		}
 
 		return "evaluationPage";
@@ -259,8 +255,7 @@ public class bookingController {
 			Integer userId = (Integer) session.getAttribute("userId");
 			userBean user = userRepository.findById(userId).orElse(null);
 			roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
-
-			reviewBean reviewBean = new reviewBean(); // 创建一个新的 reviewBean 对象
+			reviewBean reviewBean = new reviewBean();
 
 			reviewBean.setReview_date(new Date(System.currentTimeMillis()));
 			reviewBean.setUser(user);
@@ -275,7 +270,6 @@ public class bookingController {
 			// 如果有例外，可以在控制台中印出錯誤信息
 			e.printStackTrace();
 
-			// 返回JSON格式的錯誤消息
 			return "index";
 		}
 	}
