@@ -1,12 +1,13 @@
 package com.example.Krist.roomTable.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.roomTable.dao.roomTableRepository;
-import com.example.backstage.dao.RoomRepository_backstage;
+import com.example.demo.model.amenitiesBean;
 import com.example.demo.model.bookingBean;
 import com.example.demo.model.reviewBean;
 import com.example.demo.model.roomTableBean;
@@ -47,6 +48,10 @@ public class roomController {
 	    roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
 	    List<reviewBean> reviewRoom = reviewRepository.findAllByRoomTable(room);
 	    
+	    Set<amenitiesBean> amenities = roomTableRepository.findAmenitiesByRoomId(roomId);
+	    //Set<amenitiesBean> findAmenitiesByRoomId(roomId);
+	    
+	    
 	    
 	    
 	    // 設定 session 儲存在網頁當中
@@ -64,6 +69,7 @@ public class roomController {
 	    	model.addAttribute("user",user);
 		    model.addAttribute("singleRoom", singleRoom);
 		    model.addAttribute("reviews", reviewRoom);
+		    model.addAttribute("ameniteis", amenities);
 		   
 		    
 		    

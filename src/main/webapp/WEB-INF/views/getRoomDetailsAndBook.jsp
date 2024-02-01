@@ -349,21 +349,26 @@ button.switch-month:active {
 
 					<hr class="m-3">
 					<h3 class="p-2">評 論 專 區</h3>
-					<div id="map" style="width: 100%;"></div>
-
-
-
-
+					
 					<c:forEach var="review" items="${reviews}">
-						<hr>
 						<h6>${review.user.userName}</h6>
 
 						<p>${review.review_date }</p>
 						<h5 class="">${review.comment }</h5>
 
-
+						<br>
 
 					</c:forEach>
+					
+					<br>
+					<hr>
+					
+					<h3 class="p-2">設 施 表</h3>
+					<c:forEach var="amenity" items ="${ameniteis}">
+					<h6 class= "ms-2">${amenity.amenityName}</h6>
+					<%-- <h6>${review.amenityId.amentityName }</h6> --%>
+					</c:forEach>
+					
 					<hr>
 					
 					<section class="ftco-section">
@@ -512,6 +517,7 @@ button.switch-month:active {
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- <script src="../calendar-03/js/calendarMain.js"></script> -->
 	<!-- <link rel="stylesheet" href="../calendar-03/js/calendarMain.js" /> -->
+	<script src="../plugins/scrollmenu/scrollmenu.min.js"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded",function() {
