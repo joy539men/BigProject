@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "review")
 public class reviewBean {
@@ -26,10 +28,12 @@ public class reviewBean {
 //	private userBean user;
 	
 	@ManyToOne
+	@JsonIgnore
     @JoinColumn(name = "user")
     private userBean user;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "roomTable")
     private roomTableBean roomTable;
 	

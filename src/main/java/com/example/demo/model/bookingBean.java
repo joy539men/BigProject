@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="booking")
 public class bookingBean {
@@ -29,10 +31,12 @@ public class bookingBean {
 	private String  status;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="userId")
 	private userBean user;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="roomId")
 	private roomTableBean roomTable;
 	
