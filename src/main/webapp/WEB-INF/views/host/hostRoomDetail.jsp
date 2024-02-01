@@ -101,7 +101,7 @@
 	        
 	        <div id="roomTypeDiv" class="row mx-3 align-items-center">
 		          <div id="roomType" class="col-3 align-content-center flex-wrap">
-		          	<strong>房源描述</strong>
+		          	<strong>房源類型</strong>
 		          </div>
 		          <div id="roomTypeInputDiv" class="col-9">
 		          	<input id="roomTypeInput" value="${room.type}"/>
@@ -113,7 +113,7 @@
 		          	<strong>房源描述</strong>
 		          </div>
 		          <div id="roomDescriptInputDiv" class="col-9">
-		          	<input id="roomDescriptInput" value="${room.description}"/>
+		          	<textarea id="roomDescriptInput"  rows="10" cols="50">${room.description}</textarea>
 		          </div>	
 	        </div> <!-- end of roomDescriptDiv -->
 	        

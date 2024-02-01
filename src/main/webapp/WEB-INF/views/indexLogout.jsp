@@ -220,6 +220,15 @@
 		</div>
 	</section>
 
+	<section>
+		 <a
+			href="<c:url value="/webSocket"></c:url>">聊天系統</a><br><a
+			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> 
+			<a
+			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>
+	</section>
+
+
 
 	<section class="homepage_tab position-relative">
 		<div class="section container">

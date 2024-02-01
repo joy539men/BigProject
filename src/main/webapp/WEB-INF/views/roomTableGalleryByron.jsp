@@ -418,7 +418,7 @@
     
     <div class="row w-75 mx-auto  d-flex align-items-center"> 
         
-      <div class="d-flex justify-content-evenly "> 
+      <div class="d-flex justify-content-between "> 
             <div class="scroll-buttons d-flex " style="width: 772px;">
                     <button class="arrow-button " style="max-width: 165%; background-color: #ffffff;" onclick="scrollaaa()">
                         <img src="./地區ICON/left-arrow.png" width="60px" height="60px">
