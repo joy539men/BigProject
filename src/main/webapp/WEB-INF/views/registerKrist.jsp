@@ -182,7 +182,7 @@
 			}
 			return true;
 		}	
-	// 驗證帳號
+	// 驗證帳號格式
 		function validateAccount() {
 			var account = document.getElementById("account").value;
 			var accountPattern = /^[A-Za-z0-9_]{6,12}$/;
