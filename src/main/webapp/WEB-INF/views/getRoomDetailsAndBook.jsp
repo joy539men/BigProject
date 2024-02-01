@@ -351,12 +351,31 @@ button.switch-month:active {
 					<h3 class="p-2">評 論 專 區</h3>
 					
 					<c:forEach var="review" items="${reviews}">
-						<h6>${review.user.userName}</h6>
+					
+						<div class="card mb-3" style="max-width: 540px;">
+						  <div class="row g-0">
+						    <div class="col-md-4">
+						    	<c:if test="${not empty review.user.filePath}">
+   								 	<img class="text" src="${review.user.filePath}" class="img-fluid rounded-start" alt="忘記設定大頭貼了！！！">
+								</c:if>
+						      <img src="../images/logo.png" class="rounded-start justify-content-center ms-3 mt-3" style="width:100xp; height:100px;" alt="忘記設定大頭貼了！！！">
+						    </div>
+						    <div class="col-md-8">
+						      <div class="card-body">
+						        <h5 class="card-title">${review.user.userName}</h5>
+						        <p class="card-text">${review.review_date }</p>
+						        <p class="card-text"><small class="text-muted">${review.comment }</small></p>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+						<%-- <h6>${review.user.userName}</h6>
 
 						<p>${review.review_date }</p>
 						<h5 class="">${review.comment }</h5>
 
-						<br>
+						<br> --%>
 
 					</c:forEach>
 					
