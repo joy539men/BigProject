@@ -60,8 +60,8 @@ public class QureyAccountController_backstage {
 			System.out.println(userBean);
 		}
 		String userEmail = userService.getEmailByUserId(id);
-		String subject = "我是標題主旨";
-		String content = "這裡是內容";
+		String subject = "PillowSurfing 重要訊息通知!!!";
+		String content = "親愛的會員您好~ 您的PillowSurfing會員帳號已被"+'"'+"禁止使用"+'"'+"，請聯繫客服人員!" ;
 		mailService.sendEmail(userEmail, subject, content);
 		return "redirect:/account";
 	}

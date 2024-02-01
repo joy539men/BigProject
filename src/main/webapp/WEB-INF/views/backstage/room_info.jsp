@@ -50,7 +50,9 @@
 						</tr>
 						<tr>
 							<th scope="row">提供設備</th>
-							<td></td>
+							<td><c:forEach var="amenity" items="${room.amenities}">
+            						${amenity.amenityName}<br />
+								</c:forEach></td>
 						</tr>
 						<tr>
 							<th scope="row">價格</th>
@@ -63,8 +65,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><a href="<c:url value='/room' />">回前頁</a>
-							</td>
+							<td colspan="2"><a href="<c:url value='/room' />">回前頁</a></td>
 						</tr>
 					</tfoot>
 				</table>

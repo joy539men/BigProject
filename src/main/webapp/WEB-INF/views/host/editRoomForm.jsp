@@ -2,6 +2,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -167,25 +169,26 @@
 	        </div> <!-- end of roomPriceDiv -->
 	        
 	        <div id="amenityDiv" class="row mx-3 align-items-center">
-		          <div id="Rmenity" class="col-3 align-content-center flex-wrap">
-		          	<strong>房間設備</strong>
-		          </div>
-		          <div id="amenityInputDiv" class="col-9">
-			          <c:if test="${not empty room.amenities}">
-           				 <ul>
-               				 <c:forEach var="amenity" items="${room.amenities}">
-                   			 	<li>${amenity.amenityName}</li>
-                			</c:forEach>
-           				 </ul>
-        			 </c:if>
-        			 <c:forEach var="amenity" items="${amenities}">
-		        		<label for="amenity-${amenity.amenityId}" class="amenityCheckbox">
-		        			<input type="checkbox" id="amenity-${amenity.amenityId}" name="amenityIds" value="${amenity.amenityId}" >
-		        			<div>${amenity.amenityName}</div>
-		        		</label>
-	    	</c:forEach>
-		          </div>	
-	        </div> <!-- end of amenityDiv -->
+			    	<div id="Amenity" class="col-3 align-content-center flex-wrap">
+			        <strong>房間設備</strong>
+			    </div>
+			    <div id="amenityInputDiv" class="col-9">
+			        <ul class="amenityList">
+			            <c:forEach var="amenity" items="${amenities}">
+			                <li>
+			                    <label for="amenity-${amenity.amenityId}" class="amenityCheckbox">
+			                        <input type="checkbox" 
+			                               id="amenity-${amenity.amenityId}" 
+			                               name="amenityIds" 
+			                               value="${amenity.amenityId}"
+			                               <c:if test="${fn:contains(room.amenities, amenity)}">checked</c:if> >
+			                        <div class="px-3">${amenity.amenityName}</div>
+			                    </label>
+			                </li>
+			            </c:forEach>
+			        </ul>
+			    </div>
+			</div> <!-- end of amenityDiv -->
 	        
 	        <div id="roomPicRoomDiv" class="row mx-3 align-items-center">
 		          <div id="roomPic" class="col-3 align-content-center flex-wrap">

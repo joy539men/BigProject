@@ -20,7 +20,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="<c:url value="/css/style.css"/>">	
+<link
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="<c:url value="/css/style.css"/>">
 </head>
 <script>
 	$(document).ready(function() {
@@ -33,6 +37,63 @@
 			scrollY : '55vh',
 		})
 	});
+
+	function edit(roomId) {
+
+		// 在修改前進行房間使用狀態判斷
+		if (isRoomInUseDuringOrderPeriod(roomId)) {
+			Swal.fire({
+				title : '該房間在訂單期間仍處於"使用中"狀態，無法修改!',
+				icon : 'warning',
+				showConfirmButton : false,
+				timer : 3500
+			})
+			$("#selectStatus_" + roomId).val("使用中");
+			return false;
+		}
+
+		$.ajax({
+			method : "POST",
+			url : "/pillowSurfing/updateRoomStatus",
+			dataType : 'json',
+			data : $("#statusform_" + roomId).serialize(),
+			success : function(room) {
+				console.log(room);
+
+				Swal.fire({
+					title : '修改完成!',
+					icon : 'success',
+					showConfirmButton : false,
+					timer : 1500
+				})
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.error("Error:", jqXHR.status, textStatus, errorThrown);
+			}
+		});
+		return false;
+	}
+
+	function isRoomInUseDuringOrderPeriod(roomId) {
+		var isRoomInUse = false;
+		$.ajax({
+			method : "GET",
+			url : "/pillowSurfing/checkRoomInUseDuringOrderPeriod",
+			data : {
+				roomIds : roomId
+			},
+			async : false,
+			success : function(result) {
+				isRoomInUse = result;
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.error("Error:", jqXHR.status, textStatus, errorThrown);
+			}
+		});
+
+		return isRoomInUse;
+	}
 </script>
 <body>
 
@@ -48,7 +109,8 @@
 			</div>
 			<div class="col-5"></div>
 			<div class="col-2" id="adminlogoutdiv">
-				<a href="<c:url value="/logout"></c:url>" class="btn btn-primary ms-2 ms-lg-3">登 出</a>
+				<a href="<c:url value="/logout"></c:url>"
+					class="btn btn-primary ms-2 ms-lg-3">登 出</a>
 			</div>
 		</div>
 		<div class="row mt-4">
@@ -88,9 +150,11 @@
 							<td>${room.address }</td>
 							<td class="no-wrap">${room.price }</td>
 							<td class="no-wrap">
-								<form action="<c:url value='/updateRoomStatus' />" method="POST">
+								<form id="statusform_${room.roomId }"
+									action="<c:url value='/updateRoomStatus' />" method="POST"
+									onsubmit="return edit('${room.roomId }')">
 									<input type="hidden" name="roomIds" value="${room.roomId }">
-									<select id="selectStatus" name="status">
+									<select id="selectStatus_${room.roomId }" name="status">
 										<option value="未開放" ${room.status == "未開放" ? "selected" : ""}>未開放</option>
 										<option value="可使用" ${room.status == "可使用" ? "selected" : ""}>可使用</option>
 										<option value="使用中" ${room.status == "使用中" ? "selected" : "" }>使用中</option>
@@ -117,7 +181,8 @@
 
 		</div>
 	</div>
-
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

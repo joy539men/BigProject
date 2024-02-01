@@ -68,6 +68,7 @@ public class roomTableBean {
 	MultipartFile multipartFile;
 	
 	@ManyToMany
+	@JsonIgnore
 	@JoinTable(name= "roomTableAndAmenities",
 					joinColumns = @JoinColumn(name="roomId"),
 					inverseJoinColumns = @JoinColumn(name="amenitiesId"))
@@ -75,6 +76,7 @@ public class roomTableBean {
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
+	@JsonIgnore
 	private userBean user;
 	
 	@OneToMany(mappedBy = "roomTable", cascade =CascadeType.ALL)

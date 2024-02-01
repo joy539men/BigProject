@@ -82,8 +82,9 @@ public class userRestControllerYc {
 					e.printStackTrace();
 					return ResponseEntity.ok("Registration fail");
 				}
-				
+				System.out.println("OK");
 				return ResponseEntity.ok("{\"redirectUrl\": \"/pillowSurfing/\"}");
+				
 				
 			}
 			
