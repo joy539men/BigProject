@@ -503,7 +503,7 @@ button.switch-month:active {
 										<div class="form-group">
 											<label for="guest" class="form-label">旅 客 人 數</label>
 											<form:input type="number" class="form-control shadow-none"
-												id="guest" placeholder="ex: 1~5" path="guest" />
+												id="guest" placeholder="ex: 1~5" path="guest" min="1"/>
 											<form:errors path="guest" cssClass="error" />
 										</div>
 									</div>
