@@ -181,7 +181,7 @@
 				nameError.textContent = ''; // 清除錯誤信息
 			}
 			return true;
-		}
+		}	
 	// 驗證帳號
 		function validateAccount() {
 			var account = document.getElementById("account").value;
