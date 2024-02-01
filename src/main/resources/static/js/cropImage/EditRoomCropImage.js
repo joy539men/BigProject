@@ -1,5 +1,7 @@
 
-  $(document).ready(function() {
+ $(document).ready(function() {
+	 var roomId = parseInt($("#roomId").val());
+	 console.log(typeof roomId);
  	    // Your existing variable definitions...
  	    var width_crop =650, // 圖片裁切寬度 px 值
 			    height_crop = 400, // 圖片裁切高度 px 值
@@ -60,9 +62,26 @@
 
 
  	    $("#upload_img").on("change", function() {
+ 	        $("#originalImg").hide();
  	        $("#oldImg").show();
  	        readFile(this);
  	    });
+ 	    
+ 	    $("#cancleUpload").on("click", function() {
+	        // Clear the file input
+	        $("#upload_img").val('');
+	
+	        // Hide the cropped image container
+	        $("#oldImg").hide();
+	
+	        // Show the original image container
+	        $("#originalImg").show();
+	    });
+
+ 	    
+ 	    
+ 	   
+ 	    
 
 		function dataURItoBlob(dataURI) {
 		   // Convert data URI to Blob
@@ -77,48 +96,63 @@
 		
 		   return new Blob([ab], { type: mimeString });
 		}
+		
+		function submitForm(formData){
+			 // Perform the AJAX request
+	 	            $.ajax({
+	 	                url: "/pillowSurfing/hostRoomEdit/" + roomId,
+	 	                type: "POST",
+	 	                data: formData,
+	 	                processData: false,
+	 	                contentType: false,
+	 	               success: function (response) {
+				        	// Check if a roomUrl is present in the response
+				        	    if (response) {
+				        	        // Redirect to the specified URL
+				        	        var jsonResponse = JSON.parse(response);
+   	                    			window.location.href = jsonResponse.redirectUrl;
+				        	    } else {
+				        	        // Handle the case when no roomUrl is present in the response
+				        	        console.error("No roomUrl in the response");
+				        	        alert("Error: Redirect URL not provided. Please try again.");
+				        	    }
+				         },
+	 	                error: function(jqXHR, textStatus, errorThrown) {
+	 	                    console.error("AJAX request failed: ", textStatus, errorThrown, jqXHR.responseText);
+	 	                }
+	 	            });
+		 }
  	    
  	    // Modify the submitForm click event handler
  	    $("#submitRoomForm").on("click", function(event) {
  	        event.preventDefault();  // Prevent the default form submission
- 	        myCrop.croppie("result", {
- 	            type: "canvas",
- 	            format: type_img,
- 	            quality: compress_ratio
- 	        }).then(function(src) {
- 	            var formData = new FormData($("form")[0]);
- 	            var blob = dataURItoBlob(src);
- 	            formData.append("multipartFile", blob, "cropped_image.jpg");
-
- 	            // Log formData entries for debugging
- 	            for (var pair of formData.entries()) {
- 	                console.log(pair[0] + ', ' + pair[1]);
- 	            }
-
- 	            // Perform the AJAX request
- 	            $.ajax({
- 	                url: "/pillowSurfing/addRoom",
- 	                type: "POST",
- 	                data: formData,
- 	                processData: false,
- 	                contentType: false,
- 	               success: function (response) {
-			        	// Check if a roomUrl is present in the response
-			        	    if (response && response.roomUrl) {
-			        	        // Redirect to the specified URL
-			        	        console.log(response);
-			        	        window.location.href = response.roomUrl;
-			        	    } else {
-			        	        // Handle the case when no roomUrl is present in the response
-			        	        console.error("No roomUrl in the response");
-			        	        alert("Error: Redirect URL not provided. Please try again.");
-			        	    }
-			         },
- 	                error: function(jqXHR, textStatus, errorThrown) {
- 	                    console.error("AJAX request failed: ", textStatus, errorThrown, jqXHR.responseText);
- 	                }
- 	            });
- 	        });
+ 	        
+ 	        
+ 	        if($("#upload_img").val()=== ""){
+				 // Handle the case when the image upload is cancelled
+			        var formData = new FormData($("form")[0]);
+			        console.log("no image update");
+			        // Continue with the AJAX request without the file
+			        submitForm(formData);
+			 }else{
+				 myCrop.croppie("result", {
+	 	            type: "canvas",
+	 	            format: type_img,
+	 	            quality: compress_ratio
+	 	        }).then(function(src) {
+	 	            var formData = new FormData($("form")[0]);
+	 	            var blob = dataURItoBlob(src);
+	 	            formData.append("multipartFile", blob, "cropped_image.jpg");
+	// 	            // Log formData entries for debugging
+	// 	            for (var pair of formData.entries()) {
+	// 	                console.log(pair[0] + ', ' + pair[1]);
+	// 	            }
+					console.log("with image update");
+					submitForm(formData);
+	 	        });
+			 }  //end of else 
  	    });
+ 	    
+ 	    
  	});
 

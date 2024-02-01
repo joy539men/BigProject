@@ -108,7 +108,7 @@
                 <div class="col-lg-4">
                     <!-- Registration Form -->
 					<c:url var='register' value='/register' />
-                	 <form:form method="post" modelAttribute="register" action="${ register}" enctype="multipart/form-data" onsubmit="return validateForm()">
+                	 <form:form method="post" modelAttribute="register" action="${ register}" onsubmit="return validateForm()">
                 	  <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center mb-4">會員註冊</h2>
@@ -244,7 +244,7 @@
 		}
 
 		function validateForm() {
-			return validateName() && validateAccount() && validatePassword() && validatePhone()
+			return validateAccount() && validatePassword() && validatePhone()
 					&& validateEmail();
 		}
 	</script>

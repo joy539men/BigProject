@@ -1,6 +1,5 @@
 package com.example.Krist.user.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -270,7 +267,7 @@ public class userController {
     
   //儲存更新後的會員資料
   	@PostMapping("/userModSave")
-      public String editRoomSubmit(@ModelAttribute userBean updatedUser, BindingResult result, HttpSession session, Model model) {
+      public String editRoomSubmit(@ModelAttribute userBean updatedUser,HttpSession session) {
   		Integer userId = (Integer) session.getAttribute("userId");
         
   		
@@ -281,28 +278,6 @@ public class userController {
     		if (optional.isPresent()) {
     			originalUser = optional.get();
     		}
-    		
-    		// 檢查新密碼是否已輸入並且兩次輸入是否一致
-    	    if (StringUtils.hasText(updatedUser.getNewPassword()) && updatedUser.getNewPassword().equals(updatedUser.getConfirmPassword())) {
-    	        // 加密新密碼並設置到原始用戶對象
-    	        try {
-    	            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-    	            byte[] hashedBytes = messageDigest.digest(updatedUser.getNewPassword().getBytes(StandardCharsets.UTF_8));
-    	            StringBuilder stringBuilder = new StringBuilder();
-    	            for (byte b : hashedBytes) {
-    	                stringBuilder.append(String.format("%02x", b));
-    	            }
-    	            originalUser.setPassword(stringBuilder.toString());
-    	        } catch (NoSuchAlgorithmException e) {
-    	            // 密碼加密失敗，處理異常
-    	            model.addAttribute("error", "密碼加密過程中發生錯誤。");
-    	            return "userProfileEdit";
-    	        }
-    	    } else if (StringUtils.hasText(updatedUser.getNewPassword())) {
-    	        // 新密碼和確認密碼不一致
-    	        model.addAttribute("error", "新密碼和確認密碼不匹配。");
-    	        return "userProfileEdit";
-    	    }
         	
     		// Process the uploaded file
     	    MultipartFile multipartFile = updatedUser.getMultipartFile();
@@ -320,7 +295,7 @@ public class userController {
     	    updatedUser.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
     	    updatedUser.setAccount(originalUser.getAccount()); 
     	    updatedUser.setPassword(originalUser.getPassword()); 
-    	    updatedUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));// 更新 registrationTime 為當前時間
+    	    
     	    userService.updateUser(userId,updatedUser);
     	    //            return "index"; 
             return "index";
