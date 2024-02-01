@@ -51,7 +51,7 @@ public class userController {
 		if (user != null && PasswordHashing.verifyPassword(password, user.getPassword())) {
 			  // 驗證成功，判斷是否是管理者
 	        if ("admin123".equals(user.getAccount())) { 
-	            // 如果是管理者，将管理员信息存储到 session
+	            // 如果是管理者，將管理者訊息儲存到 session
 	            session.setAttribute("isAdmin", true);
 	        }
 			// 驗證成功，將 userId 存到 session 當中，記得加入 HttpSession
