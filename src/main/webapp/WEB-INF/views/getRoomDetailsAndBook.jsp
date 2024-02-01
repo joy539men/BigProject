@@ -294,7 +294,7 @@ button.switch-month:active {
 					<div class="border rounded me-3 shadow-sm">
 						<div class="row m-2 mt-1">
 							<div class="text-center col-5">
-								<img class="img-fluid w-50" src="images/logo.png" alt="" />
+								<img class="img-fluid w-50 mt-3" src="..${user.filePath }" alt="" />
 							</div>
 							<div class="col-5 mt-3 me-auto">
 								<h6>房東：${user.userName }</h6>
@@ -349,21 +349,38 @@ button.switch-month:active {
 
 					<hr class="m-3">
 					<h3 class="p-2">評 論 專 區</h3>
-					<div id="map" style="width: 100%;"></div>
-
-
-
-
+					
 					<c:forEach var="review" items="${reviews}">
-						<hr>
-						<h6>${review.user.userName}</h6>
-
-						<p>${review.review_date }</p>
-						<h5 class="">${review.comment }</h5>
-
-
+					
+						<div class="card mb-3" style="max-width: 540px;">
+						  <div class="row g-0">
+						    <div class="col-md-4">
+						    	<c:if test="${not empty review.user.filePath}">
+   								 	<img class="text" src="..${review.user.filePath}" class="img-fluid rounded-start" alt="忘記設定大頭貼了！！！">
+								</c:if>
+						      <img src="../images/logo.png" class="rounded-start justify-content-center ms-3 mt-3" style="width:100xp; height:100px;" alt="忘記設定大頭貼了！！！">
+						    </div>
+						    <div class="col-md-8">
+						      <div class="card-body">
+						        <h5 class="card-title">${review.user.userName}</h5>
+						        <p class="card-text">${review.review_date }</p>
+						        <p class="card-text"><small class="text-muted">${review.comment }</small></p>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 
 					</c:forEach>
+					
+					<br>
+					<hr>
+					
+					<h3 class="p-2">設 施 表</h3>
+					<c:forEach var="amenity" items ="${ameniteis}">
+					<h6 class= "ms-2">${amenity.amenityName}</h6>
+					<%-- <h6>${review.amenityId.amentityName }</h6> --%>
+					</c:forEach>
+					
 					<hr>
 					
 					<section class="ftco-section">
@@ -419,34 +436,6 @@ button.switch-month:active {
 		</div>
 	</section>
 					
-					<!-- <h3 class="p-2">日 期 選 擇</h3>
-					<div class="calendar calendar-first ms-4" id="calendar_first">
-						<div class="calendar_header">
-							<button class="switch-month switch-left">
-								<i class="fa fa-chevron-left"></i>
-							</button>
-							<button class="switch-month switch-right">
-								<i class="fa fa-chevron-right"></i>
-							</button>
-						</div>
-						<div class="calendar_weekdays"></div>
-						<div class="calendar_content"></div>
-
-
-						<div class="calendar calendar-second" id="calendar_second">
-							<div class="calendar_header">
-								<button class="switch-month switch-left">
-									<i class="fa fa-chevron-left"></i>
-								</button>
-								<h2></h2>
-								<button class="switch-month switch-right">
-									<i class="fa fa-chevron-right"></i>
-								</button>
-							</div>
-							<div class="calendar_weekdays"></div>
-							<div class="calendar_content"></div>
-						</div>
-					</div> -->
 				</div>
 
 				<!-- 此為固定方塊 -->
@@ -479,7 +468,7 @@ button.switch-month:active {
 										<div class="form-group">
 											<label for="guest" class="form-label">旅 客 人 數</label>
 											<form:input type="number" class="form-control shadow-none"
-												id="guest" placeholder="ex: 1~5" path="guest" />
+												id="guest" placeholder="ex: 1~5" path="guest" min="1"/>
 											<form:errors path="guest" cssClass="error" />
 										</div>
 									</div>
@@ -512,6 +501,7 @@ button.switch-month:active {
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- <script src="../calendar-03/js/calendarMain.js"></script> -->
 	<!-- <link rel="stylesheet" href="../calendar-03/js/calendarMain.js" /> -->
+	<script src="../plugins/scrollmenu/scrollmenu.min.js"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded",function() {
