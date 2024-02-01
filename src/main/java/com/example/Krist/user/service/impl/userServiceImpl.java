@@ -1,6 +1,7 @@
 package com.example.Krist.user.service.impl;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -205,8 +206,9 @@ public class userServiceImpl implements userService{
         	existingUser.setEmail(updateUser.getEmail());
         	existingUser.setAddress(updateUser.getAddress());
         	existingUser.setPhone(updateUser.getPhone());
-        	existingUser.setBirthday(updateUser.getBirthday());
+        	existingUser.setIdentity(updateUser.getIdentity());
         	existingUser.setFilePath(updateUser.getFilePath());
+        	existingUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
         		
         	return userRepository.save(existingUser);
         }

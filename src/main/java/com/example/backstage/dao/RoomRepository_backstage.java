@@ -2,6 +2,7 @@ package com.example.backstage.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,6 @@ public interface RoomRepository_backstage extends JpaRepository<roomTableBean,In
 	
 	@Query("SELECT r FROM roomTableBean r WHERE r.status = '可使用'")
 	List<roomTableBean> roomAvailable();
+
+
 }

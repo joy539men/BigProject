@@ -100,11 +100,11 @@
 		<div class="row mb-3">
 			<div class="col">
 				<label for="name" class="form-label" style="font-size: 18px;">姓名</label>
-				<span class="form-control" id="userName">${user.userName}"</span>
+				<span class="form-control" id="userName">${user.userName}</span>
 			</div>
 			<div class="col">
 				<label for="email" class="form-label" style="font-size: 18px;">Email</label>
-				<span class="form-control" id="email">${user.email}"</span>
+				<span class="form-control" id="email">${user.email}</span>
 			</div>
 		</div>
 
@@ -112,11 +112,11 @@
 		<div class="row mb-3">
 			<div class="col">
 				<label for="password" class="form-label" style="font-size: 18px;">密碼</label>
-				<span class="form-control" id="password">${user.password}"</span>
+				<span class="form-control" id="password">**********</span>
 			</div>
 			<div class="col">
 				<label for="idCard" class="form-label" style="font-size: 18px;">身分證</label>
-				<span class="form-control" id="identity">${user.identity}"</span>
+				<span class="form-control" id="identity">${user.identity}</span>
 			</div>
 		</div>
 
@@ -136,7 +136,7 @@
 		<div class="mb-3">
 			<label for="profilePicture" class="form-label"
 				style="font-size: 18px;">大頭貼</label> <img
-				src="<c:url value = '${user.filePath}'/>" style="height: 300px">
+				src="<c:url value = '${user.filePath}'/>" style="max-height: 300px; width: auto;">
 		</div>
 
 		<div class="row">

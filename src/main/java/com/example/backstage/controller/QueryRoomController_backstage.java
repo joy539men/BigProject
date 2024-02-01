@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.backstage.service.OrderService_backstage;
 import com.example.backstage.service.RoomService_backstage;
+import com.example.demo.model.amenitiesBean;
 import com.example.demo.model.roomTableBean;
 
 @Controller
@@ -25,7 +28,7 @@ public class QueryRoomController_backstage {
 	RoomService_backstage roomService;
 	OrderService_backstage orderService;
 
-	public QueryRoomController_backstage(RoomService_backstage roomService,OrderService_backstage orderService) {
+	public QueryRoomController_backstage(RoomService_backstage roomService, OrderService_backstage orderService) {
 		super();
 		this.roomService = roomService;
 		this.orderService = orderService;
@@ -41,25 +44,38 @@ public class QueryRoomController_backstage {
 		model.addAttribute("rooms", roombean);
 		return "backstage/room";
 	}
-	//更改房間狀態
+
+	// 更改房間狀態
 	@PostMapping("/updateRoomStatus")
-	public String updateRoomStatus(@RequestParam Integer roomIds, @RequestParam String status) {
+	@ResponseBody
+	public roomTableBean updateRoomStatus(@RequestParam Integer roomIds, @RequestParam String status) {
 		// 根據房間ID查找房間
 		roomTableBean room = roomService.findById(roomIds).orElse(null);
 		System.out.println(room);
 		if (room != null) {
 			// 如果有訂單入住期間，將狀態設為使用中
-	        if (orderService.hasOrderDuringCurrentDate(room)) {
-	        	status = "使用中";
-	        }
+			if (orderService.hasOrderDuringCurrentDate(room)) {
+				status = "使用中";
+			}
 //			// 修改房間狀態
 			room.setStatus(status);
 			// 保存更新後的房間
 			roomService.save(room);
-		}
-		return "redirect:/room";
+//			System.out.println(room);
+	    }
+		return room; 
 	}
 	
+	// 判斷房間狀態
+	@GetMapping("/checkRoomInUseDuringOrderPeriod")
+	@ResponseBody
+	public boolean checkRoomInUseDuringOrderPeriod(@RequestParam Integer roomIds) {
+		// 根據房間ID查找房間
+		roomTableBean room = roomService.findById(roomIds).orElse(null);
+		System.out.println(orderService.hasOrderDuringCurrentDate(room));
+		return orderService.hasOrderDuringCurrentDate(room); 
+	}
+
 	// 房間詳細資訊
 	@GetMapping({ "/room_info/{id}" })
 	public String getRoomDetial(@PathVariable("id") Integer id, Model model, HttpServletRequest request) {
