@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="amenities")
 public class amenitiesBean {
@@ -38,7 +40,7 @@ public class amenitiesBean {
 	public void setRoomTable(Set<roomTableBean> roomTable) {
 		this.roomTable = roomTable;
 	}
-
+	@JsonIgnore
 	@ManyToMany(mappedBy = "amenities")
 	private Set<roomTableBean> roomTable = new HashSet<>();
 	

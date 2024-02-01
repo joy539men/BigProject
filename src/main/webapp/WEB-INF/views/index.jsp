@@ -224,17 +224,6 @@
 		</div>
 	</section>
 
-	<section>
-		 <a
-			href="<c:url value="/webSocket"></c:url>">聊天系統</a><br><a
-			href="<c:url value="/roomPageTest"></c:url>">訂房表單</a><br> 
-			<a
-			href="<c:url value="/calendar"></c:url>">時鐘顯示 </a><br>
-			
-			<a
-			href="<c:url value="/chatchat"></c:url>">聊天系統測試版本</a>
-	</section>
-
 
 
 	<section class="homepage_tab position-relative">
@@ -661,6 +650,19 @@
 
 	<!-- Main Script -->
 	<script src="js/script.js"></script>
+	<script>
+		var alertMessage = "<c:out value='${showLoginAlertMessage}' />";
+	    var loginError = "<c:out value='${loginError}'/>";
+		
+		// 加載頁面觸發 alert
+		// 加载页面时触发 alert
+	    window.onload = function() {
+	        if (loginError !== '') {
+	            alert(alertMessage);
+	        }
+	    };
+
+	</script>
 
 </body>
 </html>

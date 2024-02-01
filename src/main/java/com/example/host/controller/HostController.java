@@ -99,7 +99,7 @@ public class HostController {
 		    
 			roomTableBean bean = new roomTableBean();
 			model.addAttribute("roomTableBean", bean);
-			return "host/addRoomForm2";
+			return "host/addRoomForm3";
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
             return "redirect:/login";
         }
@@ -107,38 +107,38 @@ public class HostController {
 		
 	}
 	
-	//傳送新增房間請求
-	@PostMapping("/addRoom")
-	public String insertRoom(@ModelAttribute roomTableBean bean,@RequestParam(value = "amenityIds", required = false) Set<Integer> amenityIds) {
-		Integer userId = (Integer) session.getAttribute("userId");
-		if (userId != null) {
-			Optional<userBean> optional = userRepository.findById(userId);
-			if (optional.isPresent()) {
-				userBean user = optional.get();
-				bean.setUser(user);
-			}
-			
-			//照片用multipartFile從表單送過來
-			MultipartFile multipartFile = bean.getMultipartFile();
-			String filePath = service.saveFile(multipartFile);    //用saveFile把照片存到指定路徑，並回傳路徑
-			bean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-			bean.setStatus("待審核");
-			
-			
-			 // 使用Google Maps Geocoding API將地址轉換成經緯度
-			String address = bean.getAddress();
-			Map<String, String> latLngMap = service.convertAddress(address);
-			bean.setLat(latLngMap.get("latitude"));
-			bean.setLon(latLngMap.get("longitude")) ;
-			
-		    service.update(bean);
-			service.addRoomWithAmenities(bean, amenityIds);
-		    return "redirect:/hostRooms";
-        } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
-            return "redirect:/login";
-        }
-		
-	}
+//	//傳送新增房間請求
+//	@PostMapping("/addRoom")
+//	public String insertRoom(@ModelAttribute roomTableBean bean,@RequestParam(value = "amenityIds", required = false) Set<Integer> amenityIds) {
+//		Integer userId = (Integer) session.getAttribute("userId");
+//		if (userId != null) {
+//			Optional<userBean> optional = userRepository.findById(userId);
+//			if (optional.isPresent()) {
+//				userBean user = optional.get();
+//				bean.setUser(user);
+//			}
+//			
+//			//照片用multipartFile從表單送過來
+//			MultipartFile multipartFile = bean.getMultipartFile();
+//			String filePath = service.saveFile(multipartFile);    //用saveFile把照片存到指定路徑，並回傳路徑
+//			bean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+//			bean.setStatus("待審核");
+//			
+//			
+//			 // 使用Google Maps Geocoding API將地址轉換成經緯度
+//			String address = bean.getAddress();
+//			Map<String, String> latLngMap = service.convertAddress(address);
+//			bean.setLat(latLngMap.get("latitude"));
+//			bean.setLon(latLngMap.get("longitude")) ;
+//			
+//		    service.update(bean);
+//			service.addRoomWithAmenities(bean, amenityIds);
+//		    return "redirect:/hostRooms";
+//        } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
+//            return "redirect:/login";
+//        }
+//		
+//	}
 	
 	
 	//送出房間編輯的表單

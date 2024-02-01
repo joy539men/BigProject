@@ -84,12 +84,12 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 		List<roomTableBean> availableRooms = roomRepository.roomAvailable();
 //		System.out.println(availableRooms);
 		for (roomTableBean room : availableRooms) {
-			System.out.println(room);
+//			System.out.println(room);
 			List<bookingBean> bookingsForRoom = bookingRepository.findByRoomTable(room);
 
 //			System.out.println(bookingsForRoom);
 			for (bookingBean booking : bookingsForRoom) {
-				System.out.println(booking);
+//				System.out.println(booking);
 				if ("已接受".equals(booking.getStatus())) {
 					LocalDate currentDate = LocalDate.now();
 					LocalDate checkinDate = convertToLocalDate(booking.getCheckinDate());
@@ -136,20 +136,20 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 		LocalDate currentDate = LocalDate.now();
 		// 獲取該房間的所有訂單
 		List<bookingBean> orders = bookingRepository.findByRoomTableRoomId(room.getRoomId());
-		System.out.println(orders);
+//		System.out.println(orders);
 		// 檢查是否有訂單在當前日期
 		for (bookingBean order : orders) {
 			LocalDate checkinDate = convertToLocalDate(order.getCheckinDate());
 			LocalDate checkoutDate = convertToLocalDate(order.getCheckoutDate());
-			System.out.println(checkinDate);
-			System.out.println(checkoutDate);
+//			System.out.println(checkinDate);
+//			System.out.println(checkoutDate);
 			if ((currentDate.isEqual(checkinDate) || currentDate.isAfter(checkinDate))
 					&& (currentDate.isEqual(checkoutDate) || currentDate.isBefore(checkoutDate))) {
 
-				System.out.println(currentDate.isAfter(checkinDate));
-				System.out.println((currentDate.isEqual(checkinDate) || currentDate.isAfter(checkinDate)));
-				System.out.println((currentDate.isEqual(checkoutDate) || currentDate.isBefore(checkoutDate)));
-				System.out.println(currentDate.isBefore(checkoutDate));
+//				System.out.println(currentDate.isAfter(checkinDate));
+//				System.out.println((currentDate.isEqual(checkinDate) || currentDate.isAfter(checkinDate)));
+//				System.out.println((currentDate.isEqual(checkoutDate) || currentDate.isBefore(checkoutDate)));
+//				System.out.println(currentDate.isBefore(checkoutDate));
 				return true;
 			}
 		}
