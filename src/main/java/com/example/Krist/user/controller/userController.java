@@ -39,7 +39,14 @@ public class userController {
 
 	// 登入的頁面
 	@GetMapping("/login")
-	public String userLoginPage() {
+	public String userLoginPage(HttpSession session) {
+		// 檢查 session 中是否有登入標誌
+		Integer isLoggedIn = (Integer) session.getAttribute("userId");
+
+        // 如果已經登入，導向到另一個頁面
+        if (isLoggedIn != null) {
+            return "indexLogout";
+        }
 		return "login";
 	}
 
