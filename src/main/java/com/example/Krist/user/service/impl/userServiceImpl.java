@@ -204,9 +204,10 @@ public class userServiceImpl implements userService{
         	existingUser.setPassword(updateUser.getPassword());
         	existingUser.setUserName(updateUser.getUserName());
         	existingUser.setEmail(updateUser.getEmail());
+        	existingUser.setIdentity(updateUser.getIdentity());
         	existingUser.setAddress(updateUser.getAddress());
         	existingUser.setPhone(updateUser.getPhone());
-        	existingUser.setIdentity(updateUser.getIdentity());
+        	existingUser.setBirthday(updateUser.getBirthday());
         	existingUser.setFilePath(updateUser.getFilePath());
         	existingUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
         		

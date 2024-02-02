@@ -225,7 +225,10 @@
 	    </div>
 	    <div class="mt-3 w-75 mx-auto">
 		     <h3 class="ms-5">描述你的房源有哪些特點</h3>
-		     <div class="w-75 mx-auto text-center " ><form:input path="description" class="ms-5 w-100" type="text" style="height: 400px;" /></div>
+		     <div class="w-75 mx-auto text-center " >
+		     	<form:textarea path="description" rows="10" cols="50" class="ms-5 w-100" type="text"/>
+<%-- 		     	<form:input path="description" class="ms-5 w-100" type="text" style="height: 400px;" /> --%>
+		     </div>
 	    </div>
 	    <div class="w-75 mx-auto text-center ">
 	      <a class="btn btn-primary btn-sm" href="#priceSection">下一步</a>
@@ -288,7 +291,7 @@
   <!-- Main Script -->
 <!--   <script src="js/script.js"></script> -->
   <script src="js/addRoomMap.js"></script>
-  <script src="js/cropImage/cropImage.js"></script>
+  <script src="js/cropImage/AddRoomCropImage.js"></script>
   <script>
     
     $(document).ready(function(){
@@ -315,13 +318,12 @@
     	
     	
     	// 取消預設按enter送出表單的功能
-        $('#myForm').on('keydown', function (event) {
-            // Check if the pressed key is Enter (key code 13)
-            if (event.which === 13) {
-                // Prevent the default form submission
-                event.preventDefault();
-            }
-        });
+    	$('#myForm').on('keydown', function(event) {
+    		// Check if the pressed key is Enter (key code 13)
+    	    if (event.which === 13 && event.target.tagName !== 'TEXTAREA') {
+    	        event.preventDefault();
+    	    }
+    	});
     	
     	
     	

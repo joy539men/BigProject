@@ -294,7 +294,7 @@ button.switch-month:active {
 					<div class="border rounded me-3 shadow-sm">
 						<div class="row m-2 mt-1">
 							<div class="text-center col-5">
-								<img class="img-fluid w-50" src="images/logo.png" alt="" />
+								<img class="img-fluid w-50 mt-3" src="..${user.filePath }" alt="" />
 							</div>
 							<div class="col-5 mt-3 me-auto">
 								<h6>房東：${user.userName }</h6>
@@ -356,7 +356,7 @@ button.switch-month:active {
 						  <div class="row g-0">
 						    <div class="col-md-4">
 						    	<c:if test="${not empty review.user.filePath}">
-   								 	<img class="text" src="${review.user.filePath}" class="img-fluid rounded-start" alt="忘記設定大頭貼了！！！">
+   								 	<img class="text" src="..${review.user.filePath}" class="img-fluid rounded-start" alt="忘記設定大頭貼了！！！">
 								</c:if>
 						      <img src="../images/logo.png" class="rounded-start justify-content-center ms-3 mt-3" style="width:100xp; height:100px;" alt="忘記設定大頭貼了！！！">
 						    </div>
@@ -369,13 +369,6 @@ button.switch-month:active {
 						    </div>
 						  </div>
 						</div>
-						
-						<%-- <h6>${review.user.userName}</h6>
-
-						<p>${review.review_date }</p>
-						<h5 class="">${review.comment }</h5>
-
-						<br> --%>
 
 					</c:forEach>
 					
@@ -443,34 +436,6 @@ button.switch-month:active {
 		</div>
 	</section>
 					
-					<!-- <h3 class="p-2">日 期 選 擇</h3>
-					<div class="calendar calendar-first ms-4" id="calendar_first">
-						<div class="calendar_header">
-							<button class="switch-month switch-left">
-								<i class="fa fa-chevron-left"></i>
-							</button>
-							<button class="switch-month switch-right">
-								<i class="fa fa-chevron-right"></i>
-							</button>
-						</div>
-						<div class="calendar_weekdays"></div>
-						<div class="calendar_content"></div>
-
-
-						<div class="calendar calendar-second" id="calendar_second">
-							<div class="calendar_header">
-								<button class="switch-month switch-left">
-									<i class="fa fa-chevron-left"></i>
-								</button>
-								<h2></h2>
-								<button class="switch-month switch-right">
-									<i class="fa fa-chevron-right"></i>
-								</button>
-							</div>
-							<div class="calendar_weekdays"></div>
-							<div class="calendar_content"></div>
-						</div>
-					</div> -->
 				</div>
 
 				<!-- 此為固定方塊 -->

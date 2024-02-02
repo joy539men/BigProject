@@ -136,7 +136,7 @@
 		<div class="mb-3">
 			<label for="profilePicture" class="form-label"
 				style="font-size: 18px;">大頭貼</label> <img
-				src="<c:url value = '${user.filePath}'/>" style="max-height: 300px; width: auto;">
+				src="<c:url value = '${user.filePath}'/>" style="height: 300px">
 		</div>
 
 		<div class="row">

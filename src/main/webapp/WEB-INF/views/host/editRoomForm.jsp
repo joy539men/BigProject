@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/fontawesome.min.css' />">
   <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/brands.css' />">
   <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/solid.css' />">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" rel="stylesheet">
 
   <!-- # Main Style Sheet -->
   <link rel="stylesheet" href="<c:url value='/css/style.css' />">
@@ -114,12 +115,14 @@
 		          </div>	
 	        </div> <!-- end of roomTypeDiv -->
 	        
+	        
 	        <div id="roomDescriptDiv" class="row mx-3 align-items-center">
 		          <div id="roomDescript" class="col-3 align-content-center flex-wrap">
 		          	<strong>房源描述</strong>
 		          </div>
 		          <div id="roomDescriptInputDiv" class="col-9">
-		          	<form:input path="description" id="roomDescriptInput" value="${room.description}"/>
+		          	<form:textarea path="description" rows="10" cols="50" value="${room.description}"/>
+<%-- 		          	<form:input path="description" id="roomDescriptInput" value="${room.description}"/> --%>
 		          </div>	
 	        </div> <!-- end of roomDescriptDiv -->
 	        
@@ -195,8 +198,11 @@
 		          	<strong>房間照片</strong>
 		          </div>
 		          <div id="roomPicInputDiv" class="col-9">
-			          <form:input path="multipartFile" id="roomPicInput"  type="file" />   <!-- 查看模式type="hidden"  編輯模式type="file" -->
-			          <div style="width:300px ; height:300px">
+<%-- 			          <form:input path="multipartFile" id="roomPicInput"  type="file" />   <!-- 查看模式type="hidden"  編輯模式type="file" --> --%>
+			          <label class="btn btn-info"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 更新照片</label>
+						<button id="cancleUpload" type="button">取消上傳</button>	
+						<div id="oldImg" style="display:none;"></div>
+			          <div id="originalImg" style="width:300px ; height:300px">
 			       		<img src="<c:url value='${room.filePath}' />" >
 			          </div>
 		          </div>	
@@ -228,13 +234,14 @@
 
   </section>
   <div class="text-center">
-  	<button class="btn btn-primary btn-sm" type="submit">儲存</button>
+  	<button id="submitRoomForm" class="btn btn-primary btn-sm" type="submit">儲存</button>
  	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRooms' />">取消</a>
   </div>
   </form:form>
   
   <input id="lat" type="hidden" value="${room.lat}" />
   <input id="lon" type="hidden" value="${room.lon }" />
+  <input id="roomId" type="hidden" value="${room.roomId }" />
         
 
   	
@@ -244,10 +251,12 @@
   <script src="<c:url value='/plugins/bootstrap/bootstrap.min.js' />"></script>
   <script src="<c:url value='/plugins/slick/slick.min.js' />"></script>
   <script src="<c:url value='/plugins/scrollmenu/scrollmenu.min.js' />"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 
   <!-- Main Script -->
   <script src="<c:url value='/js/script.js' />"></script>
   <script src="<c:url value='/js/editRoomMap.js' />"></script> 
+  <script src="<c:url value='/js/cropImage/EditRoomCropImage.js' />"></script> 
   
   </body>
 

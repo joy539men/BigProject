@@ -38,6 +38,7 @@ public class roomTableBean {
 	@Lob
 	private byte[]   photos;
 	
+	@Lob
 	private String   description;
 	private Integer  guestMax;
 	private Integer  roomNum;

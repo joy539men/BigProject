@@ -36,6 +36,7 @@ public class userBean {
 	private String     status;
 	private String     statusNum;
 	private Timestamp  registrationTime;
+//	private String     password1;
 	private String	   filePath;
 	
 	@Transient
@@ -50,8 +51,6 @@ public class userBean {
     @Transient
     private String confirmPassword;
 
-	
-	
 	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -104,6 +103,7 @@ public class userBean {
 		this.statusNum         = statusNum;
 		this.registrationTime  = registrationTime;
 		this.birthday          = birthday;
+//		this.password1         = password1;
 		
 	}
 	
@@ -124,6 +124,7 @@ public class userBean {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
 
 	public Date getBirthday() {
 		return birthday;

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,7 +53,7 @@ public class userController {
 		if (user != null && PasswordHashing.verifyPassword(password, user.getPassword())) {
 			  // 驗證成功，判斷是否是管理者
 	        if ("admin123".equals(user.getAccount())) { 
-	            // 如果是管理者，將管理者訊息儲存到 session
+	            // 如果是管理者，将管理员信息存储到 session
 	            session.setAttribute("isAdmin", true);
 	        }
 			// 驗證成功，將 userId 存到 session 當中，記得加入 HttpSession
@@ -270,7 +269,7 @@ public class userController {
     
   //儲存更新後的會員資料
   	@PostMapping("/userModSave")
-      public String editRoomSubmit(@ModelAttribute userBean updatedUser, BindingResult result, HttpSession session, Model model) {
+      public String editRoomSubmit(@ModelAttribute userBean updatedUser,HttpSession session, Model model) {
   		Integer userId = (Integer) session.getAttribute("userId");
         
   		
@@ -322,7 +321,7 @@ public class userController {
     	    updatedUser.setPassword(originalUser.getPassword()); 
     	    updatedUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));// 更新 registrationTime 為當前時間
     	    userService.updateUser(userId,updatedUser);
-    	    //          return "index"; 
+    	    //            return "index"; 
             return "index";
         } else {
             // 若是資料庫沒有該資料，跳轉到 login 頁面

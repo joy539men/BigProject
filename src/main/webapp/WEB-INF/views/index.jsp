@@ -650,19 +650,6 @@
 
 	<!-- Main Script -->
 	<script src="js/script.js"></script>
-	<script>
-		var alertMessage = "<c:out value='${showLoginAlertMessage}' />";
-	    var loginError = "<c:out value='${loginError}'/>";
-		
-		// 加載頁面觸發 alert
-		// 加载页面时触发 alert
-	    window.onload = function() {
-	        if (loginError !== '') {
-	            alert(alertMessage);
-	        }
-	    };
-
-	</script>
 
 </body>
 </html>
