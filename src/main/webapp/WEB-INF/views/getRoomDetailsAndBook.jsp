@@ -201,10 +201,11 @@ button.switch-month:active {
 	<header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
+				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
 					class="img-fluid" width="120" src="../images/logo.png"
 					alt="CouchSurfing" />
 				</a>
+				
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -213,7 +214,7 @@ button.switch-month:active {
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link" href="index.html">訂單</a>
+						<li class="nav-item"><a class="nav-link" href="<c:url value="/bookTrip"></c:url>">訂單</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="about.html">日曆</a>
 						</li>
@@ -225,18 +226,10 @@ button.switch-month:active {
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="blog.html">Blog</a></li>
-								<li><a class="dropdown-item" href="blog-details.html">Blog
-										Details</a></li>
-								<li><a class="dropdown-item" href="service-details.html">Service
-										Details</a></li>
-								<li><a class="dropdown-item" href="faq.html">FAQ&#39;s</a>
-								</li>
-								<li><a class="dropdown-item" href="legal.html">Legal</a></li>
-								<li><a class="dropdown-item" href="terms.html">Terms
-										&amp; Condition</a></li>
-								<li><a class="dropdown-item" href="privacy-policy.html">Privacy
-										&amp; Policy</a></li>
+								<li><a class="dropdown-item" href="blog.html">部落格</a></li>
+								<li><a class="dropdown-item" href="service-details.html">服務項目</a></li>
+								<li><a class="dropdown-item" href="terms.html">條約
+										&amp; 法律責任</a></li>
 							</ul></li>
 					</ul>
 
@@ -247,7 +240,7 @@ button.switch-month:active {
 								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<img style="width: 15px" src="../images/icon/fish.png" alt="" />
-									<img class="mb-1" style="width: 50px" src="../images/logo.png"
+									<img class="img-fluid rounded-circle mb-1" style="width: 50px" src="..${loginUser.filePath }"
 									alt="" />
 							</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -257,20 +250,20 @@ button.switch-month:active {
 									<li class="dropdown-item">
 										<hr />
 									</li>
-									<li><a class="dropdown-item"
-										href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
+									<li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
 									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-									<li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+									<li><a class="dropdown-item" href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
 									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
 									<li><a href="<c:url value="/logout"></c:url>"
-										class="dropdown-item">登 出</a>></li>
-								</ul></li>
+										class="dropdown-item">登 出</a></li>
+								</ul>
+								</li>
 						</ul>
 					</div>
 
@@ -380,6 +373,7 @@ button.switch-month:active {
 					<h6 class= "ms-2">${amenity.amenityName}</h6>
 					<%-- <h6>${review.amenityId.amentityName }</h6> --%>
 					</c:forEach>
+					
 					
 					<hr>
 					

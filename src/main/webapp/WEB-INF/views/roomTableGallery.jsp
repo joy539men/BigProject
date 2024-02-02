@@ -33,32 +33,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 
-    /* function parse(a) {
-        var str = a;
-        console.log("str:", str); // 添加这行日志
-        var roomId = parseInt(str.match(/\d+/)[0]);
-        
-        return roomId;
-    } */
-        
-		// 	實作 Ajax 但重要的是回傳值一定會是 JSON 需要修改
-        /* function getImageDetails(roomId) {
-            // 使用jQuery的Ajax向后端发送请求
-            $.ajax({
-                type: "GET",
-                url: "/pillowSurfing/getRoomDetails/" + roomId,
-                dataType: false,
-                success: function(response) {
-                    // 在这里处理从后端返回的数据
-                    alert("Room Details: " + response.otherDetails);
-                },
-                error: function(xhr, status, error) {
-                    // 在这里处理请求失败的情况
-                    console.error("Error fetching room details: " + error);
-                }
-            });
-        } */
-
 		// 改為直接頁面跳轉
 		 function getRoomDetails(roomId) {
   			  window.location.href = 'getRoomDetailsAndBook/' + roomId;
@@ -129,52 +103,7 @@
                 </ul>
               </li>
             </ul>
-            <!-- <div>
-              account btn
-              <li class="dropdown">
-                <a
-                  class="p-3 border rounded-pill pb-4"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  ><i class="bi w-50 bi-list pe-4" style="font-size: 20px; color: grey;"></i
-                  ><img style="width: 50px; padding-top:5px" src="images/logo.png" alt=""
-                /></a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li class="dropdown-item">
-                    <img
-                      class="img-fluid"
-                      style="width: 50px"
-                      src="images/logo.png"
-                      alt=""
-                    />
-                    <h4>Krist</h4>
-                  </li>
-                  <li class="dropdown-item">
-                    <hr />
-                  </li>
-                  <li><a class="dropdown-item" href="blog.html">旅程</a></li>
-                  <li class="dropdown-item">
-                    <hr />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="blog-details.html">訊息</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="service-details.html"
-                      >行程規劃</a
-                    >
-                  </li>
-                  <li class="dropdown-item">
-                    <hr />
-                  </li>
-                  <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-                  <li><a class="dropdown-item" href="legal.html">登出</a></li>
-                </ul>
-              </li>
-            </div> -->
+         
             <div>
 					    <!-- account btn -->
 					    <ul class="nav">
@@ -207,6 +136,7 @@
 					                <li class="dropdown-item">
 					                    <hr />
 					                </li>
+					                <li><a href="<c:url value="/userProfile"></c:url>" class="dropdown-item">會員中心</a></li>
 					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
 					                <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
 					            </ul>
@@ -238,7 +168,7 @@
 					<div class="card-body">
 						<h5 class="card-title ">${room.title}</h5>
 						<span class="card-text">${room.type}</span><br> 
-						<span class="card-text">${room.guestMax}人入住</span><br>
+						<span class="card-text">${room.guestMax}人入住</span>&nbsp;&nbsp;<span class="card-text">$ ${room.price}/晚</span>
 					</div>
 					
 				</div>
