@@ -10,12 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.backstage.service.UserService_backstage;
 import com.example.backstage.service.Impl.MailService;
 import com.example.demo.model.userBean;
 
 @Controller
+@RequestMapping("/admin")
 public class QureyAccountController_backstage {
 
 	UserService_backstage userService;
@@ -41,7 +43,7 @@ public class QureyAccountController_backstage {
 		String search = request.getParameter("search"); 
 		List<userBean> beans = userService.searchAll(search); 
 		if(search.isEmpty()) {
-			return "redirect:/account";
+			return "redirect:/admin/account";
 		}
 		System.out.println(search);
 		model.addAttribute("users", beans); 
@@ -63,7 +65,7 @@ public class QureyAccountController_backstage {
 		String subject = "PillowSurfing 重要訊息通知!!!";
 		String content = "親愛的會員您好~ 您的PillowSurfing會員帳號已被"+'"'+"禁止使用"+'"'+"，請聯繫客服人員!" ;
 		mailService.sendEmail(userEmail, subject, content);
-		return "redirect:/account";
+		return "redirect:/admin/account";
 	}
 	
 	@GetMapping("/backstage/logout")

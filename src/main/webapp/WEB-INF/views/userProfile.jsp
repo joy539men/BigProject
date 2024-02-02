@@ -16,7 +16,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Personal Information</title>
+	<title>User Profile</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 	<meta name="description" content="This is meta description">
 	<meta name="author" content="Themefisher">
@@ -96,43 +96,43 @@
 <hr>
 	<div class="container my-4">
 		<h2 class="mb-3">會員資料</h2>
-		<!-- Name and Email -->
+		<!-- 姓名 and 信箱 -->
 		<div class="row mb-3">
 			<div class="col">
 				<label for="name" class="form-label" style="font-size: 18px;">姓名</label>
-				<span class="form-control" id="userName">${user.userName}"</span>
+				<div class="form-control" id="userName" style="font-size: 18px;">${user.userName}</div>
 			</div>
 			<div class="col">
 				<label for="email" class="form-label" style="font-size: 18px;">Email</label>
-				<span class="form-control" id="email">${user.email}"</span>
+				<div class="form-control" id="email" style="font-size: 18px;">${user.email}</div>
 			</div>
 		</div>
 
-		<!-- Password and ID Card Number -->
+		<!-- 密碼 and 身分證 -->
 		<div class="row mb-3">
 			<div class="col">
 				<label for="password" class="form-label" style="font-size: 18px;">密碼</label>
-				<span class="form-control" id="password">${user.password}"</span>
+				<div class="form-control" id="password" style="font-size: 18px;">**********</div>
 			</div>
 			<div class="col">
 				<label for="idCard" class="form-label" style="font-size: 18px;">身分證</label>
-				<span class="form-control" id="identity">${user.identity}"</span>
+				<div class="form-control" id="identity" style="font-size: 18px;">${user.identity}</div>
 			</div>
 		</div>
 
-		<!-- Phone and Address -->
+		<!-- 電話 and 地址-->
 		<div class="row mb-3">
 			<div class="col">
 				<label for="phone" class="form-label" style="font-size: 18px;">電話</label>
-				<span class="form-control" id="phone">${user.phone}</span>
+				<div class="form-control" id="phone" style="font-size: 18px;">${user.phone}</div>
 			</div>
 			<div class="col">
 				<label for="address" class="form-label" style="font-size: 18px;">地址</label>
-				<span class="form-control" id="address">${user.address}</span>
+				<div class="form-control" id="address" style="font-size: 18px;">${user.address}</div>
 			</div>
 		</div>
 
-		<!-- Profile Picture -->
+		<!-- 大頭貼 -->
 		<div class="mb-3">
 			<label for="profilePicture" class="form-label"
 				style="font-size: 18px;">大頭貼</label> <img

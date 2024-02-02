@@ -19,8 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="user")
-public class userBean {
-	
+public class userBean  {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer    userId;
@@ -38,15 +38,29 @@ public class userBean {
 	private Timestamp  registrationTime;
 //	private String     password1;
 	private String	   filePath;
+//	private String	   authority;
+	
 	
 	@Transient
 	private MultipartFile imageFiles;
 	
+//	public String getAuthority() {
+//		return authority;
+//	}
+//
+//	public void setAuthority(String authority) {
+//		this.authority = authority;
+//	}
+
 	@Transient
 	private MultipartFile multipartFile;
+	
+	@Transient
+    private String newPassword;
 
-	
-	
+    @Transient
+    private String confirmPassword;
+
 	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -86,7 +100,7 @@ public class userBean {
 		this.favorite = favorite;
 	}
 
-	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone, String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
+	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone, String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday,String	authority) {
 		this.userId            = userId;
 		this.account           = account;
 		this.password          = password;
@@ -100,18 +114,27 @@ public class userBean {
 		this.registrationTime  = registrationTime;
 		this.birthday          = birthday;
 //		this.password1         = password1;
-		
+//		this.authority       = authority;
 	}
 	
 	
-	
-//	public String getPassword1() {
-//		return password1;
-//	}
+	// 獲取用戶輸入的新密碼
+	public String getNewPassword() {
+        return newPassword;
+    }
+	// 設置用戶輸入的新密碼到 userBean 
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+    // 獲取用戶輸入的確認新密碼
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+    // 設置用戶輸入的確認新密碼到 userBean 
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
-//	public void setPassword1(String password1) {
-//		this.password1 = password1;
-//	}
 
 	public Date getBirthday() {
 		return birthday;
@@ -247,7 +270,6 @@ public class userBean {
 	public void setMultipartFile(MultipartFile multipartFile) {
 		this.multipartFile = multipartFile;
 	}
-
 	
 	
 	

@@ -13,6 +13,6 @@ public interface UserRepository_backstage extends JpaRepository<userBean, Intege
 	@Query(value="SELECT * FROM user WHERE CONCAT(account,status,identity,registration_time) LIKE %:search%",nativeQuery = true)
 	List<userBean> searchAll(@Param("search") String account);
 	
-	
+	userBean findByuserName(String username);
 
 }

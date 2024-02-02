@@ -207,8 +207,10 @@ public class HostServiceImpl implements HostService {
     		    
     		    
 //    			把照片從multipartFile存到本地資料夾
+
 //    			String rootDirectory = "C:\\Users\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
     			String rootDirectory = pathSave;
+
     			try {
     				File imageFolder = new File(rootDirectory);
     				if (!imageFolder.exists())
@@ -222,8 +224,11 @@ public class HostServiceImpl implements HostService {
     			
     			
     			//取得照片path
+
 //    			String filePath = "/images/roomPic/" + outputFileName;
     			String filePath = roomImgPathPrefix + outputFileName;
+
+
         return filePath;
     }
     

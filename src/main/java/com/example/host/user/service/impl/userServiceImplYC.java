@@ -129,8 +129,10 @@ public class userServiceImplYC implements userServiceYC{
     		    
 //    			把照片從multipartFile存到本地資料夾
     		    
+
 //    		    String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
     		    String rootDirectory = pathSave;
+
     			try {
     				File imageFolder = new File(rootDirectory);
     				if (!imageFolder.exists())
@@ -144,8 +146,11 @@ public class userServiceImplYC implements userServiceYC{
     			
     			
     			//取得照片path
+
 //    			String filePath = "/images/userPic/" + outputFileName;
     			String filePath = userImgPathPrefix + outputFileName;
+
+
         return filePath;
     }
 	
@@ -225,8 +230,11 @@ public class userServiceImplYC implements userServiceYC{
 	    
 //		把照片從multipartFile存到本地資料夾
 	    
+
 //	    String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
 	    String rootDirectory = pathSave;
+
+
 		try {
 			File imageFolder = new File(rootDirectory);
 			if (!imageFolder.exists())
@@ -240,8 +248,10 @@ public class userServiceImplYC implements userServiceYC{
 		
 		
 		//取得照片path
+
 //		String filePath = "/images/userPic/" + outputFileName;
 		String filePath = userImgPathPrefix + outputFileName;
+
 		return filePath;
 		
 	}

@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.backstage.service.UserService_backstage;
 import com.example.demo.model.userBean;
 
 @Controller
+@RequestMapping("/admin")
 public class UserEditController_backstage {
 
 	UserService_backstage userService;
@@ -51,7 +53,7 @@ public class UserEditController_backstage {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		userService.save(userBean);
-		return "redirect:/account ";
+		return "redirect:/admin/account ";
 	}
 	@ModelAttribute
 	public userBean getMember(@PathVariable Integer id, Model model) {

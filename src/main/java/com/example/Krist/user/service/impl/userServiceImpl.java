@@ -1,6 +1,7 @@
 package com.example.Krist.user.service.impl;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -137,7 +138,7 @@ public class userServiceImpl implements userService{
     		    
 //    			把照片從multipartFile存到本地資料夾
     		    
-    		    String rootDirectory = "C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
+    		    String rootDirectory = "C:\\Users\\USER\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
     			try {
     				File imageFolder = new File(rootDirectory);
     				if (!imageFolder.exists())
@@ -157,7 +158,7 @@ public class userServiceImpl implements userService{
 	
 	@Override
 	public String updateFile(MultipartFile multipartFile,String originalFilePath,Integer userId) {
-		String targetFilePath = "C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static" + originalFilePath;
+		String targetFilePath = "C:\\Users\\USER\\git\\BigProject\\src\\main\\resources\\static" + originalFilePath;
 //		System.out.println(targetFilePath);
 //		
 //		//刪除舊檔案
@@ -183,7 +184,7 @@ public class userServiceImpl implements userService{
 //			ext = filePath.substring(filePath.lastIndexOf("."));
 //		}
 //		String newFileName = "userPhoto_" + userId + ext;
-//	    // Construct the new file path with the final file name
+	    // Construct the new file path with the final file name
 //	    String newFilePath = filePath.replaceFirst("[^/]+$", newFileName);
 //
 //	    // Perform the file renaming
@@ -203,10 +204,12 @@ public class userServiceImpl implements userService{
         	existingUser.setPassword(updateUser.getPassword());
         	existingUser.setUserName(updateUser.getUserName());
         	existingUser.setEmail(updateUser.getEmail());
+        	existingUser.setIdentity(updateUser.getIdentity());
         	existingUser.setAddress(updateUser.getAddress());
         	existingUser.setPhone(updateUser.getPhone());
         	existingUser.setBirthday(updateUser.getBirthday());
         	existingUser.setFilePath(updateUser.getFilePath());
+        	existingUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
         		
         	return userRepository.save(existingUser);
         }
@@ -231,7 +234,7 @@ public class userServiceImpl implements userService{
 	    
 //		把照片從multipartFile存到本地資料夾
 	    
-	    String rootDirectory = "C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
+	    String rootDirectory = "C:\\Users\\USER\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
 		try {
 			File imageFolder = new File(rootDirectory);
 			if (!imageFolder.exists())

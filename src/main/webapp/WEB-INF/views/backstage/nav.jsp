@@ -6,14 +6,14 @@
 		<div id="navbarNav">
 			<ul class="navbar-nav flex-column ">
 				<li class="nav-item"><a class="nav-link text-success fs-3"
-					href='<c:url value="/account" />'>帳號管理</a></li>
+					href='<c:url value="/admin/account" />'>帳號管理</a></li>
 				<li class="nav-item"><a class="nav-link text-success fs-3"
-					href="<c:url value="/order" />">訂單管理</a></li>
+					href="<c:url value="/admin/order" />">訂單管理</a></li>
 				<li class="nav-item"><a class="nav-link text-success fs-3"
-					href="<c:url value="/room" />">房間管理</a></li>
+					href="<c:url value="/admin/room" />">房間管理</a></li>
 			</ul>
 		</div>
 		<div>
-			<a href="<c:url value="/" />" class="text-success" style="text-decoration: none;">返回首頁</a>
+			<a href="<c:url value="/login" />" class="text-success" style="text-decoration: none;">返回首頁</a>
 		</div>
 	</nav>
