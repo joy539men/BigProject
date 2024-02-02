@@ -1,6 +1,7 @@
 package com.example.Krist.user.service.impl;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -183,7 +184,7 @@ public class userServiceImpl implements userService{
 //			ext = filePath.substring(filePath.lastIndexOf("."));
 //		}
 //		String newFileName = "userPhoto_" + userId + ext;
-//	    // Construct the new file path with the final file name
+	    // Construct the new file path with the final file name
 //	    String newFilePath = filePath.replaceFirst("[^/]+$", newFileName);
 //
 //	    // Perform the file renaming
@@ -203,10 +204,12 @@ public class userServiceImpl implements userService{
         	existingUser.setPassword(updateUser.getPassword());
         	existingUser.setUserName(updateUser.getUserName());
         	existingUser.setEmail(updateUser.getEmail());
+        	existingUser.setIdentity(updateUser.getIdentity());
         	existingUser.setAddress(updateUser.getAddress());
         	existingUser.setPhone(updateUser.getPhone());
         	existingUser.setBirthday(updateUser.getBirthday());
         	existingUser.setFilePath(updateUser.getFilePath());
+        	existingUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
         		
         	return userRepository.save(existingUser);
         }

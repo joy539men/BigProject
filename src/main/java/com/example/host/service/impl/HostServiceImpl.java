@@ -99,6 +99,7 @@ public class HostServiceImpl implements HostService {
             existingRoom.setBedNum(updatedRoom.getBedNum());
             existingRoom.setBathroom(updatedRoom.getBathroom());
             existingRoom.setRoomNum(updatedRoom.getRoomNum());
+            existingRoom.setPrice(updatedRoom.getPrice());
             existingRoom.setFilePath(updatedRoom.getFilePath());
             String address = updatedRoom.getAddress();
             existingRoom.setAddress(address);

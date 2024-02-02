@@ -160,6 +160,7 @@
         </div>
 
     </section>
+    
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
@@ -181,11 +182,11 @@
 				nameError.textContent = ''; // 清除錯誤信息
 			}
 			return true;
-		}
+		}	
 	// 驗證帳號
 		function validateAccount() {
 			var account = document.getElementById("account").value;
-			var accountPattern = /^[a-z0-9_]{6,12}$/;
+			var accountPattern = /^[A-Za-z0-9_]{6,12}$/;
 			var accountError = document.getElementById("accountError");
 
 			if (!accountPattern.test(account)) {

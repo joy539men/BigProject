@@ -195,7 +195,7 @@
 			    type_crop = "square", // 裁切形狀: square 為方形, circle 為圓形
 			    width_preview = 350, // 預覽區塊寬度 px 值
 			    height_preview = 350, // 預覽區塊高度 px 值
-			    compress_ratio = 1, // 圖片壓縮比例 0~1
+			    compress_ratio = 0.8, // 圖片壓縮比例 0~1
 			    type_img = "jpeg", // 圖檔格式 jpeg png webp
 			    color = "#ffffff",
 			    oldImg = new Image(),

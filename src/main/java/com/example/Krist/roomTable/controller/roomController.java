@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.Krist.booking.dao.reviewRepository;
 import com.example.Krist.roomTable.dao.roomTableRepository;
+import com.example.Krist.user.dao.userRepository;
 import com.example.backstage.dao.RoomRepository_backstage;
 import com.example.demo.model.bookingBean;
 import com.example.demo.model.reviewBean;
@@ -28,6 +29,9 @@ public class roomController {
 
 	@Autowired
 	private reviewRepository reviewRepository;
+	
+	@Autowired
+	private userRepository userRepository;
 
 	
 	
@@ -46,7 +50,14 @@ public class roomController {
 	    Optional<roomTableBean> roomOptional = roomTableRepository.findById(roomId);
 	    roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
 	    List<reviewBean> reviewRoom = reviewRepository.findAllByRoomTable(room);
+	    Integer userId = (Integer) session.getAttribute("userId");
+	    userBean loginUser = userRepository.findById(userId).orElse(null);
 	    
+	    if (loginUser == null) {
+	    	return "redirect:/login";
+	    }else {
+	    	model.addAttribute("loginUser",loginUser);
+	    }
 	    
 	    
 	    // 設定 session 儲存在網頁當中

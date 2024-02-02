@@ -26,6 +26,7 @@ import com.example.demo.model.userBean;
 import com.example.host.dao.AmenitiesRepository;
 import com.example.host.service.HostService;
 import com.example.host.user.dao.userRepositoryYC;
+import com.example.host.user.service.userServiceYC;
 
 
 @Controller
@@ -40,6 +41,7 @@ public class HostController {
 	HttpSession session;
 	
 	AmenitiesRepository amenitiesRepository;
+	
 	
 	@Autowired
 	userRepositoryYC userRepository;
@@ -59,7 +61,9 @@ public class HostController {
 //			Iterable<roomTableBean> rooms = service.findAll(); 
 //			List<roomTableBean> rooms = service.findByHostId(userId);
 			List<roomTableBean> rooms = service.findByHostIdAndStatusNot(userId,"已刪除");
-
+			
+			String userImg = (String) session.getAttribute("userImg");
+			model.addAttribute("userImg", userImg);
 			model.addAttribute("rooms", rooms);
 			return "host/hostRooms"; 
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
@@ -78,6 +82,10 @@ public class HostController {
 		if (userId != null) {
 			roomTableBean room = service.getRoomWithAmenities(roomId);
 		    model.addAttribute("room", room);
+		    
+		    String userImg = (String) session.getAttribute("userImg");
+			model.addAttribute("userImg", userImg);
+			
 		    return "host/hostRoomDetail";
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
             return "redirect:/login";
@@ -152,27 +160,27 @@ public class HostController {
 	    return "host/editRoomForm";
 	}
 	
-	//儲存更新後的房間資訊
-	@PostMapping("/hostRoomEdit/{roomId}")
-    public String editRoomSubmit(@PathVariable Integer roomId, @ModelAttribute roomTableBean updatedRoom,@RequestParam Set<Integer> amenityIds) {
-		// Get the original room
-	    roomTableBean originalRoom = service.getRoomById(roomId);
-
-	    // Process the uploaded file
-	    MultipartFile multipartFile = updatedRoom.getMultipartFile();
-	    String filePath;
-
-	    if (multipartFile != null && !multipartFile.isEmpty()) {
-	        // If a new file is uploaded, save it and update the filePath
-	        filePath = service.saveFile(multipartFile);
-	    } else {
-	        // If no new file is uploaded, use the original filePath
-	        filePath = originalRoom.getFilePath();
-	    }
-		updatedRoom.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-		service.updateRoomWithAmenities(roomId,  updatedRoom,  amenityIds) ;
-        return "redirect:/hostRooms"; // Redirect to the list of rooms or another appropriate page
-    }
+//	//儲存更新後的房間資訊
+//	@PostMapping("/hostRoomEdit/{roomId}")
+//    public String editRoomSubmit(@PathVariable Integer roomId, @ModelAttribute roomTableBean updatedRoom,@RequestParam Set<Integer> amenityIds) {
+//		// Get the original room
+//	    roomTableBean originalRoom = service.getRoomById(roomId);
+//
+//	    // Process the uploaded file
+//	    MultipartFile multipartFile = updatedRoom.getMultipartFile();
+//	    String filePath;
+//
+//	    if (multipartFile != null && !multipartFile.isEmpty()) {
+//	        // If a new file is uploaded, save it and update the filePath
+//	        filePath = service.saveFile(multipartFile);
+//	    } else {
+//	        // If no new file is uploaded, use the original filePath
+//	        filePath = originalRoom.getFilePath();
+//	    }
+//		updatedRoom.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+//		service.updateRoomWithAmenities(roomId,  updatedRoom,  amenityIds) ;
+//        return "redirect:/hostRooms"; // Redirect to the list of rooms or another appropriate page
+//    }
 	
 	//刪除房間資訊(使用者看不到 不是真從資料庫刪除)
 	@PostMapping("/hostRoomDelete/{roomId}")

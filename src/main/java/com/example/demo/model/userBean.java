@@ -54,9 +54,13 @@ public class userBean  {
 
 	@Transient
 	private MultipartFile multipartFile;
+	
+	@Transient
+    private String newPassword;
 
-	
-	
+    @Transient
+    private String confirmPassword;
+
 	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -114,14 +118,23 @@ public class userBean  {
 	}
 	
 	
-	
-//	public String getPassword1() {
-//		return password1;
-//	}
+	// 獲取用戶輸入的新密碼
+	public String getNewPassword() {
+        return newPassword;
+    }
+	// 設置用戶輸入的新密碼到 userBean 
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+    // 獲取用戶輸入的確認新密碼
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+    // 設置用戶輸入的確認新密碼到 userBean 
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
-//	public void setPassword1(String password1) {
-//		this.password1 = password1;
-//	}
 
 	public Date getBirthday() {
 		return birthday;

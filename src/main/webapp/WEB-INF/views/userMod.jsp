@@ -15,16 +15,16 @@
 <html lang="en-us">
 
 <head>
-	<meta charset="utf-8">
-	<title>Personal Information</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-	<meta name="description" content="This is meta description">
-	<meta name="author" content="Themefisher">
-	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<link rel="icon" href="images/favicon.png" type="image/x-icon">
-  
-  <!-- theme meta -->
-  <meta name="theme-name" content="Personal Information" />
+
+<meta charset="utf-8">
+<title>User Mod</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="description" content="This is meta description">
+<meta name="author" content="Themefisher">
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
+
 
 	<!-- # Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,67 +93,6 @@
 	</nav>
 </header>
 
-<hr>
-	<c:url var='register' value='/userModSave' />
-	<form:form method="post" modelAttribute="user" action="${ register}"
-		enctype="multipart/form-data">
-		<div class="container my-4">
-			<h2 class="mb-3">會員修改</h2>
-			<!-- Name and Email -->
-			<div class="row mb-3">
-				<div class="col">
-					<label for="name" class="form-label" style="font-size: 18px;">姓名</label>
-					<form:input path="userName" value="${user.userName}" />
-				</div>
-				<div class="col">
-					<label for="email" class="form-label" style="font-size: 18px;">Email</label>
-					<form:input path="email" value="${user.email}" />
-				</div>
-			</div>
-
-			<!-- Password and ID Card Number -->
-			<div class="row mb-3">
-				<div class="col">
-					<label for="password" class="form-label" style="font-size: 18px;">密碼</label>
-					<form:input path="password" value="${user.password}" />
-				</div>
-				<div class="col">
-					<label for="idCard" class="form-label" style="font-size: 18px;">身分證</label>
-					<form:input path="identity" value="${user.identity}" />
-				</div>
-			</div>
-
-			<!-- Phone and Address -->
-			<div class="row mb-3">
-				<div class="col">
-					<label for="phone" class="form-label" style="font-size: 18px;">電話</label>
-					<form:input path="phone" value="${user.phone}" />
-				</div>
-				<div class="col">
-					<label for="address" class="form-label" style="font-size: 18px;">地址</label>
-					<form:input path="address" value="${user.address}" />
-				</div>
-			</div>
-
-			<!-- Profile Picture -->
-			<div class="mb-3">
-				<label for="profilePicture" class="form-label"
-					style="font-size: 18px;">更改大頭貼</label> <img
-					src="<c:url value = '${user.filePath}'/>" style="height: 300px">
-				<form:input path="multipartFile" type="file" />
-			</div>
-
-			<div class="row">
-				<div class="col text-center">
-					<button type="submit" class="btn btn-primary"
-						style="font-size: 20px;">確認更改</button>
-				</div>
-			</div>
-		</div>
-	</form:form>
-
-
-
 	<!-- # JS Plugins -->
 		<script src="plugins/jquery/jquery.min.js"></script>
 		<script src="plugins/bootstrap/bootstrap.min.js"></script>
@@ -162,5 +101,94 @@
 
 		<!-- Main Script -->
 		<script src="js/script.js"></script>
+
+<hr>
+	<c:url var='register' value='/userModSave' />
+	<form:form method="post" modelAttribute="user" action="${ register}"
+		enctype="multipart/form-data">
+		<div class="container my-4">
+			<h2 class="mb-3">會員修改</h2>
+			<!-- 姓名 and 信箱 -->
+			<div class="row mb-3">
+				<div class="col">
+					<label for="name" class="form-label" style="font-size: 18px;">姓名</label>
+					<form:input type="text" class="form-control" path="userName" value="${user.userName}" />
+				</div>
+				<div class="col">
+					<label for="email" class="form-label" style="font-size: 18px;">Email</label>
+					<form:input type="text" class="form-control" path="email" value="${user.email}" />
+				</div>
+			</div>
+
+			<!-- 新密嗎 and 確認新密碼 -->
+			<div class="row mb-3">
+				<div class="col">
+					<label for="newPassword" class="form-label"
+						style="font-size: 18px;">新密碼</label>
+					<form:input type="password" class="form-control" id="newPassword"
+						path="newPassword" />
+				</div>
+				<div class="col">
+					<label for="confirmNewPassword" class="form-label"
+						style="font-size: 18px;">確認新密碼</label>
+					<form:input type="password" class="form-control"
+						id="confirmPassword" path="confirmPassword" />
+					<div id="passwordError" class="error"
+						style="font-size: 14px; color: red;"></div>
+				</div>
+			</div>
+
+			<!-- 電話 and 身分證 -->
+			<div class="row mb-3">
+				<div class="col">
+					<label for="phone" class="form-label" style="font-size: 18px;">電話</label>
+					<form:input type="tel" class="form-control" path="phone" value="${user.phone}" />
+				</div>
+				<div class="col">
+					<label for="identity" class="form-label" style="font-size: 18px;">身分證</label>
+					<form:input type="text" class="form-control" path="identity" value="${user.identity}" />
+				</div>
+			</div>
+
+			<!-- 地址 and 大頭貼 -->
+			<div class="row mb-3">
+				<div class="col">
+					<label for="address" class="form-label" style="font-size: 18px;">地址</label>
+					<form:input type="text" class="form-control" path="address" value="${user.address}" />
+				</div>
+				<div class="col">
+					<label for="profilePicture" class="form-label"
+						style="font-size: 18px;">更改大頭貼</label> <img
+						src="<c:url value = '${user.filePath}'/>" style="height: 300px">
+					<form:input path="multipartFile" type="file" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col text-center">
+					<button type="submit" class="btn btn-primary" onclick="return validatePassword()"
+						style="font-size: 20px;">確認更改</button>
+				</div>
+			</div>
+		</div>
+	</form:form>
+
+	<script>
+		function validatePassword() {
+			var newPassword = document.getElementById("newPassword").value;
+			var confirmPassword = document.getElementById("confirmPassword").value;
+			var passwordError = document.getElementById("passwordError");
+
+			if (newPassword != confirmPassword) {
+				passwordError.textContent = "新密碼和確認密碼不匹配。";
+				return false;
+			} else {
+				passwordError.textContent = "";
+				return true;
+			}
+		}
+	</script>
+
+
 </body>
 </html>

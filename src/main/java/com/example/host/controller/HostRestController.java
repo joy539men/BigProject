@@ -8,9 +8,12 @@ import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,10 +46,13 @@ public class HostRestController {
 		this.session = session;
 	}
 	
+	private static final Logger logger = LoggerFactory.getLogger(HostRestController.class);
 	
 	//傳送新增房間請求
 	@PostMapping("/addRoom")
-	public ResponseEntity<Map<String, String>> insertRoom(@ModelAttribute roomTableBean bean,@RequestParam(value = "amenityIds", required = false) Set<Integer> amenityIds,@RequestParam("multipartFile") MultipartFile multipartFile) {
+	public ResponseEntity<Map<String, String>> insertRoom(@ModelAttribute roomTableBean bean,
+														  @RequestParam(value = "amenityIds", required = false) Set<Integer> amenityIds,
+														  @RequestParam("multipartFile") MultipartFile multipartFile) {
 		Integer userId = (Integer) session.getAttribute("userId");
 		if (userId != null) {
 			Optional<userBean> optional = userRepository.findById(userId);
@@ -86,4 +92,29 @@ public class HostRestController {
         }
 		
 	}
+	
+	//儲存更新後的房間資訊
+		@PostMapping("/hostRoomEdit/{roomId}")
+	    public ResponseEntity<String> editRoomSubmit(@PathVariable Integer roomId, 
+	    											 @ModelAttribute roomTableBean updatedRoom,
+	    											 @RequestParam Set<Integer> amenityIds,
+	    											 @RequestParam(value = "multipartFile", required = false ) MultipartFile multipartFile) {
+			// Get the original room
+		    roomTableBean originalRoom = service.getRoomById(roomId);
+
+		    // Process the uploaded file
+		    String filePath;
+
+		    if (multipartFile != null && !multipartFile.isEmpty()) {
+		        // If a new file is uploaded, save it and update the filePath
+		    	
+		    	filePath = service.saveFile(multipartFile);
+		    } else {
+		        // If no new file is uploaded, use the original filePath
+		        filePath = originalRoom.getFilePath();
+		    }
+			updatedRoom.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+			service.updateRoomWithAmenities(roomId,  updatedRoom,  amenityIds) ;
+			return ResponseEntity.ok("{\"redirectUrl\": \"/pillowSurfing/hostRooms\"}"); // Redirect to the list of rooms or another appropriate page
+	    }
 }
