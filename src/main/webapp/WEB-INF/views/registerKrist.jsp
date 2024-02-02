@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/brands.css">
     <link rel="stylesheet" href="plugins/font-awesome/solid.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" rel="stylesheet">
 
     <!-- # Main Style Sheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -108,7 +109,7 @@
                 <div class="col-lg-4">
                     <!-- Registration Form -->
 					<c:url var='register' value='/register' />
-                	 <form:form method="post" modelAttribute="register" action="${ register}" onsubmit="return validateForm()">
+                	 <form:form method="post" modelAttribute="register" enctype="multipart/form-data" action="${ register}" onsubmit="return validateForm()" >
                 	  <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center mb-4">會員註冊</h2>
@@ -145,12 +146,16 @@
                                     生日
                                     <form:input type="date" class="form-control" id="date" path="birthday"/>
                                 </div>
-                            	<div class="mb-3">
-                                    <label for="profilePicture" class="form-label">上傳大頭貼</label>
-                                    <form:input type="file" class="form-control" id="profilePicture" path="multipartFile"/>
-                                </div> 
-                                <div class="d-grid ">
-                                    <button type="submit" class="btn btn-primary" style="font-size: 20px;">註冊</button>
+<!--                             	<div class="mb-3"> -->
+<!--                                     <label for="profilePicture" class="form-label">上傳大頭貼</label> -->
+<%--                                     <form:input type="file" class="form-control" id="profilePicture" path="multipartFile"/> --%>
+<!--                                 </div>  -->
+
+								<label class="btn btn-info"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 上傳圖片</label>
+
+								<div id="oldImg" style="display:none;"></div>
+                                <div class="col text-center ">
+                                    <button type="submit" class="btn btn-primary" style="font-size: 20px;" id="submitForm">註冊</button>
                                 </div>
                        		</div>
                     	</div>
@@ -160,11 +165,11 @@
         </div>
 
     </section>
-    
     <script src="plugins/bootstrap/bootstrap.min.js"></script>
     <script src="plugins/slick/slick.min.js"></script>
     <script src="plugins/scrollmenu/scrollmenu.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 
     <!-- Main Script -->
     <script src="js/script.js"></script>
@@ -245,7 +250,7 @@
 		}
 
 		function validateForm() {
-			return validateAccount() && validatePassword() && validatePhone()
+			return validateName() && validateAccount() && validatePassword() && validatePhone()
 					&& validateEmail();
 		}
 	</script>
@@ -311,6 +316,126 @@
 	});
 
 	</script>
+	<script>
+   	$(document).ready(function() {
+   	    // Your existing variable definitions...
+   	    var width_crop =200, // 圖片裁切寬度 px 值
+			    height_crop = 200, // 圖片裁切高度 px 值
+			    type_crop = "square", // 裁切形狀: square 為方形, circle 為圓形
+			    width_preview = 350, // 預覽區塊寬度 px 值
+			    height_preview = 350, // 預覽區塊高度 px 值
+			    compress_ratio = 0.8, // 圖片壓縮比例 0~1
+			    type_img = "jpeg", // 圖檔格式 jpeg png webp
+			    color = "#ffffff",
+			    oldImg = new Image(),
+			    myCrop, file, oldImgDataUrl;
+
+   	    // Your existing Croppie initialization...
+   	    myCrop = $("#oldImg").croppie({
+			    viewport: { // 裁切區塊
+				    width: width_crop,
+				    height: height_crop,
+				    type: type_crop,
+				    background: color
+		    	},
+		    	boundary: { // 預覽區塊
+				    width: width_preview,
+				    height: height_preview,
+				    background: color
+			    }
+		    });
+
+   	    // Modified readFile function
+   	    function readFile(input) {
+	    if (input.files && input.files[0]){
+	        var file = input.files[0];
+	
+	        if (file.type.indexOf("image") == 0) {
+	            var reader = new FileReader();
+	            
+	            reader.onload = function(e) {
+	                oldImgDataUrl = e.target.result;
+	                oldImg.src = oldImgDataUrl;
+	
+	                // Bind the image to Croppie for cropping
+	                myCrop.croppie("bind", {
+	                    url: oldImgDataUrl
+	                }).then(function() {
+	                    console.log('Image binding complete.');
+	                    // Image is now ready for any further processing or actions
+	                    // For instance, you can enable the submit button here if it was disabled
+	                });
+	            };
+	
+	            reader.readAsDataURL(file);
+	        } else {
+	            alert("您上傳的不是圖檔！");
+	        }
+	    } else {
+	        alert("瀏覽器不支援此功能！建議使用最新版本 Chrome");
+	    }
+		}
+
+
+   	    $("#upload_img").on("change", function() {
+   	        $("#oldImg").show();
+   	        readFile(this);
+   	    });
+
+		function dataURItoBlob(dataURI) {
+		   // Convert data URI to Blob
+		   var byteString = atob(dataURI.split(',')[1]);
+		   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+		   var ab = new ArrayBuffer(byteString.length);
+		   var ia = new Uint8Array(ab);
+		
+		   for (var i = 0; i < byteString.length; i++) {
+		      ia[i] = byteString.charCodeAt(i);
+		   }
+		
+		   return new Blob([ab], { type: mimeString });
+		}
+   	    
+   	    // Modify the submitForm click event handler
+   	    $("#submitForm").on("click", function(event) {
+   	        event.preventDefault();  // Prevent the default form submission
+   	        myCrop.croppie("result", {
+   	            type: "canvas",
+   	            format: type_img,
+   	            quality: compress_ratio
+   	        }).then(function(src) {
+   	            var formData = new FormData($("form")[0]);
+   	            var blob = dataURItoBlob(src);
+   	            formData.append("multipartFile", blob, "cropped_image.jpg");
+
+   	            // Log formData entries for debugging
+   	            for (var pair of formData.entries()) {
+   	                console.log(pair[0] + ', ' + pair[1]);
+   	            }
+
+   	            // Perform the AJAX request
+   	            $.ajax({
+   	                url: "/pillowSurfing/register",
+   	                type: "POST",
+   	                data: formData,
+   	                processData: false,
+   	                contentType: false,
+   	                success: function(response) {
+   	                    console.log("Response: ", response);
+   	                    var jsonResponse = JSON.parse(response);
+   	                    window.location.href = jsonResponse.redirectUrl;
+   	                },
+   	                error: function(jqXHR, textStatus, errorThrown) {
+   	                    console.error("AJAX request failed: ", textStatus, errorThrown, jqXHR.responseText);
+   	                }
+   	            });
+   	        });
+   	    });
+   	});
+
+   	
+   	
+   	</script>
 
 </body>
 
