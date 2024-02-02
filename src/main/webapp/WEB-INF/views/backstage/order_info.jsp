@@ -84,8 +84,8 @@
                     <tfoot>
                         <tr>
                           <td colspan="2">
-								<a href="<spring:url value='/order' />">回前頁</a>
-								<a href="<spring:url value='/order_edit/${booking.bookingId }'/>" >編輯</a>
+								<a href="<spring:url value='/admin/order' />">回前頁</a>
+								<a href="<spring:url value='/admin/order_edit/${booking.bookingId }'/>" >編輯</a>
 							</td>
                         </tr>
                     </tfoot>

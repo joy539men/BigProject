@@ -37,7 +37,7 @@ function updateBooking() {
 	<div class="container">
 		<div class="container1">
 			<c:url var='insertUrl'
-				value='/order_edit/OrderUpdate/${bookingBean.bookingId}' />
+				value='/admin/order_edit/OrderUpdate/${bookingBean.bookingId}' />
 			<form:form method='POST' modelAttribute="bookingBean"
 				action="${insertUrl }" enctype="multipart/form-data"
 				id="account_edit_form">
@@ -100,7 +100,7 @@ function updateBooking() {
 					<tfoot>
 						<tr>
 						<tr>
-							<td colspan="2"><a href="<c:url value='/order' />">放棄修改</a>
+							<td colspan="2"><a href="<c:url value='/admin/order' />">放棄修改</a>
 								<input type="submit" value="修改完成" onclick="updateBooking()" /></td>
 						</tr>
 					</tfoot>

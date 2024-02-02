@@ -103,7 +103,7 @@ function displayMarkers(data) {
 					let roomId = $(this).data('room-id');
 					console.log("超連結roomId:", roomId)
 					// 直接跳轉到後端定義的頁面
-					window.location.href = `/pillowSurfing/getRoomDetailsAndBook/${roomId}`;
+					window.location.href = `/pillowSurfing/admin/getRoomDetailsAndBook/${roomId}`;
 				});
 			});
 		});
@@ -123,7 +123,7 @@ function updateMarkers() {
 	distanceDisplay.text(`目前距離範圍：${distance} 公里`);
 
 	$.ajax({
-		url: `/pillowSurfing/map/${myLocation.lat}/${myLocation.lng}/${distance}`,  // 後端 API 地址
+		url: `/pillowSurfing/admin/map/${myLocation.lat}/${myLocation.lng}/${distance}`,  // 後端 API 地址
 		method: 'GET',
 		dataType: 'json',
 		success: function(data) {

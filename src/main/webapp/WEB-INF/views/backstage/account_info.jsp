@@ -71,8 +71,8 @@
 					<tfoot>
 						<tr>
 							<td colspan="2">
-								<a href="<spring:url value='/account' />">回前頁</a>
-								<a href="<spring:url value='/account_edit/${userBean.userId }'/>" >編輯</a>
+								<a href="<spring:url value='/admin/account' />">回前頁</a>
+								<a href="<spring:url value='/admin/account_edit/${userBean.userId }'/>" >編輯</a>
 							</td>
 						</tr>
 					</tfoot>

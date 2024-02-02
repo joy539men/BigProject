@@ -43,7 +43,7 @@
 	<div class="container">
 		<div class="container1">
 			<c:url var='insertUrl'
-				value='/account_edit/UserUpdate/${userBean.userId}' />
+				value='/admin/account_edit/UserUpdate/${userBean.userId}' />
 			<form:form method='POST' modelAttribute="userBean"
 				action="${insertUrl }" enctype="multipart/form-data"
 				id="account_edit_form">
@@ -101,7 +101,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><a href="<c:url value='/account' />">放棄修改</a> <input
+							<td colspan="2"><a href="<c:url value='/admin/account' />">放棄修改</a> <input
 								type="submit" value="修改完成" onclick="updateBook()" /></td>
 						</tr>
 					</tfoot>

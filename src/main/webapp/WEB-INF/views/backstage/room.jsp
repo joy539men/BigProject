@@ -54,7 +54,7 @@
 
 		$.ajax({
 			method : "POST",
-			url : "/pillowSurfing/updateRoomStatus",
+			url : "/pillowSurfing/admin/updateRoomStatus",
 			dataType : 'json',
 			data : $("#statusform_" + roomId).serialize(),
 			success : function(room) {
@@ -79,7 +79,7 @@
 		var isRoomInUse = false;
 		$.ajax({
 			method : "GET",
-			url : "/pillowSurfing/checkRoomInUseDuringOrderPeriod",
+			url : "/pillowSurfing/admin/checkRoomInUseDuringOrderPeriod",
 			data : {
 				roomIds : roomId
 			},
@@ -170,7 +170,7 @@
 								<%-- 																			<form:option value="禁止使用" >禁止使用</form:option> --%>
 								<!-- 							</select></td> -->
 							<td class="no-wrap"><a
-								href='<c:url value="/room_info/${room.roomId }" />' id="detial">詳細資訊</a></td>
+								href='<c:url value="/admin/room_info/${room.roomId }" />' id="detial">詳細資訊</a></td>
 
 						</tr>
 
