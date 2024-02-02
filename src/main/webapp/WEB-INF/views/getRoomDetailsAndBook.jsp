@@ -251,9 +251,9 @@ button.switch-month:active {
 									alt="" />
 							</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li class="dropdown-item"><img class="img-fluid"
-										style="width: 50px" src="../images/logo.png" alt="" />
-										<h4>Krist</h4></li>
+									<li class="dropdown-item"><img class="img-fluid rounded-circle"
+										style="width: 50px" src="..${loginUser.filePath }" alt="" />
+										<h4>${loginUser.userName }</h4></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
@@ -294,7 +294,7 @@ button.switch-month:active {
 					<div class="border rounded me-3 shadow-sm">
 						<div class="row m-2 mt-1">
 							<div class="text-center col-5">
-								<img class="img-fluid w-50 mt-3" src="..${user.filePath }" alt="" />
+								<img class="img-fluid w-50 mt-3 rounded-circle" src="..${user.filePath }" alt="" />
 							</div>
 							<div class="col-5 mt-3 me-auto">
 								<h6>房東：${user.userName }</h6>
@@ -356,9 +356,9 @@ button.switch-month:active {
 						  <div class="row g-0">
 						    <div class="col-md-4">
 						    	<c:if test="${not empty review.user.filePath}">
-   								 	<img class="text" src="..${review.user.filePath}" class="img-fluid rounded-start" alt="忘記設定大頭貼了！！！">
+   								 	<img class="text" src="..${review.user.filePath}" style="margin-left:30px; margin-top:15px; width: 100px; height: 100px; border-radius: 50%;" alt="忘記設定大頭貼了！！！">
 								</c:if>
-						      <img src="../images/logo.png" class="rounded-start justify-content-center ms-3 mt-3" style="width:100xp; height:100px;" alt="忘記設定大頭貼了！！！">
+						     <!--  <img src="../images/logo.png" class="rounded-start justify-content-center ms-3 mt-3" style="width:100xp; height:100px;" alt="忘記設定大頭貼了！！！"> -->
 						    </div>
 						    <div class="col-md-8">
 						      <div class="card-body">
