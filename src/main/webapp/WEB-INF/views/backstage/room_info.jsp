@@ -65,7 +65,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2"><a href="<c:url value='/room' />">回前頁</a></td>
+							<td colspan="2"><a href="<c:url value='/admin/room' />">回前頁</a></td>
 						</tr>
 					</tfoot>
 				</table>

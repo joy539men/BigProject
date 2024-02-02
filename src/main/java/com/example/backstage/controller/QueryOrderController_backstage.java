@@ -10,11 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.backstage.service.OrderService_backstage;
 import com.example.demo.model.bookingBean;
 
 @Controller
+@RequestMapping("/admin")
 public class QueryOrderController_backstage {
 
 	OrderService_backstage bookingService;
@@ -49,7 +51,7 @@ public class QueryOrderController_backstage {
 	@DeleteMapping("/order_delete/{id}")
 	public String delete(@PathVariable Integer id, Model model) {
 		bookingService.deleteById(id);
-		return "redirect:/order";
+		return "redirect:/admin/order";
 	}
 
 	// 模糊搜尋

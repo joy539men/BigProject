@@ -52,7 +52,7 @@ $(document).ready(function () {
 			<div class="row mt-4">
 				<div class="col">
 					<form id="searchForm" class="d-flex"
-						action="${pageContext.request.contextPath}/backend/search"
+						action="${pageContext.request.contextPath}/admin/backend/search"
 						method="get">
 						<input type="search" id="search" name="search" placeholder="搜尋">
 						<button class="btn btn-outline-success ms-2" type="submit">
@@ -103,10 +103,10 @@ $(document).ready(function () {
 							<td>${user.identity }</td>
 							<td>${user.status }</td>
 							<td><a
-								href='<c:url value="/account_info/${user.userId }" />'
+								href='<c:url value="/admin/account_info/${user.userId }" />'
 								id="detial">詳細資料</a></td>
 							<td><a
-								href='<c:url value="/account_edit/${user.userId }" />'><i
+								href='<c:url value="/admin/account_edit/${user.userId }" />'><i
 									class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
 								href='#' onclick="sendEmail('${user.userId }')"><i
 									class="bi bi-dash-circle-fill"></i></a></td>

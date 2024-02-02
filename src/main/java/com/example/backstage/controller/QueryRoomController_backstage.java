@@ -4,25 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.backstage.service.OrderService_backstage;
 import com.example.backstage.service.RoomService_backstage;
-import com.example.demo.model.amenitiesBean;
 import com.example.demo.model.roomTableBean;
 
 @Controller
+@RequestMapping("/admin")
 public class QueryRoomController_backstage {
 
 	RoomService_backstage roomService;

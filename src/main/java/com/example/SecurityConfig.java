@@ -95,7 +95,6 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -108,13 +107,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig  {
 
     @Bean
     public FilterRegistrationBean<Filter> adminFilter() {
         FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new AdminFilter());
-        registrationBean.addUrlPatterns("/account"); // 設定要過濾的請求路徑
+        registrationBean.addUrlPatterns("/admin/*"); // 設定要過濾的請求路徑
         registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return registrationBean;
     }

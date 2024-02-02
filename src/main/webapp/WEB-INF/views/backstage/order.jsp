@@ -40,7 +40,7 @@
 
 			function deleteOrder(bookingId) {
 
-				let url = "<c:url value='/order_delete' />" + "/" + bookingId;
+				let url = "<c:url value='/admin/order_delete' />" + "/" + bookingId;
 				let input = document.createElement("input");
 
 				let container = document.forms[0];
@@ -103,7 +103,7 @@
 				</form>
 			</div>
 			<div class="col">
-				<form action="${pageContext.request.contextPath}/backend/dateSearch"
+				<form action="${pageContext.request.contextPath}/admin/backend/dateSearch"
 					id="dateSearch">
 					日期 : <input type="date" name="checkinDateSearch" id=""> <i
 						class="bi bi-arrow-right-circle-fill mx-2"></i> <input type="date"
@@ -138,10 +138,10 @@
 							<td class="no-wrap">${order.bookingTime}</td>
 							<td>${order.status }</td>
 							<td class="no-wrap"><a
-								href="<c:url value='/order_info/${order.bookingId }' /> "
+								href="<c:url value='/admin/order_info/${order.bookingId }' /> "
 								id="detial">詳細資料</a></td>
 							<td><a
-								href="<c:url value='/order_edit/${order.bookingId }' /> "><i
+								href="<c:url value='/admin/order_edit/${order.bookingId }' /> "><i
 									class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;&nbsp; <a
 								onclick="return showAlert1('${order.bookingId}')"><i
 									class="bi bi-trash3 "></i></a></td>

@@ -29,7 +29,7 @@ function sendEmail(userId) {
 				 showConfirmButton: false,
 				timer: 4000 
 			})
-				window.location.href = `/pillowSurfing/sendEmail/${userId}`;
+				window.location.href = `/pillowSurfing/admin/sendEmail/${userId}`;
 			
 		}
 	});
