@@ -67,7 +67,7 @@
           </ul>
         </div>
         <div class="nav-item dropdown">
-<!--           <a><img src="./images/cat.png" width="60px"></a> -->
+          <a><img src="<c:url value='${ userImg}' />" width="60px" class="rounded-circle"></a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item " href="#">個人資料</a>
             </li>
