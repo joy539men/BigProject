@@ -19,8 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="user")
-public class userBean {
-	
+public class userBean  {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer    userId;
@@ -38,10 +38,20 @@ public class userBean {
 	private Timestamp  registrationTime;
 //	private String     password1;
 	private String	   filePath;
+//	private String	   authority;
+	
 	
 	@Transient
 	private MultipartFile imageFiles;
 	
+//	public String getAuthority() {
+//		return authority;
+//	}
+//
+//	public void setAuthority(String authority) {
+//		this.authority = authority;
+//	}
+
 	@Transient
 	private MultipartFile multipartFile;
 	
@@ -90,7 +100,7 @@ public class userBean {
 		this.favorite = favorite;
 	}
 
-	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone, String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday) {
+	public userBean(Integer userId,String  account,String password1 ,String  password, String  userName, String  email, String  address, String  phone, String  identity, String  status, String  statusNum, Timestamp  registrationTime, Date  birthday,String	authority) {
 		this.userId            = userId;
 		this.account           = account;
 		this.password          = password;
@@ -104,7 +114,7 @@ public class userBean {
 		this.registrationTime  = registrationTime;
 		this.birthday          = birthday;
 //		this.password1         = password1;
-		
+//		this.authority       = authority;
 	}
 	
 	
@@ -260,7 +270,6 @@ public class userBean {
 	public void setMultipartFile(MultipartFile multipartFile) {
 		this.multipartFile = multipartFile;
 	}
-
 	
 	
 	
