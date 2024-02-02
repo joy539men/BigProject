@@ -201,10 +201,11 @@ button.switch-month:active {
 	<header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
+				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
 					class="img-fluid" width="120" src="../images/logo.png"
 					alt="CouchSurfing" />
 				</a>
+				
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"

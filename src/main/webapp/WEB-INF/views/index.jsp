@@ -39,9 +39,9 @@
 	<header class="navigation bg-tertiary">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
-					loading="prelaod" decoding="async" class="img-fluid" width="120"
-					src="images/logo.png" alt="CouchSurfing">
+				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -61,23 +61,14 @@
 						</li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">頁面</a>
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item " href="blog.html">Blog</a></li>
-								<li><a class="dropdown-item " href="blog-details.html">Blog
-										Details</a></li>
-								<li><a class="dropdown-item " href="service-details.html">Service
-										Details</a></li>
-								<li><a class="dropdown-item " href="faq.html">FAQ&#39;s</a>
-								</li>
-								<li><a class="dropdown-item " href="legal.html">Legal</a></li>
-								<li><a class="dropdown-item " href="terms.html">Terms
-										&amp; Condition</a></li>
-								<li><a class="dropdown-item " href="privacy-policy.html">Privacy
-										&amp; Policy</a></li>
+								<li><a class="dropdown-item" href="blog.html">部落格</a></li>
+								<li><a class="dropdown-item" href="service-details.html">服務項目</a></li>
+								<li><a class="dropdown-item" href="terms.html">條約
+										&amp; 法律責任</a></li>
 							</ul></li>
 					</ul>
-					<%-- <a  href="<c:url value="/hostOrders"></c:url>" class="btn btn-outline-primary me-5" >切 換 房 東 模 式</a> --%>
 					<!-- account btn -->
 					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
