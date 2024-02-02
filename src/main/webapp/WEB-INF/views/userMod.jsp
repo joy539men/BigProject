@@ -16,7 +16,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Personal Information</title>
+<title>User Mod</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="description" content="This is meta description">
@@ -110,7 +110,7 @@
 		<form:form method="post" modelAttribute="user" action="${ register}"
 			enctype="multipart/form-data" onsubmit="return validatePassword()">
 			<h2 class="mb-3">會員修改</h2>
-			<!-- Name and Email -->
+			<!-- 姓名and 信箱 -->
 			<div class="row mb-3">
 				<div class="col">
 					<label for="name" class="form-label" style="font-size: 18px;">姓名</label>
@@ -124,7 +124,7 @@
 				</div>
 			</div>
 
-			<!-- Password and ID Card Number -->
+			<!-- 新密碼 and 確認新密碼 -->
 			<div class="row mb-3">
 				<div class="col">
 					<label for="newPassword" class="form-label" style="font-size: 18px;">新密碼</label>
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 
-			<!-- Phone and Address -->
+			<!-- 電話 and 身分證 -->
 			<div class="row mb-3">
 				<div class="col">
 					<label for="phone" class="form-label" style="font-size: 18px;">電話</label>
@@ -152,7 +152,7 @@
 
 			</div>
 
-			<!-- Profile Picture -->
+			<!-- 地址 and 大頭貼 -->
 			<div class="row mb-3">
 				<div class="col">
 					<label for="address" class="form-label" style="font-size: 18px;">地址</label>

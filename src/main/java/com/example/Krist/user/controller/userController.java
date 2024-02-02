@@ -322,7 +322,7 @@ public class userController {
     	    updatedUser.setPassword(originalUser.getPassword()); 
     	    updatedUser.setRegistrationTime(new Timestamp(System.currentTimeMillis()));// 更新 registrationTime 為當前時間
     	    userService.updateUser(userId,updatedUser);
-    	    //            return "index"; 
+    	    //          return "index"; 
             return "index";
         } else {
             // 若是資料庫沒有該資料，跳轉到 login 頁面

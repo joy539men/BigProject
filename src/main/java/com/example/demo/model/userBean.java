@@ -112,7 +112,7 @@ public class userBean {
 	public String getNewPassword() {
         return newPassword;
     }
-	// 設置用戶輸入的新密碼到 userBean 對象中
+	// 設置用戶輸入的新密碼到 userBean 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
     }
@@ -120,7 +120,7 @@ public class userBean {
     public String getConfirmPassword() {
         return confirmPassword;
     }
-    // 設置用戶輸入的確認新密碼到 userBean 對象中
+    // 設置用戶輸入的確認新密碼到 userBean 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }

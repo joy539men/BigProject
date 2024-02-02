@@ -184,7 +184,7 @@ public class userServiceImpl implements userService{
 //			ext = filePath.substring(filePath.lastIndexOf("."));
 //		}
 //		String newFileName = "userPhoto_" + userId + ext;
-//	    // Construct the new file path with the final file name
+	    // Construct the new file path with the final file name
 //	    String newFilePath = filePath.replaceFirst("[^/]+$", newFileName);
 //
 //	    // Perform the file renaming
