@@ -512,27 +512,20 @@ button.switch-month:active {
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- <script src="../calendar-03/js/calendarMain.js"></script> -->
 	<!-- <link rel="stylesheet" href="../calendar-03/js/calendarMain.js" /> -->
-	<script src="../plugins/scrollmenu/scrollmenu.min.js"></script>
+	<!-- <script src="../plugins/scrollmenu/scrollmenu.min.js"></script> -->
 
 	<script>
 		document.addEventListener("DOMContentLoaded",function() {
 			window.addEventListener("scroll",function() {
-				var bookPage = document
-						.getElementById("fix-box");
-				var information = document
-						.getElementById("fix-information")
-				var scrollPosition = window.scrollY
-						|| window.pageYOffset
-						|| document.documentElement.scrollTop;
+				var bookPage = document.getElementById("fix-box");
+				var information = document.getElementById("fix-information")
+				var scrollPosition = window.scrollY || window.pageYOffset|| document.documentElement.scrollTop;
 
 				// 計算寬度
-				var rightWidth = document
-						.getElementById("bookButtom").offsetWidth;
+				var rightWidth = document.getElementById("bookButtom").offsetWidth;
 				console.log(rightWidth);
-				var imageWidth = document
-						.getElementById("fix-box").offsetWidth;
-				var mathWidth = rightWidth
-						- imageWidth;
+				var imageWidth = document.getElementById("fix-box").offsetWidth;
+				var mathWidth = rightWidth- imageWidth;
 				console.log(mathWidth);
 				console.log(scrollPosition);
 
@@ -709,8 +702,7 @@ button.switch-month:active {
 
 			var roomId = 56;
 
-			 $(document).ready(
-				function() {
+			 $(document).ready(function() {
 					// 監聽日期和人數輸入
 					$("#checkinDate, #checkoutDate, #guest").on("input",function() {
 						// 獲取輸入的日期和人數
@@ -750,7 +742,7 @@ button.switch-month:active {
 
 			"use strict";
 
-			$( document ).ready(function() {
+			$(document).ready(function() {
 				function c(passed_month, passed_year, calNum) {
 					var calendar = calNum == 0 ? calendars.cal1 : calendars.cal2;
 					makeWeek(calendar.weekline);
@@ -1169,9 +1161,8 @@ button.switch-month:active {
 		})(jQuery);
 				
 	</script>
-	<script src="<c:url value='/js/openPopup.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
+	<%-- <script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script> --%>
 	<!-- Google API -->
-<!-- 		 <script defer -->
-<!-- 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap"></script> -->
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap"></script> 
 	</body>
