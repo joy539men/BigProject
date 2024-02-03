@@ -608,7 +608,7 @@
 					<div class="card-body">
 						<h5 class="card-title ">${room.title}</h5>
 						<span class="card-text">${room.type}</span><br> 
-						<span class="card-text">${room.guestMax}人入住</span><br>
+						<span class="card-text">${room.guestMax}人入住。$${room.price}</span><br>
 					</div>
 					
 				</div>

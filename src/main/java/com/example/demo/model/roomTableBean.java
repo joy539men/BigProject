@@ -55,6 +55,9 @@ public class roomTableBean {
 	private String   style;
 	private String   name;
 	
+    private Boolean isOccupied;
+
+	
 	
 	
 	public MultipartFile getMultipartFile() {
@@ -83,8 +86,8 @@ public class roomTableBean {
 	@OneToMany(mappedBy = "roomTable", cascade =CascadeType.ALL)
 	private Set<bookingBean> bookingBean;
 	
-	@OneToMany(mappedBy = "roomTable", cascade = CascadeType.ALL)
-	private Set<roomPhotoBean> roomPhotos;
+//	@OneToMany(mappedBy = "roomTable", cascade = CascadeType.ALL)
+//	private Set<roomPhotoBean> roomPhotos;
 	
 	@OneToMany(mappedBy = "roomTable", cascade = CascadeType.ALL)
 	private Set<reviewBean> reviews;
@@ -96,7 +99,7 @@ public class roomTableBean {
 	private List<MultipartFile> imageFiles;
 
 
-	public roomTableBean(Integer  roomId ,Integer  hostId, Integer  price, String   title, byte[]    photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat) {
+	public roomTableBean(Integer  roomId ,Integer  hostId, Integer  price, String   title, byte[]    photos, String   description, Integer  guestMax, Integer  roomNum, Integer  bedNum, Integer  bathroom, String status, String type,String address, String lon, String lat, Boolean isOccupied) {
 		this.roomId      = roomId;
 		this.price       = price;
 		this.title       = title;
@@ -111,6 +114,7 @@ public class roomTableBean {
 		this.address     = address;
 		this.lon         = lon;
 		this.lat         = lat;
+		this.isOccupied  = isOccupied;
 	}
 	
 	public roomTableBean() {
@@ -291,13 +295,13 @@ public class roomTableBean {
 		this.amenities = amenities;
 	}
 
-	public Set<roomPhotoBean> getRoomPhotos() {
-		return roomPhotos;
-	}
-
-	public void setRoomPhotos(Set<roomPhotoBean> roomPhotos) {
-		this.roomPhotos = roomPhotos;
-	}
+//	public Set<roomPhotoBean> getRoomPhotos() {
+//		return roomPhotos;
+//	}
+//
+//	public void setRoomPhotos(Set<roomPhotoBean> roomPhotos) {
+//		this.roomPhotos = roomPhotos;
+//	}
 
 	public String getFilePath() {
 		return filePath;
@@ -355,5 +359,14 @@ public class roomTableBean {
 	public void setName(String  name) {
 		this.name = name;
 	}
+
+	public Boolean getIsOccupied() {
+		return isOccupied;
+	}
+
+	public void setIsOccupied(Boolean isOccupied) {
+		this.isOccupied = isOccupied;
+	}
+	
 	
 }
