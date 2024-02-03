@@ -38,8 +38,9 @@
   <header class="navigation bg-tertiary">
     <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html"> 
-          <img  class="img-fluid" width="60px" src="<c:url value='/images/logo.png' />" alt="CouchSurfing">
+        <a class="navbar-brand" href="index.html">
+          <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="./images/logo.png"
+            alt="CouchSurfing">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span
@@ -47,11 +48,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item"> <a class="nav-link" href="#">訂單管理</a>
+            <li class="nav-item"> <a class="nav-link" href="<c:url value='/hostOrders' />">訂單管理</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="./calendar.html">日曆</a>
+            <li class="nav-item "> <a class="nav-link" href="#">日曆</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="#">房源管理</a>
+            <li class="nav-item "> <a class="nav-link" href="<c:url value='/hostRooms' />">房源管理</a>
             </li>
             <li class="nav-item "> <a class="nav-link" href="#">收件匣</a>
             </li>
@@ -62,22 +63,22 @@
                 </li>
                 <li><a class="dropdown-item " href="#">收入分析</a>
                 </li>
-                <li><a class="dropdown-item " href="#">建立新房源</a>
+                <li><a class="dropdown-item " href="<c:url value='/addRoom' />">建立新房源</a>
                 </li>
               </ul>
             </li>
           </ul>
         </div>
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown"> 
           <a><img src="<c:url value='${ userImg}' />" width="60px" class="rounded-circle"></a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item " href="#">個人資料</a>
+            <li><a class="dropdown-item " href="<c:url value='/userProfile'/>">個人資料</a>
             </li>
             <li><a class="dropdown-item " href="#">帳號</a>
             </li>
-            <li><a class="dropdown-item " href="#">切換至旅行模式</a>
+            <li><a class="dropdown-item " href="<c:url value='/login'/>">切換至旅行模式</a>
             </li>
-            <li><a class="dropdown-item " href="#">登出</a>
+            <li><a class="dropdown-item " href="<c:url value='/logout'/>">登出</a>
             </li>
           </ul>
         </div>
@@ -111,7 +112,12 @@
 		          	<strong>房源類型</strong>
 		          </div>
 		          <div id="roomTypeInputDiv" class="col-9">
-		          	<form:input path="type" id="roomTypeInput" value="${room.type}"/>
+		          	<select name="type">
+					    <option value="整套房源" <c:if test="${room.type == '整套房源'}">selected</c:if>>整套房源</option>
+					    <option value="獨立房間" <c:if test="${room.type == '獨立房間'}">selected</c:if>>獨立房間</option>
+					    <option value="合住房間" <c:if test="${room.type == '合住房間'}">selected</c:if>>合住房間</option>
+					</select>
+<%-- 		          	<form:input path="type" id="roomTypeInput" value="${room.type}"/> --%>
 		          </div>	
 	        </div> <!-- end of roomTypeDiv -->
 	        

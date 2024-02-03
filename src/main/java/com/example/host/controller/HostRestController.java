@@ -95,6 +95,7 @@ public class HostRestController {
 	    public ResponseEntity<String> editRoomSubmit(@PathVariable Integer roomId, 
 	    											 @ModelAttribute roomTableBean updatedRoom,
 	    											 @RequestParam Set<Integer> amenityIds,
+	    											 @RequestParam String type,
 	    											 @RequestParam(value = "multipartFile", required = false ) MultipartFile multipartFile) {
 			// Get the original room
 		    roomTableBean originalRoom = service.getRoomById(roomId);
