@@ -52,13 +52,19 @@ public class roomController {
 	    Set<amenitiesBean> amenities = roomTableRepository.findAmenitiesByRoomId(roomId);
 
 		Integer userId = (Integer) session.getAttribute("userId");
-	    userBean loginUser = userRepository.findById(userId).orElse(null);
-	    
-	    if (loginUser == null) {
-	    	return "redirect:/login";
-	    }else {
-	    	model.addAttribute("loginUser",loginUser);
-	    }
+		
+		if (userId != null) {
+		    Optional<userBean> optionalUser = userRepository.findById(userId);
+		    if (optionalUser.isPresent()) {
+		        userBean loginUser = optionalUser.get();
+		        model.addAttribute("loginUser", loginUser);
+		    } else {
+		        return "redirect:/login";
+		    }
+		} else {
+		    return "redirect:/login";
+		}
+
 	    
 	    // 設定 session 儲存在網頁當中
 	    session.setAttribute("selectedRoomId", roomId);
