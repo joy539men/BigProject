@@ -15,10 +15,9 @@
 
 <html lang="en-us">
 <head>
-<meta charset="utf-8" />
 <title>Book page</title>
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=5" />
+	content="width=device-width, initial-scale=1" />
 <meta name="description" content="This is meta description" />
 <meta name="author" content="Themefisher" />
 <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
@@ -36,7 +35,8 @@
 
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="../css/style.css" />
-
+<link rel="stylesheet" href="<c:url value='/css/map.css'/>">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 
 
@@ -232,7 +232,7 @@ button.switch-month:active {
 										&amp; 法律責任</a></li>
 							</ul></li>
 					</ul>
-
+					
 					<div>
 						<!-- account btn -->
 						<ul class="nav">
@@ -255,7 +255,7 @@ button.switch-month:active {
 										<hr />
 									</li>
 									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-									<li><a class="dropdown-item" href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
+									<li><a id="openPopup" class="dropdown-item" href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
@@ -270,13 +270,30 @@ button.switch-month:active {
 				</div>
 			</div>
 		</nav>
+	
 	</header>
-
+	
+	<div id="overlay"></div>
+	<div id="popup">
+		<!-- 這裡放置彈出框的内容 -->
+		<div id="popWindow">
+			<div id="disRange">
+				<label for="dis" id="labledis">請選擇範圍距離 : </label> <input type="number" name="dis" id="dis" min="1"
+					step="1" />&nbsp;<span>公里</span>
+				<button type="button" onclick="updateMarkers()">更新距離</button>
+				<button id="goToUserLocation">回到您的位置</button>
+				<span id="distanceDisplay">目前距離範圍：未選擇</span>
+			</div>
+			<div id="myMap"></div>
+		</div>
+	</div>
+	
 	<hr />
 
 	<!-- Room page -->
 	<section class="section pt-0 pb-1">
 		<div class="container">
+			
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<img class="mb-2 img-cover" src="..${singleRoom.filePath}" alt="" />
@@ -487,7 +504,7 @@ button.switch-month:active {
 		</div>
 
 	</section>
-
+	
 
 	<!-- # JS Plugins -->
 	<script src="plugins/slick/slick.min.js"></script>
@@ -1152,7 +1169,9 @@ button.switch-month:active {
 		})(jQuery);
 				
 	</script>
+	<script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
 	<!-- Google API -->
-	<script defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap"></script>
-</body>
+<!-- 		 <script defer -->
+<!-- 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap"></script> -->
+	</body>
