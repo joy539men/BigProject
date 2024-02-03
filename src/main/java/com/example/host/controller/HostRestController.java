@@ -8,8 +8,6 @@ import java.util.Set;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,7 +44,6 @@ public class HostRestController {
 		this.session = session;
 	}
 	
-	private static final Logger logger = LoggerFactory.getLogger(HostRestController.class);
 	
 	//傳送新增房間請求
 	@PostMapping("/addRoom")
@@ -98,6 +95,7 @@ public class HostRestController {
 	    public ResponseEntity<String> editRoomSubmit(@PathVariable Integer roomId, 
 	    											 @ModelAttribute roomTableBean updatedRoom,
 	    											 @RequestParam Set<Integer> amenityIds,
+	    											 @RequestParam String type,
 	    											 @RequestParam(value = "multipartFile", required = false ) MultipartFile multipartFile) {
 			// Get the original room
 		    roomTableBean originalRoom = service.getRoomById(roomId);
