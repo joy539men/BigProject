@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,6 +39,12 @@ public class HostServiceImpl implements HostService {
 	
 	 @Autowired
 	 private AmenitiesRepository amenitiesRepository;
+	 
+	 @Value("${roomImgPath}")
+	    private String pathSave;
+		
+		@Value("${roomImgPathPrefix}")
+	    private String roomImgPathPrefix;
 
 	@Override
 	public Optional<roomTableBean> getroomTableBeanById(int id) {
@@ -151,7 +158,7 @@ public class HostServiceImpl implements HostService {
 //	    		    
 //	    		    
 ////	    			把照片從multipartFile存到本地資料夾
-//	    		    String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
+//	    		    String rootDirectory = "C:\\Users\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
 //	    			try {
 //	    				File imageFolder = new File(rootDirectory);
 //	    				if (!imageFolder.exists())
@@ -200,7 +207,10 @@ public class HostServiceImpl implements HostService {
     		    
     		    
 //    			把照片從multipartFile存到本地資料夾
-    			String rootDirectory = "D:\\BigProject-1\\src\\main\\resources\\static\\images\\pic_backstage";
+
+//    			String rootDirectory = "C:\\Users\\git\\BigProject\\src\\main\\resources\\static\\images\\roomPic";
+    			String rootDirectory = pathSave;
+
     			try {
     				File imageFolder = new File(rootDirectory);
     				if (!imageFolder.exists())
@@ -214,7 +224,11 @@ public class HostServiceImpl implements HostService {
     			
     			
     			//取得照片path
-    			String filePath = "/images/pic_backstage/" + outputFileName;
+
+//    			String filePath = "/images/roomPic/" + outputFileName;
+    			String filePath = roomImgPathPrefix + outputFileName;
+
+
         return filePath;
     }
     

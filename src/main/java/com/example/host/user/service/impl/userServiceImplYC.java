@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +22,11 @@ public class userServiceImplYC implements userServiceYC{
 	@Autowired
     private userRepositoryYC userRepository;
 	
-
+	@Value("${userImgPath}")
+    private String pathSave;
+	
+	@Value("${userImgPathPrefix}")
+    private String userImgPathPrefix;
 	
 	@Override
 	public Optional<userBean> getUserBeanById(int id) {
@@ -124,7 +129,10 @@ public class userServiceImplYC implements userServiceYC{
     		    
 //    			把照片從multipartFile存到本地資料夾
     		    
-    		    String rootDirectory = "D:\\BigProject-1\\src\\main\\resources\\static\\images\\pic_backstage";
+
+//    		    String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
+    		    String rootDirectory = pathSave;
+
     			try {
     				File imageFolder = new File(rootDirectory);
     				if (!imageFolder.exists())
@@ -138,13 +146,17 @@ public class userServiceImplYC implements userServiceYC{
     			
     			
     			//取得照片path
-    			String filePath = "/images/pic_backstage/" + outputFileName;
+
+//    			String filePath = "/images/userPic/" + outputFileName;
+    			String filePath = userImgPathPrefix + outputFileName;
+
+
         return filePath;
     }
 	
 	@Override
 	public String updateFile(MultipartFile multipartFile,String originalFilePath,Integer userId) {
-		String targetFilePath = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static" + originalFilePath;
+//		String targetFilePath = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static" + originalFilePath;
 //		System.out.println(targetFilePath);
 //		
 //		//刪除舊檔案
@@ -218,7 +230,11 @@ public class userServiceImplYC implements userServiceYC{
 	    
 //		把照片從multipartFile存到本地資料夾
 	    
-	    String rootDirectory = "D:\\BigProject-1\\src\\main\\resources\\static\\images\\pic_backstage";
+
+//	    String rootDirectory = "C:\\Users\\sandra\\git\\BigProject\\src\\main\\resources\\static\\images\\userPic";
+	    String rootDirectory = pathSave;
+
+
 		try {
 			File imageFolder = new File(rootDirectory);
 			if (!imageFolder.exists())
@@ -232,7 +248,10 @@ public class userServiceImplYC implements userServiceYC{
 		
 		
 		//取得照片path
-		String filePath = "/images/pic_backstage/" + outputFileName;
+
+//		String filePath = "/images/userPic/" + outputFileName;
+		String filePath = userImgPathPrefix + outputFileName;
+
 		return filePath;
 		
 	}
