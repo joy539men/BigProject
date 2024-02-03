@@ -10,79 +10,84 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="booking")
+@Table(name = "booking")
 public class bookingBean {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bookingId;
-	private UUID  uuid;
-	private Date    checkinDate;
-	private Date    checkoutDate;
+	private UUID uuid;
+	private Date checkinDate;
+	private Date checkoutDate;
 	private Integer totalPrice;
-	private Date    bookingTime;
+	private Date bookingTime;
 	private Integer guest;
-	private String  tips;
+	private String tips;
 	private Integer night;
-	private String  status;
-	
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name="userId")
-	private userBean user;
-	
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name="roomId")
-	private roomTableBean roomTable;
-	
-	
+	private String status;
 
-	public bookingBean(Integer bookingId,UUID uuid,Date checkinDate, Date checkoutDate, Integer totalPrice, Date bookingTime, Integer guest, String  tips, Integer night) {
-		this.bookingId    = bookingId;
-		this.uuid         =  uuid;
-		this.checkinDate  = checkinDate;
+	@Transient
+	private boolean isProcessed;
+
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "userId")
+	private userBean user;
+
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "roomId")
+	private roomTableBean roomTable;
+
+	public bookingBean(Integer bookingId, UUID uuid, Date checkinDate, Date checkoutDate, Integer totalPrice,
+			Date bookingTime, Integer guest, String tips, Integer night) {
+		this.bookingId = bookingId;
+		this.uuid = uuid;
+		this.checkinDate = checkinDate;
 		this.checkoutDate = checkoutDate;
-		this.totalPrice   = totalPrice;
-		this.bookingTime  = bookingTime;
-		this.guest        = guest;
-		this.tips         = tips;
-		this.night        = night;
+		this.totalPrice = totalPrice;
+		this.bookingTime = bookingTime;
+		this.guest = guest;
+		this.tips = tips;
+		this.night = night;
 	}
-	
+
 	public bookingBean() {
-		
+
 	}
-	
+
+	public boolean isProcessed() {
+		return isProcessed;
+	}
+
+	public void setProcessed(boolean processed) {
+		isProcessed = processed;
+	}
+
 	public void acceptBooking() {
 		this.status = "已成立";
 	}
-	
+
 	public void rejectBooking() {
 		this.status = "已拒絕";
 	}
-	
+
 	public void cancelBooking() {
 		this.status = "已取消";
 	}
 
-	
 	public userBean getUser() {
 		return user;
 	}
 
-
 	public void setUser(userBean user) {
 		this.user = user;
 	}
-
-
-	
-
 
 	public roomTableBean getRoomTable() {
 		return roomTable;
@@ -180,10 +185,4 @@ public class bookingBean {
 				+ ", roomTable=" + roomTable + "]";
 	}
 
-	
-
-
-
-	
-	
 }

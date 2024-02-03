@@ -54,6 +54,8 @@ public class UserServiceImpl_backstage implements UserService_backstage {
 	@Override
 	public String getEmailByUserId(Integer userId) {
 		Optional<userBean> user = userRepository.findById(userId);
+//		System.out.println(userId);
+//		System.out.println(user.get().getUserId());
 		return user.get().getEmail();
 	}
 

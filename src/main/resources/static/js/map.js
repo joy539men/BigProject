@@ -66,7 +66,6 @@ async function initMap() {
 			}
 		}
 	});
-	google.maps.event.trigger(map, 'resize');
 	console.log("地圖初始化完成!")
 }
 

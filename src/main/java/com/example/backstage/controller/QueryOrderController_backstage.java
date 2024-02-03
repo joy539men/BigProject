@@ -41,7 +41,7 @@ public class QueryOrderController_backstage {
 		Optional<bookingBean> optional = bookingService.findById(id);
 		if (optional.isPresent()) {
 			bookingBean = optional.get();
-			System.out.println(bookingBean);
+//			System.out.println(bookingBean);
 		}
 		model.addAttribute("booking", bookingBean);
 		return "backstage/order_info";
@@ -64,8 +64,8 @@ public class QueryOrderController_backstage {
 //		if (search.isEmpty()) {
 //			return "redirect:/account";
 //		}
-		System.out.println(beans);
-		System.out.println(checkingDate+checkoutDate);
+//		System.out.println(beans);
+//		System.out.println(checkingDate+checkoutDate);
 		model.addAttribute("orders", beans);
 		return "backstage/order";
 	}

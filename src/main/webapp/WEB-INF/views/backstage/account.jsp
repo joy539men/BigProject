@@ -28,6 +28,8 @@
 						scrollY: '55vh',
 					})
 				});
+				
+				
 			</script>
 
 			<body>
@@ -44,7 +46,7 @@
 							</div>
 							<div class="col-5"></div>
 							<div class="col-2" id="adminlogoutdiv">
-								<a href="<c:url value=" /logout"></c:url>" class="btn btn-primary ms-2 ms-lg-3">登 出</a>
+								<a href='<c:url value="/logout" />' class="btn btn-primary ms-2 ms-lg-3">登 出</a>
 							</div>
 						</div>
 						<div class="row mt-4">
@@ -96,6 +98,7 @@
 						</div>
 					</div>
 					<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+					<script src="<c:url value='/js/openPopup.js' />"></script>
 			</body>
 
 			</html>

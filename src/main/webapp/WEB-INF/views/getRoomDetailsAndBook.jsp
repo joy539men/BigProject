@@ -550,7 +550,7 @@ button.switch-month:active {
 					})
 })
 
-		function initMap() {
+		function initMap1() {
 
 			var latitude = ${singleRoom.lat};
 			var longtitude = ${singleRoom.lon};
@@ -1172,6 +1172,6 @@ button.switch-month:active {
 	<script src="<c:url value='/js/openPopup.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
 	<!-- Google API -->
-<!-- 		 <script defer -->
-<!-- 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap"></script> -->
+		 <script defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap1"></script>
 	</body>
