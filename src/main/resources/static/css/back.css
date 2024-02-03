@@ -168,31 +168,3 @@ table input {
 	padding: 1px 10px;
 	width: 40%;
 }
-
-/* 背景層樣式 */
-#overlay {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
-	filter: blur(1px); /* 模糊效果*/
-	z-index: 2; /* 位於其他元素上方 */
-}
-
-/* 彈出框 */
-#popup {
-	display: none;
-	position: fixed; 
-	top: 50%;
-	left: 50%;
-	width:80%;
-	height:90%;
-	transform: translate(-50%, -50%);/*  將彈出框的中心定位在屏幕中心 */
-	background-color: #fff;
-	padding: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	z-index: 3; /* 位於背景層上方 */
-}

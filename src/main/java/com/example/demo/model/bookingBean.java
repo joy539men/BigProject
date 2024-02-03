@@ -59,7 +59,7 @@ public class bookingBean {
 	}
 	
 	public void acceptBooking() {
-		this.status = "已成立";
+		this.status = "已接受";
 	}
 	
 	public void rejectBooking() {

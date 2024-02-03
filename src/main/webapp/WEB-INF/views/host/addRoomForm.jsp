@@ -171,7 +171,6 @@ span.error {
 				</table>
 			</fieldset>
 		</form:form>
-<%-- 		<br> <a href="<c:url value='/_01_customer/index' />">回前頁</a> --%>
 	</div>
 	 <script src="plugins/jquery/jquery.min.js"></script>
 	 

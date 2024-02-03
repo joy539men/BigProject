@@ -11,7 +11,7 @@ async function initMap() {
 
 	const { Map, InfoWindow } = await google.maps.importLibrary("maps");
 	myLocation = await getLocation();
-	map = new Map(document.getElementById("map"), {
+	map = new Map(document.getElementById("myMap"), {
 		center: myLocation,
 		zoom: 14,
 		mapTypeControl: false,
@@ -34,6 +34,7 @@ async function initMap() {
 							lng: position.coords.longitude,
 						};
 						resolve(userPosition);
+						console.log("已取得使用者位置座標")
 					},
 					() => {
 						handleLocationError(true, infoWindow, map.getCenter());
@@ -65,6 +66,8 @@ async function initMap() {
 			}
 		}
 	});
+	google.maps.event.trigger(map, 'resize');
+	console.log("地圖初始化完成!")
 }
 
 function displayMarkers(data) {
@@ -74,11 +77,11 @@ function displayMarkers(data) {
 			map: map,
 			title: data[i].title,
 		});
-		var result = data[i].file_path.split("/").slice(1).join("/")
+//		var result = data[i].file_path.split("/").slice(1).join("/")
 		let infowindow = new google.maps.InfoWindow({
 			disableAutoPan: true,
 			content: `<div style="max-width: 200px;">
-				<img src='${result}' alt="檔案圖片" style="max-width: 100%;border-radius: 5px;">
+				<img src='../${data[i].file_path}' alt="檔案圖片" style="max-width: 100%;border-radius: 5px;">
 				<span style="display: block">${data[i].title}</span>
 				 <a href="#" class="room-link" data-room-id="${data[i].room_id}" style="text-decoration: none;display: block">View Room Details</a>
 				</div>
@@ -103,15 +106,16 @@ function displayMarkers(data) {
 					let roomId = $(this).data('room-id');
 					console.log("超連結roomId:", roomId)
 					// 直接跳轉到後端定義的頁面
-					window.location.href = `/pillowSurfing/admin/getRoomDetailsAndBook/${roomId}`;
+					window.location.href = `/pillowSurfing/getRoomDetailsAndBook/${roomId}`;
 				});
 			});
 		});
 		markers.push({ marker, infowindow });
+		console.log("markers創建完成")
 	}
 }
 
-function updateMarkers() {
+async function updateMarkers() {
 	// 清空之前的標記
 	for (let i = 0; i < markers.length; i++) {
 		markers[i].marker.setMap(null)
@@ -122,14 +126,14 @@ function updateMarkers() {
 	const distance = $('#dis').val() || 3; // 默認距離 3 公里
 	distanceDisplay.text(`目前距離範圍：${distance} 公里`);
 
-	$.ajax({
-		url: `/pillowSurfing/admin/map/${myLocation.lat}/${myLocation.lng}/${distance}`,  // 後端 API 地址
+	await $.ajax({
+		url: `/pillowSurfing/map/${myLocation.lat}/${myLocation.lng}/${distance}`,  // 後端 API 地址
 		method: 'GET',
 		dataType: 'json',
 		success: function(data) {
 			// 將 JSON 數據顯示在 div 中
-			// $('#jsonData').text(JSON.stringify(data));
-
+			$('#jsonData').text(data);
+			console.log("JSON已取得")
 			displayMarkers(data);
 			
 			// 創建包含用戶位置和標記的邊界框
@@ -139,6 +143,7 @@ function updateMarkers() {
 
             // 使用 fitBounds 調整地圖視野以包含邊界框內的所有點
             map.fitBounds(bounds);
+        
 
 		}, error: function() {
 			console.error('Failed to fetch JSON data.');
@@ -148,5 +153,6 @@ function updateMarkers() {
 }
 
 function showMap() {
-	initMap()
+	initMap();
+	console.log("執行地圖初始化");
 }

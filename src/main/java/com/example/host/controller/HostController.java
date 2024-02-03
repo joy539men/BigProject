@@ -104,9 +104,12 @@ public class HostController {
 		    model.addAttribute("amenities", amenities);
 			
 		    //
+		    String userImg = (String) session.getAttribute("userImg");
+			model.addAttribute("userImg", userImg);
 		    
 			roomTableBean bean = new roomTableBean();
 			model.addAttribute("roomTableBean", bean);
+			
 			return "host/addRoomForm3";
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
             return "redirect:/login";
@@ -155,7 +158,11 @@ public class HostController {
 		List<amenitiesBean> amenities = (List<amenitiesBean>) amenitiesRepository.findAll();
 	    model.addAttribute("amenities", amenities);
 		roomTableBean room = service.getRoomWithAmenities(roomId);
-		System.out.println(room.toString());
+//		System.out.println(room.toString());
+		
+		String userImg = (String) session.getAttribute("userImg");
+		model.addAttribute("userImg", userImg);
+		
 	    model.addAttribute("room", room);
 	    return "host/editRoomForm";
 	}
