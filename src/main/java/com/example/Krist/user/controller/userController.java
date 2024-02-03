@@ -121,59 +121,59 @@ public class userController {
 		return "registerKrist";
 	}
 
-//	// 利用 POST 表單取得用戶傳輸的資料
-//	@PostMapping("/register")
-//	public String register(@ModelAttribute("register") userBean userBean, Model model) {
-//			
-//		// 驗證 email 格式
-//		if (!isEmailValid(userBean.getEmail())) {
-//			model.addAttribute("error", "電子郵件格式不正確！");
-//			return "registerKrist";
-//		}
-//		
-//		// 檢查電子郵件是否已存在
-//		if (userRepository.existsByEmail(userBean.getEmail())) {
-//			model.addAttribute("error", "電子郵件已被使用！");
-//			return "registerKrist";
-//		}
-//
-//		// 設定當前時間為註冊時間
-//		userBean.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
-//
-//		// 利用 messageDigest 進行加密
-//		try {
-//			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-//
-//			// 將原始碼轉換為哈希計算
-//			byte[] hashedByteds = messageDigest.digest(userBean.getPassword().getBytes());
-//
-//			// 將字串轉換為十六位組進行哈希計算
-//			StringBuilder stringBuilder = new StringBuilder();
-//			for (byte b : hashedByteds) {
-//				stringBuilder.append(String.format("%02x", b));
-//			}
-//
-////			return stringBuilder.toString();
-//			userBean.setPassword(stringBuilder.toString());
-//			userService.save(userBean);
-//
-//			MultipartFile multipartFile = userBean.getMultipartFile();
-//			Integer userId = userBean.getUserId();
-//			String filePath = userService.saveFileTest(multipartFile,userId);    //用saveFile把照片存到指定路徑，並回傳路徑
-//			userBean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
-//			userService.save(userBean);
-//			
-//		} catch (NoSuchAlgorithmException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return "registerKrist";
-//		}
-//
-//		// 保存用戶信息到數據庫
-//		userRepository.save(userBean);
-//		return "index";
-//
-//	}
+	// 利用 POST 表單取得用戶傳輸的資料
+	@PostMapping("/register")
+	public String register(@ModelAttribute("register") userBean userBean, Model model) {
+			
+		// 驗證 email 格式
+		if (!isEmailValid(userBean.getEmail())) {
+			model.addAttribute("error", "電子郵件格式不正確！");
+			return "registerKrist";
+		}
+		
+		// 檢查電子郵件是否已存在
+		if (userRepository.existsByEmail(userBean.getEmail())) {
+			model.addAttribute("error", "電子郵件已被使用！");
+			return "registerKrist";
+		}
+
+		// 設定當前時間為註冊時間
+		userBean.setRegistrationTime(new Timestamp(System.currentTimeMillis()));
+
+		// 利用 messageDigest 進行加密
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+
+			// 將原始碼轉換為哈希計算
+			byte[] hashedByteds = messageDigest.digest(userBean.getPassword().getBytes());
+
+			// 將字串轉換為十六位組進行哈希計算
+			StringBuilder stringBuilder = new StringBuilder();
+			for (byte b : hashedByteds) {
+				stringBuilder.append(String.format("%02x", b));
+			}
+
+//			return stringBuilder.toString();
+			userBean.setPassword(stringBuilder.toString());
+			userService.save(userBean);
+
+			MultipartFile multipartFile = userBean.getMultipartFile();
+			Integer userId = userBean.getUserId();
+			String filePath = userService.saveFileTest(multipartFile,userId);    //用saveFile把照片存到指定路徑，並回傳路徑
+			userBean.setFilePath(filePath); //path存進roomTableBean表單的filePath欄位
+			userService.save(userBean);
+			
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "registerKrist";
+		}
+
+		// 保存用戶信息到數據庫
+		userRepository.save(userBean);
+		return "index";
+
+	}
 	
 	@GetMapping("/check-phone")
 	@ResponseBody
