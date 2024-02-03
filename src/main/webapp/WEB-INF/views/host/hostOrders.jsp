@@ -51,7 +51,7 @@
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item"> <a class="nav-link" href="<c:url value='/hostOrders' />">訂單管理</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="./calendar.html">日曆</a>
+            <li class="nav-item "> <a class="nav-link" href="#">日曆</a>
             </li>
             <li class="nav-item "> <a class="nav-link" href="<c:url value='/hostRooms' />">房源管理</a>
             </li>
@@ -70,20 +70,16 @@
             </li>
           </ul>
         </div>
-        <div class="nav-item dropdown">
-          <a><img src="./images/cat.png" width="60px"></a>
+        <div class="nav-item dropdown"> 
+          <a><img src="<c:url value='${ userImg}' />" width="60px" class="rounded-circle"></a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item " href="#">個人資料</a>
+            <li><a class="dropdown-item " href="<c:url value='/userProfile'/>">個人資料</a>
             </li>
             <li><a class="dropdown-item " href="#">帳號</a>
             </li>
-            <li><a class="dropdown-item " href="#">切換至旅行模式</a>
+            <li><a class="dropdown-item " href="<c:url value='/login'/>">切換至旅行模式</a>
             </li>
-            <c:if test="${sessionScope.isAdmin}">
-             	<li><a class="dropdown-item " href="<c:url value='/admin/account' />">後臺管理頁面</a>
-            	</li>
-			</c:if>
-            <li><a class="dropdown-item " href="#">登出</a>
+            <li><a class="dropdown-item " href="<c:url value='/logout'/>">登出</a>
             </li>
           </ul>
         </div>

@@ -65,6 +65,7 @@ public class userController {
 	        }
 			// 驗證成功，將 userId 存到 session 當中，記得加入 HttpSession
 			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("userImg", user.getFilePath());
 			return "indexLogout";
 		} else {
 			// 驗證失敗
@@ -94,6 +95,7 @@ public class userController {
 		// 登出的時候，要註銷 session 然後將其跳轉到登入畫面
 		session.removeAttribute("userId");
 		session.removeAttribute("isAdmin");
+		session.removeAttribute("userImg");
 		return "redirect:/login";
 	}
 
