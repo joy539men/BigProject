@@ -80,7 +80,7 @@
 								<tbody id="result">
 									<c:forEach items="${users}" var="user">
 										<tr>
-											<th>${user.userId }</th>
+											<th>${user.userId }&nbsp;&nbsp;<img src="<c:url value='${user.filePath}' />" width="55px" class="rounded-circle"></th>
 											<td>${user.account }</td>
 											<td>${user.registrationTime}</td>
 											<td>${user.identity }</td>

@@ -3,6 +3,8 @@ package com.example.Krist.roomTable.controller;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.servlet.http.HttpSession;
 
@@ -105,7 +107,11 @@ public class roomController {
 		    return "redirect:/login";
 		}
 		
-		model.addAttribute("roomList", roomList);
+		//過濾房間狀態
+		List<roomTableBean> filteredRooms = StreamSupport.stream(roomList.spliterator(), false)
+	            .filter(room -> "可使用".equals(room.getStatus())).collect(Collectors.toList());
+		
+		model.addAttribute("roomList", filteredRooms);
 		return "roomTableGallery";
 	}
 }

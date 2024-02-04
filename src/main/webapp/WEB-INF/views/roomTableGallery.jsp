@@ -27,6 +27,7 @@
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/providerStyle.css">
+<link rel="stylesheet" href="<c:url value='/css/map.css'/>">
 </head>
 <title>Image Gallery</title>
 
@@ -92,6 +93,13 @@
 									<li class="dropdown-item"><img class="img-fluid rounded-circle"
 										style="width: 50px" src="<c:url value = '${loginUser.filePath}'/>" alt="" />
 										<h4>${loginUser.userName }</h4></li>
+									    <c:if test="${sessionScope.isAdmin}">
+									    <li class="dropdown-item">
+											<hr />
+										</li>
+             								<li><a class="dropdown-item " href="<c:url value='/admin/account' />">後台管理頁面</a>
+            								</li>
+										</c:if>	
 									<li class="dropdown-item">
 										<hr />
 									</li>
@@ -118,7 +126,20 @@
 	
 	</header>
     
-    
+    <div id="overlay"></div>
+	<div id="popup">
+		<!-- 這裡放置彈出框的内容 -->
+		<div id="popWindow">
+			<div id="disRange">
+				<label for="dis" id="labledis">請選擇範圍距離 : </label> <input type="number" name="dis" id="dis" min="1"
+					step="1" />&nbsp;<span>公里</span>
+				<button type="button" onclick="updateMarkers()">更新距離</button>
+				<button id="goToUserLocation">回到您的位置</button>
+				<span id="distanceDisplay">目前距離範圍：未選擇</span>
+			</div>
+			<div id="myMap"></div>
+		</div>
+	</div>
     
     <div class="row w-75  mx-auto mb-4"> 
       <div class="text-end">
@@ -197,6 +218,8 @@
 	<script src="plugins/bootstrap/bootstrap.min.js"></script>
 	<script src="plugins/slick/slick.min.js"></script>
 	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+	<script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
 </body>
 </html>
 
