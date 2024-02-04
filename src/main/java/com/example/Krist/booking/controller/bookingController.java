@@ -253,6 +253,8 @@ public class bookingController {
 	            itemMap.put("totalPrice", booking.getTotalPrice());
 	            itemMap.put("price", booking.getRoomTable().getPrice());
 	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
+	            itemMap.put("checkinDate", booking.getCheckinDate());
+	            itemMap.put("checkoutDate", booking.getCheckoutDate());
 
 	            combinedList.add(itemMap);
 	        }
@@ -274,6 +276,8 @@ public class bookingController {
 	        	isOccupiedMap.put("totalPrice", isOccupied.getTotalPrice());
 	        	isOccupiedMap.put("price", isOccupied.getRoomTable().getPrice());
 	            isOccupiedMap.put("roomId", isOccupied.getRoomTable().getRoomId());
+	            isOccupiedMap.put("checkinDate", isOccupied.getCheckinDate());
+	            isOccupiedMap.put("checkoutDate", isOccupied.getCheckoutDate());
 
 	        	
 	        	combinedListIsOccupied.add(isOccupiedMap);

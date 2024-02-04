@@ -4,12 +4,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
 
@@ -211,7 +205,8 @@
 										x ${list.guest } 人</h5>
 									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
 									<h5 class="ms-5">房客</h5>
-									<h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
+									<h6 class="ms-5">成人 1人</h6>
+									<h6 class="ms-5">入住日期：${list.checkinDate } <br> 退房日期：${list.checkoutDate }</h6>
 								</div>
 							</div>
 						</div>
@@ -220,8 +215,10 @@
 				</c:forEach>
 			</div>
 
+isOccupied
 
 		</div>
+		
 
 	</section>
 
@@ -238,7 +235,54 @@
 						<h5>已完成住宿</h5>
 					</div>
 				</div>
-				<div>
+				
+				
+				<c:forEach var="list" items="${isOccupied}">
+
+					<div>
+						<div class="container border rounded mb-5">
+							<div class="row ">
+
+								<div class="col-4 m-3 me-0">
+									<img class="img-fluid" style="width: 300px"
+										src="<c:url value='${list.filePath }'/>" alt="">
+								</div>
+								<div class="col-4 ms-0 mt-3">
+									<h3 class="mb-5">房間名稱 : ${list.title }</h3>
+									<p class="">訂房編號 :</p>
+									<br>
+									<h6>${list.uuid }</h6>
+									<h5 class="mt-5">訂房日期</h5>
+									<h5>${list.bookingTime }</h5>
+								</div>
+								<div class="col-3 mt-3">
+									<a class="btn btn-outline-primary ms-5"
+										href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a> 
+									<a class="btn btn-outline-primary ms-5 mt-2" onclick= "reviewRoom(${list.roomId})">評 論 房 源</a>
+									<!-- <a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a> -->
+									<!-- <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a> -->
+									<h5 class="ms-5 mt-4">TW ${list.price } x ${list.night } 晚
+										x ${list.guest } 人</h5>
+									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
+									<h5 class="ms-5">房客</h5>
+									<h6 class="ms-5">成人 1人</h6>
+									<h6 class="ms-5">入住日期：${list.checkinDate } <br> 退房日期：${list.checkoutDate }</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</c:forEach>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- <div>
 					<div class="container border rounded">
 						<div class="row">
 							<div class="col-4 m-3 me-0">
@@ -262,7 +306,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

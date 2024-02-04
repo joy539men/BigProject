@@ -178,7 +178,7 @@
 <hr>
 
 <!-- finsihBookPage -->
-<section class="section pt-0 mt-0">
+<%-- <section class="section pt-0 mt-0">
   <div class="container">
     <div class="row justify-content-center m-5">
         <div class="col-12">
@@ -214,7 +214,7 @@
         </div>
     </div>
   </div>
-</section>
+</section> --%>
 
 
 
