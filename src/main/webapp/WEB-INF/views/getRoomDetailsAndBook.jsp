@@ -6,12 +6,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
 <head>
@@ -201,7 +195,7 @@ button.switch-month:active {
 	<header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
+				<a class="navbar-brand" href="<c:url value="/login"></c:url>"> <img
 					class="img-fluid" width="120" src="../images/logo.png"
 					alt="CouchSurfing" />
 				</a>
@@ -259,6 +253,7 @@ button.switch-month:active {
 									<li class="dropdown-item">
 										<hr />
 									</li>
+									<li><a href="<c:url value="/userProfile"></c:url>"class="dropdown-item">會員中心</a></li>
 									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
 									<li><a href="<c:url value="/logout"></c:url>"
 										class="dropdown-item">登 出</a></li>
@@ -471,7 +466,7 @@ button.switch-month:active {
 										<div class="form-group">
 											<label for="checkoutDate" class="form-label">退 住 日 期</label>
 											<form:input type="text" class="form-control shadow-none"
-												id="checkoutDate" placeholder="ex: 克里斯" path="checkoutDate"/>
+												id="checkoutDate"  path="checkoutDate"/>
 											<form:errors path="checkoutDate" cssClass="error" />
 										</div>
 									</div>
@@ -512,27 +507,20 @@ button.switch-month:active {
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- <script src="../calendar-03/js/calendarMain.js"></script> -->
 	<!-- <link rel="stylesheet" href="../calendar-03/js/calendarMain.js" /> -->
-	<script src="../plugins/scrollmenu/scrollmenu.min.js"></script>
+	<!-- <script src="../plugins/scrollmenu/scrollmenu.min.js"></script> -->
 
 	<script>
 		document.addEventListener("DOMContentLoaded",function() {
 			window.addEventListener("scroll",function() {
-				var bookPage = document
-						.getElementById("fix-box");
-				var information = document
-						.getElementById("fix-information")
-				var scrollPosition = window.scrollY
-						|| window.pageYOffset
-						|| document.documentElement.scrollTop;
+				var bookPage = document.getElementById("fix-box");
+				var information = document.getElementById("fix-information")
+				var scrollPosition = window.scrollY || window.pageYOffset|| document.documentElement.scrollTop;
 
 				// 計算寬度
-				var rightWidth = document
-						.getElementById("bookButtom").offsetWidth;
+				var rightWidth = document.getElementById("bookButtom").offsetWidth;
 				console.log(rightWidth);
-				var imageWidth = document
-						.getElementById("fix-box").offsetWidth;
-				var mathWidth = rightWidth
-						- imageWidth;
+				var imageWidth = document.getElementById("fix-box").offsetWidth;
+				var mathWidth = rightWidth- imageWidth;
 				console.log(mathWidth);
 				console.log(scrollPosition);
 
@@ -550,7 +538,7 @@ button.switch-month:active {
 					})
 })
 
-		function initMap() {
+		function initMap1() {
 
 			var latitude = ${singleRoom.lat};
 			var longtitude = ${singleRoom.lon};
@@ -709,8 +697,7 @@ button.switch-month:active {
 
 			var roomId = 56;
 
-			 $(document).ready(
-				function() {
+			 $(document).ready(function() {
 					// 監聽日期和人數輸入
 					$("#checkinDate, #checkoutDate, #guest").on("input",function() {
 						// 獲取輸入的日期和人數
@@ -750,7 +737,7 @@ button.switch-month:active {
 
 			"use strict";
 
-			$( document ).ready(function() {
+			$(document).ready(function() {
 				function c(passed_month, passed_year, calNum) {
 					var calendar = calNum == 0 ? calendars.cal1 : calendars.cal2;
 					makeWeek(calendar.weekline);
@@ -1172,6 +1159,5 @@ button.switch-month:active {
 	<script src="<c:url value='/js/openPopup.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
 	<!-- Google API -->
-<!-- 		 <script defer -->
-<!-- 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap"></script> -->
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap1"></script> 
 	</body>

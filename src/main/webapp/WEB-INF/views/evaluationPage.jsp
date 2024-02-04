@@ -5,12 +5,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
   <head>
@@ -182,30 +176,6 @@
     <section class="section pt-0">
       <div class="container">
         <div class="row justify-content-center">
-        
-  
-        
-        
-        <%-- <form id="reviewForm" method = "POST">
-          <h1 class="text-center">留下評價</h1>
-          <div class="border rounded h-75 shadow-sm m-5 p-5">
-            <div class="text-center star-rating" id = "star-rating">
-             <input type="hidden" id="starRatingInput" name="rating" value="0">
-              <i class="bi bi-star-fill  star_size me-2"  onclick="rateStar(1)"></i>
-			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(2)"></i>
-			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(3)"></i>
-			  <i class="bi bi-star-fill  star_size  me-2" onclick="rateStar(4)"></i>
-			  <i class="bi bi-star-fill star_size  me-2" onclick="rateStar(5)"></i>
-            </div>
-
-			<div class="form-group">
-				<label for="exampleFormControlTextarea1">請輸入您的住宿體驗</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3"></textarea>
-			  </div>
-          </div>
-          <button type="submit">提 交 評 論</button>
-          </form> --%>
-          
           
           <section>
           	

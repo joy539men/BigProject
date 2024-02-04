@@ -78,31 +78,55 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 		return bookingRepository.findByRoomTableRoomId(roomId);
 	}
 
-	// 每分鐘檢查一次，檢查所有已接受訂單的入住日期到達當前日期，將房間狀態設為使用中
+	// 每分鐘檢查一次，檢查所有房間的訂單入住日期到達當前日期，將房間狀態設為使用中或可使用
 	@Scheduled(cron = "0 * * * * *")
 	public void checkAndUpdateRoomStatus() {
-		List<roomTableBean> availableRooms = roomRepository.roomAvailable();
+		List<roomTableBean> allRooms = roomRepository.findAll();//找所有房間
 //		System.out.println(availableRooms);
-		for (roomTableBean room : availableRooms) {
-//			System.out.println(room);
-			List<bookingBean> bookingsForRoom = bookingRepository.findByRoomTable(room);
-
+		for (roomTableBean room : allRooms) {
+//			System.out.println("狀態為 可使用 的房間:" + room);
+			List<bookingBean> bookingsForRoom = bookingRepository.findByRoomTable(room);//找房間的所有訂單
+			boolean roomInUse = false; // 標記房間使否使用中
+			LocalDate latestCheckoutDate = null; // 紀錄最晚的 checkoutDate
 //			System.out.println(bookingsForRoom);
-			for (bookingBean booking : bookingsForRoom) {
-//				System.out.println(booking);
+			for (bookingBean booking : bookingsForRoom) {//將房間的每筆訂單進行判斷
+//				System.out.println("可使用的房間的所有訂單:" + booking);
 				if ("已接受".equals(booking.getStatus())) {
 					LocalDate currentDate = LocalDate.now();
 					LocalDate checkinDate = convertToLocalDate(booking.getCheckinDate());
 					LocalDate checkoutDate = convertToLocalDate(booking.getCheckoutDate());
-
+					//判斷訂單入住期間是否在當前日期
 					if (currentDate.isEqual(checkinDate)
 							|| (currentDate.isAfter(checkinDate) && currentDate.isBefore(checkoutDate))
 							|| currentDate.isEqual(checkoutDate)) {
-						updateRoomStatusToInUse(booking.getRoomTable().getRoomId());
-					} else {
-						updateRoomStatusToAvailable(booking.getRoomTable().getRoomId());
+						roomInUse = true; // 如果找到訂單在使用期間，標記房間為使用中
+						//如果有多筆訂單在當前日期，紀錄最晚的 checkoutDate
+						latestCheckoutDate = (latestCheckoutDate == null || checkoutDate.isAfter(latestCheckoutDate)) ? checkoutDate : latestCheckoutDate;
 					}
 				}
+			}
+			if (roomInUse) {
+				if (latestCheckoutDate != null) {
+					LocalDate currentDate = LocalDate.now();
+
+					// 檢查房間最晚的 checkoutDate 是否過期，如果過期將其状態設置為“可使用”
+					if (currentDate.isAfter(latestCheckoutDate)) {
+						updateRoomStatusToAvailable(room.getRoomId());
+						System.out.println("房間 " + room.getRoomId() + " 修改為可使用");
+					} else {
+						updateRoomStatusToInUse(room.getRoomId());
+						System.out.println("房間 " + room.getRoomId() + " 已修改為使用中");
+					}
+				} else {
+					// 如果未找到 checkoutDate，則默認房間在使用中
+					updateRoomStatusToInUse(room.getRoomId());
+					System.out.println("房間 " + room.getRoomId() + " 已修改為使用中");
+				}
+			} else {
+				// 如果没有訂單在使用中，將房間狀態設置為“可使用”
+				updateRoomStatusToAvailable(room.getRoomId());
+				System.out.println("房間 " + room.getRoomId() + " 修改為可使用");
+
 			}
 		}
 	}
@@ -113,7 +137,6 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 
 	private void updateRoomStatusToInUse(Integer roomId) {
 		roomTableBean room = roomRepository.findById(roomId).orElse(null);
-
 		if (room != null) {
 			room.setStatus("使用中");
 			roomRepository.save(room);

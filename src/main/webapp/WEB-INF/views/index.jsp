@@ -6,12 +6,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
 
@@ -39,9 +33,9 @@
 	<header class="navigation bg-tertiary">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
-					loading="prelaod" decoding="async" class="img-fluid" width="120"
-					src="images/logo.png" alt="CouchSurfing">
+				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -271,7 +265,7 @@
 										<div class="content">
 											<p>旅行是心靈與身體的雙重旅程，它超越地理的界限，開啟心靈的視野。
 												在旅途中，我們不僅體驗異國風情，更在旅途的每一步中找尋自我。</p>
-											<p>旅行不僅是遠離日常生活的逃避，更是一種尋找新視角的冒險。
+											<p>旅行不是遠離日常生活的逃避，是一種尋找新視角的冒險。
 												每一次的旅行，都是對未知的探索，讓我們的生活更加豐富多彩。</p>
 										</div>
 									</div>

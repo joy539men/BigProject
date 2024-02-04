@@ -4,12 +4,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
 
@@ -49,7 +43,7 @@
 
 <body>
 	<!-- navigation -->
-	<header class="navigation">
+	<%-- <header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
 				<a class="navbar-brand" href="index.html"> <img
@@ -109,7 +103,7 @@
 										<hr />
 									</li>
 									<li>
-										<%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
+										<a href="<c:url value="/webSocket"></c:url>">聊天系統</a>
 										<a class="dropdown-item"
 										href="<c:url value="/bookTrip"></c:url>">旅程</a>
 
@@ -123,7 +117,7 @@
 									<li class="dropdown-item">
 										<hr />
 									</li>
-									<%-- <a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a> --%>
+									<a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>
 									<li><a href="<c:url value="/logout"></c:url>"
 										class="dropdown-item">登 出</a>></li>
 
@@ -134,7 +128,94 @@
 				</div>
 			</div>
 		</nav>
+	</header> --%>
+	
+	
+	<header class="navigation">
+		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
+			<div class="container">
+				<a class="navbar-brand" href="<c:url value="/login"></c:url>"> <img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
+				</a>
+				
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" href="<c:url value="/bookTrip"></c:url>">訂單</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="about.html">日曆</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="services.html">收件夾</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="blog.html">部落格</a></li>
+								<li><a class="dropdown-item" href="service-details.html">服務項目</a></li>
+								<li><a class="dropdown-item" href="terms.html">條約
+										&amp; 法律責任</a></li>
+							</ul></li>
+					</ul>
+					
+					<div>
+						<!-- account btn -->
+						<ul class="nav">
+							<li class="nav-item dropdown"><a
+								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
+								role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<img style="width: 15px" src="images/icon/fish.png" alt="" />
+									<img class="img-fluid rounded-circle mb-1" style="width: 50px" src="<c:url value = '${user.filePath}'/>"
+									alt="" />
+									<%-- <c:url value = '${room.filePath}'/> --%>
+							</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li class="dropdown-item"><img class="img-fluid rounded-circle"
+										style="width: 50px" src="<c:url value = '${user.filePath}'/>" alt="" />
+										<h4>${user.userName }</h4></li>
+									    <c:if test="${sessionScope.isAdmin}">
+									    <li class="dropdown-item">
+											<hr />
+										</li>
+             								<li><a class="dropdown-item " href="<c:url value='/admin/account' />">後台管理頁面</a>
+            								</li>
+										</c:if>	
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+									<li><a id="openPopup" class="dropdown-item" href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a href="<c:url value="/userProfile"></c:url>"class="dropdown-item">會員中心</a></li>
+									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
+									<li><a href="<c:url value="/logout"></c:url>"
+										class="dropdown-item">登 出</a></li>
+								</ul>
+								</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</nav>
+	
 	</header>
+	
+	
 
 	<hr>
 	<!-- bookPage -->
@@ -211,7 +292,8 @@
 										x ${list.guest } 人</h5>
 									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
 									<h5 class="ms-5">房客</h5>
-									<h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
+									<h6 class="ms-5">成人 ${list.guest }人</h6>
+									<h6 class="ms-5">入住日期：${list.checkinDate } <br> 退房日期：${list.checkoutDate }</h6>
 								</div>
 							</div>
 						</div>
@@ -222,6 +304,7 @@
 
 
 		</div>
+		
 
 	</section>
 
@@ -238,7 +321,54 @@
 						<h5>已完成住宿</h5>
 					</div>
 				</div>
-				<div>
+				
+				
+				<c:forEach var="list" items="${isOccupied}">
+
+					<div>
+						<div class="container border rounded mb-5">
+							<div class="row ">
+
+								<div class="col-4 m-3 me-0">
+									<img class="img-fluid" style="width: 300px"
+										src="<c:url value='${list.filePath }'/>" alt="">
+								</div>
+								<div class="col-4 ms-0 mt-3">
+									<h3 class="mb-5">房間名稱 : ${list.title }</h3>
+									<p class="">訂房編號 :</p>
+									<br>
+									<h6>${list.uuid }</h6>
+									<h5 class="mt-5">訂房日期</h5>
+									<h5>${list.bookingTime }</h5>
+								</div>
+								<div class="col-3 mt-3">
+									<a class="btn btn-outline-primary ms-5"
+										href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a> 
+									<a class="btn btn-outline-primary ms-5 mt-2" onclick= "reviewRoom(${list.roomId})">評 論 房 源</a>
+									<!-- <a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a> -->
+									<!-- <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a> -->
+									<h5 class="ms-5 mt-4">TW ${list.price } x ${list.night } 晚
+										x ${list.guest } 人</h5>
+									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
+									<h5 class="ms-5">房客</h5>
+									<h6 class="ms-5">成人 ${list.guest }人</h6>
+									<h6 class="ms-5">入住日期：${list.checkinDate } <br> 退房日期：${list.checkoutDate }</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</c:forEach>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- <div>
 					<div class="container border rounded">
 						<div class="row">
 							<div class="col-4 m-3 me-0">
@@ -262,7 +392,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

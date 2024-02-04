@@ -27,6 +27,7 @@
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/providerStyle.css">
+<link rel="stylesheet" href="<c:url value='/css/map.css'/>">
 </head>
 <title>Image Gallery</title>
 
@@ -43,117 +44,154 @@
 </head>
 <body>
 	<header class="navigation">
-      <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">
-            <img
-              loading="prelaod"
-              decoding="async"
-              class="img-fluid"
-              width="120"
-              src="images/logo.png"
-              alt="CouchSurfing"
-            />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 border rounded-lg">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">風 格</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">日 期</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="services.html">人 數</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html"><i class="bi bi-search"></i></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                  <li>
-                    <a class="dropdown-item" href="blog-details.html">Blog Details</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="service-details.html">Service Details</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="faq.html">FAQ&#39;s</a>
-                  </li>
-                  <li><a class="dropdown-item" href="legal.html">Legal</a></li>
-                  <li>
-                    <a class="dropdown-item" href="terms.html">Terms &amp; Condition</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="privacy-policy.html">Privacy &amp; Policy</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-         
-            <div>
-					    <!-- account btn -->
-					    <ul class="nav">
-					        <li class="nav-item dropdown">
-					            <a class="p-3 border rounded-pill "
-					                href="#" id="navbarDropdown" role="button"
-					                data-bs-toggle="dropdown" aria-expanded="false">
-					                <img style="width: 15px" src="images/icon/fish.png" alt="" />
-					                <img class="mb-1" style="width: 50px" src="images/logo.png" alt="" />
-					            </a>
-					            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					                <li class="dropdown-item">
-					                    <img class="img-fluid " style="width: 50px" src="images/logo.png" alt="" />
-					                    <h4>Krist</h4>
-					                </li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                 <li>
-					                <%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
-					                <a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a>
-					                
-					                
-					                </li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-					                <li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
-					                <li class="dropdown-item">
-					                    <hr />
-					                </li>
-					                <li><a href="<c:url value="/userProfile"></c:url>" class="dropdown-item">會員中心</a></li>
-					                <li><a class="dropdown-item" href="faq.html">幫助</a></li>
-					                <li><a href="<c:url value="/logout"></c:url>" class="dropdown-item">登 出</a>></li>
-					            </ul>
-					        </li>
-					    </ul>
+		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
+			<div class="container">
+				<a class="navbar-brand" href="<c:url value="/login"></c:url>"> <img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
+				</a>
+				
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" href="<c:url value="/bookTrip"></c:url>">訂單</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="about.html">日曆</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="services.html">收件夾</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="blog.html">部落格</a></li>
+								<li><a class="dropdown-item" href="service-details.html">服務項目</a></li>
+								<li><a class="dropdown-item" href="terms.html">條約
+										&amp; 法律責任</a></li>
+							</ul></li>
+					</ul>
+					
+					<div>
+						<!-- account btn -->
+						<ul class="nav">
+							<li class="nav-item dropdown"><a
+								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
+								role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<img style="width: 15px" src="images/icon/fish.png" alt="" />
+									<img class="img-fluid rounded-circle mb-1" style="width: 50px" src="<c:url value = '${loginUser.filePath}'/>"
+									alt="" />
+									<%-- <c:url value = '${room.filePath}'/> --%>
+							</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li class="dropdown-item"><img class="img-fluid rounded-circle"
+										style="width: 50px" src="<c:url value = '${loginUser.filePath}'/>" alt="" />
+										<h4>${loginUser.userName }</h4></li>
+									    <c:if test="${sessionScope.isAdmin}">
+									    <li class="dropdown-item">
+											<hr />
+										</li>
+             								<li><a class="dropdown-item " href="<c:url value='/admin/account' />">後台管理頁面</a>
+            								</li>
+										</c:if>	
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
+									<li><a id="openPopup" class="dropdown-item" href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
+									<li class="dropdown-item">
+										<hr />
+									</li>
+									<li><a href="<c:url value="/userProfile"></c:url>"class="dropdown-item">會員中心</a></li>
+									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
+									<li><a href="<c:url value="/logout"></c:url>"
+										class="dropdown-item">登 出</a></li>
+								</ul>
+								</li>
+						</ul>
 					</div>
-          </div>
-        </div>
-      </nav>
-    </header>
+
+				</div>
+			</div>
+		</nav>
+	
+	</header>
+	
+    <div id="overlay"></div>
+	<div id="popup">
+		<!-- 這裡放置彈出框的内容 -->
+		<div id="popWindow">
+			<div id="disRange">
+				<label for="dis" id="labledis">請選擇範圍距離 : </label> <input type="number" name="dis" id="dis" min="1"
+					step="1" />&nbsp;<span>公里</span>
+				<button type="button" onclick="updateMarkers()">更新距離</button>
+				<button id="goToUserLocation">回到您的位置</button>
+				<span id="distanceDisplay">目前距離範圍：未選擇</span>
+			</div>
+			<div id="myMap"></div>
+		</div>
+	</div>
     
     <div class="row w-75  mx-auto mb-4"> 
       <div class="text-end">
-          <a class="btn btn btn-outline-primary " href="<c:url value = '/addRoomKrist'/>"> 新增房源</a>
-          <a class="btn btn-primary " href="<c:url value = ''/>"> 篩選條件</a>
+       <div class="wrapper" >
+       					 <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/苗栗.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/金門.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/雲林.png" style="max-width: 150px; height: 53px;"></button>
+                        
+       
+                        <button type="button" class="item" onclick="getLocation('屏東')"
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/屏東.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" onclick="getLocation('澎湖')"
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/澎湖.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" onclick="getLocation('高雄')"
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/高雄.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" onclick="getLocation('台南')"
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/台南.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/花蓮.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/嘉義.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/基隆.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/宜蘭.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/台東.png" style="max-width: 150px; height: 53px;"></button>
+                        <button type="button" class="item" 
+                            style="border: 0px; background-color: rgb(250, 250, 250,0);outline: none;">
+                            <img src="./地區ICON/彰化.png" style="max-width: 150px; height: 53px;"></button>
+                            
+         <%--  <a class="btn btn btn-outline-primary " href="<c:url value = '/addRoomKrist'/>"> 新增房源</a> --%>
+          <a class="btn btn-primary" href="<c:url value = ''/>"> 篩選條件</a>
          
       </div>
+    </div>
     </div>
 
    
@@ -181,6 +219,8 @@
 	<script src="plugins/bootstrap/bootstrap.min.js"></script>
 	<script src="plugins/slick/slick.min.js"></script>
 	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
+	<script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map2.js' />"></script>
 </body>
 </html>
 

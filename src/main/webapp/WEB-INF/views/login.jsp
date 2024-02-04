@@ -4,12 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
 
@@ -50,9 +44,9 @@
 	<header class="navigation bg-tertiary">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
-					loading="prelaod" decoding="async" class="img-fluid" width="120"
-					src="images/logo.png" alt="CouchSurfing">
+				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -89,9 +83,11 @@
 							</ul></li>
 					</ul>
 					<!-- account btn -->
-					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
+					<a href="<c:url value="login"></c:url>"
+						class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
-					<a href="<c:url value="/intoRegister"></c:url>" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
+					<a href="<c:url value="/intoRegister"></c:url>"
+						class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
 				</div>
 			</div>
 		</nav>
@@ -123,12 +119,18 @@
 										style="font-size: 24px;">帳號</label> <input type="text"
 										class="form-control" id="account" name="account"
 										placeholder="輸入帳號">
+									<c:if test="${not empty accountError}">
+										<div style="color: red;">${accountError}</div>
+									</c:if>
 								</div>
 								<div class="mb-3">
 									<label for="password" class="form-label"
 										style="font-size: 24px;">密碼</label> <input type="password"
 										class="form-control" id="password" name="password"
 										placeholder="輸入密碼">
+									<c:if test="${not empty passwordError}">
+										<div style="color: red;">${passwordError}</div>
+									</c:if>
 								</div>
 								<div class="d-grid gap-2">
 									<button type="submit" class="btn btn-primary"

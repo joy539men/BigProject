@@ -112,43 +112,43 @@ function managePopups() {
     var secondPopupClickCount = 0;
 
     // 獲取日曆數字元素並為它們添加點擊事件監聽器
-    var calendarDays = document.querySelectorAll('#secondPopupWindow .calendar_content');
-    calendarDays.forEach(function(day) {
-        day.addEventListener('click', function() {
-            secondPopupClickCount++;
-
-            // 如果日曆數字被點擊了兩次，則隱藏 secondPopupWindow 並重置計數器
-            if (secondPopupClickCount === 2) {
-                var secondPopupWindow = document.getElementById('secondPopupWindow');
-                secondPopupWindow.style.display = 'none';
-                secondPopupClickCount = 0;
-                const month1=document.querySelector("#month1").textContent
-                const month2=document.querySelector("#month2").textContent
-                const regex = /(\w+) (\d{4})/;
-                const match1 = month1.match(regex);
-                const match2 = month2.match(regex);
-
-                const onlyMonth1 = match1[1];
-                const onlyMonth2 = match2[1];
-                
-                console.log( onlyMonth1)
-                console.log( onlyMonth2)
-
-                const selectedDate=document.querySelectorAll(".selected")
-                const inDate=selectedDate[0].textContent
-                const outDate=selectedDate[selectedDate.length-1].textContent
-
-                const nowInDate=`${onlyMonth1} ${inDate}`
-                const nowOutDate=`${onlyMonth2} ${outDate}`
-
-                updateButton2Text(nowInDate,nowOutDate)
-                console.log(nowInDate)
-       
-            }
-
-
-        });
-    });
+//    var calendarDays = document.querySelectorAll('#secondPopupWindow .calendar_content');
+//    calendarDays.forEach(function(day) {
+//        day.addEventListener('click', function() {
+//            secondPopupClickCount++;
+//
+//            // 如果日曆數字被點擊了兩次，則隱藏 secondPopupWindow 並重置計數器
+//            if (secondPopupClickCount === 2) {
+//                var secondPopupWindow = document.getElementById('secondPopupWindow');
+//                secondPopupWindow.style.display = 'none';
+//                secondPopupClickCount = 0;
+//                const month1=document.querySelector("#month1").textContent
+//                const month2=document.querySelector("#month2").textContent
+//                const regex = /(\w+) (\d{4})/;
+//                const match1 = month1.match(regex);
+//                const match2 = month2.match(regex);
+//
+//                const onlyMonth1 = match1[1];
+//                const onlyMonth2 = match2[1];
+//                
+//                console.log( onlyMonth1)
+//                console.log( onlyMonth2)
+//
+//                const selectedDate=document.querySelectorAll(".selected")
+//                const inDate=selectedDate[0].textContent
+//                const outDate=selectedDate[selectedDate.length-1].textContent
+//
+//                const nowInDate=`${onlyMonth1} ${inDate}`
+//                const nowOutDate=`${onlyMonth2} ${outDate}`
+//
+//                updateButton2Text(nowInDate,nowOutDate)
+//                console.log(nowInDate)
+//       
+//            }
+//
+//
+//        });
+//    });
 });
 
 
@@ -174,30 +174,13 @@ function managePopups() {
 
 
 
-document.getElementById("show").addEventListener("click", function() {
-    var gayab = document.getElementById("gayab");
-    if (gayab.style.height === "162px") {
-        gayab.style.height = "0";
-    } else {
-        gayab.style.height = "162px";
-    }
+
+
+document.getElementById('show').addEventListener('click', function() {
+    var popup = document.getElementById('popupWindow');
+    popup.style.display = 'block';
 });
 
-
-
-
-
-
-
-document.addEventListener("click", function(event) {
-    var gayab = document.getElementById("gayab");
-    var isClickInsideGayab = gayab.contains(event.target);
-    var isShowButtonClicked = event.target.id === "show";
-
-    if (!isClickInsideGayab && !isShowButtonClicked) {
-        gayab.style.height = "0";
-    }
-});
 
 
 
@@ -238,30 +221,19 @@ document.querySelector('.confirm').addEventListener('click', function() {
 });
 
 
-document.getElementById("show").addEventListener("click", function() {
-    var gayab = document.getElementById("gayab");
-    var overlay = document.querySelector('.overlay');
-    if (gayab.style.height === "0px") {
-        overlay.style.display = 'none'; // 隱藏遮罩
-    } else {
-        gayab.style.height = "162px";
-        overlay.style.display = 'block'; // 顯示遮罩
-    }
-});
-
-
-
-
-
-
-
-
 
 document.addEventListener("click", function(event) {
     var gayab = document.getElementById("gayab");
     var overlay = document.querySelector('.overlay');
     var isClickInsideGayab = gayab.contains(event.target);
-    var isShowButtonClicked = event.target.id === "show";
+    var isShowButtonClicked;
+    if(event.target.id === "show"){
+		isShowButtonClicked=true
+	}else if(event.target.id === "show2"){
+		isShowButtonClicked=true		
+	}else if(event.target.id === "show3"){
+		isShowButtonClicked=true
+	}
 
     if (!isClickInsideGayab && !isShowButtonClicked) {
         gayab.style.height = "0";
@@ -331,10 +303,15 @@ document.querySelector('.confirm').addEventListener('click', function() {
     }
 
     // 更新 button2 內容
-    function updateButton2Text(nowInDate,nowOutDate) {
-        var button2 = document.getElementById('button2');
-        button2.innerHTML = `入住: ${nowInDate} - 退房: ${nowOutDate}`;
-    }
+function updateButton2Text(nowInDate, nowOutDate) {
+	console.log("更新日期：", nowInDate, nowOutDate); // 測試輸出
+	var button2 = document.getElementById('button2');
+	if (button2) {
+		button2.innerHTML = `入住:`+nowInDate+`- 退房:`+nowOutDate;
+	} else {
+		console.error('找不到 button2 元素');
+	}
+}
 
     // 格式化日期顯示
     function formatDate(date) {
@@ -376,21 +353,142 @@ document.querySelector('.confirm').addEventListener('click', function() {
 
 
 document.getElementById('button3').addEventListener('click', function(event) {
-// 防止事件冒泡到 document
-event.stopPropagation();
+	// 防止事件冒泡到 document
+	event.stopPropagation();
 
-var secondPopupWindow = document.getElementById('secondPopupWindow');
-var thirdPopupWindow = document.getElementById('thirdPopupWindow');
+	var secondPopupWindow = document.getElementById('secondPopupWindow');
+	var thirdPopupWindow = document.getElementById('thirdPopupWindow');
 
-// 檢查 secondPopupWindow 是否顯示
-if (secondPopupWindow.style.display === 'block') {
-// 如果顯示，則隱藏它
-secondPopupWindow.style.display = 'none';
-}
+	// 檢查 secondPopupWindow 是否顯示
+	if (secondPopupWindow.style.display === 'block') {
+		// 如果顯示，則隱藏它
+		secondPopupWindow.style.display = 'none';
+	}
 
 });
 
-function getLocation(location){
-    document.getElementById("targetLocation").value = location;
-    showRoom(false);
+function getLocation(location) {
+	document.getElementById("targetLocation").value = location;
+	showRoom(false);
 }
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	var secondPopupClickCount = 0;
+
+	// 獲取日曆數字元素並為它們添加點擊事件監聽器
+	var calendarDays = document.querySelectorAll('#secondPopupWindow .calendar_content');
+	calendarDays.forEach(function(day) {
+		day.addEventListener('click', function() {
+			secondPopupClickCount++;
+
+			// 如果日曆數字被點擊了兩次，則隱藏 secondPopupWindow 並重置計數器
+			if (secondPopupClickCount === 2) {
+				var secondPopupWindow = document.getElementById('secondPopupWindow');
+				secondPopupWindow.style.display = 'none';
+				secondPopupClickCount = 0;
+
+				const monthDate1 = document.querySelector("#monthDate1")
+				const monthDate2 = document.querySelector("#monthDate2")
+
+				const selectedElements1 = [];
+
+				if (monthDate1) {
+					for (const childElement of monthDate1.children) {
+						if (childElement.classList.contains('selected')) {
+							selectedElements1.push(childElement);
+						}
+					}
+				} else {
+					console.error("找不到 #monthDate1 元素");
+				}
+
+
+				const selectedElements2 = [];
+				if (monthDate2) {
+					for (const childElement of monthDate2.children) {
+						if (childElement.classList.contains('selected')) {
+							selectedElements2.push(childElement);
+						}
+					}
+				} else {
+					console.error("找不到 #monthDate2 元素");
+				}
+
+				const month1 = document.querySelector("#month1").textContent
+				const month2 = document.querySelector("#month2").textContent
+				const regex = /(\w+) (\d{4})/;
+				const match1 = month1.match(regex);
+				const match2 = month2.match(regex);
+				let onlyMonth1 = match1[1];
+				let onlyMonth2 = match2[1];
+				console.log("1 length", selectedElements1.length)
+				console.log("2 length", selectedElements2.length)
+
+				if (selectedElements1.length && !selectedElements2.length) {
+					onlyMonth2 = match1[1]
+				} else if (selectedElements2.length && !selectedElements1.length) {
+					onlyMonth1 = match2[1]
+				} else if (selectedElements1.length > selectedElements2.length) {
+					console.log("1>2")
+					onlyMonth2 = match2[1]
+				} else if (selectedElements2.length > selectedElements1.length) {
+					console.log("2>1")
+					onlyMonth1 = match1[1]
+				}
+
+
+
+				updateButton2Text(calendarStartDate, calendarEndDate)
+
+			}
+		});
+	});
+});
+
+
+
+
+document.getElementById("show").addEventListener("click", function() {
+	var gayab = document.getElementById("gayab");
+	var overlay = document.querySelector('.overlay');
+	if (gayab.style.height === "162px") {
+		gayab.style.height = "0";
+		overlay.style.display = 'none'; // 隱藏遮罩
+	} else {
+		gayab.style.height = "162px";
+		overlay.style.display = 'block'; // 顯示遮罩
+	}
+});
+
+document.getElementById("show2").addEventListener("click", function() {
+	var gayab = document.getElementById("gayab");
+	var overlay = document.querySelector('.overlay');
+	if (gayab.style.height === "162px") {
+		gayab.style.height = "0";
+		overlay.style.display = 'none'; // 隱藏遮罩
+	} else {
+		gayab.style.height = "162px";
+		overlay.style.display = 'block'; // 顯示遮罩
+	}
+});
+
+document.getElementById("show3").addEventListener("click", function() {
+	var gayab = document.getElementById("gayab");
+	var overlay = document.querySelector('.overlay');
+	if (gayab.style.height === "162px") {
+		gayab.style.height = "0";
+		overlay.style.display = 'none'; // 隱藏遮罩
+	} else {
+		gayab.style.height = "162px";
+		overlay.style.display = 'block'; // 顯示遮罩
+	}
+});
+
+
+
+
+
+

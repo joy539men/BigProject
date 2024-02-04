@@ -4,6 +4,8 @@ package com.example.Krist.booking.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -99,10 +102,7 @@ public class bookingController {
 
 	        bookingBean.setStatus("待確認");
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
-	        bookingBean.setUuid(UUID.randomUUID());
-//	        bookingService.save(bookingBean);
-	        
-	       
+	        bookingBean.setUuid(UUID.randomUUID());	       
 	        
 	        // 將計算機金額加入 Model 當中
 	        double amount = calculateAmountLogic(
@@ -120,13 +120,14 @@ public class bookingController {
 	        model.addAttribute("amount", amount);
 	        model.addAttribute("booking", bookingBean);
 	        model.addAttribute("roomDetail", roomTable);
+	        model.addAttribute("user", user);
 	        
 	        
 	        
 	        bookingBean.setTotalPrice((int) amount);
 	        
 	     // 清除 Session中的selectedRoomId *** 記得這個放最後面，不然前面會抓不到 session!!!!!!
-	        session.removeAttribute("selectedRoomId");
+//	        session.removeAttribute("selectedRoomId");
 	        session.removeAttribute("night");
 
 	        return "book";
@@ -195,58 +196,52 @@ public class bookingController {
 	    }
 	}	
 	
-//	@GetMapping("/bookTrip")
-//	public String bookTrip(Model model, HttpSession session) {
-//	    Integer user = (Integer) session.getAttribute("userId");
-//
-//	    List<bookingBean> bookRoomList = (List<bookingBean>) bookingService.findAllByUserId(user);
-//	    
-//	    if (bookRoomList.isEmpty()) {
-//	        // 不存在匹配的记录，触发错误处理
-//	        return "index";
-//	    }
-//
-//	    model.addAttribute("bookTripRoomList", bookRoomList);
-//	    return "bookTrip";
-//	}
-	
-	// bookTrip 備份資料 
-//	@GetMapping("/bookTrip")
-//	public String bookTrip(Model model, HttpSession session) {
-//	    Integer userId = (Integer) session.getAttribute("userId");
-//
-//	    userBean userBean = userRepository.findById(userId).orElse(null);
-//	    // 檢查用戶是否登入
-//	    if (userId != null) {
-//	        // 用戶有登入資料則進行查詢
-//	        List<bookingBean> bookRoomList = bookingService.findAllByUser(userBean);
-//	        model.addAttribute("bookTripRoomList", bookRoomList);
-//	        return "bookTrip";
-//	    } else {
-//	        // 用戶為登入重新轉向
-//	        return "redirect:/login";  // 錯誤的話重新導入其他路徑
-//	    }
-//	}
 	
 	
 	@GetMapping("/bookTrip")
 	public String bookTrip(Model model, HttpSession session) {
 	    Integer userId = (Integer) session.getAttribute("userId");
-	    
 	    userBean userBean = userRepository.findById(userId).orElse(null);
+
 	    // 檢查用戶是否登入
 	    if (userId != null) {
 	        // 用戶有登入資料則進行查詢
 	        List<bookingBean> bookRoomList = bookingService.findAllByUser(userBean);
 	        List<roomTableBean> roomList = new ArrayList<>();
+	        List<bookingBean> occupiedRooms = new ArrayList<>();
+	        List<bookingBean> isOccipiedRooms = new ArrayList<>();
+
+	        Date today = new Date(System.currentTimeMillis());
+
 	        for (bookingBean booking : bookRoomList) {
 	            roomList.add(booking.getRoomTable());
+
+	            Date checkoutDate = booking.getCheckoutDate();
+//	            LocalDate checkoutDate  = booking.getCheckoutDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//	            LocalDate checkoutDate = booking.getCheckoutDate();
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//	            Date checkoutSqlDate = new Date(dateFormat.parse(checkoutDate).getTime());
+	            
+
+	            if (checkoutDate.before(today)) {
+	                // 如果預定日期在今天之前，表示已入住，加入已住宿的列表
+	                occupiedRooms.add(booking);
+	            }
 	        }
-	        
+
+	        // 移動已住宿的房間到相應的地方
+	        for (bookingBean occupiedRoom : occupiedRooms) {
+	            bookRoomList.remove(occupiedRoom);
+	            // 可以執行其他操作，例如將房間標記為已住宿
+	            isOccipiedRooms.add(occupiedRoom);
+	            
+	        }
+
 	        List<Map<String, Object>> combinedList = new ArrayList<>();
 	        for (bookingBean booking : bookRoomList) {
 	            Map<String, Object> itemMap = new HashMap<>();
 	            itemMap.put("id", booking.getBookingId());
+	            // 其他模型資料設定...
 	            itemMap.put("title", booking.getRoomTable().getTitle());
 	            itemMap.put("description", booking.getRoomTable().getDescription());
 	            itemMap.put("filePath", booking.getRoomTable().getFilePath());
@@ -258,20 +253,101 @@ public class bookingController {
 	            itemMap.put("night", booking.getNight());
 	            itemMap.put("totalPrice", booking.getTotalPrice());
 	            itemMap.put("price", booking.getRoomTable().getPrice());
-	            itemMap.put("bookingTime", booking.getBookingTime());
 	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
+	            itemMap.put("checkinDate", booking.getCheckinDate());
+	            itemMap.put("checkoutDate", booking.getCheckoutDate());
+
 	            combinedList.add(itemMap);
 	        }
-	        model.addAttribute("userId",userId);
+	        
+	        List<Map<String, Object>> combinedListIsOccupied = new ArrayList<>();
+	        for(bookingBean isOccupied : isOccipiedRooms) {
+	        	Map<String,Object> isOccupiedMap = new HashMap<>();
+	        	isOccupiedMap.put("id",isOccupied.getBookingId());
+	            // 其他模型資料設定...
+	        	isOccupiedMap.put("title",isOccupied.getRoomTable().getTitle());
+	        	isOccupiedMap.put("description", isOccupied.getRoomTable().getDescription());
+	        	isOccupiedMap.put("filePath", isOccupied.getRoomTable().getFilePath());
+	        	isOccupiedMap.put("roomNum", isOccupied.getRoomTable().getRoomNum());
+	        	isOccupiedMap.put("guest", isOccupied.getGuest());
+	        	isOccupiedMap.put("address", isOccupied.getRoomTable().getAddress());
+	        	isOccupiedMap.put("uuid", isOccupied.getUuid());
+	        	isOccupiedMap.put("bookingTime", isOccupied.getBookingTime());
+	        	isOccupiedMap.put("night", isOccupied.getNight());
+	        	isOccupiedMap.put("totalPrice", isOccupied.getTotalPrice());
+	        	isOccupiedMap.put("price", isOccupied.getRoomTable().getPrice());
+	            isOccupiedMap.put("roomId", isOccupied.getRoomTable().getRoomId());
+	            isOccupiedMap.put("checkinDate", isOccupied.getCheckinDate());
+	            isOccupiedMap.put("checkoutDate", isOccupied.getCheckoutDate());
+
+	        	
+	        	combinedListIsOccupied.add(isOccupiedMap);
+	        }
+	        
+	        
+
+	        model.addAttribute("isOccupied", combinedListIsOccupied);
+	        model.addAttribute("user", userBean);
 	        model.addAttribute("combinedList", combinedList);
 	        model.addAttribute("bookTripRoomList", bookRoomList);
 	        model.addAttribute("roomList", roomList);
+
 	        return "bookTrip";
 	    } else {
 	        // 用戶為登入重新轉向
 	        return "redirect:/login.jsp";  // 錯誤的話重新導入其他路徑
 	    }
 	}
+
+	
+	
+	
+	
+	
+	// 房間住宿
+//	@GetMapping("/bookTrip")
+//	public String bookTrip(Model model, HttpSession session) {
+//	    Integer userId = (Integer) session.getAttribute("userId");
+//	    
+//	    userBean userBean = userRepository.findById(userId).orElse(null);
+//	    // 檢查用戶是否登入
+//	    if (userId != null) {
+//	        // 用戶有登入資料則進行查詢
+//	        List<bookingBean> bookRoomList = bookingService.findAllByUser(userBean);
+//	        List<roomTableBean> roomList = new ArrayList<>();
+//	        for (bookingBean booking : bookRoomList) {
+//	            roomList.add(booking.getRoomTable());
+//	        }
+//	        
+//	        
+//	        List<Map<String, Object>> combinedList = new ArrayList<>();
+//	        for (bookingBean booking : bookRoomList) {
+//	            Map<String, Object> itemMap = new HashMap<>();
+//	            itemMap.put("id", booking.getBookingId());
+//	            itemMap.put("title", booking.getRoomTable().getTitle());
+//	            itemMap.put("description", booking.getRoomTable().getDescription());
+//	            itemMap.put("filePath", booking.getRoomTable().getFilePath());
+//	            itemMap.put("roomNum", booking.getRoomTable().getRoomNum());
+//	            itemMap.put("guest", booking.getGuest());
+//	            itemMap.put("address", booking.getRoomTable().getAddress());
+//	            itemMap.put("uuid", booking.getUuid());
+//	            itemMap.put("bookingTime", booking.getBookingTime());
+//	            itemMap.put("night", booking.getNight());
+//	            itemMap.put("totalPrice", booking.getTotalPrice());
+//	            itemMap.put("price", booking.getRoomTable().getPrice());
+//	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
+//	            combinedList.add(itemMap);
+//	        }
+//	        model.addAttribute("userId",userId);
+//	        model.addAttribute("combinedList", combinedList);
+//	        model.addAttribute("bookTripRoomList", bookRoomList);
+//	        model.addAttribute("roomList", roomList);
+//	        return "bookTrip";
+//	    } else {
+//	        // 用戶為登入重新轉向
+//	        return "redirect:/login.jsp";  // 錯誤的話重新導入其他路徑
+//	    }
+//	}
 	
 	// 1/27 TODO
 	// 本方法送出新增evaluation資料的空白表單
@@ -296,63 +372,6 @@ public class bookingController {
 		return "evaluationPage";
 	}
 	
-	
-//	@PostMapping("/evaluateRoom")
-//	@ResponseBody
-//	public ResponseEntity<String> evaluateRoom (@RequestBody reviewBean reviewBean,HttpSession session) {
-//		
-//		String starRating = reviewBean.getRating();
-//		String accommodationExperience = reviewBean.getComment();
-//		Integer userId =  (Integer) session.getAttribute("userId");
-////		userBean user = userRepository.getById(userId);
-//		
-//	
-//		reviewBean.setReview_date(new Date(System.currentTimeMillis()));
-//		
-//		
-//		reviewBean.setUser(null);
-//		reviewBean.setRoomTable(null);
-//		reviewBean.setRating(starRating);
-//		reviewBean.setComment(accommodationExperience);
-//		reviewRepository.save(reviewBean);
-//		
-//		// 返回JSON格式的成功消息
-//	    return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"Review submitted successfully.\"}");
-//		
-//	}
-	
-	
-//	@PostMapping("/evaluateRoom")
-//	public String evaluateRoom(@RequestBody reviewBean reviewBean, HttpSession session) {
-//	    try {
-//	        // 執行您的業務邏輯
-//	    	String starRating = reviewBean.getRating();
-//			String accommodationExperience = reviewBean.getComment();
-//			
-//			Integer roomId = (Integer) session.getAttribute("evaluationRoomId");
-//			Integer userId =  (Integer) session.getAttribute("userId");
-//			userBean user = userRepository.findById(userId).orElse(null);
-//			roomTableBean room = roomTableRepository.findById(roomId).orElse(null);
-//			
-//			
-//			
-//			reviewBean.setReview_date(new Date(System.currentTimeMillis()));
-//			reviewBean.setUser(user);
-//			reviewBean.setRoomTable(room);
-//			reviewBean.setRating(starRating);
-//			reviewBean.setComment(accommodationExperience);
-//			reviewRepository.save(reviewBean);
-//
-//	        // 返回JSON格式的成功消息
-//	        return "index";
-//	    } catch (Exception e) {
-//	        // 如果有例外，可以在控制台中印出錯誤信息
-//	        e.printStackTrace();
-//
-//	        // 返回JSON格式的錯誤消息
-//	        return "index";
-//	    }
-//	}
 
 	
 	@PostMapping("/evaluateRoom")
@@ -388,19 +407,9 @@ public class bookingController {
 	        return "index";
 	    }
 	}
-
 	
-	
-	
-
-
-	
-//	@GetMapping("/bookTrip")
-//	public String bookTrip(@ModelAttribute("bookingBean") bookingBean bookingBean, Model model, HttpSession session) {
-//		Integer selectedUserId = (Integer)session.getAttribute("userId");
-//		(Iterable<Integer>) user =  userRepository.findAllById(selectedUserId);
-//		bookingBean.setUser(user);
-//		
-//		return "bookTrip";
-//	}
+	public void markRoomAsOccupied(roomTableBean roomTable) {
+        roomTable.setIsOccupied(true);
+        roomTableRepository.save(roomTable);
+    }
 }
