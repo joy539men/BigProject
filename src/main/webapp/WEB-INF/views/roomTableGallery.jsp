@@ -125,7 +125,7 @@
 		</nav>
 	
 	</header>
-    
+	
     <div id="overlay"></div>
 	<div id="popup">
 		<!-- 這裡放置彈出框的内容 -->
@@ -219,7 +219,7 @@
 	<script src="plugins/slick/slick.min.js"></script>
 	<script src="plugins/scrollmenu/scrollmenu.min.js"></script>
 	<script src="<c:url value='/js/openPopup.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map2.js' />"></script>
 </body>
 </html>
 
