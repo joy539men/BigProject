@@ -259,6 +259,7 @@ button.switch-month:active {
 									<li class="dropdown-item">
 										<hr />
 									</li>
+									<li><a href="<c:url value="/userProfile"></c:url>"class="dropdown-item">會員中心</a></li>
 									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
 									<li><a href="<c:url value="/logout"></c:url>"
 										class="dropdown-item">登 出</a></li>
