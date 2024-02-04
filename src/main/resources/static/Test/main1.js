@@ -1,3 +1,6 @@
+var calendarStartDate;
+var calendarEndDate;
+
 (function($) {
 
 	"use strict";
@@ -170,10 +173,13 @@
 					    console.log(selected[key][key2]);
 					    if(firstFlag){
                            startDate=key+"-"+ String((parseInt(key2)+1)).padStart(2, "0")+"-"+String(selected[key][key2][0]).padStart(2, "0");
+                           calendarStartDate = i[parseInt(key2)] +" "+ selected[key][key2][0];
                            firstFlag=false;
                            endDate=key+"-"+ String((parseInt(key2)+1)).padStart(2, "0")+"-"+String(selected[key][key2][selected[key][key2].length-1]).padStart(2, "0");
+                           calendarEndDate = i[parseInt(key2)] +" "+ selected[key][key2][selected[key][key2].length-1];
 					    }else{
 					       endDate=key+"-"+ String((parseInt(key2)+1)).padStart(2, "0")+"-"+String(selected[key][key2][selected[key][key2].length-1]).padStart(2, "0");
+					       calendarEndDate = i[parseInt(key2)] +" "+ selected[key][key2][selected[key][key2].length-1];
 					    }
                     });
                 });
@@ -181,6 +187,8 @@
                 console.log("endDate=>"+endDate);
                 document.getElementById("targetStartDate").value = startDate;
                 document.getElementById("targetEndDate").value = endDate;
+                console.log(calendarStartDate)		
+                console.log(calendarEndDate)	
 			}
 		}
 
