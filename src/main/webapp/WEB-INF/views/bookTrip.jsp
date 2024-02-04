@@ -205,7 +205,7 @@
 										x ${list.guest } 人</h5>
 									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
 									<h5 class="ms-5">房客</h5>
-									<h6 class="ms-5">成人 1人</h6>
+									<h6 class="ms-5">成人 ${list.guest }人</h6>
 									<h6 class="ms-5">入住日期：${list.checkinDate } <br> 退房日期：${list.checkoutDate }</h6>
 								</div>
 							</div>
@@ -215,7 +215,6 @@
 				</c:forEach>
 			</div>
 
-isOccupied
 
 		</div>
 		
@@ -265,7 +264,7 @@ isOccupied
 										x ${list.guest } 人</h5>
 									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
 									<h5 class="ms-5">房客</h5>
-									<h6 class="ms-5">成人 1人</h6>
+									<h6 class="ms-5">成人 ${list.guest }人</h6>
 									<h6 class="ms-5">入住日期：${list.checkinDate } <br> 退房日期：${list.checkoutDate }</h6>
 								</div>
 							</div>

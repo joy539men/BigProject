@@ -166,7 +166,8 @@
                 </h5>
                 <h6 class="ms-5 mb-5">總價 : ${amount }</h6>
                 <h5 class="ms-5">房客</h5>
-                <h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
+                <h6 class="ms-5">成人 ${booking.guest }人</h6>
+                <h6 class="ms-5">入住日期：${roomDetail.checkinDate } <br> 退房日期：${roomDetail.checkoutDate }</h6>
               </div>
             </div>
           </div>
