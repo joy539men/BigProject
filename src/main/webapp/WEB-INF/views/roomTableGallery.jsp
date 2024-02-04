@@ -46,7 +46,7 @@
 	<header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="<c:url value="/"></c:url>"> <img
+				<a class="navbar-brand" href="<c:url value="/login"></c:url>"> <img
 					class="img-fluid" width="120" src="images/logo.png"
 					alt="CouchSurfing" />
 				</a>
