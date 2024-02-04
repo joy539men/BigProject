@@ -41,6 +41,7 @@
 
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/providerStyle.css">
 
 <!-- # Bootstrap -->
 <link rel="stylesheet"
@@ -53,9 +54,10 @@
 	<header class="navigation ">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
-					loading="prelaod" decoding="async" class="img-fluid" width="120"
-					src="images/logo.png" alt="CouchSurfing">
+				<a href="<c:url value="/roomTableGallery"></c:url>"
+					class="navbar-brand"> <img loading="prelaod" decoding="async"
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing">
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -95,40 +97,34 @@
 						<!-- account btn -->
 						<ul class="nav">
 							<li class="nav-item dropdown"><a
-								class="p-3 border rounded-pill " href="#" id="navbarDropdown"
+								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<img style="width: 15px" src="images/icon/fish.png" alt="" />
-									<img class="mb-1" style="width: 50px" src="images/logo.png"
-									alt="" />
+									
+
+									<%-- <c:url value = '${room.filePath}'/> --%>
 							</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li class="dropdown-item"><img class="img-fluid "
-										style="width: 50px" src="images/logo.png" alt="" />
-										<h4>Krist</h4></li>
+									<li class="dropdown-item">
+										<h4>${loginUser.userName }</h4></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
-									<li>
-										<%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
-										<a class="dropdown-item"
-										href="<c:url value="/bookTrip"></c:url>">旅程</a>
-
-
-									</li>
+									<li><a class="dropdown-item" href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
 									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-									<li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+									<li><a id="openPopup" class="dropdown-item" href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
-									<li><a href="<c:url value="/userProfile"></c:url>"
-										class="dropdown-item">會員中心</a></li>
+									<li><a href="<c:url value="/userProfile"></c:url>"class="dropdown-item">會員中心</a></li>
 									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
 									<li><a href="<c:url value="/logout"></c:url>"
-										class="dropdown-item">登 出</a>></li>
-								</ul></li>
+										class="dropdown-item">登 出</a></li>
+								</ul>
+								</li>
 						</ul>
 					</div>
 				</div>
@@ -207,7 +203,7 @@
 				<div class="col">
 					<label for="profilePicture" class="form-label"
 						style="font-size: 18px;">更改大頭貼</label> <img
-						src="<c:url value = '${user.filePath}'/>" style="height: 300px">
+						src="<c:url value = '${user.filePath}'/>" style="max-width: 100%; max-height: 150px; height: auto; width: auto;">
 					<form:input path="multipartFile" type="file" />
 				</div>
 			</div>

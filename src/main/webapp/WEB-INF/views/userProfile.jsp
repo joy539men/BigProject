@@ -15,26 +15,21 @@
 <html lang="en-us">
 
 <head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <title>User Profile</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="description" content="This is meta description">
 <meta name="author" content="Themefisher">
-<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-<link rel="icon" href="images/favicon.png" type="image/x-icon">
-
-<!-- theme meta -->
-<meta name="theme-name" content="Personal Information" />
-
-<!-- # Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
-	rel="stylesheet">
+<link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+<link rel="icon" href="images/logo.ico" type="image/x-icon">
 
 <!-- # CSS Plugins -->
+
 <link rel="stylesheet" href="plugins/slick/slick.css">
 <link rel="stylesheet" href="plugins/font-awesome/fontawesome.min.css">
 <link rel="stylesheet" href="plugins/font-awesome/brands.css">
@@ -42,23 +37,20 @@
 
 <!-- # Main Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
-
-<!-- # Bootstrap -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/providerStyle.css">
 </head>
 
 <body>
 
-	<!-- navigation -->
-	<header class="navigation ">
+	<header class="navigation">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a href="<c:url value="/roomTableGalleryByron"></c:url>"
+				<a href="<c:url value="/roomTableGallery"></c:url>"
 					class="navbar-brand"> <img loading="prelaod" decoding="async"
 					class="img-fluid" width="120" src="images/logo.png"
 					alt="CouchSurfing">
 				</a>
+
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -67,62 +59,51 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link" href="index.html">訂單</a>
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value="/bookTrip"></c:url>">訂單</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">日曆</a>
 						</li>
-						<li class="nav-item "><a class="nav-link" href="about.html">日曆</a>
+						<li class="nav-item"><a class="nav-link" href="services.html">收件夾</a>
 						</li>
-						<li class="nav-item "><a class="nav-link"
-							href="services.html">收件夾</a></li>
-						<li class="nav-item "><a class="nav-link" href="contact.html">聯絡我們</a>
+						<li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a>
 						</li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">選單</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item " href="blog.html">Blog</a></li>
-								<li><a class="dropdown-item " href="blog-details.html">Blog
-										Details</a></li>
-								<li><a class="dropdown-item " href="service-details.html">Service
-										Details</a></li>
-								<li><a class="dropdown-item " href="faq.html">FAQ&#39;s</a>
-								</li>
-								<li><a class="dropdown-item " href="legal.html">Legal</a></li>
-								<li><a class="dropdown-item " href="terms.html">Terms
-										&amp; Condition</a></li>
-								<li><a class="dropdown-item " href="privacy-policy.html">Privacy
-										&amp; Policy</a></li>
+								<li><a class="dropdown-item" href="blog.html">部落格</a></li>
+								<li><a class="dropdown-item" href="service-details.html">服務項目</a></li>
+								<li><a class="dropdown-item" href="terms.html">條約 &amp;
+										法律責任</a></li>
 							</ul></li>
 					</ul>
+
 					<div>
 						<!-- account btn -->
 						<ul class="nav">
 							<li class="nav-item dropdown"><a
-								class="p-3 border rounded-pill " href="#" id="navbarDropdown"
+								class="p-3 border rounded-pill" href="#" id="navbarDropdown"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<img style="width: 15px" src="images/icon/fish.png" alt="" />
-									<img class="mb-1" style="width: 50px" src="images/logo.png"
-									alt="" />
+									<img class="img-fluid rounded-circle mb-1" style="width: 50px"
+									src="<c:url value = '${loginUser.filePath}'/>" alt="" /> <%-- <c:url value = '${room.filePath}'/> --%>
 							</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<li class="dropdown-item"><img
 										class="img-fluid rounded-circle" style="width: 50px"
-										src="..${loginUser.filePath }" alt="" />
-										<h4>Krist</h4></li>
+										src="<c:url value = '${loginUser.filePath}'/>" alt="" />
+										<h4>${loginUser.userName }</h4></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
-									<li>
-										<%-- <a href="<c:url value="/webSocket"></c:url>">聊天系統</a> --%>
-										<a class="dropdown-item"
-										href="<c:url value="/bookTrip"></c:url>">旅程</a>
-
-
-									</li>
+									<li><a class="dropdown-item"
+										href="<c:url value="/bookTrip"></c:url>">旅程</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
 									<li><a class="dropdown-item" href="blog-details.html">訊息</a></li>
-									<li><a class="dropdown-item" href="service-details.html">行程規劃</a></li>
+									<li><a id="openPopup" class="dropdown-item"
+										href="<c:url value="/map/{lat}/{lng}/{dis}"></c:url>">房源地圖</a></li>
 									<li class="dropdown-item">
 										<hr />
 									</li>
@@ -130,13 +111,15 @@
 										class="dropdown-item">會員中心</a></li>
 									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
 									<li><a href="<c:url value="/logout"></c:url>"
-										class="dropdown-item">登 出</a>></li>
+										class="dropdown-item">登 出</a></li>
 								</ul></li>
 						</ul>
 					</div>
+
 				</div>
 			</div>
 		</nav>
+
 	</header>
 
 	<hr>
