@@ -466,7 +466,7 @@ button.switch-month:active {
 										<div class="form-group">
 											<label for="checkoutDate" class="form-label">退 住 日 期</label>
 											<form:input type="text" class="form-control shadow-none"
-												id="checkoutDate" placeholder="ex: 克里斯" path="checkoutDate"/>
+												id="checkoutDate"  path="checkoutDate"/>
 											<form:errors path="checkoutDate" cssClass="error" />
 										</div>
 									</div>
