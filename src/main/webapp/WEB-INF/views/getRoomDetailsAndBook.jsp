@@ -1162,8 +1162,8 @@ button.switch-month:active {
 		})(jQuery);
 				
 	</script>
-	<%-- <script src="<c:url value='/js/openPopup.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script> --%>
+	<script src="<c:url value='/js/openPopup.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/map.js' />"></script>
 	<!-- Google API -->
 	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMmmBHFZoCAlSCJYnNiKtLR9Ko-jSoC0&callback=initMap1"></script> 
 	</body>

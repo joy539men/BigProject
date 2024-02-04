@@ -77,6 +77,10 @@
             </li>
             <li><a class="dropdown-item " href="#">帳號</a>
             </li>
+            <c:if test="${sessionScope.isAdmin}">
+              <li><a class="dropdown-item " href="<c:url value='/admin/account' />">後台管理頁面</a>
+              </li>
+            </c:if>
             <li><a class="dropdown-item " href="<c:url value='/login'/>">切換至旅行模式</a>
             </li>
             <li><a class="dropdown-item " href="<c:url value='/logout'/>">登出</a>
