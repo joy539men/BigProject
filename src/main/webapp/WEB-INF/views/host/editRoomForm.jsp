@@ -38,8 +38,8 @@
   <header class="navigation bg-tertiary">
     <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="./images/logo.png"
+        <a class="navbar-brand" href="<c:url value='/login'/>">
+          <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="<c:url value='/images/logo.png' />"
             alt="CouchSurfing">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -205,8 +205,8 @@
 		          </div>
 		          <div id="roomPicInputDiv" class="col-9">
 <%-- 			          <form:input path="multipartFile" id="roomPicInput"  type="file" />   <!-- 查看模式type="hidden"  編輯模式type="file" --> --%>
-			          <label class="btn btn-info"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 更新照片</label>
-						<button id="cancleUpload" type="button">取消上傳</button>	
+			          <label class="btn btn-primary btn-sm"><input id="upload_img" style="display:none;" type="file" accept="image/*"> 更新照片</label>
+						<button id="cancleUpload" type="button" class="btn btn-primary btn-sm">取消上傳</button>	
 						<div id="oldImg" style="display:none;"></div>
 			          <div id="originalImg" style="width:300px ; height:300px">
 			       		<img src="<c:url value='${room.filePath}' />" >

@@ -39,7 +39,7 @@
   <header class="navigation bg-tertiary">
     <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="<c:url value='/login'/>">
           <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="./images/logo.png"
             alt="CouchSurfing">
         </a>
@@ -98,53 +98,61 @@
       </a>
     </div>
     <div id="orderList" class="">
-      <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
-        <div id="orderDate" class="ms-3 mt-3"><span>Dec 19, 2023</span></div>
-        <div id="orderDetail" class="row mx-3 align-items-center h-100">
-          <div id="detail" class="col-6 align-content-center flex-wrap">
-            <div id="houseName" class="houseName">獨棟小屋 台中市大業里</div>
-            <div id="housedetail" class="pt-1">
-              <span id="guest" >2位入住,</span>
-              <span id="housedetail2">Dec 19, 2023 - Dec 21, 2023</span>
-            </div>
-          </div>
-          <div id="price" class="col-3 text-start orderPrice">$ 3,900 TWD</div>
-          <div id="acceptBtn" class="col-3 text-center">
-            <a class="btn btn-primary btn-sm me-2">接受</a>
-            <a class="btn btn-primary btn-sm">拒絕</a>
-          </div>
-        </div>
-      </div> <!-- end of orderA -->
-		
-	<c:forEach var="booking" items="${bookings}">
-	     <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
-	        <div id="orderDate" class="ms-3 mt-3"><span>${booking.bookingTime}</span></div>
-	        <div id="orderDetail" class="row mx-3 align-items-center h-100">
-	          <div id="detail" class="col-6 align-content-center flex-wrap">
-	            <div id="houseName" class="houseName">${booking.roomTable.title}</div>
-	            <div id="housedetail" class="pt-1">
-	              <span id="guest" >${booking.guest}位入住,</span>
-	              <span id="housedetail2">${booking.checkinDate}  - ${booking.checkoutDate}</span>
-	            </div>
-	          </div>
-	          <div id="price" class="col-3 text-start orderPrice">$ ${booking.totalPrice} TWD</div>
-	          <div id="statusBtn" class="col-3 text-center">
-	          	<div style="display:inline-block">
-	          		<form action="<c:url value='/acceptBooking' />" method="post">
-	        			<input type="hidden" name="bookingId" value="${booking.bookingId}">
-	       				<button type="submit" class="btn btn-primary btn-sm me-2">接受</button>
-   		 			</form>
-	          	</div>
-	          	<div style="display:inline-block">
-	          		<form action="<c:url value='/rejectBooking' />" method="post">
-		        		<input type="hidden" name="bookingId" value="${booking.bookingId}">
-		       			 <button type="submit" class="btn btn-primary btn-sm me-2">拒絕</button>
-   		 			</form>
-	          	</div>
-	          </div><!-- end of statusBtn -->
-	        </div>
-	      </div> <!-- end of orderA --> 
-	</c:forEach>
+<!--       <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;"> -->
+<!--         <div id="orderDate" class="ms-3 mt-3"><span>Dec 19, 2023</span></div> -->
+<!--         <div id="orderDetail" class="row mx-3 align-items-center h-100"> -->
+<!--           <div id="detail" class="col-6 align-content-center flex-wrap"> -->
+<!--             <div id="houseName" class="houseName">獨棟小屋 台中市大業里</div> -->
+<!--             <div id="housedetail" class="pt-1"> -->
+<!--               <span id="guest" >2位入住,</span> -->
+<!--               <span id="housedetail2">Dec 19, 2023 - Dec 21, 2023</span> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div id="price" class="col-3 text-start orderPrice">$ 3,900 TWD</div> -->
+<!--           <div id="acceptBtn" class="col-3 text-center"> -->
+<!--             <a class="btn btn-primary btn-sm me-2">接受</a> -->
+<!--             <a class="btn btn-primary btn-sm">拒絕</a> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> end of orderA -->
+	<c:if test="${not empty bookings}">
+		<c:forEach var="booking" items="${bookings}">
+		     <div id="orderA" class="card w-75 mx-auto my-5 " style="height: 150px;">
+		        <div id="orderDate" class="ms-3 mt-3"><span>${booking.bookingTime}</span></div>
+		        <div id="orderDetail" class="row mx-3 align-items-center h-100">
+		          <div id="detail" class="col-6 align-content-center flex-wrap">
+		            <div id="houseName" class="houseName">${booking.roomTable.title}</div>
+		            <div id="housedetail" class="pt-1">
+		              <span id="guest" >${booking.guest}位入住,</span>
+		              <span id="housedetail2">${booking.checkinDate}  - ${booking.checkoutDate}</span>
+		            </div>
+		          </div>
+		          <div id="price" class="col-3 text-start orderPrice">$ ${booking.totalPrice} TWD</div>
+		          <div id="statusBtn" class="col-3 text-center">
+		          	<div style="display:inline-block">
+		          		<form action="<c:url value='/acceptBooking' />" method="post">
+		        			<input type="hidden" name="bookingId" value="${booking.bookingId}">
+		       				<button type="submit" class="btn btn-primary btn-sm me-2">接受</button>
+	   		 			</form>
+		          	</div>
+		          	<div style="display:inline-block">
+		          		<form action="<c:url value='/rejectBooking' />" method="post">
+			        		<input type="hidden" name="bookingId" value="${booking.bookingId}">
+			       			 <button type="submit" class="btn btn-primary btn-sm me-2">拒絕</button>
+	   		 			</form>
+		          	</div>
+		          </div><!-- end of statusBtn -->
+		        </div>
+		      </div> <!-- end of orderA --> 
+		</c:forEach>
+	</c:if>
+	
+	<c:if test="${empty bookings}">
+	    <div class="my-5 mx-auto w-75 text-center">
+	    	<img src="<c:url value='/images/index_start.png'/>" style="height:100px">
+	        <p>目前沒有需確認的訂單</p>
+	    </div>
+	</c:if>
 	
 
       

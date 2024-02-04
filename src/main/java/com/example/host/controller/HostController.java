@@ -209,6 +209,13 @@ public class HostController {
 			return "redirect:/hostRooms";
 		}
 
+	//
+		//加載中頁面
+		@GetMapping("/loading")
+		public String Loading() {
+			
+		    return "host/progressBar";
+		}
 	
 
 	

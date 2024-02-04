@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>PillowSurfing | 出租模式</title>
+  <title>PillowSurfing | 房間總覽</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="This is meta description">
   <meta name="author" content="Themefisher">
@@ -29,7 +29,7 @@
   <header class="navigation bg-tertiary">
     <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="<c:url value='/login'/>">
           <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="./images/logo.png"
             alt="CouchSurfing">
         </a>
@@ -101,7 +101,6 @@
           		</div>
         	</div>
 	    </c:forEach>
-        
   
         
   

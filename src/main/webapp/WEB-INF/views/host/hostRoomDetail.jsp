@@ -36,8 +36,8 @@
   <header class="navigation bg-tertiary">
     <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="./images/logo.png"
+        <a class="navbar-brand" href="<c:url value='/login'/>">
+          <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="<c:url value='/images/logo.png' />"
             alt="CouchSurfing">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -218,9 +218,10 @@
 
   <div class="text-center">
   	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRoomEdit/${roomId}' />">編輯</a>
-  	<form action="<c:url value='/hostRoomDelete/${roomId}' />" method="post" style="display:inline-block">
+  	<form action="<c:url value='/hostRoomDelete/${roomId}' />" method="post" style="display:inline-block" onsubmit="return confirmDelete('${room.title }')">
     	<button type="submit" class="btn btn-primary btn-sm">刪除</button>
 	</form>
+	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRooms' />">返回</a>
 <%--  	<a class="btn btn-primary btn-sm" href="<c:url value='/hostRoomDelete/${roomId}' />">刪除</a> --%>
   </div>
   
@@ -240,7 +241,15 @@
   <!-- Main Script -->
   <script src="<c:url value='/js/script.js' />"></script>
   <script src="<c:url value='/js/editRoomMap.js' />"></script> 
+  <script>
+	  function confirmDelete(roomName) {
+		  var message = "確定刪除 '" + roomName + "' 嗎?";
+          return confirm(message);
+	  }
+  
+  </script>
   
   </body>
-
+  
+  
 </html>
