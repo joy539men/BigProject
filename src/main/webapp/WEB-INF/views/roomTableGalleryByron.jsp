@@ -419,7 +419,7 @@
     
     <div class="row w-75 mx-auto  d-flex align-items-center"> 
         
-      <div class="d-flex justify-content-between "> 
+      <div class="d-flex justify-content-evenly "> 
             <div class="scroll-buttons d-flex " style="width: 772px;">
                     <button class="arrow-button " style="max-width: 165%; background-color: #ffffff;" onclick="scrollaaa()">
                         <img src="./地區ICON/left-arrow.png" width="60px" height="60px">
@@ -495,17 +495,12 @@
             
 
             <div class="d-flex text-end  justify-content-end ">
-              <a class="btn btn btn-outline-primary" 
-                 style="margin-right: 31px; margin-top: 7px;height: 38px;" 
-                 href="<c:url value = '/addRoomKrist'/>">
-                 新增房源
-              </a>
               <div>
-              <a class="btn btn-primary " 
+              <a class="btn " 
                  href="<c:url value = ''/>" 
                  data-toggle="modal" 
                  data-target="#priceRangeModal"
-                 style="margin-top: 7px; "> 
+                 style="margin-top: 7px; background-color: #00afaf;color: white;"> 
                  篩選條件
               </a>
                 <!--進階篩選-->
@@ -609,7 +604,7 @@
 					<div class="card-body">
 						<h5 class="card-title ">${room.title}</h5>
 						<span class="card-text">${room.type}</span><br> 
-						<span class="card-text">${room.guestMax}人入住</span><br>
+						<span class="card-text">${room.guestMax}人入住。$${room.price}</span><br>
 					</div>
 					
 				</div>

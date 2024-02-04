@@ -59,11 +59,12 @@ public class QureyAccountController_backstage {
 			userBean = optional.get();
 			userBean.setStatus("禁止使用");
 			userService.save(userBean);
-			System.out.println(userBean);
+//			System.out.println(userBean.getEmail());
 		}
 		String userEmail = userService.getEmailByUserId(id);
 		String subject = "PillowSurfing 重要訊息通知!!!";
 		String content = "親愛的會員您好~ 您的PillowSurfing會員帳號已被"+'"'+"禁止使用"+'"'+"，請聯繫客服人員!" ;
+//		System.out.println(userEmail);
 		mailService.sendEmail(userEmail, subject, content);
 		return "redirect:/admin/account";
 	}

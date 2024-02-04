@@ -52,13 +52,19 @@ public class roomController {
 	    Set<amenitiesBean> amenities = roomTableRepository.findAmenitiesByRoomId(roomId);
 
 		Integer userId = (Integer) session.getAttribute("userId");
-	    userBean loginUser = userRepository.findById(userId).orElse(null);
-	    
-	    if (loginUser == null) {
-	    	return "redirect:/login";
-	    }else {
-	    	model.addAttribute("loginUser",loginUser);
-	    }
+		
+		if (userId != null) {
+		    Optional<userBean> optionalUser = userRepository.findById(userId);
+		    if (optionalUser.isPresent()) {
+		        userBean loginUser = optionalUser.get();
+		        model.addAttribute("loginUser", loginUser);
+		    } else {
+		        return "redirect:/login";
+		    }
+		} else {
+		    return "redirect:/login";
+		}
+
 	    
 	    // 設定 session 儲存在網頁當中
 	    session.setAttribute("selectedRoomId", roomId);
@@ -84,8 +90,21 @@ public class roomController {
 	}
 	// 本方法是將導入 roomTableGallery 然後給予一個 List 並在前端 imageGallery 給予每個 id 值
 	@GetMapping("/roomTableGallery")
-	public String getRoomTableGallery(Model model) {
+	public String getRoomTableGallery(Model model, HttpSession session) {
 		List<roomTableBean> roomList = (List<roomTableBean>) roomTableRepository.findAll();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId != null) {
+		    Optional<userBean> optionalUser = userRepository.findById(userId);
+		    if (optionalUser.isPresent()) {
+		        userBean loginUser = optionalUser.get();
+		        model.addAttribute("loginUser", loginUser);
+		    } else {
+		        return "redirect:/login";
+		    }
+		} else {
+		    return "redirect:/login";
+		}
+		
 		model.addAttribute("roomList", roomList);
 		return "roomTableGallery";
 	}

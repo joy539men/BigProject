@@ -39,9 +39,9 @@
 	<header class="navigation bg-tertiary">
 		<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img
-					loading="prelaod" decoding="async" class="img-fluid" width="120"
-					src="images/logo.png" alt="CouchSurfing">
+				<a class="navbar-brand" href="<c:url value="/login"></c:url>"> <img
+					class="img-fluid" width="120" src="images/logo.png"
+					alt="CouchSurfing" />
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
