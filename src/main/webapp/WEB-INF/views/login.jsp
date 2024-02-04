@@ -83,9 +83,11 @@
 							</ul></li>
 					</ul>
 					<!-- account btn -->
-					<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a>
+					<a href="<c:url value="login"></c:url>"
+						class="btn btn-outline-primary">登 入</a>
 					<!-- account btn -->
-					<a href="<c:url value="/intoRegister"></c:url>" class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
+					<a href="<c:url value="/intoRegister"></c:url>"
+						class="btn btn-primary ms-2 ms-lg-3">註 冊</a>
 				</div>
 			</div>
 		</nav>
@@ -117,12 +119,18 @@
 										style="font-size: 24px;">帳號</label> <input type="text"
 										class="form-control" id="account" name="account"
 										placeholder="輸入帳號">
+									<c:if test="${not empty accountError}">
+										<div style="color: red;">${accountError}</div>
+									</c:if>
 								</div>
 								<div class="mb-3">
 									<label for="password" class="form-label"
 										style="font-size: 24px;">密碼</label> <input type="password"
 										class="form-control" id="password" name="password"
 										placeholder="輸入密碼">
+									<c:if test="${not empty passwordError}">
+										<div style="color: red;">${passwordError}</div>
+									</c:if>
 								</div>
 								<div class="d-grid gap-2">
 									<button type="submit" class="btn btn-primary"
