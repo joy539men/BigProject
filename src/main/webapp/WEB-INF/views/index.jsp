@@ -431,7 +431,7 @@
 								class="accordion-collapse collapse border-0 "
 								aria-labelledby="heading-4b82be4be873c8ad699fa97049523ac86b67a8bd"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
+								<div class="accordion-body py-0 content">
 									根據目的地的氣候和文化準備合適的服裝，並確保攜帶所有必需品，如護照、旅行保險、充電器、適用於當地的插頭轉換器等。
 									輕便而實用的打包方式可以讓您的旅程更加舒適。</div>
 							</div>
@@ -523,7 +523,6 @@
 							<li class="mb-2"><a href="service-details.html">個人服務</a></li>
 							<li class="mb-2"><a href="service-details.html">家庭服務</a></li>
 							<li class="mb-2"><a href="service-details.html">學生專區</a></li>
-							
 						</ul>
 					</div>
 				</div>
