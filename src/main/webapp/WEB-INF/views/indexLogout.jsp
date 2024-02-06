@@ -6,13 +6,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en-us">
 
 <head>
@@ -228,7 +221,7 @@
 					<div class="section-title text-center">
 						<p class="text-primary text-uppercase fw-bold mb-3">Difference
 							Of Us</p>
-						<h1>Get Know The Basics Simple Pricing And Payments</h1>
+						<h1>關於為什麼你需要一段旅行</h1>
 					</div>
 				</div>
 				<div class="col-lg-10">
@@ -239,19 +232,17 @@
 							class="nav-link btn btn-outline-primary effect-none text-dark active"
 							id="pills-how-much-can-i-recive-tab" data-bs-toggle="pill"
 							href="#pills-how-much-can-i-recive" role="tab"
-							aria-controls="pills-how-much-can-i-recive" aria-selected="true">How
-								Much Can I Recive?</a></li>
+							aria-controls="pills-how-much-can-i-recive" aria-selected="true">旅行是什麼?</a></li>
 						<li class="nav-item m-2" role="presentation"><a
 							class="nav-link btn btn-outline-primary effect-none text-dark "
 							id="pills-how-much-does-it-costs-tab" data-bs-toggle="pill"
 							href="#pills-how-much-does-it-costs" role="tab"
-							aria-controls="pills-how-much-does-it-costs" aria-selected="true">How
-								Much Does It Costs?</a></li>
+							aria-controls="pills-how-much-does-it-costs" aria-selected="true">旅行的意義?</a></li>
 						<li class="nav-item m-2" role="presentation"><a
 							class="nav-link btn btn-outline-primary effect-none text-dark "
 							id="pills-how-do-i-repay-tab" data-bs-toggle="pill"
 							href="#pills-how-do-i-repay" role="tab"
-							aria-controls="pills-how-do-i-repay" aria-selected="true">How Do I Repay?</a></li>
+							aria-controls="pills-how-do-i-repay" aria-selected="true">旅途的終點?</a></li>
 					</ul>
 					<div class="rounded shadow bg-white p-5 tab-content"
 						id="pills-tabContent">
@@ -261,15 +252,12 @@
 							<div class="row align-items-center">
 								<div class="col-md-6 order-1 order-md-0">
 									<div class="content-block">
-										<h3 class="mb-4">How Much Can I Recive?</h3>
+										<h3 class="mb-4">旅行是什麼?</h3>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consec tetasssur
-												adipiscing elit. Tellus integer proin nisl pretium,
-												vestibulum dictum blandit risus. Nisl commodo</p>
-											<p>turpis vivamus donec. Id congue vesti bualum odio
-												dignissim at quisque viverra. Non semper in sed quisque dui.
-												Platea posuere ullamcorper id fames ut sed urna cursus eget.
-												Neque, vel</p>
+											<p>旅行是心靈與身體的雙重旅程，它超越地理的界限，開啟心靈的視野。
+												在旅途中，我們不僅體驗異國風情，更在旅途的每一步中找尋自我。</p>
+											<p>旅行不是遠離日常生活的逃避，是一種尋找新視角的冒險。
+												每一次的旅行，都是對未知的探索，讓我們的生活更加豐富多彩。</p>
 										</div>
 									</div>
 								</div>
@@ -288,15 +276,14 @@
 							<div class="row align-items-center">
 								<div class="col-md-6 order-1 order-md-0">
 									<div class="content-block">
-										<h3 class="mb-4">How Much Does It Costs?</h3>
+										<h3 class="mb-4">旅行的意義?</h3>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consec tetasssur
-												adipiscing elit. Tellus integer proin nisl pretium,
-												vestibulum dictum blandit risus. Nisl commodo</p>
-											<p>turpis vivamus donec. Id congue vesti bualum odio
-												dignissim at quisque viverra. Non semper in sed quisque dui.
-												Platea posuere ullamcorper id fames ut sed urna cursus eget.
-												Neque, vel</p>
+											<p>旅行不僅是一種身體上的遷徙，更是心靈的一次深度探索。
+											它讓我們跳脫日常生活的框架，體驗不同的文化與風俗。
+											在旅途中，我們會遇見各種人，聽到不同的故事，這些經歷豐富了我們的人生視野，讓我們學會更加包容和理解。</p>
+											<p>旅行是尋找自我、重新定義生活的過程。
+											它不僅帶給我們暫時的放鬆和樂趣，更重要的是，它賦予我們新的視角來看待自己和周圍的世界。
+											在旅行中，我們有機會挑戰自己，突破舒適區，這種成長是日常生活難以提供的。</p>
 										</div>
 									</div>
 								</div>
@@ -314,15 +301,16 @@
 							<div class="row align-items-center">
 								<div class="col-md-6 order-1 order-md-0">
 									<div class="content-block">
-										<h3 class="mb-4">How Do I Repay?</h3>
+										<h3 class="mb-4">旅途的終點?</h3>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consec tetasssur
-												adipiscing elit. Tellus integer proin nisl pretium,
-												vestibulum dictum blandit risus. Nisl commodo</p>
-											<p>turpis vivamus donec. Id congue vesti bualum odio
-												dignissim at quisque viverra. Non semper in sed quisque dui.
-												Platea posuere ullamcorper id fames ut sed urna cursus eget.
-												Neque, vel</p>
+											<p>旅途的終點，不僅是地理上的終點站，更是心靈的一次降落。
+											走過千山萬水，我們學會了欣賞路途中的風景，也學會了放下過去的包袱。
+											在這裡，我們找到了內心的平靜，感受到前所未有的自由。
+											就像是長途跋涉後的深呼吸，每一次的旅行，都是向自己的心靈深處邁進的一步。</p>
+											<p>每一段旅程都有它的終點，但真正的旅行從不因終點而結束。
+											在旅途的最後一刻，我們回首來時路，感慨萬千。
+											那些遇見的人、發生的事，都化為珍貴的回憶，銘刻在心。終點或許意味著暫時的休息，但更是新旅程的開始。
+											未來的路，仍然漫長而美好，等待著我們去探索、去體驗。</p>
 										</div>
 									</div>
 								</div>
@@ -386,7 +374,7 @@
 					<div class="section-title text-center mb-5 pb-2">
 						<p class="text-primary text-uppercase fw-bold mb-3">Questions
 							You Have</p>
-						<h1>Frequently Asked Questions</h1>
+						<h1>關於你的旅行前準備</h1>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -399,16 +387,13 @@
 								type="button" data-bs-toggle="collapse"
 								data-bs-target="#collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9"
 								aria-expanded="true"
-								aria-controls="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9">Can
-								I apply if my credit isn&rsquo;t perfect?</h2>
+								aria-controls="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9">行程規劃與研究</h2>
 							<div id="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9"
 								class="accordion-collapse collapse border-0 show"
 								aria-labelledby="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
-									between and premium product consist number of components,
-									plugins, page in each. The Free versions contain only a few
-									elements and pages that.</div>
+								<div class="accordion-body py-0 content">在旅行前，仔細規劃行程是必不可少的步驟。
+								研究目的地的文化、景點、當地美食及交通方式，可以幫助您更有效地利用旅行時間，並避免不必要的麻煩。</div>
 							</div>
 						</div>
 						<div class="accordion-item p-1 mb-2">
@@ -417,16 +402,13 @@
 								type="button" data-bs-toggle="collapse"
 								data-bs-target="#collapse-a443e01b4db47b3f4a1267e10594576d52730ec1"
 								aria-expanded="false"
-								aria-controls="collapse-a443e01b4db47b3f4a1267e10594576d52730ec1">How
-								do I know that I have been approved?</h2>
+								aria-controls="collapse-a443e01b4db47b3f4a1267e10594576d52730ec1">預訂住宿與交通</h2>
 							<div id="collapse-a443e01b4db47b3f4a1267e10594576d52730ec1"
 								class="accordion-collapse collapse border-0 "
 								aria-labelledby="heading-a443e01b4db47b3f4a1267e10594576d52730ec1"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
-									between and premium product consist number of components,
-									plugins, page in each. The Free versions contain only a few
-									elements and pages that.</div>
+								<div class="accordion-body py-0 content">提前預訂住宿與交通工具不僅能節省費用，還能確保您的旅程更加順暢。
+								比較不同的平台與優惠，找到最適合您的選擇，並留意任何取消政策或改變日期的條件。</div>
 							</div>
 						</div>
 						<div class="accordion-item p-1 mb-2">
@@ -435,16 +417,13 @@
 								type="button" data-bs-toggle="collapse"
 								data-bs-target="#collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd"
 								aria-expanded="false"
-								aria-controls="collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd">Do
-								I need to fax or email any documents?</h2>
+								aria-controls="collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd">打包行李與必需品</h2>
 							<div id="collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd"
 								class="accordion-collapse collapse border-0 "
 								aria-labelledby="heading-4b82be4be873c8ad699fa97049523ac86b67a8bd"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
-									between and premium product consist number of components,
-									plugins, page in each. The Free versions contain only a few
-									elements and pages that.</div>
+								<div class="accordion-body py-0 content">根據目的地的氣候和文化準備合適的服裝，並確保攜帶所有必需品，如護照、旅行保險、充電器、適用於當地的插頭轉換器等。
+									輕便而實用的打包方式可以讓您的旅程更加舒適。</div>
 							</div>
 						</div>
 						<div class="accordion-item p-1 mb-2">
@@ -453,16 +432,13 @@
 								type="button" data-bs-toggle="collapse"
 								data-bs-target="#collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3"
 								aria-expanded="false"
-								aria-controls="collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3">Do
-								you provide loans to military personnel?</h2>
+								aria-controls="collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3">健康與安全措施</h2>
 							<div id="collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3"
 								class="accordion-collapse collapse border-0 "
 								aria-labelledby="heading-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
-									between and premium product consist number of components,
-									plugins, page in each. The Free versions contain only a few
-									elements and pages that.</div>
+								<div class="accordion-body py-0 content">了解目的地的健康和安全信息，如疫苗接種、當地的醫療服務及緊急聯絡方式。
+									攜帶一個小型急救包，包含基本的醫療用品和個人藥物，以備不時之需。</div>
 							</div>
 						</div>
 						<div class="accordion-item p-1 mb-2">
@@ -471,16 +447,13 @@
 								type="button" data-bs-toggle="collapse"
 								data-bs-target="#collapse-0c2f829793a1f0562fea97120357dd2d43319164"
 								aria-expanded="false"
-								aria-controls="collapse-0c2f829793a1f0562fea97120357dd2d43319164">Can
-								I remove footer credit purchase ?</h2>
+								aria-controls="collapse-0c2f829793a1f0562fea97120357dd2d43319164">學習基本的當地語言</h2>
 							<div id="collapse-0c2f829793a1f0562fea97120357dd2d43319164"
 								class="accordion-collapse collapse border-0 "
 								aria-labelledby="heading-0c2f829793a1f0562fea97120357dd2d43319164"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
-									between and premium product consist number of components,
-									plugins, page in each. The Free versions contain only a few
-									elements and pages that.</div>
+								<div class="accordion-body py-0 content">學習一些基本的當地語言，如問候語、數字和常用短語，可以在旅行中大有幫助。
+								這不僅是對當地文化的尊重，也能在需要幫助時讓溝通更順暢。</div>
 							</div>
 						</div>
 						<div class="accordion-item p-1 mb-2">
@@ -489,16 +462,13 @@
 								type="button" data-bs-toggle="collapse"
 								data-bs-target="#collapse-8fe6730e26db16f15763887c30a614caa075f518"
 								aria-expanded="false"
-								aria-controls="collapse-8fe6730e26db16f15763887c30a614caa075f518">What
-								is the difference the free versions?</h2>
+								aria-controls="collapse-8fe6730e26db16f15763887c30a614caa075f518">財務規劃與預算</h2>
 							<div id="collapse-8fe6730e26db16f15763887c30a614caa075f518"
 								class="accordion-collapse collapse border-0 "
 								aria-labelledby="heading-8fe6730e26db16f15763887c30a614caa075f518"
 								data-bs-parent="#accordionFAQ">
-								<div class="accordion-body py-0 content">The difference
-									between and premium product consist number of components,
-									plugins, page in each. The Free versions contain only a few
-									elements and pages that.</div>
+								<div class="accordion-body py-0 content">確定旅行預算並規劃您的開支。了解目的地的貨幣兌換率，以及信用卡和現金的使用情況。
+								提前通知您的銀行您將前往海外，避免信用卡被錯誤地鎖定。</div>
 							</div>
 						</div>
 					</div>
@@ -538,43 +508,35 @@
 				<div class="col-lg-2 col-md-4 col-6 mb-4">
 					<div class="footer-widget">
 						<h5 class="mb-4 text-primary font-secondary">Service</h5>
-						<ul class="list-unstyled">
-							<li class="mb-2"><a href="service-details.html">Personal
-									loans</a></li>
-							<li class="mb-2"><a href="service-details.html">Home
-									Equity Loans</a></li>
-							<li class="mb-2"><a href="service-details.html">Student
-									Loans</a></li>
-							<li class="mb-2"><a href="service-details.html">Mortgage
-									Loans</a></li>
-							<li class="mb-2"><a href="service-details.html">Payday
-									Loans</a></li>
+						<<ul class="list-unstyled">
+							<li class="mb-2"><a href="service-details.html">個人服務</a></li>
+							<li class="mb-2"><a href="service-details.html">家庭服務</a></li>
+							<li class="mb-2"><a href="service-details.html">學生專區</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 col-6 mb-4">
 					<div class="footer-widget">
-						<h5 class="mb-4 text-primary font-secondary">About</h5>
+						<h5 class="mb-4 text-primary font-secondary">關於我們</h5>
 						<ul class="list-unstyled">
-							<li class="mb-2"><a href="#!">Benefits</a></li>
-							<li class="mb-2"><a href="#!">Careers</a></li>
-							<li class="mb-2"><a href="#!">Our Story</a></li>
-							<li class="mb-2"><a href="#!">Team</a></li>
+							<li class="mb-2"><a href="#!">最有價值員工</a></li>
+							<li class="mb-2"><a href="#!">我們的故事</a></li>
+							<li class="mb-2"><a href="#!">我們團隊</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-4 col-6 mb-4">
 					<div class="footer-widget">
-						<h5 class="mb-4 text-primary font-secondary">Help</h5>
+						<h5 class="mb-4 text-primary font-secondary">協助</h5>
 						<ul class="list-unstyled">
-							<li class="mb-2"><a href="contact.html">Contact Us</a></li>
+							<li class="mb-2"><a href="contact.html">聯繫我們</a></li>
 							<li class="mb-2"><a href="faq.html">FAQs</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-12 newsletter-form">
 					<div style="background-color: #F4F4F4; padding: 35px;">
-						<h5 class="mb-4 text-primary font-secondary">Subscribe</h5>
+						<h5 class="mb-4 text-primary font-secondary">訂閱我們</h5>
 						<div class="pe-0 pe-xl-5">
 							<form action="#!" method="post" name="mc-embedded-subscribe-form"
 								target="_blank">
@@ -597,9 +559,7 @@
 								</div>
 							</form>
 						</div>
-						<p class="mb-0">Lorem ipsum dolor sit amet, rdghds consetetur
-							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-							labore et dolore magna aliquyam erat</p>
+						<p class="mb-0">訂閱即可享有生日訂房折扣(可保存一年)，還會收到每月全台各地高評價房間月報。</p>
 					</div>
 				</div>
 			</div>

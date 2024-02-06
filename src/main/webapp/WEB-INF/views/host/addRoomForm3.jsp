@@ -7,7 +7,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>PillowSurfing | 出租模式</title>
+  <title>PillowSurfing | 新增房源</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="This is meta description">
   <meta name="author" content="Themefisher">
@@ -36,7 +36,7 @@
   <header class="navigation bg-tertiary">
     <nav class="navbar navbar-expand-xl navbar-light text-center py-3">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="<c:url value='/login'/>">
           <img loading="prelaod" decoding="async" class="img-fluid" width="60px" src="./images/logo.png"
             alt="CouchSurfing">
         </a>
@@ -101,7 +101,7 @@
         </label>
         <label class="housetypeRadio mx-auto">
           <form:radiobutton  path="type"  value="獨立房間" />
-          <div>獨立房間</div>
+          <div >獨立房間</div>
         </label>
         <label class="housetypeRadio mx-auto">
           <form:radiobutton  path="type"  value="合住房間" />
@@ -136,19 +136,19 @@
     <div class="mt-3 w-75 mx-auto">
       <div id="guestNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">房客人數</div>
-        <div class="col-4 verticalCenter"><form:input path="guestMax" type="number" name="guestNum" value="0" min="0" style="width:100px" class="mx-auto" /></div>
+        <div class="col-4 verticalCenter"><form:input path="guestMax" type="number" id="guestNum" name="guestNum" value="0" min="0" style="width:100px" class="mx-auto" /></div>
       </div>
       <div id="roomNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">房間</div>
-        <div class="col-4 verticalCenter"><form:input path="roomNum" type="number" name="roomNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="roomNum" type="number" id="roomNum" name="roomNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
       </div>
       <div id="bedNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">床位</div>
-        <div class="col-4 verticalCenter"><form:input path="bedNum" type="number" name="bedNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="bedNum" type="number"  id="bedNum" name="bedNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
       </div>
       <div id="bathroomNumDiv" class="row houseInfo mx-auto">
         <div class="col-8 verticalCenter">衛浴</div>
-        <div class="col-4 verticalCenter"><form:input path="bathroom" type="number" name="bathroomNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
+        <div class="col-4 verticalCenter"><form:input path="bathroom" type="number" id="bathroomNum" name="bathroomNum" value="0" min="0" style="width:100px" class="mx-auto"/></div>
       </div>
     </div>
     <div class="w-75 mx-auto text-center ">
@@ -203,10 +203,10 @@
       <h2>為你的房源新增照片</h2>
     </div>
     <div class="mt-3 w-100 mx-auto">
-        <div style="height: 500px; width: 500px;" class="mx-auto test">
+        <div style="height: 600px" class="mx-auto w-75 test">
           
 <%-- 			<form:input path="multipartFile" type='file'/> --%>
-			<label class="btn btn-info"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 上傳圖片</label>
+			<label class="btn btn-primary btn-sm"><input id="upload_img" style="display:none;" type="file" accept="image/*"><i class="fa fa-photo"></i> 上傳圖片</label>
 			<div id="oldImg" style="display:none;"></div>
         </div>
     </div>
@@ -222,12 +222,12 @@
 	    </div>
 	    <div class="mt-3 w-75 mx-auto">
 		     <h3 class="ms-5">為你的房源命名</h3>
-		     <div class="w-75 mx-auto text-center " ><form:input path="title" class="ms-5 w-100" type="text" style="height: 80px;" /></div>
+		     <div class="w-75 mx-auto text-center " ><form:input path="title" id="title" class="ms-5 w-100" type="text" style="height: 80px;" /></div>
 	    </div>
 	    <div class="mt-3 w-75 mx-auto">
 		     <h3 class="ms-5">描述你的房源有哪些特點</h3>
 		     <div class="w-75 mx-auto text-center " >
-		     	<form:textarea path="description" rows="10" cols="50" class="ms-5 w-100" type="text"/>
+		     	<form:textarea path="description" id="description" rows="10" cols="50" class="ms-5 w-100" type="text"/>
 <%-- 		     	<form:input path="description" class="ms-5 w-100" type="text" style="height: 400px;" /> --%>
 		     </div>
 	    </div>
@@ -326,6 +326,32 @@
     	    }
     	});
     	
+    	
+    	$('#typeRadio input[type=radio]').on("change",function(){
+//     		alert("OK");
+    		$("#address").val("台灣台中市西區公益路155巷3號");
+    		$("#guestNum").val(6);
+    		$("#roomNum").val(2);
+    		$("#bedNum").val(3);
+    		$("#bathroomNum").val(2);
+    		$("#amenity-1").prop("checked", true);;
+    		$("#amenity-3").prop("checked", true);;
+//     		$("#upload_img").val("C:\Users\sandra\Downloads\pexels-thorsten-technoman-338504.jpg");
+    		$("#title").val("勤美商圈 | 溫馨6人房");
+    		var description = "★位於市中心,交通樞紐\n大眾交通工具BUS都非常方便抵達｡\n★台中市最優質環境\n房源周邊就是草悟道文化商圈,集合了購物,採買,逛街,美食與文化涵養的高雅環境"
+    		$("#description").val(description);
+    		$("#price").val("2800");
+    		var price = parseInt( $("#price").val() );
+    		var serviceFee = parseInt(price*0.14);
+    		var guestPriceNum = parseInt(price + serviceFee);
+    		var hostIncome = parseInt(price*0.97);
+    		$("#priceNum").text("$" + price);
+    		$("#serviceFeeNum").text("$" + serviceFee);
+    		$("#guestPriceNum").text("$" + guestPriceNum);
+    		$("#hostIncome").text("$" + hostIncome);
+    		
+    		
+    	});
     	
     	
     	

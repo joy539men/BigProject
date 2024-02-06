@@ -120,13 +120,14 @@ public class bookingController {
 	        model.addAttribute("amount", amount);
 	        model.addAttribute("booking", bookingBean);
 	        model.addAttribute("roomDetail", roomTable);
+	        model.addAttribute("user", user);
 	        
 	        
 	        
 	        bookingBean.setTotalPrice((int) amount);
 	        
 	     // 清除 Session中的selectedRoomId *** 記得這個放最後面，不然前面會抓不到 session!!!!!!
-	        session.removeAttribute("selectedRoomId");
+//	        session.removeAttribute("selectedRoomId");
 	        session.removeAttribute("night");
 
 	        return "book";
@@ -253,6 +254,8 @@ public class bookingController {
 	            itemMap.put("totalPrice", booking.getTotalPrice());
 	            itemMap.put("price", booking.getRoomTable().getPrice());
 	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
+	            itemMap.put("checkinDate", booking.getCheckinDate());
+	            itemMap.put("checkoutDate", booking.getCheckoutDate());
 
 	            combinedList.add(itemMap);
 	        }
@@ -274,6 +277,8 @@ public class bookingController {
 	        	isOccupiedMap.put("totalPrice", isOccupied.getTotalPrice());
 	        	isOccupiedMap.put("price", isOccupied.getRoomTable().getPrice());
 	            isOccupiedMap.put("roomId", isOccupied.getRoomTable().getRoomId());
+	            isOccupiedMap.put("checkinDate", isOccupied.getCheckinDate());
+	            isOccupiedMap.put("checkoutDate", isOccupied.getCheckoutDate());
 
 	        	
 	        	combinedListIsOccupied.add(isOccupiedMap);
@@ -282,7 +287,7 @@ public class bookingController {
 	        
 
 	        model.addAttribute("isOccupied", combinedListIsOccupied);
-	        model.addAttribute("userId", userId);
+	        model.addAttribute("user", userBean);
 	        model.addAttribute("combinedList", combinedList);
 	        model.addAttribute("bookTripRoomList", bookRoomList);
 	        model.addAttribute("roomList", roomList);

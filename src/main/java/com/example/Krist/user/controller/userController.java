@@ -56,6 +56,18 @@ public class userController {
 		// 利用 Account 取得 user 的 userBean
 		userBean user = userService.findByAccount(account);
 		
+		// 檢查帳號是否存在
+	    if (user == null) {
+	        model.addAttribute("accountError", "帳號不存在！");
+	        return "login";
+	    }
+
+	    // 驗證密碼是否正確
+	    if (!PasswordHashing.verifyPassword(password, user.getPassword())) {
+	        model.addAttribute("passwordError", "密碼錯誤！");
+	        return "login";
+	    }
+		
 		// 驗證密碼和 userId 不為空值
 		if (user != null && PasswordHashing.verifyPassword(password, user.getPassword())) {
 			  // 驗證成功，判斷是否是管理者

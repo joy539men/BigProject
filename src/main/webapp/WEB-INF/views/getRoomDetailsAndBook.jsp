@@ -6,12 +6,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
 
 <html lang="en-us">
 <head>
@@ -259,6 +253,7 @@ button.switch-month:active {
 									<li class="dropdown-item">
 										<hr />
 									</li>
+									<li><a href="<c:url value="/userProfile"></c:url>"class="dropdown-item">會員中心</a></li>
 									<li><a class="dropdown-item" href="faq.html">幫助</a></li>
 									<li><a href="<c:url value="/logout"></c:url>"
 										class="dropdown-item">登 出</a></li>
@@ -471,7 +466,7 @@ button.switch-month:active {
 										<div class="form-group">
 											<label for="checkoutDate" class="form-label">退 住 日 期</label>
 											<form:input type="text" class="form-control shadow-none"
-												id="checkoutDate" placeholder="ex: 克里斯" path="checkoutDate"/>
+												id="checkoutDate"  path="checkoutDate"/>
 											<form:errors path="checkoutDate" cssClass="error" />
 										</div>
 									</div>

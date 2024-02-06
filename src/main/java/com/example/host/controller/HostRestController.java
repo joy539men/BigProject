@@ -76,10 +76,9 @@ public class HostRestController {
 			System.out.println("OK1");
 			
 			Map<String, String> responseBody = new HashMap<>();
-			responseBody.put("roomUrl","/pillowSurfing/hostRooms");
-			System.out.println(responseBody);
-//		    return "redirect:/hostRooms";
-//		    return ResponseEntity.ok("{\"roomUrl\": \"/pillowSurfing/hostRooms\"}");
+			responseBody.put("roomUrl","/pillowSurfing/loading");
+//			responseBody.put("roomUrl","/pillowSurfing/hostRooms");
+//			System.out.println(responseBody);
 		    return ResponseEntity.ok(responseBody);
         } else {   // 若是資料庫沒有該資料，跳轉到 login 頁面
         	Map<String, String> responseBody = new HashMap<>();
