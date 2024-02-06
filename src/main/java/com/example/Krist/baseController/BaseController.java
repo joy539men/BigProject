@@ -1,6 +1,9 @@
 package com.example.Krist.baseController;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -12,7 +15,11 @@ public class BaseController {
 	}
 	
 	@GetMapping("/webSocket")   
-	public String webSocket() {
+	public String webSocket(Model model, HttpSession session) {
+		Integer userId = (Integer) session.getAttribute("userId");
+		
+		model.addAttribute("user",userId);
+		
 		return "webSocket";
 	}
 	
@@ -42,6 +49,10 @@ public class BaseController {
 		return "chat";
 	}
 	
+	@GetMapping("/websocketChat")
+	public String websocketChat() {
+		return "WebsocketChat";
+	}
 	
 
 	

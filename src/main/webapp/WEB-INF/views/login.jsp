@@ -116,7 +116,7 @@
 								action="${login}">
 								<div class="mb-3">
 									<label for="account" class="form-label"
-										style="font-size: 24px;">帳號</label> <input type="text"
+										style="font-size: 24px;">帳號</label> <input type="text" 
 										class="form-control" id="account" name="account"
 										placeholder="輸入帳號">
 									<c:if test="${not empty accountError}">
