@@ -14,6 +14,6 @@
 			</ul>
 		</div>
 		<div>
-			<a href="<c:url value="/login" />" class="text-success" style="text-decoration: none;">返回首頁</a>
+			<a href="<c:url value="/roomTableGallery" />" class="text-success" style="text-decoration: none;">返回首頁</a>
 		</div>
 	</nav>

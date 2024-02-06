@@ -81,9 +81,9 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 	// 每分鐘檢查一次，檢查所有房間的訂單入住日期到達當前日期，將房間狀態設為使用中或可使用
 	@Scheduled(cron = "0 * * * * *")
 	public void checkAndUpdateRoomStatus() {
-		List<roomTableBean> allRooms = roomRepository.findAll();//找所有房間
+		List<roomTableBean> AvailableRooms = roomRepository.roomAvailable();//找所有房間
 //		System.out.println(availableRooms);
-		for (roomTableBean room : allRooms) {
+		for (roomTableBean room : AvailableRooms) {
 //			System.out.println("狀態為 可使用 的房間:" + room);
 			List<bookingBean> bookingsForRoom = bookingRepository.findByRoomTable(room);//找房間的所有訂單
 			boolean roomInUse = false; // 標記房間使否使用中
@@ -112,20 +112,20 @@ public class OrderServiceImpl_backstage implements OrderService_backstage {
 					// 檢查房間最晚的 checkoutDate 是否過期，如果過期將其状態設置為“可使用”
 					if (currentDate.isAfter(latestCheckoutDate)) {
 						updateRoomStatusToAvailable(room.getRoomId());
-						System.out.println("房間 " + room.getRoomId() + " 修改為可使用");
+//						System.out.println("房間 " + room.getRoomId() + " 修改為可使用");
 					} else {
 						updateRoomStatusToInUse(room.getRoomId());
-						System.out.println("房間 " + room.getRoomId() + " 已修改為使用中");
+//						System.out.println("房間 " + room.getRoomId() + " 已修改為使用中");
 					}
 				} else {
 					// 如果未找到 checkoutDate，則默認房間在使用中
 					updateRoomStatusToInUse(room.getRoomId());
-					System.out.println("房間 " + room.getRoomId() + " 已修改為使用中");
+//					System.out.println("房間 " + room.getRoomId() + " 已修改為使用中");
 				}
 			} else {
 				// 如果没有訂單在使用中，將房間狀態設置為“可使用”
 				updateRoomStatusToAvailable(room.getRoomId());
-				System.out.println("房間 " + room.getRoomId() + " 修改為可使用");
+//				System.out.println("房間 " + room.getRoomId() + " 修改為可使用");
 
 			}
 		}
