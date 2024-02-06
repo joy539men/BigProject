@@ -20,5 +20,4 @@ public interface RoomRepository_backstage extends JpaRepository<roomTableBean,In
 	@Query("SELECT r FROM roomTableBean r WHERE r.status = '可使用'")
 	List<roomTableBean> roomAvailable();
 
-
 }
