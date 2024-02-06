@@ -58,8 +58,8 @@
     <style>
         /* 左邊對話框樣式 */
 		.my-message {
-		    background-color: #E6F7FF; /* 左邊對話框的背景顏色 */
-		    color: #333; /* 文字顏色 */
+		    background-color: white; /* 左邊對話框的背景顏色 */
+		    color: black; /* 文字顏色 */
 		    padding: 10px; /* 內邊距 */
 		    margin: 10px; /* 外邊距 */
 		    border-radius: 10px; /* 圓角 */
@@ -70,8 +70,8 @@
 		
 		/* 右邊對話框樣式 */
 		.other-message {
-		    background-color: #C2F0C2; /* 右邊對話框的背景顏色 */
-		    color: #555; /* 文字顏色 */
+		    background-color: white; /* 右邊對話框的背景顏色 */
+		    color: black; /* 文字顏色 */
 		    padding: 10px; /* 內邊距 */
 		    margin: 10px; /* 外邊距 */
 		    border-radius: 10px; /* 圓角 */
