@@ -283,11 +283,10 @@
 									<h5>${list.bookingTime }</h5>
 								</div>
 								<div class="col-3 mt-3">
-									<a class="btn btn-outline-primary ms-5"
-										href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a> 
+									<%-- <a class="btn btn-outline-primary ms-5"
+										href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a>  --%>
+									<a class="btn btn-outline-primary ms-5" href="javascript:void(0)" onclick="webSocket(${list.roomId})">傳 送 訊 息</a> 
 									<a class="btn btn-outline-primary ms-5 mt-2" onclick= "reviewRoom(${list.roomId})">評 論 房 源</a>
-									<!-- <a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a> -->
-									<!-- <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a> -->
 									<h5 class="ms-5 mt-4">TW ${list.price } x ${list.night } 晚
 										x ${list.guest } 人</h5>
 									<h6 class="ms-5 mb-5">總價 : ${list.totalPrice }</h6>
@@ -298,17 +297,10 @@
 							</div>
 						</div>
 					</div>
-
 				</c:forEach>
 			</div>
-
-
 		</div>
-		
-
 	</section>
-
-
 	<hr>
 
 	<!-- finsihBookPage -->
@@ -342,8 +334,10 @@
 									<h5>${list.bookingTime }</h5>
 								</div>
 								<div class="col-3 mt-3">
-									<a class="btn btn-outline-primary ms-5"
-										href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a> 
+									<a class="btn btn-outline-primary ms-5" href="javascript:void(0)" onclick="webSocket(${list.roomId})">傳 送 訊 息</a> 
+										
+								<%-- 	<a class="btn btn-outline-primary ms-5"
+									href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a>  --%>
 									<a class="btn btn-outline-primary ms-5 mt-2" onclick= "reviewRoom(${list.roomId})">評 論 房 源</a>
 									<!-- <a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a> -->
 									<!-- <a href="#!" class="btn btn-outline-primary ms-5">傳訊息給房東</a> -->
@@ -357,42 +351,7 @@
 							</div>
 						</div>
 					</div>
-
 				</c:forEach>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<!-- <div>
-					<div class="container border rounded">
-						<div class="row">
-							<div class="col-4 m-3 me-0">
-								<img class="img-fluid" style="width: 300px"
-									src="images/roomImages/zero-take-WvHrrR1C5Po-unsplash.jpg"
-									alt="">
-							</div>
-							<div class="col-4 ms-0 mt-3">
-								<h3 class="mb-5">房間名稱</h3>
-								<p class="mb-5">訂房編號 : 88888888</p>
-								<h5 class="mt-5">訂房日期</h5>
-								<h5>2022/2/22</h5>
-							</div>
-							<div class="col-3 mt-3">
-
-								<a onclick="sendMessage()" class="btn btn-outline-primary ms-5">傳訊息給房東</a>
-								<h5 class="ms-5 mt-4">TW 16888 X 2</h5>
-								<h6 class="ms-5 mb-5">總價 : 33766</h6>
-								<h5 class="ms-5">房客</h5>
-								<h6 class="ms-5">成人 1人 兒童 嬰幼兒</h6>
-							</div>
-						</div>
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</section>
@@ -463,6 +422,14 @@
 		function reviewRoom(roomId) {
 			window.location.href = "/pillowSurfing/evaluation/" + roomId;
 			}
+
+		function webSocket(roomId) {
+			var redirectUrl = "/pillowSurfing/webSocket/" + roomId;
+
+			window.location.href = redirectUrl;
+			
+			}
+		
 	</script>
 
 </body>

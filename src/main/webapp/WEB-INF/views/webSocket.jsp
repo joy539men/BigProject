@@ -4,13 +4,6 @@
 
 <!DOCTYPE html>
 
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://www.facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en-us">
   <head>
     <meta charset="utf-8" />
@@ -42,7 +35,7 @@
     <link rel="stylesheet" href="plugins/font-awesome/solid.css" /> -->
 
     <!-- # Main Style Sheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -93,7 +86,7 @@
               decoding="async"
               class="img-fluid"
               width="120"
-              src="images/logo.png"
+              src="../images/logo.png"
               alt="CouchSurfing"
             />
           </a>
@@ -172,7 +165,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                   ><i class="bi w-50 bi-list pe-4" style="font-size: 20px"></i
-                  ><img style="width: 50px" src="images/logo.png" alt=""
+                  ><img class="img-fluid rounded-circle mb-1" style="width: 50px;" src="<c:url value='${userBean.filePath }'/>" alt=""
                 /></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li class="dropdown-item">
@@ -222,28 +215,10 @@
             <h3 class="text-center mt-2">訊息</h3>
             <div class="row border rounded m-2 mt-5">
               <div class="col-4">
-                <img class="img-fluid m-1" src="images/logo.png" alt="" />
+                <img class="img-fluid rounded-circle mb-1"  style="width: 50px" src="<c:url value='${roomBean.user.filePath }'/>" alt="" />
               </div>
               <div class="col-7">
-                <h5 onclick="connectAndOpenChat()">Krist</h5>
-              </div>
-            </div>
-
-            <div class="row border rounded m-2">
-              <div class="col-4">
-                <img class="img-fluid m-1" src="images/logo.png" alt="" />
-              </div>
-              <div class="col-7">
-                <h5>Krist</h5>
-              </div>
-            </div>
-
-            <div class="row border rounded m-2">
-              <div class="col-4">
-                <img class="img-fluid m-1" src="images/logo.png" alt="" />
-              </div>
-              <div class="col-7">
-                <h5>Krist</h5>
+                <h5 onclick="connectAndOpenChat()">${roomBean.user.userName }</h5>
               </div>
             </div>
           </div>
@@ -253,7 +228,7 @@
           	<p class="mt-4" id = intoRoom></p>
           	
           	
-            <h3 class="mt-4">我：</h3>
+            <h3 class="mt-4">房東：</h3>
             <p>感謝您的訂單</p>
             
              <div id="chatMessages"></div>
@@ -261,43 +236,20 @@
            
           </div>
            <input class="mt-3" type="text" id="messageInput" placeholder="输入消息">
-	  		<button class="btn btn-outline-primary" onclick="sendMessage()">发送消息</button>
-	  		
-	  	<%-- 	<a href="<c:url value="login"></c:url>" class="btn btn-outline-primary">登 入</a> --%>
+	  		<button class="btn btn-outline-primary" onclick="sendMessage()">發送消息</button>
         </div>
       </div>
       
       
     </section>
     
-    
-    <section>
-    
-    <!-- 	  <div>
-       		 <input type="text" id="usernameInput" placeholder="输入用户名" value="DefaultUser">
-      	     <button onclick="joinChatRoom()">加入聊天室</button>
-    	</div>  -->
-    
-    </section>
-    
-    
-    <section>
-    	   <!--  <button onclick="connectAndOpenChat()">打开聊天</button>
-		    <div id="chatMessages"></div>
-		    <input type="text" id="messageInput" placeholder="输入消息">
-		    <button onclick="sendMessage()">发送消息</button> -->
-    </section>
 
-    <!-- # JS Plugins -->
-    <!-- <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/scrollmenu/scrollmenu.min.js"></script> -->
     
     <script>
     
         var stompClient = null;
-        var currentUser = 19;
+        var currentUser = ${userBean.userId};
+        var userBean = ${userBean.userName};
 
         function connectAndOpenChat() {
             var socket = new SockJS('/pillowSurfing/chat');
@@ -315,7 +267,7 @@
                 });
 
                 var intoRoom = document.getElementById("intoRoom");
-                intoRoom.innerHTML += "歡迎 蔡硯丞 加入聊天室！";
+                intoRoom.innerHTML += "歡迎" + "${userBean.userName}" + "加入聊天室！";
             });
         } 
 
@@ -330,17 +282,23 @@
             var chatMessages = document.getElementById('chatMessages');
             var messageElement = document.createElement('div');
             
-            if (parseInt(sender, 10) == 19) {
+            if (parseInt(sender, 10) == currentUser) {
                 // 如果 sender 與 currentUser 相同，將對話框顯示在右邊
                 messageElement.classList.add('my-message'); // 可以自訂 my-message 的樣式
+                messageElement.innerHTML = "<h3 class='mt-4'>" + "${userBean.userName}" + "：</h3>" + '<p>' + message + '</p>';
+                chatMessages.appendChild(messageElement);
+                console.log(typeof(sender));
             } else {
                 // 否則將對話框顯示在左邊
                 messageElement.classList.add('other-message'); // 可以自訂 other-message 的樣式
+                messageElement.innerHTML = "<h3 class='mt-4'>" + "${roomBean.user.userName}" + "：</h3>" + '<p>' + message + '</p>';
+                chatMessages.appendChild(messageElement);
+                console.log(typeof(sender));
             }
 
-            messageElement.innerHTML = "<h3 class='mt-4'>" + sender + "：</h3>" + '<p>' + message + '</p>';
+           /*  messageElement.innerHTML = "<h3 class='mt-4'>" + "${userBean.userName}" + "：</h3>" + '<p>' + message + '</p>';
             chatMessages.appendChild(messageElement);
-            console.log(typeof(sender));
+            console.log(typeof(sender)); */
         }
 
        

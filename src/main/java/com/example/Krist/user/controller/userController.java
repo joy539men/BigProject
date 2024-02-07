@@ -85,23 +85,6 @@ public class userController {
 		}
 	}
 
-//    @PostMapping("/login")
-//    public String login(@RequestParam String password,@RequestParam  String account,  HttpSession session) {
-//    	
-//    	userBean storedUser = userRepository.findByAccount(account);
-//        Integer userId = userService.authenticateUser(account, password);
-//
-//        if (userId != null && verifyPassword(password, storedUser.getPassword())) {
-//            // 身份验证成功，将用户ID存储到session中
-//        	
-//            session.setAttribute("userId", userId);
-//            return "redirect:/index"; // 重定向到主页或其他受保护的页面
-//        } else {
-//            // 身份验证失败，可以返回登录页面或其他处理逻辑
-//            return "login"; // 假设存在名为 "login" 的登录页面
-//        }
-//    }
-
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		// 登出的時候，要註銷 session 然後將其跳轉到登入畫面

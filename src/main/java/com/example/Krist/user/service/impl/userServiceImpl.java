@@ -177,24 +177,6 @@ public class userServiceImpl implements userService{
 		return saveFileTest(multipartFile,userId);
 	}
 	
-//	@Override
-//	public void renameFile(String filePath,Integer userId) {
-//		String ext = "";
-//		if (filePath.lastIndexOf(".") > -1) {
-//			ext = filePath.substring(filePath.lastIndexOf("."));
-//		}
-//		String newFileName = "userPhoto_" + userId + ext;
-	    // Construct the new file path with the final file name
-//	    String newFilePath = filePath.replaceFirst("[^/]+$", newFileName);
-//
-//	    // Perform the file renaming
-//	    File oldFile = new File("C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static" + filePath);
-//	    File newFile = new File("C:\\Users\\user\\git\\BigProject\\src\\main\\resources\\static" + newFilePath);
-//
-//	    if (oldFile.exists()) {
-//	        oldFile.renameTo(newFile);
-//	    }
-//	}
 	
 	@Override
 	public userBean updateUser(Integer userId, userBean updateUser ) {
@@ -251,6 +233,14 @@ public class userServiceImpl implements userService{
 		return filePath;
 		
 	}
+
+	@Override
+	public Optional<userBean> findById(Integer userId) {
+		// TODO Auto-generated method stub
+		return userRepository.findById(userId);
+	}
+
+	
 
 
 }
