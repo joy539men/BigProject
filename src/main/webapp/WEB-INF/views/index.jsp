@@ -217,6 +217,12 @@
     </svg>
 		</div>
 	</section>
+	
+	<section>
+	
+		<a href="<c:url value="/websocketChat"></c:url>" class="btn btn-outline-primary">登 入</a>
+	
+	</section>
 
 
 
