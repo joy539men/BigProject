@@ -41,6 +41,7 @@
 
   <!-- # Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>
@@ -255,6 +256,7 @@
                 <h5 class="ms-5">房客</h5>
                 <h6 class="ms-5">成人 ${booking.guest }人</h6>
                 <h6 class="ms-5">入住日期：${booking.checkinDate } <br> 退房日期：${booking.checkoutDate }</h6>
+                 <button id="payButton" class="btn btn-outline-primary ms-5">付款</button>
               </div>
             </div>
           </div>
@@ -264,7 +266,55 @@
 </section>
 
 <hr>
+<script>
+    // 點擊付款按鈕時觸發的函數
+    $("#payButton").click(function() {
+    	let originalUUID = '${booking.uuid}';
+    	let processedUUID = originalUUID.replace(/-/g, '').substring(0, 20);
+    	console.log(originalUUID)
+    	console.log(processedUUID)
+        // 發送 AJAX 請求
+        $.ajax({
+            type: "POST",
+            url: "/pillowSurfing/ecpayCheckout",
+            contentType: "application/x-www-form-urlencoded",
+            data: {
+                itemName: '${roomDetail.title}',
+                merchantTradeNo: processedUUID,
+                merchantTradeDate: getTime(),
+                totalAmount: '${amount}',
+                orderId: '${booking.bookingId}',
+            },
+            success: function(response) {
+                console.log(response); 
+                var newWindow = window.open("", "_self");
 
+                newWindow.document.write(response);
+                newWindow.document.getElementById("allPayAPIForm").submit();
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    function getTime() {
+		// 取得現在的日期時間
+		var currentDate = new Date();
+
+		// 取得年、月、日、時、分、秒
+		var year = currentDate.getFullYear();
+		var month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // 月份從0開始，需要加1
+		var day = ('0' + currentDate.getDate()).slice(-2);
+		var hours = ('0' + currentDate.getHours()).slice(-2);
+		var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+		var seconds = ('0' + currentDate.getSeconds()).slice(-2);
+
+		// 格式化日期時間字串
+		var formattedDateTime = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+		console.log(formattedDateTime); 
+		return formattedDateTime;
+	}
+</script>
 <!-- finsihBookPage -->
 <%-- <section class="section pt-0 mt-0">
   <div class="container">

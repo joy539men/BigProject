@@ -39,6 +39,7 @@
 <!-- # Bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>
@@ -277,13 +278,27 @@
 								<div class="col-4 ms-0 mt-3">
 									<h3 class="mb-5">房間名稱 : ${list.title }</h3>
 									<p class="">訂房編號 :</p>
-									<br>
 									<h6>${list.uuid }</h6>
 									<h5 class="mt-5">訂房日期</h5>
-									<h5>${list.bookingTime }</h5>
+									<h5 style="display:inline-block">${list.bookingTime }</h5>
+											<!-- 判断是否已付款 -->
+									<c:choose>
+										<c:when test="${list.paymentStatus == '待付款'}">
+											<!-- 如果未付款则显示付款按钮 -->
+												<button class="btn btn-primary ms-5 mb-1" style="display:inline-block"
+													onclick="makePayment('${list.id}','${list.uuid}','${list.title}','${list.totalPrice }')">付款</button>
+												
+										</c:when>
+										<c:otherwise>
+											<!-- 如果已付款则不显示付款按钮 -->
+											<div class="col-12 mt-3" style="display:inline-block">
+												<p>已付款</p>
+											</div>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="col-3 mt-3">
-									<a class="btn btn-outline-primary ms-5"
+									<a class="btn btn-outline-primary ms-5 "
 										href="<c:url value="/webSocket"></c:url>">傳 送 訊 息</a> 
 									<a class="btn btn-outline-primary ms-5 mt-2" onclick= "reviewRoom(${list.roomId})">評 論 房 源</a>
 									<!-- <a class="btn btn-outline-primary ms-5" onclick="sendMessage()">傳訊息給房東</a> -->
@@ -462,6 +477,52 @@
 
 		function reviewRoom(roomId) {
 			window.location.href = "/pillowSurfing/evaluation/" + roomId;
+			}
+		
+		   function makePayment(bookingID,uuid,title,totalPrice) {
+		    	let processedUUID = uuid.replace(/-/g, '').substring(0, 20);
+		    	console.log(uuid)
+		    	console.log(processedUUID)
+		        // 發送 AJAX 請求
+		        $.ajax({
+		            type: "POST",
+		            url: "/pillowSurfing/ecpayCheckout",
+		            contentType: "application/x-www-form-urlencoded",
+		            data: {
+		                itemName: title,
+		                merchantTradeNo: processedUUID,
+		                merchantTradeDate: getTime(),
+		                totalAmount: totalPrice,
+		                orderId: bookingID,
+		            },
+		            success: function(response) {
+		                console.log(response); 
+		                var newWindow = window.open("", "_self");
+
+		                newWindow.document.write(response);
+		                newWindow.document.getElementById("allPayAPIForm").submit();
+		            },
+		            error: function(xhr, status, error) {
+		                console.error(error);
+		            }
+		        });
+		    };
+		    function getTime() {
+				// 取得現在的日期時間
+				var currentDate = new Date();
+
+				// 取得年、月、日、時、分、秒
+				var year = currentDate.getFullYear();
+				var month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // 月份從0開始，需要加1
+				var day = ('0' + currentDate.getDate()).slice(-2);
+				var hours = ('0' + currentDate.getHours()).slice(-2);
+				var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+				var seconds = ('0' + currentDate.getSeconds()).slice(-2);
+
+				// 格式化日期時間字串
+				var formattedDateTime = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+				console.log(formattedDateTime); 
+				return formattedDateTime;
 			}
 	</script>
 

@@ -101,11 +101,12 @@ public class bookingController {
 	        }
 
 	        bookingBean.setStatus("待確認");
+	        bookingBean.setPaymentStatus("待付款");
 	        bookingBean.setBookingTime(new Date(System.currentTimeMillis()));
 	        bookingBean.setUuid(UUID.randomUUID());	       
 	        
 	        // 將計算機金額加入 Model 當中
-	        double amount = calculateAmountLogic(
+	        int amount = calculateAmountLogic(
 	        	    new SimpleDateFormat("yyyy-MM-dd").format(bookingBean.getCheckinDate()),
 	        	    new SimpleDateFormat("yyyy-MM-dd").format(bookingBean.getCheckoutDate()),
 	        	    bookingBean.getGuest(),
@@ -142,26 +143,26 @@ public class bookingController {
 	// 使用 Ajax 進行運算，其中需要起始日期和結束日期，來有旅客去進行相乘
 	@GetMapping("/calculateAmount")
 	@ResponseBody // 就是這個鬼東西搞了我整個晚上，因為在這邊 controller 只會回傳視圖，但現在要回傳 JSON 格式的話需要加上 @ResponseBody 的註解，這樣才能實現 AJAX
-	public Map<String, Double> calculateAmount(
+	public Map<String, Integer> calculateAmount(
 								  HttpSession session,
 								  @RequestParam("checkinDate") String checkinDate,
 	                              @RequestParam("checkoutDate") String checkoutDate,
 	                              @RequestParam("guest") int guest,
 	                              Model model) {
 	    // 這邊進行金額的計算
-	    double amount = calculateAmountLogic(checkinDate, checkoutDate, guest, session);
+		int amount = calculateAmountLogic(checkinDate, checkoutDate, guest, session);
 
 	    
 
 	    // 將計算金額放入 Map 當中
-	    Map<String, Double> response = new HashMap<>();
+	    Map<String, Integer> response = new HashMap<>();
 	    response.put("amount", amount);
 	    
 	    // 返回數值
 	    return response;
 	}
 	
-	private double calculateAmountLogic(String checkinDate, String checkoutDate, int guest, HttpSession session) {
+	private int calculateAmountLogic(String checkinDate, String checkoutDate, int guest, HttpSession session) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    try {
 	        // 字串日期軟換為 Date，記得要使用 new Data(dataFormat.parse(checkinDate).getTime()); 方法
@@ -189,7 +190,7 @@ public class bookingController {
 	        double nightlyRate = roomTable.getPrice();
 
 	        // 計算總金額
-	        return nightlyRate * stayDuration * guest;
+	        return (int) (nightlyRate * stayDuration * guest);
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	        return 0;
@@ -256,6 +257,7 @@ public class bookingController {
 	            itemMap.put("roomId", booking.getRoomTable().getRoomId());
 	            itemMap.put("checkinDate", booking.getCheckinDate());
 	            itemMap.put("checkoutDate", booking.getCheckoutDate());
+	            itemMap.put("paymentStatus", booking.getPaymentStatus());
 
 	            combinedList.add(itemMap);
 	        }

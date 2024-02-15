@@ -30,6 +30,7 @@ public class bookingBean {
 	private String tips;
 	private Integer night;
 	private String status;
+	private String paymentStatus;
 
 	@Transient
 	private boolean isProcessed;
@@ -44,8 +45,11 @@ public class bookingBean {
 	@JoinColumn(name = "roomId")
 	private roomTableBean roomTable;
 
+
 	public bookingBean(Integer bookingId, UUID uuid, Date checkinDate, Date checkoutDate, Integer totalPrice,
-			Date bookingTime, Integer guest, String tips, Integer night) {
+			Date bookingTime, Integer guest, String tips, Integer night, String status, String paymentStatus,
+			boolean isProcessed, userBean user, roomTableBean roomTable) {
+		super();
 		this.bookingId = bookingId;
 		this.uuid = uuid;
 		this.checkinDate = checkinDate;
@@ -55,12 +59,22 @@ public class bookingBean {
 		this.guest = guest;
 		this.tips = tips;
 		this.night = night;
+		this.status = status;
+		this.paymentStatus = paymentStatus;
+		this.isProcessed = isProcessed;
+		this.user = user;
+		this.roomTable = roomTable;
 	}
-
 	public bookingBean() {
 
 	}
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
 
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
 	public boolean isProcessed() {
 		return isProcessed;
 	}
@@ -176,13 +190,14 @@ public class bookingBean {
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
-
 	@Override
 	public String toString() {
 		return "bookingBean [bookingId=" + bookingId + ", uuid=" + uuid + ", checkinDate=" + checkinDate
 				+ ", checkoutDate=" + checkoutDate + ", totalPrice=" + totalPrice + ", bookingTime=" + bookingTime
-				+ ", guest=" + guest + ", tips=" + tips + ", night=" + night + ", status=" + status + ", user=" + user
-				+ ", roomTable=" + roomTable + "]";
+				+ ", guest=" + guest + ", tips=" + tips + ", night=" + night + ", status=" + status + ", paymentStatus="
+				+ paymentStatus + ", isProcessed=" + isProcessed + ", user=" + user + ", roomTable=" + roomTable + "]";
 	}
+
+	
 
 }
