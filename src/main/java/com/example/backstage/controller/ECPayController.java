@@ -33,28 +33,24 @@ public class ECPayController {
 
 	@PostMapping("/paymentResult/{orderId}")
 	public String handlePaymentResult(@RequestBody String  paymentResult, @PathVariable Integer orderId) {
-		// 处理付款结果通知
-		// 这里可以调用相应的服务方法来处理付款结果，比如更新订单状态等
+		// 處理付款結果通知，更新訂單狀態
 		System.out.println("Received payment result: " + paymentResult);
 		System.out.println("orderID為: "+orderId);
 	    if (orderId != null) {
-	        // 根据订单ID查找订单
+	        // 根據訂單ID查找，更新付款狀態
 	        Optional<bookingBean> optionalBooking = bookingService.findById(orderId);
 	        if (optionalBooking.isPresent()) {
-	            // 更新订单状态为已付款等操作
 	            bookingBean booking = optionalBooking.get();
-	            booking.setPaymentStatus("已付款"); // 假设状态为已付款
-	            bookingService.save(booking); // 保存更新后的订单
+	            booking.setPaymentStatus("已付款");
+	            bookingService.save(booking); 
 	        } else {
-	            // 如果无法找到相应订单，处理错误
 	            System.out.println("Failed to retrieve booking with ID: " + orderId);
 	        }
 	    } else {
-	        // 如果无法从会话中获取订单ID，处理错误
 	        System.out.println("Failed to retrieve booking ID from session.");
 	    }
 		
-		// 返回给绿界服务器的响应，一般返回 "1|OK" 表示接收成功
+		// 返回给綠界 "1|OK" 表示接收成功
 		return "1|OK";
 	}
 }

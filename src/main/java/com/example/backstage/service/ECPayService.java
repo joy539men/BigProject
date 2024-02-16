@@ -45,8 +45,8 @@ public String ecpayCheckout(PaymentData paymentData ) {
 		obj.setTotalAmount(paymentData.getTotalAmount());
 		obj.setTradeDesc("test Description");
 		obj.setItemName(paymentData.getItemName());
-		// 交易結果回傳網址，只接受 https 開頭的網站，可以使用 ngrok
-		obj.setReturnURL("https://01f0-49-213-133-233.ngrok-free.app/pillowSurfing/paymentResult/"+paymentData.getOrderId()); 
+		// 交易結果回傳網址，只接受 https 開頭的網站，使用 ngrok
+		obj.setReturnURL(" https://1d9b-118-163-218-100.ngrok-free.app/pillowSurfing/paymentResult/"+paymentData.getOrderId()); 
 		obj.setClientBackURL("http://localhost:8080/pillowSurfing/roomTableGallery"); 
 		obj.setNeedExtraPaidInfo("N"); 
 		Hashtable<String, String> hashtable = EcpayFunction.objToHashtable(obj);
